@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Power Hour - February 5, 2026</title>
+    <style>
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-before: always; }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .agenda {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .agenda h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .agenda ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .agenda li {
+            padding: 8px 0;
+            font-size: 1.1em;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+        
+        .highlight-row {
+            background-color: #fff3cd !important;
+            font-weight: 600;
+        }
+        
+        .quick-take {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-style: italic;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .quick-take strong {
+            display: block;
+            margin-bottom: 10px;
+            font-style: normal;
+            color: #c0392b;
+        }
+        
+        .tool-card {
+            background: #fff;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .tool-card h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .tool-card .subtitle {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .tool-features {
+            background: #f0f4ff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .tool-features h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .tool-features ul {
+            margin-left: 20px;
+        }
+        
+        .tool-features li {
+            padding: 5px 0;
+        }
+        
+        .demo-ideas {
+            background: #e8f5e9;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .demo-ideas h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .link-box {
+            background: #e3f2fd;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box strong {
+            margin-right: 10px;
+            color: #1565c0;
+        }
+        
+        .link-box a {
+            color: #1565c0;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .youtube-links {
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .youtube-links h4 {
+            color: #c62828;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .youtube-links table {
+            margin: 0;
+        }
+        
+        .youtube-links th {
+            background: #c62828;
+        }
+        
+        .discussion-card {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .discussion-card h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+        
+        .discussion-card ol {
+            margin-left: 25px;
+        }
+        
+        .discussion-card li {
+            padding: 8px 0;
+        }
+        
+        .resources-section {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .resources-section h3 {
+            color: #7b1fa2;
+            margin-bottom: 20px;
+        }
+        
+        .alert-box {
+            background: #ffcdd2;
+            border: 2px solid #f44336;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .alert-box h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .market-impact {
+            background: #fff8e1;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            color: #666;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        .tag-hot {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+        
+        .tag-new {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .tag-trending {
+            background: #bbdefb;
+            color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 AI Power Hour</h1>
+        <div class="date">February 5, 2026</div>
+    </div>
+    
+    <div class="agenda">
+        <h2>📋 Today's Agenda</h2>
+        <ul>
+            <li>🔥 <strong>AI Hot Take</strong> – Quick update on what's new in the AI world</li>
+            <li>🛠️ <strong>Tool Spotlight</strong> – Live demo of a productivity-boosting AI tool</li>
+            <li>❓ <strong>Open Floor</strong> – Your questions answered, ideas discussed</li>
+            <li></li>
+        </ul>
+    </div>
+
+    <!-- SECTION 1: AI HOT TAKE -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🔥</span>
+            <h2 class="section-title">AI Hot Take – What's New This Week</h2>
+        </div>
+        
+        <div class="alert-box">
+            <h4>🚨 MARKET-MOVING NEWS: Claude Cowork + Plugins</h4>
+            <p><strong>What happened:</strong> Anthropic launched <strong>Claude Cowork</strong> and a massive <strong>Plugins Directory</strong> that allows AI to automate entire business workflows end-to-end.</p>
+            <div class="market-impact">
+                <strong>Why IT stocks dropped:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>AI can now do integration/automation work that IT teams charge for</li>
+                    <li>Direct competition with traditional IT services/consulting</li>
+                    <li>100+ enterprise tool connections out of the box</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 style="margin: 25px 0 15px 0;">📰 Headlines That Matter</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">News</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td><span class="tag tag-hot">HOT</span> Claude Cowork + Plugins</td>
+                    <td>Full workflow automation across 100+ tools – <strong>caused IT index drop</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Google Gemini hits 750M MAU</td>
+                    <td>Most widely adopted AI tool globally. If your team isn't using it, you're behind.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> ElevenLabs raises $500M at $11B</td>
+                    <td>Voice AI is exploding. ElevenLabs is the leader in realistic AI voice generation.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> OpenAI launches Codex App</td>
+                    <td>Agentic coding is here – AI agents write, test, and deploy code autonomously.</td>
+                </tr>
+                <tr>
+                    <td>Apple Xcode + Claude Agent SDK</td>
+                    <td>Apple goes all-in on AI-assisted development. Major validation for agentic coding.</td>
+                </tr>
+                <tr>
+                    <td>Alexa+ now available to all US</td>
+                    <td>Amazon's upgraded AI assistant is now mainstream.</td>
+                </tr>
+                <tr>
+                    <td>SpaceX acquires xAI</td>
+                    <td>Musk merges his AI company with SpaceX – plans for data centers in space.</td>
+                </tr>
+                <tr>
+                    <td>Claude on Mars</td>
+                    <td>Claude helped NASA's Perseverance rover autonomously navigate 400m on Mars.</td>
+                </tr>
+                <tr>
+                    <td>Sam Altman vs Claude Super Bowl ads</td>
+                    <td>Shows intense competitive pressure on OpenAI from Anthropic.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h3 style="margin: 25px 0 15px 0;">🔌 Claude Plugins Causing Waves</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Plugin</th>
+                    <th>What It Automates</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Finance</strong></td>
+                    <td>Journal entries, reconciliation, financial statements, variance analysis</td>
+                </tr>
+                <tr>
+                    <td><strong>Legal</strong></td>
+                    <td>Contract review, NDA triage, compliance workflows</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer Support</strong></td>
+                    <td>Ticket triage, draft responses, knowledge base management</td>
+                </tr>
+                <tr>
+                    <td><strong>Enterprise Search</strong></td>
+                    <td>Search across email, chat, documents, wikis in one place</td>
+                </tr>
+                <tr>
+                    <td><strong>Sales</strong></td>
+                    <td>Prospect, craft outreach, build deal strategy, call prep</td>
+                </tr>
+                <tr>
+                    <td><strong>Product Management</strong></td>
+                    <td>Feature specs, roadmaps, user research synthesis</td>
+                </tr>
+                <tr>
+                    <td><strong>Data</strong></td>
+                    <td>Write SQL, explore datasets, generate insights, build dashboards</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="quick-take">
+            <strong>💬 Quick Take for Your Team:</strong>
+            "Agentic AI is the big shift. We're moving from AI as a tool you prompt → AI as an agent that takes action. OpenAI's Codex, Claude Cowork, and Google's Agentic Vision are all pushing this direction. Start thinking: what repetitive work can an AI agent handle end-to-end?"
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: TOOL SPOTLIGHT -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🛠️</span>
+            <h2 class="section-title">Tool Spotlight – Live Demo</h2>
+        </div>
+        
+        <div class="tool-card">
+            <h3>Recommended Tool: ElevenLabs</h3>
+            <p class="subtitle">AI voice generation, text-to-speech, voice cloning, AI agents, transcription</p>
+            
+            <div class="tool-features">
+                <h4>Why Demo This:</h4>
+                <ul>
+                    <li>Just raised $500M – undisputed industry leader</li>
+                    <li>Extremely practical for any team</li>
+                    <li>Free tier available for testing</li>
+                    <li>70+ languages supported</li>
+                    <li>Scribe v2: 98% accurate transcription (launched Jan 2026)</li>
+                </ul>
+            </div>
+
+            
+            
+            <div class="demo-ideas">
+                <h4>Demo Ideas (5-10 min):</h4>
+                <ol>
+                    <li><strong>Text-to-Speech</strong> – Paste meeting notes → generate audio summary</li>
+                    <li><strong>Voice Cloning</strong> – Create a custom voice for internal comms</li>
+                    <li><strong>AI Agents</strong> – Show how to build a voice agent for customer support</li>
+                    <li><strong>Scribe v2</strong> – Demo 98% accurate transcription</li>
+                </ol>
+            </div>
+            
+            <div class="link-box">
+                <strong>🔗 Direct Link:</strong>
+                <a href="https://elevenlabs.io/" target="_blank">https://elevenlabs.io/</a>
+            </div>
+        </div>
+        <div class="page-break"></div>
+        <div class="tool-card">
+            <h3>Alternative Tool: OpenAI Codex</h3>
+            <p class="subtitle">For dev-focused teams – Agentic coding</p>
+            
+            <div class="tool-features">
+                <h4>Why It's Hot:</h4>
+                <ul>
+                    <li>Launched Feb 2, 2026</li>
+                    <li>Works in app, IDE, or terminal</li>
+                    <li>Multi-agent workflows (agents work in parallel)</li>
+                    <li>"Skills" feature adapts to your team's coding standards</li>
+                    <li>Handles features, refactors, migrations, testing end-to-end</li>
+                </ul>
+            </div>
+            
+            <div class="link-box">
+                <strong>🔗 Direct Link:</strong>
+                <a href="https://openai.com/codex/" target="_blank">https://openai.com/codex/</a>
+            </div>
+        </div>
+        <div class="page-break"></div>
+        <div class="tool-card">
+            <h3>Hot Topic Tool: Claude Cowork</h3>
+            <p class="subtitle">Full workflow automation for any business function</p>
+            
+            <div class="tool-features">
+                <h4>Key Capabilities:</h4>
+                <ul>
+                    <li>Connect to 100+ enterprise tools (Jira, Slack, Notion, GitHub, etc.)</li>
+                    <li>Execute tasks autonomously with human approval checkpoints</li>
+                    <li>Organize files, build spreadsheets, prepare reports automatically</li>
+                    <li>Available on Pro plans ($17/mo) and above</li>
+                </ul>
+            </div>
+            
+            <div class="link-box">
+                <strong>🔗 Direct Links:</strong>
+            </div>
+            <div class="link-box">
+                <a href="https://claude.com/product/cowork" target="_blank">Cowork: https://claude.com/product/cowork</a>
+            </div>
+            <div class="link-box">
+                <a href="https://claude.com/plugins" target="_blank">Plugins: https://claude.com/plugins</a>
+            </div>
+            <div class="link-box">
+                <a href="https://claude.com/connectors" target="_blank">Connectors: https://claude.com/connectors</a>
+            </div>
+        </div>
+        <div class="page-break"></div>
+        <div class="youtube-links" style="background: #e3f2fd; border-left: 4px solid #1565c0;">
+            <h4 style="color: #1565c0;">📺 Verified Official Demo Resources</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #1565c0;">Tool</th>
+                        <th style="background: #1565c0;">Official Resource (Verified Working)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Anthropic: Building Agents</strong></td>
+                        <td><a href="https://www.youtube.com/watch?v=DAQJvGjlgVM" target="_blank">youtube.com/watch?v=DAQJvGjlgVM</a> (from Anthropic official)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anthropic: Designing AI Agents</strong></td>
+                        <td><a href="https://www.youtube.com/watch?v=vLIDHi-1PVU" target="_blank">youtube.com/watch?v=vLIDHi-1PVU</a> (from Anthropic official)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ElevenLabs Homepage Demo</strong></td>
+                        <td><a href="https://elevenlabs.io/" target="_blank">elevenlabs.io</a> (interactive TTS demo on homepage)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OpenAI Codex Blog + Video</strong></td>
+                        <td><a href="https://openai.com/index/introducing-the-codex-app/" target="_blank">openai.com/index/introducing-the-codex-app</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Claude Cowork Product Page</strong></td>
+                        <td><a href="https://claude.com/product/cowork" target="_blank">claude.com/product/cowork</a> (video demos embedded)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 5px;">
+                <strong style="color: #2e7d32;">✅ These links are verified from official company websites/docs:</strong>
+                <ul style="margin: 10px 0 0 20px; font-size: 0.9em;">
+                    <li>The two Anthropic YouTube videos were referenced in their official Claude Sonnet 4.5 blog post</li>
+                    <li>ElevenLabs has a live text-to-speech demo directly on their homepage</li>
+                    <li>OpenAI Codex blog has embedded demo videos showing the app in action</li>
+                    <li>Claude Cowork page has animated demos showing file organization, reports, etc.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: WIN OF THE WEEK -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">💡</span>
+            <h2 class="section-title">Win of the Week – Real Examples</h2>
+        </div>
+        
+        <p style="margin-bottom: 20px;"><em>Present 2-3 concrete examples from your team. If you don't have team-specific wins yet, use these universal examples:</em></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Win</th>
+                    <th>Tool Used</th>
+                    <th>Time Saved</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Meeting notes → action items</td>
+                    <td>Gemini / ChatGPT</td>
+                    <td>20 min/meeting</td>
+                </tr>
+                <tr>
+                    <td>First draft of emails/reports</td>
+                    <td>Claude / ChatGPT</td>
+                    <td>30-60 min/doc</td>
+                </tr>
+                <tr>
+                    <td>Code review assistance</td>
+                    <td>GitHub Copilot / Codex</td>
+                    <td>1-2 hrs/PR</td>
+                </tr>
+                <tr>
+                    <td>Transcribing calls</td>
+                    <td>ElevenLabs Scribe / Otter.ai</td>
+                    <td>15 min/call</td>
+                </tr>
+                <tr>
+                    <td>Research summaries</td>
+                    <td>Perplexity / Gemini Deep Research</td>
+                    <td>2-3 hrs/topic</td>
+                </tr>
+                <tr>
+                    <td>Data analysis/charts</td>
+                    <td>ChatGPT Advanced Data Analysis</td>
+                    <td>1-2 hrs/report</td>
+                </tr>
+                <tr>
+                    <td>Workflow automation</td>
+                    <td>Claude Cowork</td>
+                    <td>3-4 hrs/week</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="quick-take" style="background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%); border-left-color: #2e7d32;">
+            <strong style="color: #1b5e20;">💡 Pro Tip:</strong>
+            Ask attendees to share ONE win from the past week before the meeting. Makes this section interactive and builds engagement!
+        </div>
+    </div>
+    <div class="page-break"></div>
+    <!-- SECTION 4: OPEN FLOOR -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">❓</span>
+            <h2 class="section-title">Open Floor – Discussion Topics</h2>
+        </div>
+        
+        <div class="discussion-card">
+            <h4>If conversation stalls, use these prompts:</h4>
+            <ol>
+                <li><strong>"What's one task you do weekly that feels repetitive?"</strong><br>
+                    <em>→ Brainstorm AI solutions together</em></li>
+                <li><strong>"Has anyone tried any new AI tools this month?"</strong><br>
+                    <em>→ Peer recommendations are powerful</em></li>
+                                            <li><strong>"Agentic AI is the 2026 trend – how might this change your workflow?"</strong><br>
+                    <em>→ Forward-thinking discussion</em></li>
+                <li><strong>"With Claude's new plugins automating Finance, Legal, Support – what's next?"</strong><br>
+                    <em>→ Strategic implications for the team</em></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PROMPT LIBRARY SECTION -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <h2 class="section-title">Prompt Library – Official Resources</h2>
+        </div>
+        
+        <p style="margin-bottom: 20px;"><em>Curated prompt libraries from leading AI companies and tools. Bookmark these for ready-to-use, battle-tested prompts!</em></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Organization / Tool</th>
+                    <th>Prompt Library Link</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Anthropic (Claude)</strong></td>
+                    <td><a href="https://docs.anthropic.com/en/prompt-library/library" target="_blank">docs.anthropic.com/en/prompt-library</a></td>
+                    <td>General productivity, coding, writing, analysis</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub Copilot</strong></td>
+                    <td><a href="https://docs.github.com/en/copilot/using-github-copilot/prompt-engineering-for-github-copilot" target="_blank">docs.github.com/copilot/prompt-engineering</a></td>
+                    <td>Code generation, debugging, documentation</td>
+                </tr>
+                <tr>
+                    <td><strong>Cursor</strong></td>
+                    <td><a href="https://cursor.directory/" target="_blank">cursor.directory</a></td>
+                    <td>IDE rules, coding conventions, project setup</td>
+                </tr>
+                <tr>
+                    <td><strong>OpenAI</strong></td>
+                    <td><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank">platform.openai.com/docs/guides/prompt-engineering</a></td>
+                    <td>ChatGPT/GPT-4 best practices, API usage</td>
+                </tr>
+                <tr>
+                    <td><strong>Google (Gemini)</strong></td>
+                    <td><a href="https://ai.google.dev/gemini-api/docs/prompting-strategies" target="_blank">ai.google.dev/gemini-api/docs/prompting-strategies</a></td>
+                    <td>Multimodal prompting, Gemini optimization</td>
+                </tr>
+                <tr>
+                    <td><strong>Microsoft Copilot</strong></td>
+                    <td><a href="https://adoption.microsoft.com/en-us/copilot-prompt-gallery/" target="_blank">adoption.microsoft.com/copilot-prompt-gallery</a></td>
+                    <td>Microsoft 365 apps (Word, Excel, Teams, PPT)</td>
+                </tr>
+                <tr>
+                    <td><strong>AWS (Bedrock)</strong></td>
+                    <td><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html" target="_blank">docs.aws.amazon.com/bedrock/prompt-engineering</a></td>
+                    <td>Enterprise AI, multi-model prompting</td>
+                </tr>
+                <tr>
+                    <td><strong>PromptBase (Community)</strong></td>
+                    <td><a href="https://promptbase.com/" target="_blank">promptbase.com</a></td>
+                    <td>Marketplace for buying/selling prompts</td>
+                </tr>
+                <tr>
+                    <td><strong>FlowGPT (Community)</strong></td>
+                    <td><a href="https://flowgpt.com/" target="_blank">flowgpt.com</a></td>
+                    <td>Free community-shared prompts</td>
+                </tr>
+                <tr>
+                    <td><strong>Awesome ChatGPT Prompts</strong></td>
+                    <td><a href="https://github.com/f/awesome-chatgpt-prompts" target="_blank">github.com/f/awesome-chatgpt-prompts</a></td>
+                    <td>Open source prompt collection (50K+ stars)</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #fff3e0; border-radius: 5px; border-left: 4px solid #ff9800;">
+            <strong style="color: #e65100;">💡 Pro Tips for Using Prompt Libraries:</strong>
+            <ul style="margin: 10px 0 0 20px; font-size: 0.95em;">
+                <li><strong>Don't copy blindly</strong> – Adapt prompts to your specific context and data</li>
+                <li><strong>Test iteratively</strong> – Run the prompt, refine based on output, repeat</li>
+                <li><strong>Save your winners</strong> – Create a personal library of prompts that work for YOUR use cases</li>
+                <li><strong>Cursor Directory tip:</strong> Copy rules into <code>.cursorrules</code> file in your project root</li>
+            </ul>
+        </div>
+    </div>
+
+`    <!-- QUICK REFERENCE -->
+    <div class="resources-section">
+        <h3>📌 Quick Reference Links</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ElevenLabs (Voice AI)</td>
+                    <td><a href="https://elevenlabs.io/" target="_blank">elevenlabs.io</a></td>
+                </tr>
+                <tr>
+                    <td>OpenAI Codex (Agentic Coding)</td>
+                    <td><a href="https://openai.com/codex/" target="_blank">openai.com/codex</a></td>
+                </tr>
+                <tr>
+                    <td>Claude Cowork (Workflow Automation)</td>
+                    <td><a href="https://claude.com/product/cowork" target="_blank">claude.com/product/cowork</a></td>
+                </tr>
+                <tr>
+                    <td>Claude Plugins Directory</td>
+                    <td><a href="https://claude.com/plugins" target="_blank">claude.com/plugins</a></td>
+                </tr>
+                <tr>
+                    <td>Google Gemini</td>
+                    <td><a href="https://gemini.google.com/" target="_blank">gemini.google.com</a></td>
+                </tr>
+                <tr>
+                    <td>Claude</td>
+                    <td><a href="https://claude.ai/" target="_blank">claude.ai</a></td>
+                </tr>
+                <tr>
+                    <td>TechCrunch AI News</td>
+                    <td><a href="https://techcrunch.com/category/artificial-intelligence/" target="_blank">techcrunch.com/category/artificial-intelligence</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- REALITY CHECK SECTION -->
+    <div class="section" style="border: 3px solid #d32f2f;">
+        <div class="section-header" style="background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);">
+            <span class="section-icon">🎭</span>
+            <h2 class="section-title">Reality Check: Is the AI Hype Real?</h2>
+        </div>
+        
+        <div style="padding: 20px; background: #ffebee; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #c62828; margin-bottom: 15px;">🤔 The Uncomfortable Truth</h3>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                <strong>You're not wrong.</strong> Most AI implementations today are indeed POC-ready, not production-ready. 
+                Here's the honest breakdown of where AI shines vs. where it falls flat.
+            </p>
+        </div>
+
+        <!-- THE HYPE SPECTRUM -->
+        <h3 style="color: #1565c0; border-bottom: 2px solid #1565c0; padding-bottom: 10px;">📊 The AI Hype Spectrum – What's Real vs. What's Marketing</h3>
+        
+        <table style="margin-bottom: 30px;">
+            <thead>
+                <tr>
+                    <th style="background: #2e7d32;">✅ Production Ready</th>
+                    <th style="background: #ff9800;">⚠️ POC / Limited Use</th>
+                    <th style="background: #d32f2f;">❌ Overhyped / Risky</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>Code autocomplete (Copilot)</li>
+                            <li>Transcription (Whisper)</li>
+                            <li>Chatbots for FAQs</li>
+                            <li>Content drafting (with review)</li>
+                            <li>Search/retrieval (RAG)</li>
+                            <li>Image generation (marketing)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>Autonomous agents</li>
+                            <li>Code generation (full apps)</li>
+                            <li>Document analysis</li>
+                            <li>Customer service (complex)</li>
+                            <li>Data analysis</li>
+                            <li>Workflow automation</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>AGI claims</li>
+                            <li>"Replace all developers"</li>
+                            <li>Fully autonomous decisions</li>
+                            <li>Medical/legal advice</li>
+                            <li>Financial predictions</li>
+                            <li>Self-improving systems</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <!-- REAL FAILURE EXAMPLES -->
+        <h3 style="color: #d32f2f; border-bottom: 2px solid #d32f2f; padding-bottom: 10px;">💥 Real-World AI Failures – The Hall of Shame</h3>
+        
+        <div style="display: grid; gap: 20px; margin-bottom: 30px;">
+            
+            <!-- Failure 1 -->
+            <div style="background: #fff3e0; padding: 20px; border-radius: 8px; border-left: 5px solid #ff9800;">
+                <h4 style="color: #e65100; margin-bottom: 10px;">🏛️ Air Canada Chatbot Lawsuit (2024)</h4>
+                <p><strong>What happened:</strong> AI chatbot promised a customer a bereavement discount that didn't exist. Customer sued and WON.</p>
+                <p><strong>Why it failed:</strong> Hallucination + No human oversight + Chatbot treated as company representative</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>AI outputs are legally binding when customers rely on them</em></p>
+            </div>
+
+            <!-- Failure 2 -->
+            <div style="background: #fce4ec; padding: 20px; border-radius: 8px; border-left: 5px solid #e91e63;">
+                <h4 style="color: #c2185b; margin-bottom: 10px;">⚖️ Lawyer Cites Fake Cases (2023)</h4>
+                <p><strong>What happened:</strong> NYC lawyer used ChatGPT for legal research. It cited 6 completely fabricated court cases.</p>
+                <p><strong>Why it failed:</strong> LLMs don't "know" facts – they predict plausible text. Legal databases weren't in training data.</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>Never use AI for factual claims without verification</em></p>
+            </div>
+
+            <!-- Failure 3 -->
+            <div style="background: #e8eaf6; padding: 20px; border-radius: 8px; border-left: 5px solid #3f51b5;">
+                <h4 style="color: #283593; margin-bottom: 10px;">🚗 Tesla Autopilot Crashes</h4>
+                <p><strong>What happened:</strong> Multiple fatal accidents where Autopilot failed to detect obstacles, emergency vehicles, or road changes.</p>
+                <p><strong>Why it failed:</strong> Edge cases, sensor limitations, over-reliance on pattern matching, users treating "assist" as "autonomous"</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>AI assistance ≠ AI autonomy. The gap is deadly.</em></p>
+            </div>
+
+            <!-- Failure 4 -->
+            <div style="background: #e0f2f1; padding: 20px; border-radius: 8px; border-left: 5px solid #009688;">
+                <h4 style="color: #00695c; margin-bottom: 10px;">🏥 IBM Watson Health Shutdown (2022)</h4>
+                <p><strong>What happened:</strong> IBM spent $4B+ on Watson Health for cancer treatment recommendations. Sold it for parts.</p>
+                <p><strong>Why it failed:</strong> Training data didn't match real-world cases. Doctors ignored recommendations. Integration nightmares.</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>AI can't replace domain expertise – it needs to augment it</em></p>
+            </div>
+
+            <!-- Failure 5 -->
+            <div style="background: #fff8e1; padding: 20px; border-radius: 8px; border-left: 5px solid #ffc107;">
+                <h4 style="color: #f57f17; margin-bottom: 10px;">🤖 Microsoft Tay Bot (2016)</h4>
+                <p><strong>What happened:</strong> Twitter chatbot learned from users, became racist/offensive within 16 hours.</p>
+                <p><strong>Why it failed:</strong> No content guardrails. Learned from adversarial inputs. No human moderation loop.</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>AI reflects its inputs – garbage in, garbage out</em></p>
+            </div>
+
+            <!-- Failure 6 -->
+            <div style="background: #f3e5f5; padding: 20px; border-radius: 8px; border-left: 5px solid #9c27b0;">
+                <h4 style="color: #7b1fa2; margin-bottom: 10px;">📝 CNET AI Articles (2023)</h4>
+                <p><strong>What happened:</strong> CNET quietly published 77 AI-written financial articles. Multiple contained factual errors.</p>
+                <p><strong>Why it failed:</strong> AI confidently stated wrong compound interest calculations, incorrect financial advice.</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>AI sounds confident even when completely wrong</em></p>
+            </div>
+
+            <!-- Failure 7 -->
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; border-left: 5px solid #2196f3;">
+                <h4 style="color: #1565c0; margin-bottom: 10px;">💻 GitHub Copilot License Violations</h4>
+                <p><strong>What happened:</strong> Copilot reproduces GPL-licensed code verbatim without attribution. Class-action lawsuit filed.</p>
+                <p><strong>Why it failed:</strong> Training included copyrighted code. Model memorizes and regurgitates without understanding licenses.</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>AI-generated code may have hidden legal liabilities</em></p>
+            </div>
+
+            <!-- Failure 8 - NEW -->
+            <div style="background: #efebe9; padding: 20px; border-radius: 8px; border-left: 5px solid #795548;">
+                <h4 style="color: #4e342e; margin-bottom: 10px;">🎨 Google Gemini Image Generation (2024)</h4>
+                <p><strong>What happened:</strong> Gemini generated historically inaccurate images (diverse Nazi soldiers, Black Founding Fathers).</p>
+                <p><strong>Why it failed:</strong> Over-correction for diversity without historical context. Model couldn't distinguish when diversity applies.</p>
+                <p style="color: #d32f2f;"><strong>Lesson:</strong> <em>AI lacks common sense and contextual judgment</em></p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- CORE LIMITATIONS -->
+        <h3 style="color: #7b1fa2; border-bottom: 2px solid #7b1fa2; padding-bottom: 10px;">🧠 Core Limitations of Current AI Systems</h3>
+        
+        <table style="margin-bottom: 30px;">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Limitation</th>
+                    <th style="width: 40%;">What It Means</th>
+                    <th style="width: 35%;">Real Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>🎭 Hallucinations</strong></td>
+                    <td>AI generates plausible-sounding but completely false information with full confidence</td>
+                    <td>Can't trust any factual claim without verification. Fatal for legal, medical, financial use.</td>
+                </tr>
+                <tr>
+                    <td><strong>📅 Knowledge Cutoff</strong></td>
+                    <td>Models only know what was in training data (often 6-18 months old)</td>
+                    <td>Wrong answers about recent events, new APIs, current prices, living people.</td>
+                </tr>
+                <tr>
+                    <td><strong>🔢 Math & Logic Failures</strong></td>
+                    <td>LLMs predict text, not compute. They "guess" math answers based on patterns.</td>
+                    <td>Simple arithmetic errors, wrong calculations, logic puzzles fail consistently.</td>
+                </tr>
+                <tr>
+                    <td><strong>🎯 Context Window Limits</strong></td>
+                    <td>Can only "see" limited text at once (even 100K tokens loses information)</td>
+                    <td>Forgets earlier instructions, misses details in long documents, inconsistent outputs.</td>
+                </tr>
+                <tr>
+                    <td><strong>🔄 No True Learning</strong></td>
+                    <td>Each conversation starts fresh. Can't remember past interactions or improve from feedback.</td>
+                    <td>Same mistakes repeated. No institutional memory. Must re-explain context every time.</td>
+                </tr>
+                <tr>
+                    <td><strong>🎲 Non-Deterministic</strong></td>
+                    <td>Same prompt can give different outputs each time (temperature/randomness)</td>
+                    <td>Unreliable for processes requiring consistent, repeatable results.</td>
+                </tr>
+                <tr>
+                    <td><strong>🔒 Security Vulnerabilities</strong></td>
+                    <td>Prompt injection, jailbreaks, data leakage through prompts</td>
+                    <td>Enterprise data exposure risks. Can be tricked into ignoring safety rules.</td>
+                </tr>
+                <tr>
+                    <td><strong>💰 Cost at Scale</strong></td>
+                    <td>API costs explode with high-volume production use</td>
+                    <td>POC that costs $50/month becomes $50,000/month in production.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- WHY AGENTIC AI IS ESPECIALLY RISKY -->
+        <div style="background: #ffebee; padding: 25px; border-radius: 10px; border: 2px solid #d32f2f; margin-bottom: 30px;">
+            <h3 style="color: #c62828; margin-bottom: 15px;">🤖 Why Agentic AI is Especially Risky for Production</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #d32f2f;">Risk Factor</th>
+                        <th style="background: #d32f2f;">Example Scenario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Compounding Errors</strong></td>
+                        <td>Agent makes one wrong assumption → builds entire workflow on it → 10 steps later, total disaster</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unintended Actions</strong></td>
+                        <td>"Delete old files" interpreted as "delete everything older than today" → production data gone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>No Undo Button</strong></td>
+                        <td>Agent sends 10,000 emails, makes API calls, modifies databases before anyone notices the error</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Infinite Loops</strong></td>
+                        <td>Agent tries to fix an error → creates new error → tries to fix → burns through $10K in API costs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security Amplification</strong></td>
+                        <td>Agent has permissions to access systems. Prompt injection → attacker controls the agent → full access</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- THE HONEST VERDICT -->
+        <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 25px; border-radius: 10px; border: 2px solid #4caf50; margin-bottom: 20px;">
+            <h3 style="color: #2e7d32; margin-bottom: 15px;">✅ The Honest Verdict</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h4 style="color: #1b5e20;">AI IS Real For:</h4>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>Augmenting human work (not replacing)</li>
+                        <li>First drafts that humans refine</li>
+                        <li>Pattern recognition at scale</li>
+                        <li>Accelerating repetitive tasks</li>
+                        <li>Creative brainstorming</li>
+                        <li>Learning & exploration</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #c62828;">AI is NOT Ready For:</h4>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>Unsupervised critical decisions</li>
+                        <li>100% accuracy requirements</li>
+                        <li>High-stakes autonomous actions</li>
+                        <li>Replacing domain expertise</li>
+                        <li>Anything requiring accountability</li>
+                        <li>Systems where errors have legal/safety consequences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCTION READINESS CHECKLIST -->
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; border-left: 5px solid #1976d2;">
+            <h4 style="color: #1565c0; margin-bottom: 15px;">📋 Before Moving AI to Production – Ask These Questions:</h4>
+            <ol style="margin: 0 0 0 20px; line-height: 1.8;">
+                <li>❓ What's the cost of an AI mistake? (Legal? Financial? Reputational?)</li>
+                <li>❓ Is there a human review step before any action is taken?</li>
+                <li>❓ Can outputs be easily rolled back if wrong?</li>
+                <li>❓ Do we have monitoring for hallucinations and errors?</li>
+                <li>❓ What's the cost at 100x current volume?</li>
+                <li>❓ Is the AI augmenting or replacing human judgment?</li>
+                <li>❓ Have we tested edge cases and adversarial inputs?</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 25px; padding: 20px; background: #fff3e0; border-radius: 8px; text-align: center;">
+            <p style="font-size: 1.2em; font-weight: bold; color: #e65100; margin: 0;">
+                🎯 Bottom Line: AI is a powerful <em>tool</em>, not a replacement for human judgment.<br>
+                The companies winning with AI are using it to make humans faster – not to remove humans from the loop.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>🎯 AI Power Hour – February 5, 2026</strong></p>
+        <p>Content researched and compiled from verified sources</p>
+        <p style="margin-top: 15px; font-size: 0.9em;">
+            <strong>Key Takeaway:</strong> The hype is <em>partially</em> real – but the gap between demo and production is massive. 
+            Be excited about AI capabilities, but be realistic about AI limitations.
+        </p>
+    </div>
+
+</body>
+</html>

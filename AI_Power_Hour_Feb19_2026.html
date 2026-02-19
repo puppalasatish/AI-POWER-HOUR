@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Power Hour - February 20, 2026</title>
+    <style>
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-before: always; }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .agenda {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .agenda h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .agenda ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .agenda li {
+            padding: 8px 0;
+            font-size: 1.1em;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+        
+        .highlight-row {
+            background-color: #fff3cd !important;
+            font-weight: 600;
+        }
+        
+        .quick-take {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-style: italic;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .quick-take strong {
+            display: block;
+            margin-bottom: 10px;
+            font-style: normal;
+            color: #c0392b;
+        }
+        
+        .tool-card {
+            background: #fff;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .tool-card h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .tool-card .subtitle {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .tool-features {
+            background: #f0f4ff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .tool-features h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .tool-features ul {
+            margin-left: 20px;
+        }
+        
+        .tool-features li {
+            padding: 5px 0;
+        }
+        
+        .demo-ideas {
+            background: #e8f5e9;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .demo-ideas h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .link-box {
+            background: #e3f2fd;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box strong {
+            margin-right: 10px;
+            color: #1565c0;
+        }
+        
+        .link-box a {
+            color: #1565c0;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .youtube-links {
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .youtube-links h4 {
+            color: #c62828;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .youtube-links table {
+            margin: 0;
+        }
+        
+        .youtube-links th {
+            background: #c62828;
+        }
+        
+        .discussion-card {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .discussion-card h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+        
+        .discussion-card ol {
+            margin-left: 25px;
+        }
+        
+        .discussion-card li {
+            padding: 8px 0;
+        }
+        
+        .resources-section {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .resources-section h3 {
+            color: #7b1fa2;
+            margin-bottom: 20px;
+        }
+        
+        .alert-box {
+            background: #ffcdd2;
+            border: 2px solid #f44336;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .alert-box h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .market-impact {
+            background: #fff8e1;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            color: #666;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        .tag-hot {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+        
+        .tag-new {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .tag-trending {
+            background: #bbdefb;
+            color: #1565c0;
+        }
+
+        .tag-alert {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* === KEY HIGHLIGHTS HERO SECTION === */
+        .hero-highlights {
+            margin-bottom: 40px;
+        }
+
+        .hero-highlights h2 {
+            text-align: center;
+            font-size: 1.6em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .hero-highlights .hero-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1em;
+            margin-bottom: 25px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .hero-card {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            cursor: default;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+        }
+
+        .hero-card-img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-card-body {
+            padding: 16px 18px 18px;
+        }
+
+        .hero-card-body h4 {
+            font-size: 1.05em;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .hero-card-body p {
+            font-size: 0.88em;
+            color: #555;
+            line-height: 1.45;
+        }
+
+        .hero-card.card-red    { background: linear-gradient(180deg, #fff 60%, #ffebee 100%); }
+        .hero-card.card-blue   { background: linear-gradient(180deg, #fff 60%, #e3f2fd 100%); }
+        .hero-card.card-green  { background: linear-gradient(180deg, #fff 60%, #e8f5e9 100%); }
+        .hero-card.card-orange { background: linear-gradient(180deg, #fff 60%, #fff3e0 100%); }
+        .hero-card.card-purple { background: linear-gradient(180deg, #fff 60%, #f3e5f5 100%); }
+        .hero-card.card-amber  { background: linear-gradient(180deg, #fff 60%, #fff8e1 100%); }
+
+        /* Badges */
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .badge-must-read   { background: #c62828; color: #fff; }
+        .badge-dont-miss   { background: #ff6f00; color: #fff; }
+        .badge-security    { background: #d32f2f; color: #fff; }
+        .badge-trending    { background: #1565c0; color: #fff; }
+        .badge-big-money   { background: #2e7d32; color: #fff; }
+        .badge-new         { background: #6a1b9a; color: #fff; }
+
+        /* Section banner images */
+        .section-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .section-banner-sm {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Inline image-text rows */
+        .img-text-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .img-text-row img {
+            width: 220px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .img-text-row .text-content {
+            flex: 1;
+        }
+
+        @media print {
+            .hero-card:hover { transform: none; box-shadow: 0 4px 15px rgba(0,0,0,0.12); }
+            .hero-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 700px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .img-text-row { flex-direction: column; }
+            .img-text-row img { width: 100%; height: 180px; }
+            .nav-widget { right: 10px !important; left: 10px !important; width: auto !important; }
+        }
+
+        /* === FLOATING NAVIGATOR — SPOTLIGHT MODE === */
+        .nav-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+            z-index: 9999;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-widget.collapsed { width: auto; border-radius: 50px; }
+
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-header h4 { font-size: 0.8em; font-weight: 700; letter-spacing: 0.5px; margin: 0; }
+
+        .nav-toggle-btn {
+            background: rgba(255,255,255,0.2); border: none; color: #fff;
+            width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
+            font-size: 1em; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .nav-toggle-btn:hover { background: rgba(255,255,255,0.35); }
+
+        /* Current item label */
+        .nav-current {
+            padding: 10px 14px;
+            background: linear-gradient(90deg, #ede7f6, #f3e5f5);
+            font-size: 0.82em;
+            font-weight: 600;
+            color: #4a148c;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .nav-current.hidden { display: none; }
+
+        /* Prev / Next controls */
+        .nav-controls {
+            display: flex;
+            border-top: 1px solid #eee;
+            background: #fafafa;
+        }
+        .nav-controls.hidden { display: none; }
+
+        .nav-btn {
+            flex: 1; padding: 11px 8px; border: none; background: transparent;
+            cursor: pointer; font-size: 0.88em; font-weight: 700;
+            color: #667eea; transition: background 0.15s;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .nav-btn:hover { background: #f0f4ff; }
+        .nav-btn:disabled { color: #ccc; cursor: default; }
+        .nav-btn:disabled:hover { background: transparent; }
+
+        .nav-divider { width: 1px; background: #e0e0e0; }
+
+        .nav-counter {
+            font-size: 0.72em; color: #999; text-align: center;
+            padding: 3px 0 2px; background: #fafafa;
+        }
+        .nav-counter.hidden { display: none; }
+
+        /* Implicit reference links */
+        a.ref { font-size: 0.72em; opacity: 0.4; text-decoration: none; color: #764ba2; transition: all 0.25s; vertical-align: super; margin-left: 3px; }
+        a.ref:hover { opacity: 1; color: #667eea; text-decoration: underline; }
+        tr a.ref { vertical-align: baseline; font-size: 0.82em; }
+
+        /* ===== SPOTLIGHT HIGHLIGHT ON CURRENT ITEM ===== */
+        .imp-spotlight {
+            outline: 3px solid #764ba2 !important;
+            outline-offset: 4px;
+            box-shadow: 0 0 0 8px rgba(118,75,162,0.12), 0 4px 20px rgba(118,75,162,0.18) !important;
+            border-radius: 8px;
+            position: relative;
+            z-index: 10;
+            transition: outline 0.3s, box-shadow 0.3s;
+        }
+
+        /* Animated entrance */
+        .imp-spotlight-enter {
+            animation: spotlightIn 0.5s ease;
+        }
+
+        @keyframes spotlightIn {
+            0%   { outline-color: transparent; box-shadow: 0 0 0 0 rgba(118,75,162,0); }
+            50%  { outline-color: #764ba2; box-shadow: 0 0 0 14px rgba(118,75,162,0.18), 0 4px 20px rgba(118,75,162,0.22); }
+            100% { outline-color: #764ba2; box-shadow: 0 0 0 8px rgba(118,75,162,0.12), 0 4px 20px rgba(118,75,162,0.18); }
+        }
+
+        /* Floating label above spotlighted item */
+        .imp-label-float {
+            position: absolute;
+            top: -32px;
+            left: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            font-size: 0.72em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            z-index: 11;
+            pointer-events: none;
+            animation: labelSlideIn 0.4s ease;
+        }
+
+        @keyframes labelSlideIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 35px 30px 30px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -30px; right: -30px; width: 200px; height: 200px; background: rgba(255,255,255,0.08); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -40px; left: -20px; width: 150px; height: 150px; background: rgba(255,255,255,0.06); border-radius: 50%;"></div>
+        <h1 style="font-size: 2.6em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">🎯 AI Power Hour</h1>
+        <div class="date" style="font-size: 1.2em; margin-top: 5px;">February 20, 2026 &nbsp;|&nbsp; Covering Feb 5–19</div>
+        <p style="margin-top: 10px; opacity: 0.85; font-size: 0.95em;">Your biweekly briefing on the stories shaping the AI landscape</p>
+    </div>
+
+    <!-- ====== KEY HIGHLIGHTS — DON'T MISS ====== -->
+    <div class="hero-highlights">
+        <h2>⚡ Key Highlights — You Should Not Miss</h2>
+        <p class="hero-subtitle">The 6 stories that define the last two weeks</p>
+        <div class="hero-grid">
+
+            <!-- Card 1: GPT-5.2 Physics -->
+            <div class="hero-card card-red">
+                <span class="badge badge-must-read">🔬 Must Read</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=340&fit=crop" alt="Physics equations">
+                <div class="hero-card-body">
+                    <h4>GPT-5.2 Makes an Original Physics Discovery</h4>
+                    <p>Found a wrong answer in particle physics, proposed the correct formula, and wrote the proof in 12 hrs. Verified by Harvard, Cambridge &amp; Princeton.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Spotify -->
+            <div class="hero-card card-green">
+                <span class="badge badge-dont-miss">🔥 Don't Miss</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=340&fit=crop" alt="Code on screen">
+                <div class="hero-card-body">
+                    <h4>Spotify's Best Devs Haven't Written Code Since December</h4>
+                    <p>Internal "Honk" system + Claude Code: bug fixes from phone via Slack. The clearest proof AI coding agents work at scale.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: India AI Summit -->
+            <div class="hero-card card-orange">
+                <span class="badge badge-trending">🇮🇳 Trending</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&h=340&fit=crop" alt="India landmark">
+                <div class="hero-card-body">
+                    <h4>India AI Summit: Adani Pledges $100B, CEOs Gather</h4>
+                    <p>Altman, Pichai &amp; Amodei attended. India confirmed as #2 market for ChatGPT AND Claude. Anthropic opens Bengaluru office.</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Copilot Leak -->
+            <div class="hero-card card-blue">
+                <span class="badge badge-security">🔒 Security Alert</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop" alt="Cybersecurity">
+                <div class="hero-card-body">
+                    <h4>Microsoft Copilot Exposed Confidential Emails</h4>
+                    <p>Bug allowed Copilot to read &amp; summarize emails labeled "confidential" despite DLP policies. Active since January 2026.</p>
+                </div>
+            </div>
+
+            <!-- Card 5: Anthropic $30B -->
+            <div class="hero-card card-purple">
+                <span class="badge badge-big-money">💰 Big Money</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?w=600&h=340&fit=crop" alt="AI technology">
+                <div class="hero-card-body">
+                    <h4>Anthropic Raises $30B at $380B Valuation</h4>
+                    <p>Revenue run rate $14B. Claude Code alone: $2.5B. Biggest AI funding round in history.</p>
+                </div>
+            </div>
+
+            <!-- Card 6: China's Triple Threat -->
+            <div class="hero-card card-amber">
+                <span class="badge badge-new">🌏 Game Changer</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=340&fit=crop" alt="AI neural network">
+                <div class="hero-card-body">
+                    <h4>China's Triple Threat: 3 Frontier Models in One Week</h4>
+                    <p>ByteDance Seed 2.0, Alibaba Qwen-3.5, MiniMax M2.5 — matching Western models at 1/10 the cost.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="agenda">
+        <h2>📋 Today's Agenda</h2>
+        <ul>
+            <li>🔥 <strong>AI Hot Take</strong> – Top headlines from Feb 5–19</li>
+            <li>🧬 <strong>Frontier Models &amp; Science</strong> – GPT-5.2 physics discovery, Deep Think, China's triple threat</li>
+            <li>🎵 <strong>Spotlight: Spotify's AI Revolution</strong> – How "Honk" replaced coding</li>
+            <li>🇮🇳 <strong>India AI Summit &amp; Investment</strong> – $100B Adani pledge, Anthropic's $30B raise &amp; more</li>
+            <li>🔐 <strong>Security &amp; Governance</strong> – Copilot email leak, Pentagon-Anthropic feud, OpenAI Lockdown Mode</li>
+            <li>🛠️ <strong>Tool Spotlight</strong> – Claude Sonnet 4.6 &amp; Gemini Lyria 3</li>
+            <li>❓ <strong>Discussion &amp; Action Items</strong></li>
+        </ul>
+    </div>
+
+    <!-- SECTION 1: AI HOT TAKE – HEADLINES ONLY -->
+    <div class="section" id="nav-headlines">
+        <div class="section-header">
+            <span class="section-icon">🔥</span>
+            <h2 class="section-title">AI Hot Take – What Happened Since Feb 5</h2>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">News</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row" id="imp-1" data-imp-label="🔬 GPT-5.2 Physics Discovery">
+                    <td><span class="tag tag-hot">HOT</span> GPT-5.2 Makes Physics Discovery</td>
+                    <td>Found &amp; proved a new formula in particle physics. Verified by Harvard, Cambridge, Princeton. <a class="ref" href="https://arxiv.org/pdf/2602.12176" target="_blank" title="arXiv Paper">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-2" data-imp-label="⚡ Gemini 3 Deep Think">
+                    <td><span class="tag tag-hot">HOT</span> Google Gemini 3 Deep Think</td>
+                    <td><strong>84.6% ARC-AGI-2</strong> (vs Opus 4.6: 68.8%, GPT-5.2: 52.9%). Gold Olympiad medals. 3,455 Elo Codeforces. <a class="ref" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/" target="_blank" title="Google Blog">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-3" data-imp-label="💰 Anthropic $30B Raise">
+                    <td><span class="tag tag-hot">HOT</span> Anthropic $30B at $380B Valuation</td>
+                    <td>Revenue run rate <strong>$14B</strong>. Claude Code alone: $2.5B. Biggest AI funding round ever. <a class="ref" href="https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation" target="_blank" title="Anthropic News">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-4" data-imp-label="🎵 Spotify Zero-Code Devs">
+                    <td><span class="tag tag-hot">HOT</span> Spotify Devs: Zero Code Since Dec</td>
+                    <td>Internal "Honk" + Claude Code: phone-based bug fixes via Slack. First major company to admit this publicly. <a class="ref" href="https://techcrunch.com/2026/02/12/spotify-says-its-best-developers-havent-written-a-line-of-code-since-december-thanks-to-ai/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-5" data-imp-label="🤖 Claude Sonnet 4.6 Released">
+                    <td><span class="tag tag-hot">HOT</span> Claude Sonnet 4.6 Released</td>
+                    <td><strong>1M token context</strong> (2x previous). 60.4% ARC-AGI-2. Matches Opus 4.6 on coding at 1/5 the cost. <a class="ref" href="https://www.anthropic.com/news/claude-sonnet-4-6" target="_blank" title="Anthropic News">↗</a></td>
+                </tr>
+                <tr id="imp-6" data-imp-label="🔒 Copilot Email Leak">
+                    <td><span class="tag tag-alert">ALERT</span> Microsoft Copilot Email Leak</td>
+                    <td>Read confidential emails despite DLP policies. EU Parliament banned AI on devices. <a class="ref" href="https://techcrunch.com/2026/02/18/microsoft-says-office-bug-exposed-customers-confidential-emails-to-copilot-ai/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr id="imp-7" data-imp-label="⚔️ Pentagon–Anthropic Feud">
+                    <td><span class="tag tag-alert">ALERT</span> Anthropic–Pentagon Feud</td>
+                    <td>Pentagon may blacklist Anthropic as "supply chain risk." $200M defense deal at stake. <a class="ref" href="https://www.bloomberg.com/news/articles/2026-02-14/pentagon-may-blacklist-anthropic-as-ai-supply-chain-risk" target="_blank" title="Bloomberg">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> ByteDance Seed 2.0</td>
+                    <td>Beats GPT-5.2 &amp; Gemini 3 Pro at <strong>1/10 the price</strong> ($0.47/M tokens).</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Alibaba Qwen-3.5 (Open Weights)</td>
+                    <td>397B MoE (17B active), near frontier, <strong>60% cheaper</strong>. Open weights.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> MiniMax M2.5 (Open Source)</td>
+                    <td>Rivals Opus 4.6 on coding at <strong>$1.20/M</strong> (vs Opus $25/M).</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> GPT-5.3-Codex-Spark</td>
+                    <td><strong>1,000+ tokens/sec</strong> on Cerebras chips. First OAI product on non-Nvidia hardware.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Google Lyria 3 Music Gen</td>
+                    <td>AI creates songs from text/photos. Dream Track global for YouTube creators.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> OpenAI "Lockdown Mode"</td>
+                    <td>New ChatGPT security: disables exploitable tools, limits browsing to cached content.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> India AI Summit</td>
+                    <td>Adani pledges <strong>$100B</strong>. Altman, Pichai, Amodei attend. India = 2nd largest market for ChatGPT &amp; Claude.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> CS Enrollment Crash</td>
+                    <td>UC system CS down <strong>6%</strong>. Students migrating to AI majors. MIT AI major now 2nd largest.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> xAI Exodus + Grok 4.20</td>
+                    <td>10 co-founders/engineers left. Grok 4.20 launches with 4-agent parallel workflows.</td>
+                </tr>
+                <tr>
+                    <td>Suleyman: 12–18 Month Prediction</td>
+                    <td>Microsoft AI CEO: most white-collar work "fully automated" within 12–18 months.</td>
+                </tr>
+                <tr>
+                    <td>Figma + Claude Code</td>
+                    <td>"Code to Canvas" — converts Claude Code UIs into editable Figma designs.</td>
+                </tr>
+                <tr>
+                    <td>Apple AI Wearables Trio</td>
+                    <td>Smart glasses, pendant, camera AirPods — all feeding Siri visual context via iPhone.</td>
+                </tr>
+                <tr>
+                    <td>Meta AI Deceased User Patent</td>
+                    <td>AI simulates user responses when on break — or deceased. Ethical questions abound.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="quick-take">
+            <strong>💬 Quick Take:</strong>
+            "Three themes dominate: <strong>AI is eating software jobs</strong> (Spotify, CS enrollment, Suleyman's prediction), <strong>security can't be an afterthought</strong> (Copilot leak, Pentagon feud, Lockdown Mode), and <strong>the China-US model race is exploding</strong> (Seed 2.0, Qwen-3.5, M2.5 matching Western frontier at 1/10 the cost). Meanwhile, AI just made its first original contribution to theoretical physics."
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: FRONTIER MODELS & SCIENCE -->
+    <div class="section" id="nav-frontier">
+        <div class="section-header">
+            <span class="section-icon">🧬</span>
+            <h2 class="section-title">Frontier Models &amp; Science Breakthroughs</h2>
+        </div>
+
+        <img class="section-banner" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&h=400&fit=crop&q=80" alt="AI brain neural network">
+
+        <div id="imp-8" data-imp-label="🔬 GPT-5.2 Physics Deep Dive" style="background: #fce4ec; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #c62828;">
+            <h3 style="color: #c62828; margin-bottom: 10px;">🔬 GPT-5.2's Theoretical Physics Discovery</h3>
+            <p>OpenAI's GPT-5.2 <strong>independently discovered</strong> a widely accepted answer in particle physics was wrong, proposed the correct formula, and wrote the formal proof in 12 hours. Verified by Harvard, Cambridge, and Princeton physicists. Harvard's Andrew Strominger: <em>"Chose a path no human would have tried."</em></p>
+            <p style="margin-top: 8px;"><strong>Paper:</strong> <a href="https://arxiv.org/pdf/2602.12176" target="_blank">arxiv.org/pdf/2602.12176</a></p>
+        </div>
+
+        <div id="imp-9" data-imp-label="⚡ Deep Think Benchmarks" style="background: #e8eaf6; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #283593;">
+            <h3 style="color: #283593; margin-bottom: 10px;">⚡ Gemini 3 Deep Think – Benchmark Domination</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #283593;">Benchmark</th>
+                        <th style="background: #283593;">Deep Think</th>
+                        <th style="background: #283593;">Opus 4.6</th>
+                        <th style="background: #283593;">GPT-5.2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>ARC-AGI-2</strong></td><td><strong>84.6%</strong></td><td>68.8%</td><td>52.9%</td></tr>
+                    <tr><td>Humanity's Last Exam</td><td><strong>48.4%</strong></td><td>—</td><td>—</td></tr>
+                    <tr><td>Codeforces Elo</td><td><strong>3,455</strong></td><td>~2,500</td><td>—</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 8px;">Also unveiled <strong>Aletheia</strong>, a math research agent that autonomously solves open problems. <a class="ref" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/" target="_blank" title="Google Blog">↗</a></p>
+        </div>
+
+        <div id="imp-10" data-imp-label="🌏 China's Triple Threat" style="background: #fff8e1; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #f57f17;">
+            <h3 style="color: #f57f17; margin-bottom: 10px;">🌏 China's Triple Threat – One Week, Three Frontier Models</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #f57f17;">Model</th>
+                        <th style="background: #f57f17;">Lab</th>
+                        <th style="background: #f57f17;">Key Claim</th>
+                        <th style="background: #f57f17;">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>Seed 2.0</strong></td><td>ByteDance</td><td>Beats GPT-5.2 &amp; Gemini 3 Pro on math/vision</td><td>$0.47/M</td></tr>
+                    <tr><td><strong>Qwen-3.5</strong></td><td>Alibaba</td><td>Near frontier, open weights, excels at agentic search</td><td>60% cheaper</td></tr>
+                    <tr><td><strong>M2.5</strong></td><td>MiniMax</td><td>Rivals Opus 4.6 on coding benchmarks</td><td>$1.20/M</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 8px;">ByteDance's Seedance 2.0 video model also went viral — facing <strong>Hollywood IP pushback</strong> from the MPA. <a class="ref" href="https://seed.bytedance.com/en/seed2" target="_blank" title="ByteDance Seed">↗</a></p>
+        </div>
+
+        <div class="quick-take">
+            <strong>💬 Key Insight:</strong>
+            "Google leads <strong>reasoning</strong> (Deep Think), OpenAI leads <strong>scientific discovery</strong> (GPT-5.2), Anthropic leads <strong>practical coding</strong> (Sonnet 4.6), and three Chinese labs match everything at <strong>1/10 the cost</strong>. The question is no longer 'which model is best?' — it's 'best for what, at what price?'"
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: SPOTIFY DEEP DIVE -->
+    <div class="section" id="nav-spotify">
+        <div class="section-header">
+            <span class="section-icon">🎵</span>
+            <h2 class="section-title">Spotlight – How Spotify Eliminated Coding</h2>
+        </div>
+
+        <img class="section-banner" src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=900&h=400&fit=crop&q=80" alt="Music and technology" style="object-position: center 40%;">
+
+        <p style="margin-bottom: 15px;">Spotify co-CEO Gustav Söderström revealed (Feb 12) that top developers <strong>"have not written a single line of code since December"</strong>. They use an internal system called <strong>"Honk"</strong> powered by Claude Code:</p>
+
+        <div id="imp-11" data-imp-label="🎵 Spotify 'Honk' System" style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #4caf50;">
+            <table>
+                <thead><tr><th style="background: #2e7d32;">Step</th><th style="background: #2e7d32;">What Happens</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1. Spot issue</strong></td><td>Engineer sees bug on Slack (from phone)</td></tr>
+                    <tr><td><strong>2. Describe to Claude</strong></td><td>"Fix this bug" or "Add this feature"</td></tr>
+                    <tr><td><strong>3. AI writes &amp; tests</strong></td><td>Claude Code writes code, runs tests, prepares deployment</td></tr>
+                    <tr><td><strong>4. Review &amp; merge</strong></td><td>Engineer reviews the build in Slack, merges to production</td></tr>
+                </tbody>
+            </table>
+            <p style="margin: 8px 0 0 0; text-align: right;"><a class="ref" href="https://techcrunch.com/2026/02/12/spotify-says-its-best-developers-havent-written-a-line-of-code-since-december-thanks-to-ai/" target="_blank" title="TechCrunch">↗ source</a></p>
+        </div>
+
+        <div class="market-impact">
+            <strong>🤔 What This Means:</strong>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Engineers shifting from <strong>writing code → reviewing &amp; directing</strong> AI agents</li>
+                <li>50+ features shipped in 2025 with fewer manual code hours</li>
+                <li>Microsoft AI CEO Suleyman separately predicted white-collar work "fully automated in 12–18 months"</li>
+                <li>CS enrollment crashing nationally (UC system down 6%) — students migrating to AI majors</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 4: INDIA AI SUMMIT & INVESTMENT -->
+    <div class="section" id="nav-india">
+        <div class="section-header">
+            <span class="section-icon">🇮🇳</span>
+            <h2 class="section-title">India AI Summit &amp; Investment Landscape</h2>
+        </div>
+
+        <img class="section-banner" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&h=400&fit=crop&q=80" alt="India Taj Mahal">
+
+        <div id="imp-12" data-imp-label="🇮🇳 India AI Summit" style="background: #fff3e0; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #ff9800;">
+            <h3 style="color: #e65100; margin-bottom: 10px;">🏛️ India AI Impact Summit (Feb 16–17)</h3>
+            <p style="margin-bottom: 10px;">India hosted a landmark AI summit with attendance from the CEOs of the world's biggest AI companies:</p>
+            <table>
+                <thead><tr><th style="background: #e65100;">Detail</th><th style="background: #e65100;">Significance</th></tr></thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>Adani Group pledges $100B</strong></td><td>Largest single AI infrastructure commitment ever — for AI data centers across India</td></tr>
+                    <tr><td><strong>India's $200B AI target by 2028</strong></td><td>Government ambition to become a global AI hub</td></tr>
+                    <tr><td><strong>Sam Altman (OpenAI) attended</strong></td><td>Confirmed India is now <strong>2nd largest market for ChatGPT</strong></td></tr>
+                    <tr><td><strong>Dario Amodei (Anthropic) attended</strong></td><td>Confirmed India is <strong>2nd largest market for Claude</strong>; announced new <strong>Bengaluru office</strong></td></tr>
+                    <tr><td><strong>Sundar Pichai (Google) attended</strong></td><td>Major AI investment discussions with Indian government</td></tr>
+                    <tr><td><strong>Infosys + Anthropic partnership</strong></td><td>Building enterprise AI agents on Topaz platform. AI services = 5.5% of Infosys revenue</td></tr>
+                    <tr><td><strong>Emergent hits $100M ARR</strong></td><td>India-based vibe-coding startup, only <strong>8 months old</strong></td></tr>
+                </tbody>
+            </table>
+            <p style="margin: 8px 0 0 0; text-align: right;"><a class="ref" href="https://www.therundown.ai/" target="_blank" title="The Rundown AI">↗ source</a></p>
+        </div>
+
+        <h3 style="margin: 20px 0 10px 0;">💰 Biggest Money Moves (Feb 5–19)</h3>
+        <table>
+            <thead><tr><th>Company / Deal</th><th>Amount</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Anthropic</strong> (Series G)</td><td>$30B at $380B</td><td>Revenue $14B run rate. Claude Code alone: $2.5B.</td></tr>
+                <tr><td><strong>World Labs</strong> (Fei-Fei Li)</td><td>$1B</td><td>AI world models for 3D workflows (Autodesk partnership)</td></tr>
+                <tr><td><strong>Meta + Nvidia</strong></td><td>Multiyear deal</td><td>Millions of GPUs/CPUs. Among the largest AI infra partnerships.</td></tr>
+                <tr><td><strong>Ricursive Intelligence</strong></td><td>$335M at $4B</td><td>Raised in just 4 months — new speed record.</td></tr>
+                <tr><td><strong>Simile AI</strong></td><td>$100M</td><td>AI simulations of human behavior to predict decisions.</td></tr>
+                <tr><td><strong>17 US Companies</strong></td><td>$100M+ each</td><td>Already 17 mega-rounds in &lt;2 months of 2026.</td></tr>
+                <tr><td><strong>Mistral → Koyeb</strong></td><td>Acquisition</td><td>Europe's top AI lab's first acquisition. Cloud infra play.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 5: SECURITY & GOVERNANCE -->
+    <div class="section" id="nav-security">
+        <div class="section-header">
+            <span class="section-icon">🔐</span>
+            <h2 class="section-title">AI Security &amp; Governance</h2>
+        </div>
+
+        <img class="section-banner-sm" src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=900&h=300&fit=crop&q=80" alt="Cybersecurity">
+
+        <table>
+            <thead><tr><th>Incident</th><th>What Happened</th><th>Lesson</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row" id="imp-13" data-imp-label="🔒 Copilot Leak Details">
+                    <td><strong>Microsoft Copilot Email Leak</strong></td>
+                    <td>Bug let Copilot summarize confidential emails despite DLP policies. Active since Jan 2026.</td>
+                    <td>Even major vendors have AI security bugs. Audit &amp; verify. <a class="ref" href="https://techcrunch.com/2026/02/18/microsoft-says-office-bug-exposed-customers-confidential-emails-to-copilot-ai/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-14" data-imp-label="⚔️ Pentagon Feud Details">
+                    <td><strong>Anthropic–Pentagon Feud</strong></td>
+                    <td>Pentagon may label Anthropic "supply chain risk" over Claude military use restrictions. $200M deal at stake. Claude used via Palantir in Maduro capture.</td>
+                    <td>Who controls frontier models in military — labs or governments? <a class="ref" href="https://www.bloomberg.com/news/articles/2026-02-14/pentagon-may-blacklist-anthropic-as-ai-supply-chain-risk" target="_blank" title="Bloomberg">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>OpenAI "Lockdown Mode"</strong></td>
+                    <td>New ChatGPT security: disables exploitable tools, limits browsing to cached content.</td>
+                    <td>Deterministic hard blocks for AI-agent security risks.</td>
+                </tr>
+                <tr>
+                    <td><strong>EU Parliament</strong></td>
+                    <td>Blocked all AI features on lawmakers' devices citing data upload risks.</td>
+                    <td>Governments taking AI data risks seriously.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ireland Probes Grok</strong></td>
+                    <td>Investigating sexualized AI images. Follows UK &amp; EU actions.</td>
+                    <td>AI image safety = global regulatory focus.</td>
+                </tr>
+                <tr>
+                    <td><strong>OAI Researcher Resigns</strong></td>
+                    <td>Zoë Hitzig quit over ChatGPT ads — warns of "unprecedented manipulation potential."</td>
+                    <td>Internal dissent signals real ethical tensions.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #1976d2; margin-top: 15px;">
+            <h4 style="color: #1565c0; margin-bottom: 10px;">📋 Quick Governance Check for Your Team:</h4>
+            <ol style="margin: 0 0 0 20px; line-height: 1.8;">
+                <li>Do you know what data your AI tools are ingesting?</li>
+                <li>Are DLP policies being respected by AI features?</li>
+                <li>Do you have an approved AI tool list vs. shadow AI usage?</li>
+                <li>What's your incident response plan for an AI data leak?</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 6: TOOL SPOTLIGHT -->
+    <div class="section" id="nav-tools">
+        <div class="section-header">
+            <span class="section-icon">🛠️</span>
+            <h2 class="section-title">Tool Spotlight</h2>
+        </div>
+        
+        <div class="tool-card" id="imp-15" data-imp-label="🤖 Claude Sonnet 4.6 Tool" style="position: relative; overflow: hidden;">
+            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 15px;">
+                <img src="https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?w=200&h=130&fit=crop&q=80" alt="AI assistant" style="width: 140px; height: 100px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
+                <div>
+                    <h3 style="margin-bottom: 4px;">Claude Sonnet 4.6</h3>
+                    <p class="subtitle" style="margin-bottom: 0;">Anthropic's new mid-tier default (Feb 17) — matches Opus 4.6 on coding at 1/5 the cost</p>
+                </div>
+            </div>
+            <div class="tool-features">
+                <h4>Key Features:</h4>
+                <ul>
+                    <li><strong>1M Token Context</strong> — entire codebases or dozens of research papers in one request</li>
+                    <li><strong>60.4% ARC-AGI-2</strong> — record for a mid-tier model</li>
+                    <li><strong>SWE-Bench record</strong> for software engineering; OS World record for computer use</li>
+                </ul>
+            </div>
+            <div class="demo-ideas">
+                <h4>Try This:</h4>
+                <ol>
+                    <li>Upload an entire project repo and ask it to find bugs or suggest improvements</li>
+                    <li>Paste a complex codebase and ask for full refactor with explanation</li>
+                </ol>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://claude.ai/" target="_blank">claude.ai</a> &nbsp;|&nbsp; <a href="https://www.anthropic.com/news/claude-sonnet-4-6" target="_blank">Announcement</a></div>
+        </div>
+
+        <div class="tool-card" id="imp-16" data-imp-label="🎶 Gemini Lyria 3 Music" style="position: relative; overflow: hidden;">
+            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 15px;">
+                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=200&h=130&fit=crop&q=80" alt="Music creation" style="width: 140px; height: 100px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
+                <div>
+                    <h3 style="margin-bottom: 4px;">Gemini Lyria 3 – AI Music Generation</h3>
+                    <p class="subtitle" style="margin-bottom: 0;">Available now in Gemini app for all 18+ users</p>
+                </div>
+            </div>
+            <div class="tool-features">
+                <h4>What It Does:</h4>
+                <ul>
+                    <li>Text → 30-second track with lyrics and cover art. Photo/video → mood-matched music.</li>
+                    <li>SynthID watermark on all outputs. 8 languages. Dream Track now global for YouTube.</li>
+                </ul>
+            </div>
+            <div class="demo-ideas">
+                <h4>Try This:</h4>
+                <ol>
+                    <li>Create a song about your team or project — great conversation starter</li>
+                    <li>Upload a photo and see what music Gemini generates</li>
+                </ol>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://gemini.google.com/" target="_blank">gemini.google.com</a> &nbsp;|&nbsp; <a href="https://blog.google/innovation-and-ai/products/gemini-app/lyria-3/" target="_blank">Blog Post</a></div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 7: DISCUSSION & ACTION ITEMS -->
+    <div class="section" id="nav-actions">
+        <div class="section-header">
+            <span class="section-icon">❓</span>
+            <h2 class="section-title">Discussion &amp; Action Items</h2>
+        </div>
+        
+        <div class="discussion-card">
+            <h4>Discussion Prompts:</h4>
+            <ol>
+                <li><strong>"Spotify's devs stopped writing code — should we be worried or excited?"</strong><br>
+                    <em>→ How might AI coding tools change your team's workflow?</em></li>
+                <li><strong>"GPT-5.2 made a physics discovery. Is AI genuinely creative?"</strong><br>
+                    <em>→ The "can AI think?" debate just got much harder to dismiss</em></li>
+                <li><strong>"Chinese labs match Western models at 1/10 the cost — now what?"</strong><br>
+                    <em>→ Are premium models still worth the price for your use cases?</em></li>
+                <li><strong>"Pentagon wants unrestricted AI; Anthropic says no — who's right?"</strong><br>
+                    <em>→ Who controls how frontier AI is deployed in military operations?</em></li>
+            </ol>
+        </div>
+
+        <div style="display: grid; gap: 15px; margin-top: 20px;">
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border-left: 5px solid #4caf50;">
+                <h4 style="color: #2e7d32; margin-bottom: 5px;">✅ Action 1: Try Claude Sonnet 4.6's 1M Context</h4>
+                <p>Upload an entire project or document stack. The 2x context window is live now on claude.ai.</p>
+            </div>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #2196f3;">
+                <h4 style="color: #1565c0; margin-bottom: 5px;">✅ Action 2: Audit Your AI Data Exposure</h4>
+                <p>After the Copilot email leak — check which AI tools access your sensitive data. Are DLP policies working?</p>
+            </div>
+            <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 5px solid #ff9800;">
+                <h4 style="color: #e65100; margin-bottom: 5px;">✅ Action 3: Think About Your "Honk"</h4>
+                <p>Spotify built a controlled internal AI system. What would that look like for your team?</p>
+            </div>
+            <div style="background: #fce4ec; padding: 15px; border-radius: 8px; border-left: 5px solid #c62828;">
+                <h4 style="color: #c62828; margin-bottom: 5px;">✅ Action 4: Test a Budget Frontier Model</h4>
+                <p>ByteDance Seed 2.0 ($0.47/M), Qwen-3.5, or MiniMax M2.5 ($1.20/M) — the cost savings are real.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- QUICK REFERENCE LINKS -->
+    <div class="resources-section">
+        <h3>📌 Quick Reference Links</h3>
+        <table>
+            <thead><tr><th>Resource</th><th>Link</th></tr></thead>
+            <tbody>
+                <tr><td>Claude Sonnet 4.6</td><td><a href="https://www.anthropic.com/news/claude-sonnet-4-6" target="_blank">anthropic.com/news/claude-sonnet-4-6</a></td></tr>
+                <tr><td>GPT-5.2 Physics Paper</td><td><a href="https://arxiv.org/pdf/2602.12176" target="_blank">arxiv.org/pdf/2602.12176</a></td></tr>
+                <tr><td>Gemini 3 Deep Think</td><td><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/" target="_blank">blog.google – Deep Think</a></td></tr>
+                <tr><td>Gemini Lyria 3 Music</td><td><a href="https://gemini.google.com/" target="_blank">gemini.google.com</a></td></tr>
+                <tr><td>ByteDance Seed 2.0</td><td><a href="https://seed.bytedance.com/en/seed2" target="_blank">seed.bytedance.com/en/seed2</a></td></tr>
+                <tr><td>Alibaba Qwen-3.5</td><td><a href="https://qwen.ai/blog?id=qwen3.5" target="_blank">qwen.ai/blog – Qwen-3.5</a></td></tr>
+                <tr><td>OpenAI Lockdown Mode</td><td><a href="https://openai.com/index/introducing-lockdown-mode-and-elevated-risk-labels-in-chatgpt/" target="_blank">openai.com – Lockdown Mode</a></td></tr>
+                <tr><td>Anthropic $30B Funding</td><td><a href="https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation" target="_blank">anthropic.com – Series G</a></td></tr>
+                <tr><td>Spotify AI Story</td><td><a href="https://techcrunch.com/2026/02/12/spotify-says-its-best-developers-havent-written-a-line-of-code-since-december-thanks-to-ai/" target="_blank">TechCrunch – Spotify</a></td></tr>
+                <tr><td>Copilot Email Bug</td><td><a href="https://techcrunch.com/2026/02/18/microsoft-says-office-bug-exposed-customers-confidential-emails-to-copilot-ai/" target="_blank">TechCrunch – Copilot Bug</a></td></tr>
+                <tr><td>The Rundown AI</td><td><a href="https://www.therundown.ai/" target="_blank">therundown.ai</a></td></tr>
+                <tr><td>TechCrunch AI</td><td><a href="https://techcrunch.com/category/artificial-intelligence/" target="_blank">techcrunch.com/ai</a></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p><strong>🎯 AI Power Hour – February 20, 2026</strong></p>
+        <p>Sources: TechCrunch, The Rundown AI, Anthropic, Google, OpenAI, Axios, Bloomberg, Reuters, FT</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            <strong>Key Takeaway:</strong> AI made its first physics discovery, Chinese labs matched Western models at 1/10 the cost, India emerged as the world's #2 AI market, and the Pentagon may blacklist Anthropic. Adopt fast, govern carefully, stay model-agnostic.
+        </p>
+    </div>
+
+    <!-- ====== SPOTLIGHT NAVIGATOR WIDGET ====== -->
+    <div class="nav-widget" id="navWidget">
+        <div class="nav-header" onclick="toggleNav()">
+            <h4>🧭 IMPORTANT HIGHLIGHTS</h4>
+            <button class="nav-toggle-btn" id="navToggleBtn" title="Collapse / Expand">▾</button>
+        </div>
+        <div class="nav-current" id="navCurrentLabel">Click Next to start →</div>
+        <div class="nav-counter" id="navCounter">0 / 16</div>
+        <div class="nav-controls" id="navControls">
+            <button class="nav-btn" id="btnPrev" onclick="goPrev()" disabled>◀ Previous</button>
+            <div class="nav-divider"></div>
+            <button class="nav-btn" id="btnNext" onclick="goNext()">Next ▶</button>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        // Collect all important items by their imp- IDs
+        const impEls = [];
+        for (let i = 1; i <= 100; i++) {
+            const el = document.getElementById('imp-' + i);
+            if (el) impEls.push(el);
+            else break;
+        }
+        const total = impEls.length;
+        let current = -1;
+        let isOpen = true;
+
+        const labelEl   = document.getElementById('navCurrentLabel');
+        const counterEl = document.getElementById('navCounter');
+        const btnPrev   = document.getElementById('btnPrev');
+        const btnNext   = document.getElementById('btnNext');
+        const navCtrl   = document.getElementById('navControls');
+        const widget    = document.getElementById('navWidget');
+        const toggleBtn = document.getElementById('navToggleBtn');
+
+        function clearSpotlight() {
+            document.querySelectorAll('.imp-spotlight').forEach(el => {
+                el.classList.remove('imp-spotlight', 'imp-spotlight-enter');
+                // Remove floating label
+                const lbl = el.querySelector('.imp-label-float');
+                if (lbl) lbl.remove();
+            });
+        }
+
+        function applySpotlight(idx) {
+            clearSpotlight();
+            const el = impEls[idx];
+            if (!el) return;
+
+            // For table rows, we need relative positioning on a parent
+            if (el.tagName === 'TR') {
+                el.style.position = 'relative';
+            }
+
+            el.classList.add('imp-spotlight', 'imp-spotlight-enter');
+
+            // Add floating label
+            const label = el.getAttribute('data-imp-label') || ('Item ' + (idx + 1));
+            const floatLabel = document.createElement('span');
+            floatLabel.className = 'imp-label-float';
+            floatLabel.textContent = '★ ' + label;
+            el.style.position = 'relative';
+            el.appendChild(floatLabel);
+
+            // Scroll into view
+            const rect = el.getBoundingClientRect();
+            const viewH = window.innerHeight;
+            if (rect.top < 80 || rect.bottom > viewH - 100) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function updateUI() {
+            const label = current >= 0 ? impEls[current].getAttribute('data-imp-label') : 'Click Next to start →';
+            labelEl.textContent = label || ('Item ' + (current + 1));
+            counterEl.textContent = (current + 1) + ' / ' + total;
+            btnPrev.disabled = current <= 0;
+            btnNext.disabled = current >= total - 1;
+        }
+
+        window.goTo = function(idx) {
+            if (idx < 0 || idx >= total) return;
+            current = idx;
+            updateUI();
+            applySpotlight(idx);
+        };
+
+        window.goNext = function() {
+            if (current < total - 1) goTo(current + 1);
+        };
+
+        window.goPrev = function() {
+            if (current > 0) goTo(current - 1);
+        };
+
+        window.toggleNav = function() {
+            isOpen = !isOpen;
+            labelEl.classList.toggle('hidden', !isOpen);
+            navCtrl.classList.toggle('hidden', !isOpen);
+            counterEl.classList.toggle('hidden', !isOpen);
+            widget.classList.toggle('collapsed', !isOpen);
+            toggleBtn.textContent = isOpen ? '▾' : '▸';
+        };
+
+        // Keyboard: arrow keys navigate, Escape clears
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goNext(); }
+            if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); goPrev(); }
+            if (e.key === 'Escape') { clearSpotlight(); current = -1; updateUI(); }
+        });
+
+        // Init
+        counterEl.textContent = '0 / ' + total;
+    })();
+    </script>
+
+</body>
+</html>
