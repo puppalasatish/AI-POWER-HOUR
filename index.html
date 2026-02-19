@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Power Hour — Archive</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0f0f1a;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Hero Header */
+  .hero {
+    width: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(168,85,247,0.08) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-5%, 3%); }
+  }
+  .hero-content { position: relative; z-index: 1; }
+
+  .logo {
+    font-size: 3rem;
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+  .tagline {
+    margin-top: 14px;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  /* Archive Section */
+  .archive {
+    max-width: 800px;
+    width: 100%;
+    padding: 40px 20px 60px;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #a78bfa;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  /* Cards */
+  .card {
+    background: linear-gradient(145deg, #1e1e32, #1a1a2e);
+    border: 1px solid rgba(139,92,246,0.15);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(168,85,247,0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card:hover {
+    border-color: rgba(139,92,246,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(99,102,241,0.15);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 2.8rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .card-body {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+  .card-date {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #818cf8;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .card-arrow {
+    font-size: 1.4rem;
+    color: #6366f1;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+  .card:hover .card-arrow { transform: translateX(5px); }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  .badge-latest {
+    background: linear-gradient(135deg, #6366f1, #a78bfa);
+    color: #fff;
+  }
+  .badge-featured {
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    color: #fff;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #475569;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(139,92,246,0.1);
+    width: 100%;
+    max-width: 800px;
+  }
+  .footer a {
+    color: #818cf8;
+    text-decoration: none;
+  }
+  .footer a:hover { text-decoration: underline; }
+
+  .card-latest {
+    border-color: rgba(99,102,241,0.35);
+    background: linear-gradient(145deg, #1e1e3a, #1c1a36);
+    box-shadow: 0 4px 30px rgba(99,102,241,0.12);
+  }
+  .card-latest .card-title { font-size: 1.45rem; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8rem; }
+    .card { flex-direction: column; text-align: center; gap: 12px; padding: 24px 20px; }
+    .card-arrow { display: none; }
+    .logo { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="logo">⚡</div>
+      <h1>AI Power Hour</h1>
+      <p class="tagline">Your weekly briefing on the AI breakthroughs, tools, and trends that matter most — distilled into one power-packed hour. No hype. No fluff. Just the signal.</p>
+    </div>
+  </div>
+
+  <!-- Latest Edition — Featured -->
+  <div class="archive">
+    <div class="section-title">🔴 Latest Edition</div>
+
+    <a class="card card-latest" href="AI_Power_Hour_Feb19_2026.html">
+      <div class="card-icon">🚀</div>
+      <div class="card-body">
+        <div class="card-date">February 19, 2026</div>
+        <div class="card-title">
+          GPT-5.2 Physics Discovery & Anthropic's $30B Raise
+          <span class="badge badge-latest">New</span>
+        </div>
+        <div class="card-desc">GPT-5.2 makes a physics breakthrough, Gemini 3 Deep Think dominates reasoning, Anthropic raises $30B, China's triple threat price war, India AI Summit, and more.</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- Archive — Past Editions -->
+  <div class="archive">
+    <div class="section-title">📁 Past Editions</div>
+
+    <a class="card" href="AI_Power_Hour_Feb5_2026.html">
+      <div class="card-icon">📡</div>
+      <div class="card-body">
+        <div class="card-date">February 5, 2026</div>
+        <div class="card-title">AI Landscape & Tools Deep Dive</div>
+        <div class="card-desc">Comprehensive roundup of AI tools, industry trends, and practical workflows for teams getting started with AI integration.</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2026 AI Power Hour &mdash; CPP Team &bull; Built with ⚡ and curiosity
+  </div>
+
+</body>
+</html>
