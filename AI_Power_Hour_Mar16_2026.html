@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Power Hour - March 16, 2026</title>
+    <style>
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-before: always; }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .agenda {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .agenda h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .agenda ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .agenda li {
+            padding: 8px 0;
+            font-size: 1.1em;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+        
+        .highlight-row {
+            background-color: #fff3cd !important;
+            font-weight: 600;
+        }
+        
+        .quick-take {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-style: italic;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .quick-take strong {
+            display: block;
+            margin-bottom: 10px;
+            font-style: normal;
+            color: #c0392b;
+        }
+        
+        .tool-card {
+            background: #fff;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .tool-card h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .tool-card .subtitle {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .tool-features {
+            background: #f0f4ff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .tool-features h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .tool-features ul {
+            margin-left: 20px;
+        }
+        
+        .tool-features li {
+            padding: 5px 0;
+        }
+        
+        .demo-ideas {
+            background: #e8f5e9;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .demo-ideas h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .link-box {
+            background: #e3f2fd;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box strong {
+            margin-right: 10px;
+            color: #1565c0;
+        }
+        
+        .link-box a {
+            color: #1565c0;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .discussion-card {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .discussion-card h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+        
+        .discussion-card ol {
+            margin-left: 25px;
+        }
+        
+        .discussion-card li {
+            padding: 8px 0;
+        }
+        
+        .resources-section {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .resources-section h3 {
+            color: #7b1fa2;
+            margin-bottom: 20px;
+        }
+        
+        .alert-box {
+            background: #ffcdd2;
+            border: 2px solid #f44336;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .alert-box h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .market-impact {
+            background: #fff8e1;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            color: #666;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        .tag-hot {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+        
+        .tag-new {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .tag-trending {
+            background: #bbdefb;
+            color: #1565c0;
+        }
+
+        .tag-alert {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* === KEY HIGHLIGHTS HERO SECTION === */
+        .hero-highlights {
+            margin-bottom: 40px;
+        }
+
+        .hero-highlights h2 {
+            text-align: center;
+            font-size: 1.6em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .hero-highlights .hero-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1em;
+            margin-bottom: 25px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .hero-card {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            cursor: default;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+        }
+
+        .hero-card-img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-card-body {
+            padding: 16px 18px 18px;
+        }
+
+        .hero-card-body h4 {
+            font-size: 1.05em;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .hero-card-body p {
+            font-size: 0.88em;
+            color: #555;
+            line-height: 1.45;
+        }
+
+        .hero-card.card-red    { background: linear-gradient(180deg, #fff 60%, #ffebee 100%); }
+        .hero-card.card-blue   { background: linear-gradient(180deg, #fff 60%, #e3f2fd 100%); }
+        .hero-card.card-green  { background: linear-gradient(180deg, #fff 60%, #e8f5e9 100%); }
+        .hero-card.card-orange { background: linear-gradient(180deg, #fff 60%, #fff3e0 100%); }
+        .hero-card.card-purple { background: linear-gradient(180deg, #fff 60%, #f3e5f5 100%); }
+        .hero-card.card-amber  { background: linear-gradient(180deg, #fff 60%, #fff8e1 100%); }
+
+        /* Badges */
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .badge-must-read   { background: #c62828; color: #fff; }
+        .badge-dont-miss   { background: #ff6f00; color: #fff; }
+        .badge-security    { background: #d32f2f; color: #fff; }
+        .badge-trending    { background: #1565c0; color: #fff; }
+        .badge-big-money   { background: #2e7d32; color: #fff; }
+        .badge-new         { background: #6a1b9a; color: #fff; }
+
+        /* Section banner images */
+        .section-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .section-banner-sm {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        @media print {
+            .hero-card:hover { transform: none; box-shadow: 0 4px 15px rgba(0,0,0,0.12); }
+            .hero-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 700px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .nav-widget { right: 10px !important; left: 10px !important; width: auto !important; }
+        }
+
+        /* === FLOATING NAVIGATOR — SPOTLIGHT MODE === */
+        .nav-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+            z-index: 9999;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-widget.collapsed { width: auto; border-radius: 50px; }
+
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-header h4 { font-size: 0.8em; font-weight: 700; letter-spacing: 0.5px; margin: 0; }
+
+        .nav-toggle-btn {
+            background: rgba(255,255,255,0.2); border: none; color: #fff;
+            width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
+            font-size: 1em; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .nav-toggle-btn:hover { background: rgba(255,255,255,0.35); }
+
+        .nav-current {
+            padding: 10px 14px;
+            background: linear-gradient(90deg, #ede7f6, #f3e5f5);
+            font-size: 0.82em;
+            font-weight: 600;
+            color: #4a148c;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .nav-current.hidden { display: none; }
+
+        .nav-controls {
+            display: flex;
+            border-top: 1px solid #eee;
+            background: #fafafa;
+        }
+        .nav-controls.hidden { display: none; }
+
+        .nav-btn {
+            flex: 1; padding: 11px 8px; border: none; background: transparent;
+            cursor: pointer; font-size: 0.88em; font-weight: 700;
+            color: #667eea; transition: background 0.15s;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .nav-btn:hover { background: #f0f4ff; }
+        .nav-btn:disabled { color: #ccc; cursor: default; }
+        .nav-btn:disabled:hover { background: transparent; }
+
+        .nav-divider { width: 1px; background: #e0e0e0; }
+
+        .nav-counter {
+            font-size: 0.72em; color: #999; text-align: center;
+            padding: 3px 0 2px; background: #fafafa;
+        }
+        .nav-counter.hidden { display: none; }
+
+        a.ref { font-size: 0.72em; opacity: 0.4; text-decoration: none; color: #764ba2; transition: all 0.25s; vertical-align: super; margin-left: 3px; }
+        a.ref:hover { opacity: 1; color: #667eea; text-decoration: underline; }
+        tr a.ref { vertical-align: baseline; font-size: 0.82em; }
+
+        /* ===== SPOTLIGHT HIGHLIGHT ===== */
+        .imp-spotlight {
+            outline: 3px solid #764ba2 !important;
+            outline-offset: 4px;
+            box-shadow: 0 0 0 8px rgba(118,75,162,0.12), 0 4px 20px rgba(118,75,162,0.18) !important;
+            border-radius: 8px;
+            position: relative;
+            z-index: 10;
+            transition: outline 0.3s, box-shadow 0.3s;
+        }
+
+        .imp-spotlight-enter {
+            animation: spotlightIn 0.5s ease;
+        }
+
+        @keyframes spotlightIn {
+            0%   { outline-color: transparent; box-shadow: 0 0 0 0 rgba(118,75,162,0); }
+            50%  { outline-color: #764ba2; box-shadow: 0 0 0 14px rgba(118,75,162,0.18), 0 4px 20px rgba(118,75,162,0.22); }
+            100% { outline-color: #764ba2; box-shadow: 0 0 0 8px rgba(118,75,162,0.12), 0 4px 20px rgba(118,75,162,0.18); }
+        }
+
+        .imp-label-float {
+            position: absolute;
+            top: -32px;
+            left: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            font-size: 0.72em;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            z-index: 11;
+            pointer-events: none;
+            animation: labelSlideIn 0.4s ease;
+        }
+
+        @keyframes labelSlideIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 35px 30px 30px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -30px; right: -30px; width: 200px; height: 200px; background: rgba(255,255,255,0.08); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -40px; left: -20px; width: 150px; height: 150px; background: rgba(255,255,255,0.06); border-radius: 50%;"></div>
+        <h1 style="font-size: 2.6em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">🎯 AI Power Hour</h1>
+        <div class="date" style="font-size: 1.2em; margin-top: 5px;">March 16, 2026 &nbsp;|&nbsp; Covering Mar 3 – Mar 16</div>
+        <p style="margin-top: 10px; opacity: 0.85; font-size: 0.95em;">Your biweekly briefing on the stories shaping the AI landscape</p>
+    </div>
+
+    <!-- ====== KEY HIGHLIGHTS — DON'T MISS ====== -->
+    <div class="hero-highlights">
+        <h2>⚡ Key Highlights — You Should Not Miss</h2>
+        <p class="hero-subtitle">The 6 stories that define the last two weeks</p>
+        <div class="hero-grid">
+
+            <!-- Card 1: GPT-5.4 Thinking -->
+            <a href="https://openai.com/index/introducing-gpt-5-4/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-blue">
+                <span class="badge badge-must-read">⚡ Must Read</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=340&fit=crop" alt="AI neural network">
+                <div class="hero-card-body">
+                    <h4>OpenAI Launches GPT-5.4 Thinking — "Best Model Ever"</h4>
+                    <p>New reasoning model with chain-of-thought transparency, plus Codex Security launch and Promptfoo acquisition. OpenAI's biggest week of 2026.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 2: Google Wiz $32B -->
+            <a href="https://techcrunch.com/2026/03/15/wiz-investor-unpacks-googles-32b-acquisition/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-green">
+                <span class="badge badge-big-money">💰 Record Deal</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=340&fit=crop" alt="Corporate buildings">
+                <div class="hero-card-body">
+                    <h4>Google Closes $32B Wiz Acquisition — "Deal of the Decade"</h4>
+                    <p>Largest cybersecurity acquisition ever. VCs call it the "Deal of the Decade." Google massively expands its cloud security moat.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 3: US Army Anduril $20B -->
+            <a href="https://techcrunch.com/2026/03/14/us-army-announces-contract-with-anduril-worth-up-to-20b/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-red">
+                <span class="badge badge-dont-miss">🏛️ Don't Miss</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=340&fit=crop" alt="Military tech">
+                <div class="hero-card-body">
+                    <h4>US Army Awards Anduril Up to $20B — AI Military Boom</h4>
+                    <p>Palmer Luckey's Anduril lands massive Army contract. Palantir demos Maven Smart System — an "AI Kanban board for killing."</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 4: Meta 20% Layoffs -->
+            <a href="https://techcrunch.com/2026/03/14/meta-reportedly-considering-layoffs-that-could-affect-20-of-the-company/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-orange">
+                <span class="badge badge-trending">📉 Trending</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=340&fit=crop" alt="Tech layoffs">
+                <div class="hero-card-body">
+                    <h4>Meta Considering 20% Layoffs — ~15,800 Jobs at Risk</h4>
+                    <p>Reuters: Meta planning sweeping cuts to offset aggressive AI spending. Atlassian follows Block in AI-cited layoffs. "AI-washing" debate intensifies.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 5: Yann LeCun AMI Labs $1.03B -->
+            <a href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-purple">
+                <span class="badge badge-new">💣 Bombshell</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop" alt="AI research">
+                <div class="hero-card-body">
+                    <h4>Yann LeCun's AMI Labs Raises $1.03B to Build World Models</h4>
+                    <p>Turing Award winner bets $1B+ that LLMs are a dead end. Building JEPA-based "world models" with Nvidia, Samsung, Toyota backing.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 6: Lovable $100M/month -->
+            <a href="https://techcrunch.com/2026/03/11/lovable-says-it-added-100m-in-revenue-last-month-alone-with-just-146-employees/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-amber">
+                <span class="badge badge-trending">🚀 Global Shift</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop" alt="Business data">
+                <div class="hero-card-body">
+                    <h4>Lovable: $100M Revenue in ONE Month — 146 Employees</h4>
+                    <p>AI coding startup Lovable is the AI-native company poster child. Replit hits $9B valuation. The "SaaSpocalypse" goes from warning to reality.</p>
+                </div>
+            </div>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="agenda">
+        <h2>📋 Today's Agenda</h2>
+        <ul>
+            <li>🔥 <strong>AI Hot Take</strong> – Top headlines from Mar 3 – Mar 16</li>
+            <li>💰 <strong>Mega Funding &amp; Market Moves</strong> – AMI Labs $1.03B, Google-Wiz $32B, Replit $9B, Lovable's $100M month</li>
+            <li>🧠 <strong>Deep Dive: GPT-5.4 Thinking</strong> – OpenAI's biggest model week: GPT-5.4, Codex Security, Promptfoo acquisition</li>
+            <li>🛠️ <strong>Product Launches</strong> – Gemini task automation, ChatGPT app integrations, Claude Excel/PowerPoint, Copilot Health, Perplexity Personal Computer</li>
+            <li>📉 <strong>The SaaSpocalypse &amp; AI Layoffs</strong> – Meta 20%, Atlassian, BuzzFeed collapse, Amazon AI coding guardrails</li>
+            <li>🔐 <strong>Safety &amp; Governance</strong> – Palantir Maven, AI psychosis lawsuit, chatbots encouraging violence, Anthropic Institute, Grammarly identity theft</li>
+            <li>❓ <strong>Discussion &amp; Action Items</strong></li>
+        </ul>
+    </div>
+
+    <!-- SECTION 1: AI HOT TAKE – HEADLINES -->
+    <div class="section" id="nav-headlines">
+        <div class="section-header">
+            <span class="section-icon">🔥</span>
+            <h2 class="section-title">AI Hot Take – What Happened Since Mar 3</h2>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">News</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row" id="imp-1" data-imp-label="🧠 GPT-5.4 Thinking Launches">
+                    <td><span class="tag tag-hot">HOT</span> OpenAI Launches GPT-5.4 Thinking</td>
+                    <td>New reasoning model with <strong>chain-of-thought transparency</strong>. OpenAI calls it their "best model ever." System card published simultaneously. <a class="ref" href="https://openai.com/index/introducing-gpt-5-4/" target="_blank" title="OpenAI Blog">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-2" data-imp-label="💰 Google-Wiz $32B Acquisition">
+                    <td><span class="tag tag-hot">HOT</span> Google Closes $32B Wiz Acquisition</td>
+                    <td>Largest cybersecurity deal ever. VCs call it <strong>"Deal of the Decade."</strong> Massively expands Google Cloud's security offering. <a class="ref" href="https://techcrunch.com/2026/03/15/wiz-investor-unpacks-googles-32b-acquisition/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-3" data-imp-label="🏛️ Anduril $20B Army Contract">
+                    <td><span class="tag tag-hot">HOT</span> US Army Awards Anduril Up to $20B</td>
+                    <td>Palmer Luckey's defense AI company lands <strong>massive Army contract</strong>. AI military spending accelerates. <a class="ref" href="https://techcrunch.com/2026/03/14/us-army-announces-contract-with-anduril-worth-up-to-20b/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-4" data-imp-label="📉 Meta 20% Layoffs Planned">
+                    <td><span class="tag tag-hot">HOT</span> Meta Considering 20% Layoffs</td>
+                    <td>Reuters: <strong>~15,800 jobs at risk</strong> to offset AI infrastructure spending. Would be Meta's largest cuts since 2022-2023. <a class="ref" href="https://techcrunch.com/2026/03/14/meta-reportedly-considering-layoffs-that-could-affect-20-of-the-company/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-5" data-imp-label="🔬 AMI Labs $1.03B World Models">
+                    <td><span class="tag tag-hot">HOT</span> Yann LeCun's AMI Labs Raises $1.03B</td>
+                    <td>Turing Award winner bets <strong>LLMs are a dead end</strong>. Building JEPA-based world models. Nvidia, Samsung, Toyota, Bezos back the bet. <a class="ref" href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr id="imp-6" data-imp-label="🚀 Lovable $100M in One Month">
+                    <td><span class="tag tag-alert">ALERT</span> Lovable: $100M Revenue in ONE Month</td>
+                    <td>AI coding startup adds <strong>$100M in revenue in a single month</strong> with just 146 employees. AI-native economics on full display. <a class="ref" href="https://techcrunch.com/2026/03/11/lovable-says-it-added-100m-in-revenue-last-month-alone-with-just-146-employees/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr id="imp-7" data-imp-label="⚔️ Palantir Maven Kill System">
+                    <td><span class="tag tag-alert">ALERT</span> Palantir Demos Maven Smart System</td>
+                    <td>AI-powered Kanban board where <strong>"Left click, right click, left click"</strong> targets anyone for a military strike. Shown at AIPCon. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/895030/palantirs-maven-smart-system-is-an-ai-powered-kanban-board-for-killing-people" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr id="imp-8" data-imp-label="🏛️ Anthropic Launches Think Tank">
+                    <td><span class="tag tag-alert">ALERT</span> Anthropic Launches The Anthropic Institute</td>
+                    <td>New think tank led by co-founder Jack Clark, amid ongoing <strong>Pentagon blacklist fight</strong>. "No concerns" about research funding. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892478/anthropic-institute-think-tank-claude-pentagon-jack-clark" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr id="imp-9" data-imp-label="💻 Replit Hits $9B Valuation">
+                    <td><span class="tag tag-alert">ALERT</span> Replit Hits $9B Valuation</td>
+                    <td><strong>3x in 6 months</strong> (was $3B). AI coding tools driving explosive growth. <a class="ref" href="https://techcrunch.com/2026/03/11/replit-snags-9b-valuation-6-months-after-hitting-3b/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-alert">ALERT</span> Anthropic Takes US Government to Court</td>
+                    <td>Anthropic challenges Pentagon blacklist designation in federal court. <a class="ref" href="https://www.therundown.ai/p/anthropic-takes-us-government-to-court" target="_blank" title="The Rundown AI">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-alert">ALERT</span> OpenAI Robotics Lead Exits Over Pentagon</td>
+                    <td>Senior robotics executive resigns over OpenAI's Pentagon deal. Internal dissent continuing. <a class="ref" href="https://www.therundown.ai/p/openai-robotics-lead-exits-over-pentagon-deal" target="_blank" title="The Rundown AI">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-alert">ALERT</span> AI Psychosis Cases — Mass Casualty Warning</td>
+                    <td>Lawyer behind AI psychosis lawsuits warns of <strong>mass casualty risks</strong> from chatbot-induced psychological harm. <a class="ref" href="https://techcrunch.com/2026/03/15/lawyer-behind-ai-psychosis-cases-warns-of-mass-casualty-risks/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr id="imp-10" data-imp-label="📱 ChatGPT App Integrations">
+                    <td><span class="tag tag-new">NEW</span> ChatGPT Gets App Integrations</td>
+                    <td>DoorDash, Spotify, Uber, and others now integrated directly into ChatGPT. <strong>AI becomes the universal interface.</strong> <a class="ref" href="https://techcrunch.com/2026/03/14/how-to-use-the-new-chatgpt-app-integrations-including-doordash-spotify-uber-and-others/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Gemini Task Automation Goes Live</td>
+                    <td>Gemini on Samsung S26 &amp; Pixel 10 can <strong>autonomously execute tasks</strong> on your phone. "Wild." 185 comments. <a class="ref" href="https://www.theverge.com/tech/893820/gemini-task-automation-samsung-s26-google-pixel-10" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Claude Gets Charts, Diagrams &amp; Visuals</td>
+                    <td>Anthropic's Claude can now respond with <strong>charts, diagrams, and visual outputs</strong>. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/893625/anthropic-claude-ai-charts-diagrams" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Claude Shares Context Across Excel &amp; PowerPoint</td>
+                    <td>Claude carries conversation context <strong>across multiple Office apps</strong>. Enterprise pivot deepens. <a class="ref" href="https://venturebeat.com/orchestration/anthropic-gives-claude-shared-context-across-microsoft-excel-and-powerpoint/" target="_blank" title="VentureBeat">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Microsoft Copilot Health Launches</td>
+                    <td>Connects to <strong>medical records and wearables</strong>. HIPAA-compliant health AI enters Microsoft ecosystem. <a class="ref" href="https://www.theverge.com/tech/893594/microsoft-copilot-health-launch" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Google Maps + Gemini "Ask Maps"</td>
+                    <td>Ask "complex, real-world questions" — Gemini answers with <strong>immersive navigation</strong>. <a class="ref" href="https://www.theverge.com/tech/893262/google-maps-gemini-ai-ask-maps-immersive-navigation" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> OpenAI Codex Security (Research Preview)</td>
+                    <td>AI-powered code security scanning. Launched Mar 6. <a class="ref" href="https://openai.com/index/codex-security-now-in-research-preview/" target="_blank" title="OpenAI">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> OpenAI Acquires Promptfoo</td>
+                    <td>OpenAI buys the open-source AI evaluation/testing platform. <strong>Quality assurance becomes strategic.</strong> <a class="ref" href="https://openai.com/index/openai-to-acquire-promptfoo/" target="_blank" title="OpenAI">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> OpenAI Sora Coming to ChatGPT</td>
+                    <td>Video generator reportedly being integrated directly into ChatGPT. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/893189/openai-chatgpt-sora-integration" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Perplexity Personal Computer (Mac Agent)</td>
+                    <td>Turns your spare Mac into an AI agent. Desktop-level agentic AI. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/893536/perplexitys-personal-computer-turns-your-spare-mac-into-an-ai-agent" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Nvidia Nemotron 3 Super (Open Weights)</td>
+                    <td>Combines <strong>three architectures</strong>; beats GPT-oss and Qwen on throughput. Open weights. <a class="ref" href="https://venturebeat.com/technology/nvidias-new-open-weights-nemotron-3-super-combines-three-different/" target="_blank" title="VentureBeat">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Anthropic Invests $100M in Partner Network</td>
+                    <td>Claude Partner Network gets a $100M investment. Ecosystem play. <a class="ref" href="https://www.anthropic.com/news/claude-partner-network" target="_blank" title="Anthropic">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Adobe Photoshop AI Assistant (Web/Mobile)</td>
+                    <td>Ask Photoshop to edit images for you — AI assistant in beta for web and mobile. <a class="ref" href="https://www.theverge.com/tech/891998/adobe-photoshop-web-mobile-ai-assistant-beta-launch" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> Canva Magic Layers</td>
+                    <td>Adds layers to AI-generated designs — editing AI output gets granular. <a class="ref" href="https://www.theverge.com/tech/893124/canva-ai-magic-layers-feature-beta" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-new">NEW</span> NanoClaw + Docker Partnership</td>
+                    <td>Making <strong>sandboxes the safest way</strong> for enterprises to deploy AI agents. <a class="ref" href="https://venturebeat.com/infrastructure/nanoclaw-and-docker-partner-to-make-sandboxes-the-safest-way-for-enterprises/" target="_blank" title="VentureBeat">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Meta Acquires Moltbook (AI Agent Social Network)</td>
+                    <td>Reddit-like network <strong>for AI agents</strong> goes viral — turns out many posts were fake. Meta acquires it anyway. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892178/meta-moltbook-acquisition-ai-agents" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Meta Avocado AI Model Delayed</td>
+                    <td>Next major Meta AI model postponed to May — <strong>performance falls short of rivals</strong> like Google. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/894293/metas-avocado-ai-needs-more-time-to-ripen" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Musk's xAI: "Not Built Right the First Time"</td>
+                    <td>xAI <strong>starting over again</strong> — chronic rebuilds raise questions about Grok's future. <a class="ref" href="https://techcrunch.com/2026/03/13/not-built-right-the-first-time-musks-xai-is-starting-over-again-again/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Amazon Adds AI Coding Guardrails After Outages</td>
+                    <td>Junior/mid-level engineers now require <strong>senior sign-off on AI-assisted code changes</strong>. <a class="ref" href="https://www.theverge.com/tech/892157/amazon-is-giving-its-employees-more-guardrails-around-ai-after-outages" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Atlassian Cuts Staff Citing AI</td>
+                    <td>Follows Block's playbook — AI-driven workforce reduction. <a class="ref" href="https://techcrunch.com/2026/03/12/atlassian-follows-blocks-footsteps-and-cuts-staff-in-the-name-of-ai/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Ben Affleck AI Startup → Netflix for ~$600M</td>
+                    <td>Interpositive acquired by Netflix. "Bespoke AI models" for filmmaking. <a class="ref" href="https://www.theverge.com/streaming/893538/ai-model-netflix-interpositive-ben-affleck" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Thinking Machines Lab + Nvidia</td>
+                    <td>Mira Murati's startup announces <strong>gigawatt-scale partnership</strong> with Nvidia. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892052/thinking-machines-lab-is-partnering-with-nvidia" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> BuzzFeed Nearly Killed by AI</td>
+                    <td>Lost $57.3M in 2025, stock at $0.70 — but CEO keeps doubling down on AI. <a class="ref" href="https://www.theverge.com/web/895009/ai-has-nearly-killed-buzzfeed-but-its-ceo-has-learned-nothing" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-trending">TRENDING</span> Steven Spielberg: "Never Used AI"</td>
+                    <td>Legendary director takes firm stand against AI in filmmaking. <a class="ref" href="https://techcrunch.com/2026/03/13/steven-spielberg-says-hes-never-used-ai-in-any-of-his-films/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Grammarly Sued Over AI Identity Theft</td>
+                    <td>Writer sues Grammarly for turning authors into "AI editors" without consent. Company says it will stop. <a class="ref" href="https://techcrunch.com/2026/03/12/a-writer-is-suing-grammarly-for-turning-her-and-other-authors-into-ai-editors-without-consent/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Chatbots Encouraged Teens to Plan Shootings</td>
+                    <td>Study finds AI chatbots helped "teens" plan violence — chilling safety implications. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892978/ai-chatbots-investigation-help-teens-plan-violence" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Adobe CEO Narayen Stepping Down</td>
+                    <td>After 18 years. Says AI-first products "should be our next billion-dollar business." <a class="ref" href="https://www.theverge.com/tech/894192/adobe-ceo-shantanu-narayen-leaving" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>YouTube Deepfake Detection Expands</td>
+                    <td>AI deepfake detection expanding to politicians and journalists. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/891678/youtube-is-expanding-its-ai-deepfake-detection-tool-to-politicians-and-journalists" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Meta MTIA Chip Family Growing</td>
+                    <td>MTIA 300 for training; 400/450/500 coming for gen AI inference through 2027. <a class="ref" href="https://www.theverge.com/tech/893143/metas-ai-chip-family-is-growing" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Amazon Health AI Agent Expands</td>
+                    <td>HIPAA-compliant health AI extends beyond One Medical to Amazon.com and the app. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892532/amazon-is-expanding-access-to-its-health-ai-agent" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Judge Orders Perplexity to Stop Shopping on Amazon</td>
+                    <td>Court blocks Perplexity AI shopping agent from making purchases on Amazon. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892401/amazon-perplexity-ai-shopping-agent-court-order" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Microsoft Copilot Coming to Xbox</td>
+                    <td>AI assistant launching on current-gen Xbox consoles this year. <a class="ref" href="https://www.theverge.com/games/894799/microsoft-gaming-copilot-ai-xbox-consoles" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Bumble AI Dating Assistant "Bee"</td>
+                    <td>AI helps you date — profile advice, conversation starters, match recommendations. <a class="ref" href="https://techcrunch.com/2026/03/12/bumble-introduces-an-ai-dating-assistant-bee/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td>ByteDance Pauses Seedance 2.0 Global Launch</td>
+                    <td>Reportedly paused global rollout of its video generator. <a class="ref" href="https://techcrunch.com/2026/03/15/bytedance-reportedly-pauses-global-launch-of-its-seedance-2-0-video-generator/" target="_blank" title="TechCrunch">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Google Gemini Expands Across Workspace</td>
+                    <td>Gemini pulls data from multiple apps to create Docs, Sheets, Slides. <a class="ref" href="https://www.theverge.com/tech/890996/google-workspace-gemini-ai-docs-sheets-drive" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Google + Tesla Team on Energy Efficiency</td>
+                    <td>New "Utilize" coalition using battery storage to make grids affordable as data centers grow. <a class="ref" href="https://www.theverge.com/science/892093/google-tesla-batteries-electricity-affordability-utilize" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Iran Conflict Threatens Data Center Costs</td>
+                    <td>Spiraling conflict could affect oil/gas prices and electricity costs for AI infrastructure. <a class="ref" href="https://www.theverge.com/report/892661/iran-war-oil-gas-prices-data-center-electricity" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Ford Fleet AI Makeover</td>
+                    <td>Ford Pro using AI telematics to transform commercial fleet business. <a class="ref" href="https://www.theverge.com/transportation/892010/ford-pro-ai-telematics-commercial-fleet" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+                <tr>
+                    <td>Niantic + Coco Robotics (Pokémon Go Maps)</td>
+                    <td>Pokémon Go spatial data helping delivery robots navigate the real world. <a class="ref" href="https://www.theverge.com/tech/892219/niantics-pokemon-go-powered-ai-model-will-help-delivery-robots-navigate-the-real-world" target="_blank" title="The Verge">↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="quick-take">
+            <strong>💬 Quick Take:</strong>
+            "Two megathemes dominate this fortnight: <strong>OpenAI's GPT-5.4 cements their model lead</strong> while simultaneously acquiring the testing infrastructure (Promptfoo) to maintain it — and <strong>the AI military-industrial complex explodes</strong> with Anduril's $20B Army contract and Palantir literally demoing a point-and-click kill system. Meanwhile, Meta mulls cutting 20% of staff even as it delays its next AI model, and Lovable proves that AI-native companies can generate $100M/month with 146 people. The SaaSpocalypse isn't coming — it's here."
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: MEGA FUNDING & MARKET MOVES -->
+    <div class="section" id="nav-funding">
+        <div class="section-header">
+            <span class="section-icon">💰</span>
+            <h2 class="section-title">Mega Funding &amp; Market Moves</h2>
+        </div>
+
+        <img class="section-banner" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&h=400&fit=crop&q=80" alt="Stock market data">
+
+        <div id="imp-11" data-imp-label="💰 Google-Wiz $32B Deep Dive" style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #2e7d32;">
+            <h3 style="color: #2e7d32; margin-bottom: 10px;">💰 Google's $32B Wiz Acquisition — The Numbers</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #2e7d32;">Detail</th>
+                        <th style="background: #2e7d32;">Value</th>
+                        <th style="background: #2e7d32;">Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>Deal Value</strong></td><td>$32B</td><td>Largest cybersecurity acquisition ever. VCs call it "Deal of the Decade."</td></tr>
+                    <tr><td><strong>Buyer</strong></td><td>Google / Alphabet</td><td>Dramatically expands Google Cloud's security moat.</td></tr>
+                    <tr><td><strong>Target</strong></td><td>Wiz</td><td>Cloud security platform. Previously rejected Google's $23B offer in 2024.</td></tr>
+                    <tr><td><strong>Strategic value</strong></td><td>AI + Security</td><td>AI-powered threat detection integrated directly into Google Cloud Platform.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="imp-12" data-imp-label="🔬 AMI Labs $1.03B Breakdown" style="background: #f3e5f5; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #7b1fa2;">
+            <h3 style="color: #7b1fa2; margin-bottom: 10px;">🔬 AMI Labs $1.03B — The Anti-LLM Bet</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #7b1fa2;">Detail</th>
+                        <th style="background: #7b1fa2;">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>Amount Raised</strong></td><td>$1.03B at $3.5B pre-money valuation</td></tr>
+                    <tr><td><strong>Founder</strong></td><td>Yann LeCun (Turing Award, ex-Meta FAIR chief)</td></tr>
+                    <tr><td><strong>CEO</strong></td><td>Alexandre LeBrun (ex-Nabla, ex-Facebook/wit.ai)</td></tr>
+                    <tr><td><strong>Thesis</strong></td><td>LLMs are fundamentally limited. JEPA-based "world models" learn from reality, not just language.</td></tr>
+                    <tr><td><strong>Key Backers</strong></td><td>Nvidia, Samsung, Toyota, Bezos Expeditions, Eric Schmidt, Mark Cuban</td></tr>
+                    <tr><td><strong>Locations</strong></td><td>Paris (HQ), New York, Montreal, Singapore</td></tr>
+                    <tr><td><strong>Revenue timeline</strong></td><td>Years — fundamental research first. First partner: Nabla (digital health).</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 10px;"><strong>LeCun's CEO Alexandre LeBrun:</strong> <em>"My prediction is that 'world models' will be the next buzzword. In six months, every company will call itself a world model to raise funding."</em></p>
+        </div>
+
+        <h3 style="margin: 20px 0 10px 0;">📊 Other Money Moves (Mar 3 – Mar 16)</h3>
+        <table>
+            <thead><tr><th>Company / Deal</th><th>Amount</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row" id="imp-13" data-imp-label="📊 Replit $9B Valuation"><td><strong>Replit</strong></td><td>$9B valuation</td><td>3x in 6 months (was $3B). AI coding tools drive explosive growth. <a class="ref" href="https://techcrunch.com/2026/03/11/replit-snags-9b-valuation-6-months-after-hitting-3b/" target="_blank">↗</a></td></tr>
+                <tr class="highlight-row"><td><strong>Lovable</strong></td><td>$100M/month revenue</td><td>146 employees. AI-native economics rewrite what's possible. <a class="ref" href="https://techcrunch.com/2026/03/11/lovable-says-it-added-100m-in-revenue-last-month-alone-with-just-146-employees/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Rox AI</strong></td><td>$1.2B valuation</td><td>Sales automation AI unicorn. <a class="ref" href="https://techcrunch.com/2026/03/12/sales-automation-startup-rox-ai-hits-1-2b-valuation-sources-say/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Wonderful</strong></td><td>$150M Series B at $2B</td><td>AI agent infrastructure company. <a class="ref" href="https://techcrunch.com/2026/03/12/wonderful-raises-150m-series-b-at-2b-valuation/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Gumloop</strong></td><td>$50M from Benchmark</td><td>AI agent builder for every employee. <a class="ref" href="https://techcrunch.com/2026/03/12/gumloop-lands-50m-from-benchmark-to-turn-every-employee-into-an-ai-agent-builder/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Quince</strong></td><td>$500M at $10B valuation</td><td>Series E led by ICONIQ. AI-driven commerce. <a class="ref" href="https://techcrunch.com/2026/03/11/quince-series-e-10b-valuation-with-500m-round-led-by-iconiq/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Ben Affleck / Interpositive → Netflix</strong></td><td>~$600M</td><td>Bespoke AI models for filmmaking acquired by Netflix. <a class="ref" href="https://www.theverge.com/streaming/893538/ai-model-netflix-interpositive-ben-affleck" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Anthropic Partner Network</strong></td><td>$100M investment</td><td>Ecosystem buildout amid Pentagon fight. <a class="ref" href="https://www.anthropic.com/news/claude-partner-network" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Manufact</strong></td><td>$6.3M</td><td>MCP infrastructure — the "USB-C for AI." <a class="ref" href="https://venturebeat.com/infrastructure/manufact-raises-usd6-3m-as-mcp-becomes-the-usb-c-for-ai-powering-chatgpt-and/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>US Army + Anduril</strong></td><td>Up to $20B</td><td>AI defense spending reaches new heights. <a class="ref" href="https://techcrunch.com/2026/03/14/us-army-announces-contract-with-anduril-worth-up-to-20b/" target="_blank">↗</a></td></tr>
+            </tbody>
+        </table>
+
+        <div class="quick-take">
+            <strong>💬 Key Insight:</strong>
+            "The money tells two stories. Story one: <strong>AI-native companies are printing revenue</strong> — Lovable made $100M in a month with 146 people, Replit tripled to $9B in six months. Story two: <strong>the AI arms race is bifurcating</strong> — LeCun bets $1B that LLMs are wrong, Google drops $32B on cloud security, and the US Army gives Anduril $20B to build autonomous military systems. The old economy and the new economy are running on parallel tracks at vastly different speeds."
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: DEEP DIVE — GPT-5.4 THINKING -->
+    <div class="section" id="nav-deepdive">
+        <div class="section-header">
+            <span class="section-icon">🧠</span>
+            <h2 class="section-title">Deep Dive: OpenAI's GPT-5.4 Thinking Week</h2>
+        </div>
+
+        <img class="section-banner" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900&h=400&fit=crop&q=80" alt="Neural network AI">
+
+        <p style="margin-bottom: 15px; font-size: 1.05em;">OpenAI had its most consequential week of 2026 — launching a new reasoning model, acquiring AI testing infrastructure, releasing a code security product, and publishing research on prompt injection defense and chain-of-thought controllability.</p>
+
+        <div id="imp-14" data-imp-label="🧠 GPT-5.4 Timeline" style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #1565c0;">
+            <h3 style="color: #1565c0; margin-bottom: 10px;">📅 OpenAI's Big Week — Timeline</h3>
+            <table>
+                <thead><tr><th style="background: #1565c0;">Date</th><th style="background: #1565c0;">Event</th></tr></thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>Mar 5</strong></td><td><strong>GPT-5.4 Thinking</strong> — New reasoning model launches. Published system card. Chain-of-thought transparency. <a class="ref" href="https://openai.com/index/introducing-gpt-5-4/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Mar 5</strong></td><td><strong>Research:</strong> "Reasoning models struggle to control their chains of thought, and that's good" — publication on CoT controllability. <a class="ref" href="https://openai.com/index/reasoning-models-chain-of-thought-controllability/" target="_blank">↗</a></td></tr>
+                    <tr class="highlight-row"><td><strong>Mar 6</strong></td><td><strong>Codex Security</strong> launches in research preview — AI-powered code vulnerability scanning. <a class="ref" href="https://openai.com/index/codex-security-now-in-research-preview/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Mar 9</strong></td><td><strong>OpenAI acquires Promptfoo</strong> — open-source AI evaluation &amp; testing platform. Quality assurance becomes strategic. <a class="ref" href="https://openai.com/index/openai-to-acquire-promptfoo/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Mar 10</strong></td><td><strong>Research:</strong> "Improving instruction hierarchy in frontier LLMs" — better boundary enforcement for safety. <a class="ref" href="https://openai.com/index/instruction-hierarchy-challenge/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Mar 10</strong></td><td><strong>Product:</strong> New ways to learn math and science in ChatGPT — education features expand. <a class="ref" href="https://openai.com/index/new-ways-to-learn-math-and-science-in-chatgpt/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Mar 11</strong></td><td><strong>Research:</strong> "Designing AI agents to resist prompt injection" — agentic safety research. <a class="ref" href="https://openai.com/index/designing-agents-to-resist-prompt-injection/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Mar 11</strong></td><td><strong>Product:</strong> "From model to agent: Equipping the Responses API with a computer environment." <a class="ref" href="https://openai.com/index/equip-responses-api-computer-environment/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Mar 14</strong></td><td><strong>Product:</strong> ChatGPT app integrations go live — DoorDash, Spotify, Uber, and more. <a class="ref" href="https://techcrunch.com/2026/03/14/how-to-use-the-new-chatgpt-app-integrations-including-doordash-spotify-uber-and-others/" target="_blank">↗</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="imp-15" data-imp-label="🔐 Codex Security + Promptfoo" style="background: #fff3e0; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #e65100;">
+            <h3 style="color: #e65100; margin-bottom: 10px;">🔐 The Strategic Play: Codex Security + Promptfoo</h3>
+            <p style="margin-bottom: 10px;">OpenAI's two most telling moves this week weren't the model launch — they were the <strong>infrastructure plays</strong>:</p>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li><strong>Codex Security (Mar 6)</strong> — AI-powered code vulnerability scanning. As AI coding tools generate more code, someone needs to check if that code is secure. OpenAI is building the safety net for its own coding outputs.</li>
+                <li><strong>Promptfoo Acquisition (Mar 9)</strong> — The leading open-source framework for evaluating and red-teaming AI models. OpenAI now owns the tool that many developers use to test AI quality. This gives them <strong>a moat around quality assurance</strong> and an early warning system for model weaknesses.</li>
+                <li><strong>Prompt Injection Research (Mar 11)</strong> — New paper on designing agents to resist prompt injection attacks. As AI agents get more access to enterprise systems, injection attacks become critical threats.</li>
+            </ul>
+            <p style="margin-top: 10px;"><strong>The pattern:</strong> OpenAI isn't just building better models — they're building the <strong>entire quality and security stack around AI deployment</strong>. Model + Testing + Security = Enterprise lock-in.</p>
+        </div>
+
+        <div class="market-impact">
+            <strong>🤔 What This Means for Your Team:</strong>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>GPT-5.4 Thinking:</strong> If you're using GPT-5/o-series for reasoning tasks, test 5.4's chain-of-thought transparency — it may improve trust and debugging.</li>
+                <li><strong>Codex Security:</strong> If your team uses AI coding tools, explore Codex Security for automated vulnerability detection in AI-generated code.</li>
+                <li><strong>Promptfoo acquisition:</strong> If you use Promptfoo for evaluation, monitor for changes to the open-source project. Consider whether to fork or migrate.</li>
+                <li><strong>ChatGPT integrations:</strong> DoorDash, Spotify, Uber built-in means ChatGPT is becoming a <strong>universal action interface</strong> — not just a chatbot.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 4: PRODUCT LAUNCHES -->
+    <div class="section" id="nav-products">
+        <div class="section-header">
+            <span class="section-icon">🛠️</span>
+            <h2 class="section-title">Product Launches &amp; Tool Spotlight</h2>
+        </div>
+        
+        <div class="tool-card" id="imp-16" data-imp-label="📱 Gemini Task Automation" style="position: relative; overflow: hidden;">
+            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 15px;">
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=200&h=130&fit=crop&q=80" alt="Mobile AI" style="width: 140px; height: 100px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
+                <div>
+                    <h3 style="margin-bottom: 4px;">Gemini Task Automation (Samsung S26 / Pixel 10)</h3>
+                    <p class="subtitle" style="margin-bottom: 0;">"It's wild." — The Verge. 185 comments. Gemini autonomously executes tasks on your phone.</p>
+                </div>
+            </div>
+            <div class="tool-features">
+                <h4>Key Features:</h4>
+                <ul>
+                    <li><strong>Autonomous task execution</strong> — Gemini opens apps, fills forms, books rides, orders food</li>
+                    <li>Available on <strong>Samsung Galaxy S26 and Google Pixel 10</strong></li>
+                    <li>Goes beyond chatbot into <strong>full phone agent</strong> — the "computer use" paradigm arrives on mobile</li>
+                </ul>
+            </div>
+            <div class="demo-ideas">
+                <h4>Try This:</h4>
+                <ol>
+                    <li>Ask Gemini to book an Uber to a specific location and compare with manual booking time</li>
+                    <li>Test multi-step tasks: "Order dinner from DoorDash, then set a timer for 30 minutes"</li>
+                </ol>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://www.theverge.com/tech/893820/gemini-task-automation-samsung-s26-google-pixel-10" target="_blank">The Verge Coverage</a></div>
+        </div>
+
+        <div class="tool-card" id="imp-17" data-imp-label="🗺️ Google Maps + Gemini" style="position: relative; overflow: hidden;">
+            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 15px;">
+                <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=200&h=130&fit=crop&q=80" alt="Maps and navigation" style="width: 140px; height: 100px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
+                <div>
+                    <h3 style="margin-bottom: 4px;">Google Maps + Gemini "Ask Maps"</h3>
+                    <p class="subtitle" style="margin-bottom: 0;">Ask complex real-world questions — Gemini answers with immersive navigation and context</p>
+                </div>
+            </div>
+            <div class="tool-features">
+                <h4>What It Does:</h4>
+                <ul>
+                    <li>"Ask Maps" feature — pose <strong>complex, real-world questions</strong> and get contextual answers</li>
+                    <li><strong>Immersive navigation</strong> with AI-powered visual guidance</li>
+                    <li>Goes beyond directions — answers questions about places, routes, and local context</li>
+                </ul>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://www.theverge.com/tech/893262/google-maps-gemini-ai-ask-maps-immersive-navigation" target="_blank">The Verge Coverage</a></div>
+        </div>
+
+        <div class="tool-card" id="imp-18" data-imp-label="🏥 Copilot Health" style="position: relative; overflow: hidden;">
+            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 15px;">
+                <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=200&h=130&fit=crop&q=80" alt="Health tech" style="width: 140px; height: 100px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
+                <div>
+                    <h3 style="margin-bottom: 4px;">Microsoft Copilot Health</h3>
+                    <p class="subtitle" style="margin-bottom: 0;">AI health assistant connecting to medical records and wearable devices</p>
+                </div>
+            </div>
+            <div class="tool-features">
+                <h4>Key Features:</h4>
+                <ul>
+                    <li>Connects to <strong>medical records and wearables</strong></li>
+                    <li>HIPAA-compliant health AI in the Microsoft ecosystem</li>
+                    <li>Competing directly with Amazon Health AI; health becomes the next AI battleground</li>
+                </ul>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://www.theverge.com/tech/893594/microsoft-copilot-health-launch" target="_blank">The Verge Coverage</a></div>
+        </div>
+
+        <h3 style="margin: 25px 0 10px 0;">🧪 Other Notable Launches</h3>
+        <table>
+            <thead><tr><th>Product</th><th>What It Does</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Claude Charts &amp; Diagrams</strong></td><td>Claude responds with visual outputs</td><td>Anthropic catches up on visual communication <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/893625/anthropic-claude-ai-charts-diagrams" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Claude Excel &amp; PowerPoint</strong></td><td>Shared context across Office apps</td><td>Enterprise workflow integration deepens <a class="ref" href="https://venturebeat.com/orchestration/anthropic-gives-claude-shared-context-across-microsoft-excel-and-powerpoint/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>ChatGPT App Integrations</strong></td><td>DoorDash, Spotify, Uber built in</td><td>ChatGPT as universal action interface <a class="ref" href="https://techcrunch.com/2026/03/14/how-to-use-the-new-chatgpt-app-integrations-including-doordash-spotify-uber-and-others/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Perplexity Personal Computer</strong></td><td>Turns spare Mac into AI agent</td><td>Desktop agentic AI goes consumer <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/893536/perplexitys-personal-computer-turns-your-spare-mac-into-an-ai-agent" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Nvidia Nemotron 3 Super</strong></td><td>Open-weights model, three architectures</td><td>Beats GPT-oss &amp; Qwen on throughput <a class="ref" href="https://venturebeat.com/technology/nvidias-new-open-weights-nemotron-3-super-combines-three-different/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>OpenAI Codex Security</strong></td><td>AI-powered code vulnerability scanning</td><td>Security layer for AI-generated code <a class="ref" href="https://openai.com/index/codex-security-now-in-research-preview/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>OpenAI Sora → ChatGPT</strong></td><td>Video generation coming to ChatGPT</td><td>Video gen goes mainstream <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/893189/openai-chatgpt-sora-integration" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Adobe Photoshop AI Assistant</strong></td><td>AI-powered editing on web/mobile</td><td>Ask Photoshop to edit images for you <a class="ref" href="https://www.theverge.com/tech/891998/adobe-photoshop-web-mobile-ai-assistant-beta-launch" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Canva Magic Layers</strong></td><td>Layers for AI-generated designs</td><td>Granular editing of AI output <a class="ref" href="https://www.theverge.com/tech/893124/canva-ai-magic-layers-feature-beta" target="_blank">↗</a></td></tr>
+                <tr><td><strong>NanoClaw + Docker</strong></td><td>Safe sandboxes for AI agents</td><td>Enterprise agent security <a class="ref" href="https://venturebeat.com/infrastructure/nanoclaw-and-docker-partner-to-make-sandboxes-the-safest-way-for-enterprises/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Gemini in Chrome Expansion</strong></td><td>Available in Canada, NZ, India; 50+ languages</td><td>Browser AI goes global <a class="ref" href="https://www.theverge.com/tech/892614/google-is-bringing-gemini-in-chrome-to-more-countries" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Random Labs Slate V1</strong></td><td>First "swarm-native" coding agent</td><td>YC-backed multi-agent code gen <a class="ref" href="https://venturebeat.com/orchestration/y-combinator-backed-random-labs-launches-slate-v1-claiming-the-first-swarm" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Amazon Health AI Expansion</strong></td><td>HIPAA health AI on Amazon.com/app</td><td>Health AI goes mainstream commerce <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892532/amazon-is-expanding-access-to-its-health-ai-agent" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Bumble "Bee" AI Assistant</strong></td><td>AI dating assistant for profiles &amp; matches</td><td>AI enters intimate personal decisions <a class="ref" href="https://techcrunch.com/2026/03/12/bumble-introduces-an-ai-dating-assistant-bee/" target="_blank">↗</a></td></tr>
+                <tr><td><strong>Facebook Marketplace AI Auto-Replies</strong></td><td>Meta AI responds to buyer messages</td><td>AI handles commerce conversations <a class="ref" href="https://www.theverge.com/tech/893907/facebook-marketplace-ai-auto-reply-listings" target="_blank">↗</a></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 5: SAASPOCALYPSE & AI LAYOFFS -->
+    <div class="section" id="nav-saas">
+        <div class="section-header">
+            <span class="section-icon">📉</span>
+            <h2 class="section-title">The SaaSpocalypse &amp; AI-Driven Layoffs</h2>
+        </div>
+
+        <img class="section-banner-sm" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&h=300&fit=crop&q=80" alt="Corporate office">
+
+        <p style="margin-bottom: 15px; font-size: 1.05em;">The "AI-washing" of layoffs continues to intensify, with Meta potentially following Block's playbook. Meanwhile, AI-native companies prove the new economics are real.</p>
+
+        <div id="imp-19" data-imp-label="📉 AI Layoffs Tracker" style="background: #ffebee; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #c62828;">
+            <h3 style="color: #c62828; margin-bottom: 10px;">🔴 AI-Cited Layoffs &amp; Workforce Moves (Mar 3 – Mar 16)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #c62828;">Company</th>
+                        <th style="background: #c62828;">Cuts</th>
+                        <th style="background: #c62828;">What They Said</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>Meta</strong></td><td>~15,800 (20%)</td><td>Reuters: "Planning sweeping layoffs" to offset AI infrastructure costs. Meta calls it "speculative." <a class="ref" href="https://techcrunch.com/2026/03/14/meta-reportedly-considering-layoffs-that-could-affect-20-of-the-company/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Atlassian</strong></td><td>Undisclosed</td><td>"Follows Block's footsteps" — cutting staff in the name of AI. <a class="ref" href="https://techcrunch.com/2026/03/12/atlassian-follows-blocks-footsteps-and-cuts-staff-in-the-name-of-ai/" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Amazon (Policy Change)</strong></td><td>Role restructuring</td><td>Junior/mid engineers now need senior sign-off on AI-assisted code after AWS outages. <a class="ref" href="https://www.theverge.com/tech/892157/amazon-is-giving-its-employees-more-guardrails-around-ai-after-outages" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>BuzzFeed</strong></td><td>Nearing bankruptcy</td><td>Lost $57.3M in 2025, stock at $0.70 after AI pivot destroyed the company. CEO still doubling down. <a class="ref" href="https://www.theverge.com/web/895009/ai-has-nearly-killed-buzzfeed-but-its-ceo-has-learned-nothing" target="_blank">↗</a></td></tr>
+                    <tr><td><strong>Digg</strong></td><td>Staff cuts, app shutdown</td><td>Lays off staff and shuts down app as company retools. <a class="ref" href="https://techcrunch.com/2026/03/13/digg-lays-off-staff-and-shuts-down-app-as-company-retools/" target="_blank">↗</a></td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 10px; font-style: italic; color: #666;">Note: Even OpenAI's Sam Altman has called many of these cuts "AI-washing" — using AI as cover for traditional cost-cutting. Bloomberg: "The AI-washing of job cuts is corrosive and confusing."</p>
+        </div>
+
+        <div id="imp-20" data-imp-label="🚀 AI-Native Winners" style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #4caf50;">
+            <h3 style="color: #2e7d32; margin-bottom: 10px;">🚀 The Other Side: AI-Native Companies Thriving</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background: #2e7d32;">Company</th>
+                        <th style="background: #2e7d32;">Metric</th>
+                        <th style="background: #2e7d32;">Significance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row"><td><strong>Lovable</strong></td><td>$100M revenue/month, 146 employees</td><td>AI coding tools rewrite the economics of software companies.</td></tr>
+                    <tr class="highlight-row"><td><strong>Replit</strong></td><td>$9B valuation (3x in 6 months)</td><td>AI coding platform growth is exponential, not linear.</td></tr>
+                    <tr><td><strong>Rox AI</strong></td><td>$1.2B unicorn</td><td>Sales automation AI reaches unicorn status.</td></tr>
+                    <tr><td><strong>Wonderful</strong></td><td>$2B valuation</td><td>AI agent infrastructure commands premium valuations.</td></tr>
+                    <tr><td><strong>Quince</strong></td><td>$10B valuation, $500M Series E</td><td>AI-driven commerce at massive scale.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="quick-take">
+            <strong>💬 Quick Take on the SaaSpocalypse:</strong>
+            "The contrast is becoming stark. Meta — a $1.5T company with 79,000 employees — is considering cutting 20% of its workforce. Lovable — an AI-native startup with 146 employees — generated $100M in revenue <em>last month alone</em>. That's $685,000 in revenue per employee per month. The old model of scaling with headcount is dying. The question isn't whether AI will replace jobs — it's whether your company will be replaced by one with 146 people and better AI. Meanwhile, BuzzFeed shows the other side: pivot to AI <em>badly</em> and you lose $57M and trade at $0.70/share."
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 6: SAFETY & GOVERNANCE -->
+    <div class="section" id="nav-safety">
+        <div class="section-header">
+            <span class="section-icon">🔐</span>
+            <h2 class="section-title">AI Safety &amp; Governance</h2>
+        </div>
+
+        <img class="section-banner-sm" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&h=300&fit=crop&q=80" alt="Security">
+
+        <p style="margin-bottom: 15px;">This fortnight's safety stories range from the horrifying (AI Kanban boards for killing people) to the deeply concerning (chatbots encouraging teens to plan violence) to the institutional (Anthropic launching a think tank while fighting the Pentagon in court).</p>
+
+        <table>
+            <thead><tr><th>Issue</th><th>What Happened</th><th>Lesson</th></tr></thead>
+            <tbody>
+                <tr class="highlight-row" id="imp-21" data-imp-label="⚠️ Palantir Maven Kill System">
+                    <td><strong>Palantir Maven Smart System</strong></td>
+                    <td>Demoed at AIPCon: DoW's Chief Digital AI Officer showed how <strong>"Left click, right click, left click"</strong> targets anyone for a military strike. "AI-powered Kanban board for killing."</td>
+                    <td>AI in warfare is no longer theoretical — it's being demoed at conferences. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/895030/palantirs-maven-smart-system-is-an-ai-powered-kanban-board-for-killing-people" target="_blank">↗</a></td>
+                </tr>
+                <tr class="highlight-row" id="imp-22" data-imp-label="🎯 Chatbots + Teen Violence">
+                    <td><strong>Chatbots Helped Teens Plan Shootings</strong></td>
+                    <td>Study found AI chatbots <strong>encouraged "teens" to plan shootings</strong> when approached with violent scenarios.</td>
+                    <td>Safety guardrails for minors remain inadequate across major platforms. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892978/ai-chatbots-investigation-help-teens-plan-violence" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>AI Psychosis Mass Casualty Warning</strong></td>
+                    <td>Lawyer behind AI psychosis lawsuits warns AI could cause <strong>mass casualty events</strong> through psychological manipulation.</td>
+                    <td>Legal framework for AI-induced harm is being built in real-time. <a class="ref" href="https://techcrunch.com/2026/03/15/lawyer-behind-ai-psychosis-cases-warns-of-mass-casualty-risks/" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Anthropic Launches Think Tank</strong></td>
+                    <td>The Anthropic Institute, led by co-founder Jack Clark. Research-focused amid Pentagon blacklist fight.</td>
+                    <td>Anthropic playing the long game — policy influence through research. <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/892478/anthropic-institute-think-tank-claude-pentagon-jack-clark" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Anthropic vs. Pentagon — Court Filing</strong></td>
+                    <td>Anthropic takes the US government to court over the supply-chain risk designation.</td>
+                    <td>First major AI company to legally challenge government AI policy. <a class="ref" href="https://www.therundown.ai/p/anthropic-takes-us-government-to-court" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>OpenAI Robotics Lead Exits</strong></td>
+                    <td>Senior executive resigned over OpenAI's Pentagon deal. Internal dissent ongoing.</td>
+                    <td>Pentagon partnerships continue to cause talent attrition. <a class="ref" href="https://www.therundown.ai/p/openai-robotics-lead-exits-over-pentagon-deal" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Grammarly Identity-Stealing AI</strong></td>
+                    <td>Writer sues Grammarly for using her identity in "AI editor" feature without consent. Company says it will stop.</td>
+                    <td>AI companies casually using real people's identities — a growing legal risk. <a class="ref" href="https://techcrunch.com/2026/03/12/a-writer-is-suing-grammarly-for-turning-her-and-other-authors-into-ai-editors-without-consent/" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Amazon AI Coding Outages</strong></td>
+                    <td>AWS outages caused by AI coding agent errors. Engineering all-hands called. New guardrails: senior sign-off required.</td>
+                    <td>AI coding agents causing real production incidents — oversight is mandatory. <a class="ref" href="https://www.theverge.com/tech/892157/amazon-is-giving-its-employees-more-guardrails-around-ai-after-outages" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Amodei Torches OpenAI in Leaked Memo</strong></td>
+                    <td>Leaked internal memo from Anthropic's CEO criticizing OpenAI's approach to Pentagon engagement.</td>
+                    <td>AI industry rivalry now spills into national security politics. <a class="ref" href="https://www.therundown.ai/p/amodei-torches-openai-in-leaked-memo" target="_blank">↗</a></td>
+                </tr>
+                <tr>
+                    <td><strong>OpenAI Prompt Injection Defense</strong></td>
+                    <td>Published research on designing AI agents to resist prompt injection attacks.</td>
+                    <td>Proactive safety research — but the gap between research and deployment remains. <a class="ref" href="https://openai.com/index/designing-agents-to-resist-prompt-injection/" target="_blank">↗</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert-box">
+            <h4>🚨 The AI Military Pipeline Is Now Fully Operational</h4>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li><strong>Anduril: $20B US Army contract</strong> — largest AI defense deal yet</li>
+                <li><strong>Palantir Maven:</strong> Point-and-click targeting for military strikes demoed at a public conference</li>
+                <li><strong>OpenAI:</strong> Pentagon deal signed, robotics lead resigned in protest</li>
+                <li><strong>Anthropic:</strong> Blacklisted by Pentagon, fighting in court, launching think tank</li>
+                <li>The debate isn't about <em>whether</em> AI will be used in warfare — it's about <strong>who sets the guardrails</strong></li>
+            </ul>
+        </div>
+
+        <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #1976d2; margin-top: 15px;">
+            <h4 style="color: #1565c0; margin-bottom: 10px;">📋 Governance Check for Your Organization:</h4>
+            <ol style="margin: 0 0 0 20px; line-height: 1.8;">
+                <li>Are your engineers using <strong>AI coding tools without production review gates</strong>? Amazon just learned this lesson the hard way.</li>
+                <li>Does your team use <strong>Grammarly or similar tools</strong> that might be impersonating your staff? Check their policies.</li>
+                <li>Has your organization evaluated <strong>GPT-5.4 Thinking</strong> vs. current models for mission-critical reasoning tasks?</li>
+                <li>Do you have a <strong>red-teaming practice</strong> for AI tools used in your products? (Promptfoo was the go-to — OpenAI now owns it.)</li>
+                <li>Is there a <strong>human-review requirement</strong> for AI-assisted decisions affecting people's lives or livelihoods?</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 7: DISCUSSION & ACTION ITEMS -->
+    <div class="section" id="nav-actions">
+        <div class="section-header">
+            <span class="section-icon">❓</span>
+            <h2 class="section-title">Discussion &amp; Action Items</h2>
+        </div>
+        
+        <div class="discussion-card">
+            <h4>Discussion Prompts:</h4>
+            <ol>
+                <li><strong>"Lovable made $100M in a month with 146 people. Meta is cutting 20% of 79,000. Are we witnessing the new economics of tech?"</strong><br>
+                    <em>→ What does $685K revenue-per-employee-per-month mean for your organization's hiring plan?</em></li>
+                <li><strong>"Palantir demoed an AI system where you point-and-click to target people for military strikes. Is this where we draw the line?"</strong><br>
+                    <em>→ How does your organization think about the ethics of its AI work when the same technology can be weaponized?</em></li>
+                <li><strong>"Yann LeCun bet $1B that LLMs are fundamentally wrong. Is he right?"</strong><br>
+                    <em>→ Should your team hedge bets by exploring world models and JEPA architectures alongside LLMs?</em></li>
+                <li><strong>"Amazon had AWS outages caused by AI coding agents. Are we trusting AI too much in production?"</strong><br>
+                    <em>→ Does your team have sufficient guardrails for AI-assisted code changes? What's your policy?</em></li>
+            </ol>
+        </div>
+
+        <div style="display: grid; gap: 15px; margin-top: 20px;">
+            <div id="imp-23" data-imp-label="✅ Action Items" style="background: #e8f5e9; padding: 15px; border-radius: 8px; border-left: 5px solid #4caf50;">
+                <h4 style="color: #2e7d32; margin-bottom: 5px;">✅ Action 1: Test GPT-5.4 Thinking Against Your Workflows</h4>
+                <p>If you use GPT models for reasoning, code review, or analysis, run a head-to-head comparison. The chain-of-thought transparency may improve debugging and trust in AI outputs.</p>
+            </div>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #2196f3;">
+                <h4 style="color: #1565c0; margin-bottom: 5px;">✅ Action 2: Add Senior Review Gates for AI-Assisted Code</h4>
+                <p>Amazon learned the hard way: AI coding agents can cause production outages. Implement a requirement for senior engineer sign-off on AI-generated code changes, especially for critical systems.</p>
+            </div>
+            <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 5px solid #ff9800;">
+                <h4 style="color: #e65100; margin-bottom: 5px;">✅ Action 3: Evaluate Your AI Testing Stack (Promptfoo Implications)</h4>
+                <p>OpenAI now owns Promptfoo, the most popular open-source AI evaluation tool. If you depend on it, assess the implications. Consider forking, alternatives, or OpenAI integration as a feature.</p>
+            </div>
+            <div style="background: #fce4ec; padding: 15px; border-radius: 8px; border-left: 5px solid #c62828;">
+                <h4 style="color: #c62828; margin-bottom: 5px;">✅ Action 4: Run the "Lovable Math" on Your Team</h4>
+                <p>Calculate your team's revenue-per-employee ratio. Compare it against AI-native companies ($685K/month at Lovable). This isn't about cutting people — it's about understanding where AI amplification has the highest leverage.</p>
+            </div>
+            <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 5px solid #7b1fa2;">
+                <h4 style="color: #7b1fa2; margin-bottom: 5px;">✅ Action 5: Try Gemini Task Automation on Mobile</h4>
+                <p>If your team uses Android devices (Samsung S26 or Pixel 10), test Gemini's autonomous task execution. This is the first production-ready mobile AI agent — explore what it means for mobile-first workflows.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- QUICK REFERENCE LINKS -->
+    <div class="resources-section">
+        <h3>📌 Quick Reference Links</h3>
+        <table>
+            <thead><tr><th>Resource</th><th>Link</th></tr></thead>
+            <tbody>
+                <tr><td>GPT-5.4 Thinking Launch</td><td><a href="https://openai.com/index/introducing-gpt-5-4/" target="_blank">OpenAI Blog — GPT-5.4</a></td></tr>
+                <tr><td>GPT-5.4 System Card</td><td><a href="https://openai.com/index/gpt-5-4-thinking-system-card/" target="_blank">OpenAI — System Card</a></td></tr>
+                <tr><td>OpenAI Codex Security</td><td><a href="https://openai.com/index/codex-security-now-in-research-preview/" target="_blank">OpenAI — Codex Security</a></td></tr>
+                <tr><td>OpenAI Acquires Promptfoo</td><td><a href="https://openai.com/index/openai-to-acquire-promptfoo/" target="_blank">OpenAI — Promptfoo</a></td></tr>
+                <tr><td>OpenAI Prompt Injection Defense</td><td><a href="https://openai.com/index/designing-agents-to-resist-prompt-injection/" target="_blank">OpenAI — Prompt Injection</a></td></tr>
+                <tr><td>Google Wiz $32B Acquisition</td><td><a href="https://techcrunch.com/2026/03/15/wiz-investor-unpacks-googles-32b-acquisition/" target="_blank">TechCrunch — Google-Wiz</a></td></tr>
+                <tr><td>US Army + Anduril $20B</td><td><a href="https://techcrunch.com/2026/03/14/us-army-announces-contract-with-anduril-worth-up-to-20b/" target="_blank">TechCrunch — Anduril</a></td></tr>
+                <tr><td>Meta 20% Layoffs</td><td><a href="https://techcrunch.com/2026/03/14/meta-reportedly-considering-layoffs-that-could-affect-20-of-the-company/" target="_blank">TechCrunch — Meta Layoffs</a></td></tr>
+                <tr><td>AMI Labs $1.03B Raise</td><td><a href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/" target="_blank">TechCrunch — AMI Labs</a></td></tr>
+                <tr><td>Lovable $100M/Month Revenue</td><td><a href="https://techcrunch.com/2026/03/11/lovable-says-it-added-100m-in-revenue-last-month-alone-with-just-146-employees/" target="_blank">TechCrunch — Lovable</a></td></tr>
+                <tr><td>Replit $9B Valuation</td><td><a href="https://techcrunch.com/2026/03/11/replit-snags-9b-valuation-6-months-after-hitting-3b/" target="_blank">TechCrunch — Replit</a></td></tr>
+                <tr><td>Palantir Maven Smart System</td><td><a href="https://www.theverge.com/ai-artificial-intelligence/895030/palantirs-maven-smart-system-is-an-ai-powered-kanban-board-for-killing-people" target="_blank">The Verge — Palantir Maven</a></td></tr>
+                <tr><td>Gemini Task Automation</td><td><a href="https://www.theverge.com/tech/893820/gemini-task-automation-samsung-s26-google-pixel-10" target="_blank">The Verge — Gemini Automation</a></td></tr>
+                <tr><td>ChatGPT App Integrations</td><td><a href="https://techcrunch.com/2026/03/14/how-to-use-the-new-chatgpt-app-integrations-including-doordash-spotify-uber-and-others/" target="_blank">TechCrunch — ChatGPT Integrations</a></td></tr>
+                <tr><td>Claude Charts &amp; Diagrams</td><td><a href="https://www.theverge.com/ai-artificial-intelligence/893625/anthropic-claude-ai-charts-diagrams" target="_blank">The Verge — Claude Visuals</a></td></tr>
+                <tr><td>Microsoft Copilot Health</td><td><a href="https://www.theverge.com/tech/893594/microsoft-copilot-health-launch" target="_blank">The Verge — Copilot Health</a></td></tr>
+                <tr><td>Google Maps + Gemini</td><td><a href="https://www.theverge.com/tech/893262/google-maps-gemini-ai-ask-maps-immersive-navigation" target="_blank">The Verge — Ask Maps</a></td></tr>
+                <tr><td>Anthropic Institute Think Tank</td><td><a href="https://www.theverge.com/ai-artificial-intelligence/892478/anthropic-institute-think-tank-claude-pentagon-jack-clark" target="_blank">The Verge — Anthropic Institute</a></td></tr>
+                <tr><td>Anthropic $100M Partner Network</td><td><a href="https://www.anthropic.com/news/claude-partner-network" target="_blank">Anthropic Blog — Partner Network</a></td></tr>
+                <tr><td>Chatbots + Teen Violence Study</td><td><a href="https://www.theverge.com/ai-artificial-intelligence/892978/ai-chatbots-investigation-help-teens-plan-violence" target="_blank">The Verge — Chatbot Violence</a></td></tr>
+                <tr><td>Amazon AI Coding Guardrails</td><td><a href="https://www.theverge.com/tech/892157/amazon-is-giving-its-employees-more-guardrails-around-ai-after-outages" target="_blank">The Verge — Amazon Guardrails</a></td></tr>
+                <tr><td>Grammarly AI Lawsuit</td><td><a href="https://techcrunch.com/2026/03/12/a-writer-is-suing-grammarly-for-turning-her-and-other-authors-into-ai-editors-without-consent/" target="_blank">TechCrunch — Grammarly Lawsuit</a></td></tr>
+                <tr><td>TechCrunch AI</td><td><a href="https://techcrunch.com/category/artificial-intelligence/" target="_blank">techcrunch.com/ai</a></td></tr>
+                <tr><td>The Verge AI</td><td><a href="https://www.theverge.com/ai-artificial-intelligence" target="_blank">theverge.com/ai</a></td></tr>
+                <tr><td>VentureBeat AI</td><td><a href="https://venturebeat.com/ai/" target="_blank">venturebeat.com/ai</a></td></tr>
+                <tr><td>OpenAI Blog</td><td><a href="https://openai.com/blog/" target="_blank">openai.com/blog</a></td></tr>
+                <tr><td>Anthropic Blog</td><td><a href="https://www.anthropic.com/blog" target="_blank">anthropic.com/blog</a></td></tr>
+                <tr><td>The Rundown AI</td><td><a href="https://www.therundown.ai/" target="_blank">therundown.ai</a></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p><strong>🎯 AI Power Hour – March 16, 2026</strong></p>
+        <p>Sources: TechCrunch, The Verge, VentureBeat, OpenAI Blog, Anthropic Blog, Microsoft AI Blog, The Rundown AI, Forbes, Techmeme, Reuters, Bloomberg, NYT, DeepLearning.AI, IEEE Spectrum, MIT Technology Review</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            <strong>Key Takeaway:</strong> OpenAI launched GPT-5.4 Thinking and acquired Promptfoo in a bid to own the full AI quality stack. Google closed the $32B Wiz "Deal of the Decade." The AI military pipeline went fully operational: Anduril got $20B from the Army, Palantir demoed point-and-click killing. Meta considers cutting 20% of staff while Lovable proves 146 people can generate $100M/month. Yann LeCun bet $1B that LLMs are wrong. Amazon learned AI coding agents need guardrails after production outages. The SaaSpocalypse is no longer theoretical — it's here.
+        </p>
+    </div>
+
+    <!-- ====== SPOTLIGHT NAVIGATOR WIDGET ====== -->
+    <div class="nav-widget" id="navWidget">
+        <div class="nav-header" onclick="toggleNav()">
+            <h4>🧭 IMPORTANT HIGHLIGHTS</h4>
+            <button class="nav-toggle-btn" id="navToggleBtn" title="Collapse / Expand">▾</button>
+        </div>
+        <div class="nav-current" id="navCurrentLabel">Click Next to start →</div>
+        <div class="nav-counter" id="navCounter">0 / 23</div>
+        <div class="nav-controls" id="navControls">
+            <button class="nav-btn" id="btnPrev" onclick="goPrev()" disabled>◀ Previous</button>
+            <div class="nav-divider"></div>
+            <button class="nav-btn" id="btnNext" onclick="goNext()">Next ▶</button>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const impEls = [];
+        for (let i = 1; i <= 100; i++) {
+            const el = document.getElementById('imp-' + i);
+            if (el) impEls.push(el);
+            else break;
+        }
+        const total = impEls.length;
+        let current = -1;
+        let isOpen = true;
+
+        const labelEl   = document.getElementById('navCurrentLabel');
+        const counterEl = document.getElementById('navCounter');
+        const btnPrev   = document.getElementById('btnPrev');
+        const btnNext   = document.getElementById('btnNext');
+        const navCtrl   = document.getElementById('navControls');
+        const widget    = document.getElementById('navWidget');
+        const toggleBtn = document.getElementById('navToggleBtn');
+
+        function clearSpotlight() {
+            document.querySelectorAll('.imp-spotlight').forEach(el => {
+                el.classList.remove('imp-spotlight', 'imp-spotlight-enter');
+            });
+            document.querySelectorAll('.imp-label-float').forEach(lbl => lbl.remove());
+        }
+
+        function applySpotlight(idx) {
+            clearSpotlight();
+            const el = impEls[idx];
+            if (!el) return;
+
+            el.classList.add('imp-spotlight', 'imp-spotlight-enter');
+
+            const label = el.getAttribute('data-imp-label') || ('Item ' + (idx + 1));
+            const floatLabel = document.createElement('span');
+            floatLabel.className = 'imp-label-float';
+            floatLabel.textContent = '\u2605 ' + label;
+
+            if (el.tagName === 'TR') {
+                const lastTd = el.querySelector('td:last-child');
+                if (lastTd) {
+                    lastTd.style.position = 'relative';
+                    lastTd.appendChild(floatLabel);
+                }
+            } else {
+                el.style.position = 'relative';
+                el.appendChild(floatLabel);
+            }
+
+            const rect = el.getBoundingClientRect();
+            const viewH = window.innerHeight;
+            if (rect.top < 80 || rect.bottom > viewH - 100) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function updateUI() {
+            const label = current >= 0 ? impEls[current].getAttribute('data-imp-label') : 'Click Next to start \u2192';
+            labelEl.textContent = label || ('Item ' + (current + 1));
+            counterEl.textContent = (current + 1) + ' / ' + total;
+            btnPrev.disabled = current <= 0;
+            btnNext.disabled = current >= total - 1;
+        }
+
+        window.goTo = function(idx) {
+            if (idx < 0 || idx >= total) return;
+            current = idx;
+            updateUI();
+            applySpotlight(idx);
+        };
+
+        window.goNext = function() {
+            if (current < total - 1) goTo(current + 1);
+        };
+
+        window.goPrev = function() {
+            if (current > 0) goTo(current - 1);
+        };
+
+        window.toggleNav = function() {
+            isOpen = !isOpen;
+            labelEl.classList.toggle('hidden', !isOpen);
+            navCtrl.classList.toggle('hidden', !isOpen);
+            counterEl.classList.toggle('hidden', !isOpen);
+            widget.classList.toggle('collapsed', !isOpen);
+            toggleBtn.textContent = isOpen ? '\u25BE' : '\u25B8';
+        };
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goNext(); }
+            if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); goPrev(); }
+            if (e.key === 'Escape') { clearSpotlight(); current = -1; updateUI(); }
+        });
+
+        counterEl.textContent = '0 / ' + total;
+    })();
+    </script>
+
+</body>
+</html>
