@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Copilot Customization — Complete Visual Guide</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-dark: #0d1117;
+  --bg-card: #161b22;
+  --bg-card-alt: #1c222c;
+  --bg-hover: #21262d;
+  --accent-blue: #58a6ff;
+  --accent-green: #3fb950;
+  --accent-purple: #bc8cff;
+  --accent-orange: #f0883e;
+  --accent-pink: #f78c6c;
+  --accent-cyan: #79c0ff;
+  --accent-red: #f85e5e;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --border: #30363d;
+  --gradient-blue: linear-gradient(135deg, #1a2332, #0d1117);
+  --gradient-green: linear-gradient(135deg, #121a14, #0d1117);
+  --gradient-purple: linear-gradient(135deg, #1a1428, #0d1117);
+  --gradient-orange: linear-gradient(135deg, #1a1510, #0d1117);
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-glow-blue: 0 0 30px rgba(88,166,255,0.15);
+  --shadow-glow-green: 0 0 30px rgba(63,185,80,0.15);
+  --shadow-glow-purple: 0 0 30px rgba(188,140,255,0.15);
+  --shadow-glow-orange: 0 0 30px rgba(240,136,62,0.15);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(13,17,23,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  transition: all 0.3s ease;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 1rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-logo svg { flex-shrink: 0; }
+
+.nav-links {
+  display: flex;
+  gap: 0.2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-link {
+  padding: 0.4rem 0.8rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover { color: var(--text-primary); background: var(--bg-hover); }
+.nav-link.active { color: var(--accent-blue); background: rgba(88,166,255,0.1); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(88,166,255,0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 50%, rgba(188,140,255,0.06) 0%, transparent 50%);
+  animation: heroGlow 15s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-3%, 2%) scale(1.05); }
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(88,166,255,0.1);
+  border: 1px solid rgba(88,166,255,0.2);
+  border-radius: 24px;
+  font-size: 0.85rem;
+  color: var(--accent-blue);
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero h1 .gradient-text {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #79b8ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(88,166,255,0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════════════════════════════ */
+.section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-number::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  max-width: 100px;
+}
+
+.section-number.blue { color: var(--accent-blue); }
+.section-number.blue::after { background: var(--accent-blue); }
+.section-number.green { color: var(--accent-green); }
+.section-number.green::after { background: var(--accent-green); }
+.section-number.purple { color: var(--accent-purple); }
+.section-number.purple::after { background: var(--accent-purple); }
+.section-number.orange { color: var(--accent-orange); }
+.section-number.orange::after { background: var(--accent-orange); }
+.section-number.pink { color: var(--accent-pink); }
+.section-number.pink::after { background: var(--accent-pink); }
+.section-number.cyan { color: var(--accent-cyan); }
+.section-number.cyan::after { background: var(--accent-cyan); }
+
+.section h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ANALOGY CARD (the highlight card for each section)
+   ═══════════════════════════════════════════════════════════════════ */
+.analogy-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+  border: 1px solid;
+  animation: fadeIn 0.5s ease;
+}
+
+.analogy-card.blue { background: rgba(88,166,255,0.06); border-color: rgba(88,166,255,0.15); }
+.analogy-card.green { background: rgba(63,185,80,0.06); border-color: rgba(63,185,80,0.15); }
+.analogy-card.purple { background: rgba(188,140,255,0.06); border-color: rgba(188,140,255,0.15); }
+.analogy-card.orange { background: rgba(240,136,62,0.06); border-color: rgba(240,136,62,0.15); }
+.analogy-card.pink { background: rgba(247,140,108,0.06); border-color: rgba(247,140,108,0.15); }
+.analogy-card.cyan { background: rgba(121,192,255,0.06); border-color: rgba(121,192,255,0.15); }
+
+.analogy-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+.analogy-card.blue .analogy-icon { background: rgba(88,166,255,0.12); }
+.analogy-card.green .analogy-icon { background: rgba(63,185,80,0.12); }
+.analogy-card.purple .analogy-icon { background: rgba(188,140,255,0.12); }
+.analogy-card.orange .analogy-icon { background: rgba(240,136,62,0.12); }
+.analogy-card.pink .analogy-icon { background: rgba(247,140,108,0.12); }
+.analogy-card.cyan .analogy-icon { background: rgba(121,192,255,0.12); }
+
+.analogy-text { font-size: 1.05rem; font-weight: 500; }
+.analogy-text strong { font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARDS GRID
+   ═══════════════════════════════════════════════════════════════════ */
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card-grid.two { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+.card-grid.three { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: rgba(88,166,255,0.3);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card li {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.card li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EXAMPLE BLOCKS (the behind-the-scenes blocks)
+   ═══════════════════════════════════════════════════════════════════ */
+.example-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.example-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-card-alt);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.example-header:hover { background: var(--bg-hover); }
+
+.example-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.example-badge.blue { background: rgba(88,166,255,0.15); color: var(--accent-blue); }
+.example-badge.green { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+.example-badge.purple { background: rgba(188,140,255,0.15); color: var(--accent-purple); }
+.example-badge.orange { background: rgba(240,136,62,0.15); color: var(--accent-orange); }
+.example-badge.pink { background: rgba(247,140,108,0.15); color: var(--accent-pink); }
+.example-badge.red { background: rgba(248,94,94,0.15); color: var(--accent-red); }
+
+.example-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.example-toggle {
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.example-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.example-block.open .example-body { max-height: 2000px; }
+.example-block.open .example-toggle { transform: rotate(180deg); }
+
+.example-content {
+  padding: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CODE / PROMPT VISUALIZATION
+   ═══════════════════════════════════════════════════════════════════ */
+.prompt-viz {
+  background: #0d1117;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem 0;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.prompt-viz-header {
+  padding: 0.6rem 1rem;
+  background: var(--bg-card-alt);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.prompt-viz-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.prompt-viz-body { padding: 1rem 1.2rem; }
+
+.pv-system {
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid;
+}
+
+.pv-system.always { background: rgba(88,166,255,0.06); border-color: var(--accent-blue); }
+.pv-system.auto { background: rgba(63,185,80,0.06); border-color: var(--accent-green); }
+.pv-system.agent { background: rgba(188,140,255,0.06); border-color: var(--accent-purple); }
+.pv-system.skill { background: rgba(240,136,62,0.06); border-color: var(--accent-orange); }
+.pv-system.prompt { background: rgba(247,140,108,0.06); border-color: var(--accent-pink); }
+
+.pv-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pv-label.blue { color: var(--accent-blue); }
+.pv-label.green { color: var(--accent-green); }
+.pv-label.purple { color: var(--accent-purple); }
+.pv-label.orange { color: var(--accent-orange); }
+.pv-label.pink { color: var(--accent-pink); }
+
+.pv-text { color: var(--text-secondary); font-size: 0.82rem; }
+
+.pv-user {
+  padding: 0.8rem 1rem;
+  background: rgba(230,237,243,0.04);
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  border-left: 3px solid var(--text-muted);
+}
+
+.pv-result {
+  margin-top: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: rgba(63,185,80,0.06);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent-green);
+}
+
+.pv-result-bad {
+  background: rgba(248,94,94,0.06);
+  border-color: var(--accent-red);
+}
+
+.pv-arrow {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   WHEN-IT-LOADS BADGE
+   ═══════════════════════════════════════════════════════════════════ */
+.load-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.load-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.load-badge.always { background: rgba(88,166,255,0.1); border-color: rgba(88,166,255,0.25); color: var(--accent-blue); }
+.load-badge.auto { background: rgba(63,185,80,0.1); border-color: rgba(63,185,80,0.25); color: var(--accent-green); }
+.load-badge.manual { background: rgba(188,140,255,0.1); border-color: rgba(188,140,255,0.25); color: var(--accent-purple); }
+.load-badge.slash { background: rgba(240,136,62,0.1); border-color: rgba(240,136,62,0.25); color: var(--accent-orange); }
+.load-badge.lifecycle { background: rgba(121,192,255,0.1); border-color: rgba(121,192,255,0.25); color: var(--accent-cyan); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FLOW DIAGRAM
+   ═══════════════════════════════════════════════════════════════════ */
+.flow-section {
+  padding: 5rem 2rem;
+  background: var(--gradient-blue);
+}
+
+.flow-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.flow-step {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.5s ease;
+}
+
+.flow-step.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.flow-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.flow-dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  border: 2px solid;
+  z-index: 1;
+  background: var(--bg-dark);
+}
+
+.flow-dot.blue { border-color: var(--accent-blue); color: var(--accent-blue); }
+.flow-dot.green { border-color: var(--accent-green); color: var(--accent-green); }
+.flow-dot.purple { border-color: var(--accent-purple); color: var(--accent-purple); }
+.flow-dot.orange { border-color: var(--accent-orange); color: var(--accent-orange); }
+.flow-dot.pink { border-color: var(--accent-pink); color: var(--accent-pink); }
+.flow-dot.cyan { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+.flow-connector {
+  width: 2px;
+  flex: 1;
+  min-height: 20px;
+  background: var(--border);
+}
+
+.flow-content {
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+.flow-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+.flow-content p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   COMPARISON TABLE
+   ═══════════════════════════════════════════════════════════════════ */
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.comparison-table th {
+  background: var(--bg-card-alt);
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table td {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  vertical-align: top;
+}
+
+.comparison-table tr:last-child td { border-bottom: none; }
+
+.comparison-table tr:hover td {
+  background: rgba(88,166,255,0.03);
+}
+
+.comparison-table .type-name {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tag.yes { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+.tag.no { background: rgba(248,94,94,0.1); color: var(--accent-red); }
+.tag.sometimes { background: rgba(240,136,62,0.15); color: var(--accent-orange); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SEPARATOR
+   ═══════════════════════════════════════════════════════════════════ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   REFERENCES
+   ═══════════════════════════════════════════════════════════════════ */
+.ref-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(88,166,255,0.06);
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+
+.ref-link:hover { background: rgba(88,166,255,0.12); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BACK TO TOP
+   ═══════════════════════════════════════════════════════════════════ */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(88,166,255,0.3);
+  z-index: 999;
+  font-size: 1.2rem;
+}
+
+.back-to-top.visible { opacity: 1; transform: translateY(0); }
+.back-to-top:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(88,166,255,0.4); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════ */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .card-grid.two, .card-grid.three { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2rem; }
+  .section { padding: 3rem 1.2rem; }
+  .analogy-card { flex-direction: column; text-align: center; }
+  .comparison-table { font-size: 0.8rem; }
+  .comparison-table td, .comparison-table th { padding: 0.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Copilot Guide
+    </a>
+    <div class="nav-links">
+      <a href="#instructions" class="nav-link" data-section="instructions">Instructions</a>
+      <a href="#file-instructions" class="nav-link" data-section="file-instructions">File Rules</a>
+      <a href="#agents" class="nav-link" data-section="agents">Agents</a>
+      <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+      <a href="#prompts" class="nav-link" data-section="prompts">Prompts</a>
+      <a href="#hooks" class="nav-link" data-section="hooks">Hooks</a>
+      <a href="#flow" class="nav-link" data-section="flow">Full Flow</a>
+      <a href="#comparison" class="nav-link" data-section="comparison">Compare</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Complete Visual Guide
+    </div>
+    <h1>How Copilot Loads<br><span class="gradient-text">Your Customizations</span></h1>
+    <p>Understand exactly when each file is loaded, how it's called, and what gets sent to the AI — with real examples you'll remember forever.</p>
+    <div class="hero-cta">
+      <a href="#instructions" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+        Start Learning
+      </a>
+      <a href="#comparison" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg>
+        Quick Comparison
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 1 — copilot-instructions.md
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="instructions">
+  <div class="section-header animate-on-scroll">
+    <div class="section-number blue">Section 01</div>
+    <h2>copilot-instructions.md</h2>
+    <p class="section-subtitle">The always-on brain — project knowledge loaded on every single interaction</p>
+  </div>
+
+  <div class="analogy-card blue animate-on-scroll">
+    <div class="analogy-icon">📋</div>
+    <div class="analogy-text">
+      <strong>Think of it as:</strong> A sticky note permanently glued to Copilot's forehead. It reads it before EVERY conversation. You never call it. It's always there. There is no way to turn it off.
+    </div>
+  </div>
+
+  <div class="load-info animate-on-scroll">
+    <span class="load-badge always">⚡ Always loaded — every interaction</span>
+    <span class="load-badge always">📝 Inline suggestions too</span>
+    <span class="load-badge always">🤖 Every agent gets it</span>
+  </div>
+
+  <!-- Example 1 -->
+  <div class="example-block open animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge blue">Example 1</span>
+      <span class="example-title">You ask Copilot to add a function — WITH instructions file</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You type: <strong>"Add a new function to process payments"</strong></p>
+        <div class="prompt-viz">
+          <div class="prompt-viz-header">
+            <span class="prompt-viz-dot" style="background: var(--accent-red);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-orange);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-green);"></span>
+            What Copilot actually receives (behind the scenes)
+          </div>
+          <div class="prompt-viz-body">
+            <div class="pv-system always">
+              <div class="pv-label blue">📋 SYSTEM — copilot-instructions.md (always loaded)</div>
+              <div class="pv-text">"This project uses Python 3.12, FastAPI..."<br>"Always use async def for I/O functions..."<br>"Never use raw SQL, use SQLAlchemy ORM..."</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-user">
+              <div class="pv-label" style="color: var(--text-muted);">👤 YOUR MESSAGE</div>
+              <div class="pv-text">"Add a new function to process payments"</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result">
+              <div class="pv-label green">✅ RESULT</div>
+              <div class="pv-text">Copilot writes an <strong>async FastAPI function</strong> with <strong>SQLAlchemy ORM</strong> — because instructions told it your stack</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 2 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge red">Example 2</span>
+      <span class="example-title">Same question — WITHOUT instructions file (the contrast)</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <div class="prompt-viz">
+          <div class="prompt-viz-header">
+            <span class="prompt-viz-dot" style="background: var(--accent-red);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-orange);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-green);"></span>
+            Without instructions — Copilot is blind
+          </div>
+          <div class="prompt-viz-body">
+            <div class="pv-system" style="background: rgba(248,94,94,0.06); border-color: var(--accent-red);">
+              <div class="pv-label" style="color: var(--accent-red);">⚠️ SYSTEM — nothing (no copilot-instructions.md)</div>
+              <div class="pv-text" style="color: var(--accent-red); opacity: 0.7;">(Copilot has no idea about your project)</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-user">
+              <div class="pv-label" style="color: var(--text-muted);">👤 YOUR MESSAGE</div>
+              <div class="pv-text">"Add a new function to process payments"</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result pv-result-bad">
+              <div class="pv-label" style="color: var(--accent-red);">❌ RESULT</div>
+              <div class="pv-text">Copilot might write <strong>Flask, Django, or even Node.js</strong> — it's guessing because it doesn't know your project</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 3 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge blue">Example 3</span>
+      <span class="example-title">Even inline ghost-text suggestions are influenced by it</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary);">You're typing code in the editor. Copilot's <strong>gray ghost text</strong> appears as you type. That suggestion was ALSO influenced by <code style="color: var(--accent-blue);">copilot-instructions.md</code>.</p>
+        <p style="color: var(--text-secondary); margin-top: 0.8rem;">You didn't open chat. You didn't ask for anything. <strong>It just knows your project rules</strong> and applies them to every single suggestion.</p>
+        <p style="color: var(--accent-blue); margin-top: 1rem; font-weight: 600;">This is why it's the most important file — it influences EVERYTHING Copilot does.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot" target="_blank" class="ref-link">📎 Official Documentation →</a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 2 — *.instructions.md
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="file-instructions">
+  <div class="section-header animate-on-scroll">
+    <div class="section-number green">Section 02</div>
+    <h2>*.instructions.md</h2>
+    <p class="section-subtitle">Smart rulebooks that automatically load based on what file you're editing</p>
+  </div>
+
+  <div class="analogy-card green animate-on-scroll">
+    <div class="analogy-icon">📚</div>
+    <div class="analogy-text">
+      <strong>Think of it as:</strong> A smart assistant who pulls the right reference book off the shelf ONLY when you need it. Working on Python? Python rulebook appears. Working on tests? Testing rulebook appears. You never ask — it just watches what file you're editing.
+    </div>
+  </div>
+
+  <div class="load-info animate-on-scroll">
+    <span class="load-badge auto">🔄 Auto-loads when file pattern matches</span>
+    <span class="load-badge auto">🧠 Also auto-detects by description keywords</span>
+    <span class="load-badge manual">📎 Can manually attach via "Add Context"</span>
+  </div>
+
+  <div class="card-grid two animate-on-scroll">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(63,185,80,0.12);">🎯</div>
+        <div class="card-title" style="color: var(--accent-green);">Mode A — Auto-Load (applyTo)</div>
+      </div>
+      <ul>
+        <li>Uses <code style="color: var(--accent-green);">applyTo: "**/*.py"</code> in YAML frontmatter</li>
+        <li>Loads automatically when a matching file is in context</li>
+        <li>Unloads when you close that file</li>
+        <li>Multiple instruction files can match simultaneously</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(63,185,80,0.12);">🧠</div>
+        <div class="card-title" style="color: var(--accent-green);">Mode B — On-Demand (description)</div>
+      </div>
+      <ul>
+        <li>Uses <code style="color: var(--accent-green);">description: "Use when writing migrations..."</code></li>
+        <li>No applyTo — Copilot reads description and decides if relevant</li>
+        <li>Loads when your QUESTION matches the description keywords</li>
+        <li>More flexible but less predictable than applyTo</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Example 1 -->
+  <div class="example-block open animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge green">Example 1</span>
+      <span class="example-title">Editing a Python file — python.instructions.md auto-loads</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You open <code>src/services/payment.py</code> and ask: <strong>"Add error handling here"</strong></p>
+        <div class="prompt-viz">
+          <div class="prompt-viz-header">
+            <span class="prompt-viz-dot" style="background: var(--accent-red);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-orange);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-green);"></span>
+            Two instruction files loaded — you did nothing
+          </div>
+          <div class="prompt-viz-body">
+            <div class="pv-system always">
+              <div class="pv-label blue">📋 copilot-instructions.md ← always</div>
+              <div class="pv-text">"This project uses Python 3.12, FastAPI..."</div>
+            </div>
+            <div class="pv-system auto">
+              <div class="pv-label green">📚 python.instructions.md ← auto-loaded (*.py matches)</div>
+              <div class="pv-text">"Use type hints on all functions..."<br>"Catch specific exceptions, never bare except:"<br>"Use Google-style docstrings..."</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-user">
+              <div class="pv-label" style="color: var(--text-muted);">👤 YOUR MESSAGE</div>
+              <div class="pv-text">"Add error handling here"</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result">
+              <div class="pv-label green">✅ RESULT</div>
+              <div class="pv-text">Copilot writes <strong>specific exception handling with type hints and Google docstrings</strong> — because both instruction files told it your Python rules</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 2 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge green">Example 2</span>
+      <span class="example-title">Switch to test file — BOTH python + testing instructions load</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You switch to <code>tests/test_payment.py</code> — now TWO instruction files match:</p>
+        <div class="prompt-viz">
+          <div class="prompt-viz-body">
+            <div class="pv-system always">
+              <div class="pv-label blue">📋 copilot-instructions.md ← always</div>
+            </div>
+            <div class="pv-system auto">
+              <div class="pv-label green">📚 python.instructions.md ← matches **/*.py</div>
+            </div>
+            <div class="pv-system auto">
+              <div class="pv-label green">📚 testing.instructions.md ← matches tests/**</div>
+              <div class="pv-text">"Follow AAA pattern: Arrange → Act → Assert"<br>"Name: test_&lt;action&gt;_&lt;scenario&gt;_&lt;expected&gt;"</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result">
+              <div class="pv-label green">✅ Multiple instruction files combine!</div>
+              <div class="pv-text">Python rules + testing rules both active — Copilot generates tests with type hints AND proper naming AND AAA pattern</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 3 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge green">Example 3</span>
+      <span class="example-title">On-demand: you ask about migrations — instruction auto-detects from keywords</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">You have <code>migrations.instructions.md</code> with <strong>no applyTo</strong>, just:</p>
+        <div class="prompt-viz" style="margin-bottom: 1rem;">
+          <div class="prompt-viz-body">
+            <div class="pv-text" style="font-family: monospace;">description: "Use when writing database migrations, schema changes, or Alembic operations"</div>
+          </div>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You ask: <strong>"How do I add a new column to the users table?"</strong></p>
+        <p style="color: var(--accent-green);">Copilot reads descriptions of all instruction files → "schema changes" in your question matches the description → <strong>loads it automatically</strong> without you doing anything.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" class="ref-link">📎 Official Documentation →</a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 3 — Agents
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="agents">
+  <div class="section-header animate-on-scroll">
+    <div class="section-number purple">Section 03</div>
+    <h2>*.agent.md</h2>
+    <p class="section-subtitle">Specialized experts you hire by name — each with different permissions</p>
+  </div>
+
+  <div class="analogy-card purple animate-on-scroll">
+    <div class="analogy-icon">👨‍⚕️</div>
+    <div class="analogy-text">
+      <strong>Think of it as:</strong> Different experts sitting in a room — a security expert, a database expert, a testing expert. They sit quietly until YOU call one by name. Each expert has different tools they're allowed to use — the security reviewer can only READ code (can't change it), while the test engineer can read AND write.
+    </div>
+  </div>
+
+  <div class="load-info animate-on-scroll">
+    <span class="load-badge manual">🖱️ You select from agent picker</span>
+    <span class="load-badge manual">💬 You type @agent-name in chat</span>
+    <span class="load-badge auto">🤖 Another agent can auto-delegate to it</span>
+  </div>
+
+  <!-- Example 1 -->
+  <div class="example-block open animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge purple">Example 1</span>
+      <span class="example-title">You manually select @security-reviewer — restricted to read-only</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You click agent picker → select <code>@security-reviewer</code> → ask: <strong>"Review the payment service"</strong></p>
+        <div class="prompt-viz">
+          <div class="prompt-viz-header">
+            <span class="prompt-viz-dot" style="background: var(--accent-red);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-orange);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-green);"></span>
+            Agent loaded with restricted tools
+          </div>
+          <div class="prompt-viz-body">
+            <div class="pv-system always">
+              <div class="pv-label blue">📋 copilot-instructions.md ← always</div>
+            </div>
+            <div class="pv-system agent">
+              <div class="pv-label purple">👨‍⚕️ security-reviewer.agent.md ← you selected it</div>
+              <div class="pv-text">"You are a Security Reviewer..."<br>"Focus on OWASP Top 10, SQL injection..."<br>"DO NOT modify any files"<br><strong style="color: var(--accent-purple);">tools: [read, search] — CAN'T EDIT!</strong></div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-user">
+              <div class="pv-label" style="color: var(--text-muted);">👤 YOUR MESSAGE</div>
+              <div class="pv-text">"Review the payment service"</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result">
+              <div class="pv-label green">✅ RESULT</div>
+              <div class="pv-text">Gets a focused security audit report. The agent literally <strong>CANNOT edit your files</strong> — it only has read + search tools. Safe by design.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 2 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge red">Example 2</span>
+      <span class="example-title">Same question without any agent — generic, unfocused result</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <div class="prompt-viz">
+          <div class="prompt-viz-body">
+            <div class="pv-system always">
+              <div class="pv-label blue">📋 copilot-instructions.md ← always</div>
+            </div>
+            <div class="pv-system" style="background: rgba(248,94,94,0.06); border-color: var(--accent-red);">
+              <div class="pv-label" style="color: var(--accent-red);">🤖 Default agent — has ALL tools, no specialization</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result pv-result-bad">
+              <div class="pv-label" style="color: var(--accent-red);">⚠️ RESULT</div>
+              <div class="pv-text">Generic review. Might try to edit files, might miss security-specific issues. No focused persona. No tool restrictions.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 3 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge purple">Example 3</span>
+      <span class="example-title">Auto-delegation: parent agent delegates to sub-agent</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You're using the default agent and ask: <strong>"Is there a SQL injection risk in the login endpoint?"</strong></p>
+        <div class="prompt-viz">
+          <div class="prompt-viz-body">
+            <div class="pv-system" style="background: rgba(188,140,255,0.06); border-color: var(--accent-purple);">
+              <div class="pv-label purple">🔄 AUTO-DELEGATION FLOW</div>
+              <div class="pv-text">
+                1. Default agent sees "SQL injection" in your question<br>
+                2. Reads @security-reviewer's description: <em>"Use when reviewing code for security vulnerabilities..."</em><br>
+                3. Keywords match → delegates to @security-reviewer automatically<br>
+                4. Security reviewer runs in isolation → returns findings<br>
+                5. Default agent presents the results to you
+              </div>
+            </div>
+          </div>
+        </div>
+        <p style="color: var(--accent-purple); margin-top: 1rem; font-weight: 600;">You didn't select any agent — but the right specialist was called anyway because the description keywords matched.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" class="ref-link">📎 Official Documentation →</a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 4 — Skills
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="skills">
+  <div class="section-header animate-on-scroll">
+    <div class="section-number orange">Section 04</div>
+    <h2>SKILL.md</h2>
+    <p class="section-subtitle">Recipe cards with actual ingredients — multi-step workflows with bundled scripts</p>
+  </div>
+
+  <div class="analogy-card orange animate-on-scroll">
+    <div class="analogy-icon">🍳</div>
+    <div class="analogy-text">
+      <strong>Think of it as:</strong> A recipe card with actual ingredients attached. Not just instructions — but the actual scripts, templates, and files needed to complete a complex multi-step task. You type <code>/</code> and pick a recipe from the menu.
+    </div>
+  </div>
+
+  <div class="load-info animate-on-scroll">
+    <span class="load-badge slash">⌨️ Type / in chat → pick /skill-name</span>
+    <span class="load-badge auto">🧠 Can auto-detect from description keywords</span>
+  </div>
+
+  <div class="card-grid three animate-on-scroll">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(240,136,62,0.12);">1️⃣</div>
+        <div class="card-title" style="color: var(--accent-orange);">Stage 1 — Discovery</div>
+      </div>
+      <ul>
+        <li>Copilot reads ONLY name + description (~100 tokens)</li>
+        <li>Decides: "Is this relevant to what the user asked?"</li>
+        <li>Very lightweight — doesn't load anything yet</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(240,136,62,0.12);">2️⃣</div>
+        <div class="card-title" style="color: var(--accent-orange);">Stage 2 — Instructions</div>
+      </div>
+      <ul>
+        <li>If relevant, loads the full SKILL.md body</li>
+        <li>Step-by-step procedure, rules, approach</li>
+        <li>Up to ~5000 tokens of instructions</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(240,136,62,0.12);">3️⃣</div>
+        <div class="card-title" style="color: var(--accent-orange);">Stage 3 — Resources</div>
+      </div>
+      <ul>
+        <li>Loads referenced files: ./scripts/deploy.sh</li>
+        <li>Templates, reference docs, config files</li>
+        <li>Only when the procedure says to use them</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Example 1 -->
+  <div class="example-block open animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge orange">Example 1</span>
+      <span class="example-title">You type /deploy-staging — full workflow executes</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <div class="prompt-viz">
+          <div class="prompt-viz-header">
+            <span class="prompt-viz-dot" style="background: var(--accent-red);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-orange);"></span>
+            <span class="prompt-viz-dot" style="background: var(--accent-green);"></span>
+            Skill loaded with bundled script
+          </div>
+          <div class="prompt-viz-body">
+            <div class="pv-system always">
+              <div class="pv-label blue">📋 copilot-instructions.md ← always</div>
+            </div>
+            <div class="pv-system skill">
+              <div class="pv-label orange">🍳 deploy-staging/SKILL.md ← you typed /deploy-staging</div>
+              <div class="pv-text">"1. Run pytest first — never deploy without passing tests"<br>"2. Build Docker image..."<br>"3. Run Alembic migrations..."<br>"4. Execute ./scripts/deploy.sh staging"<br>"5. Verify health check at /health"</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result">
+              <div class="pv-label green">✅ RESULT</div>
+              <div class="pv-text">Copilot walks through ALL steps — runs tests, builds Docker, runs the <strong>actual deploy.sh script</strong>, checks health endpoint. Complete multi-step workflow.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 2 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge orange">Example 2</span>
+      <span class="example-title">Auto-detection: you mention "deploy" without typing /</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary);">You DON'T type <code>/deploy-staging</code>. You just say: <strong>"I need to deploy the app to staging"</strong></p>
+        <p style="color: var(--text-secondary); margin-top: 0.8rem;">Copilot reads all skill descriptions → finds deploy-staging with <em>"Deploy ConfigTool to staging environment. Use when deploying, releasing..."</em> → keywords "deploy" + "staging" match → <strong>loads the skill automatically</strong>.</p>
+        <p style="color: var(--accent-orange); margin-top: 1rem; font-weight: 600;">The slash command is the SURE way. But smart description keywords also work.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://code.visualstudio.com/docs/copilot/customization/agent-skills" target="_blank" class="ref-link">📎 Official Documentation →</a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 5 — Prompts
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="prompts">
+  <div class="section-header animate-on-scroll">
+    <div class="section-number pink">Section 05</div>
+    <h2>*.prompt.md</h2>
+    <p class="section-subtitle">Pre-written requests you saved — speed-dial for repeated AI tasks</p>
+  </div>
+
+  <div class="analogy-card pink animate-on-scroll">
+    <div class="analogy-icon">⚡</div>
+    <div class="analogy-text">
+      <strong>Think of it as:</strong> A pre-filled form you hand to Copilot. "Generate tests for this code" — but with ALL your specific requirements pre-written so you don't type them every time. One task, one shot, done. Like a speed-dial for AI tasks.
+    </div>
+  </div>
+
+  <div class="load-info animate-on-scroll">
+    <span class="load-badge slash">⌨️ Type / in chat → pick /prompt-name</span>
+    <span class="load-badge manual">🎮 Command Palette: "Chat: Run Prompt..."</span>
+    <span class="load-badge manual">▶️ Open file → click play button</span>
+    <span class="load-badge auto">🧠 Can auto-detect from description</span>
+  </div>
+
+  <!-- Example 1 -->
+  <div class="example-block open animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge pink">Example 1</span>
+      <span class="example-title">You type /generate-tests — all your test rules pre-loaded</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You type <code>/generate-tests</code> then say: <strong>"for the payment service"</strong></p>
+        <div class="prompt-viz">
+          <div class="prompt-viz-body">
+            <div class="pv-system always">
+              <div class="pv-label blue">📋 copilot-instructions.md ← always</div>
+            </div>
+            <div class="pv-system prompt">
+              <div class="pv-label pink">⚡ generate-tests.prompt.md ← you typed /generate-tests</div>
+              <div class="pv-text">"Generate comprehensive tests..."<br>"Cover: happy path, validation, auth, not-found, edge cases"<br>"Follow AAA pattern. Name: test_action_scenario_expected"<br>"Run pytest -v to verify all pass"</div>
+            </div>
+            <div class="pv-arrow">▼</div>
+            <div class="pv-result">
+              <div class="pv-label green">✅ RESULT</div>
+              <div class="pv-text">Copilot generates tests covering ALL scenarios from your prompt — <strong>every time, same quality</strong>, without you typing the requirements manually.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 2 -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge red">Example 2</span>
+      <span class="example-title">Without the prompt — you get inconsistent results</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <p style="color: var(--text-secondary);">You just ask: <strong>"Write tests for the payment service"</strong> (no /prompt)</p>
+        <div class="prompt-viz">
+          <div class="prompt-viz-body">
+            <div class="pv-result pv-result-bad">
+              <div class="pv-label" style="color: var(--accent-red);">⚠️ RESULT</div>
+              <div class="pv-text">Generic tests. Maybe 2-3 cases. Might miss auth tests, validation tests, edge cases. No consistent naming. <strong>You have to specify everything EVERY TIME.</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 3: Skill vs Prompt -->
+  <div class="example-block animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge orange">Key Concept</span>
+      <span class="example-title">Skill vs Prompt — both show after typing / — what's the difference?</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <div class="card-grid two">
+          <div class="card" style="border-color: rgba(240,136,62,0.3);">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(240,136,62,0.12);">🍳</div>
+              <div class="card-title" style="color: var(--accent-orange);">/deploy-staging (SKILL)</div>
+            </div>
+            <ul>
+              <li>SKILL.md + scripts/ + references/</li>
+              <li>Multi-step procedure with bundled assets</li>
+              <li>"A full recipe with ingredients in the box"</li>
+              <li>Walks you through steps one by one</li>
+            </ul>
+          </div>
+          <div class="card" style="border-color: rgba(247,140,108,0.3);">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(247,140,108,0.12);">⚡</div>
+              <div class="card-title" style="color: var(--accent-pink);">/generate-tests (PROMPT)</div>
+            </div>
+            <ul>
+              <li>Just one .prompt.md file</li>
+              <li>Single focused task, no bundled files</li>
+              <li>"A speed-dial — press and it does the thing"</li>
+              <li>One-shot generation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" class="ref-link">📎 Official Documentation →</a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 6 — Hooks
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="hooks">
+  <div class="section-header animate-on-scroll">
+    <div class="section-number cyan">Section 06</div>
+    <h2>hooks/*.json</h2>
+    <p class="section-subtitle">The robot guard that runs whether you want it to or not</p>
+  </div>
+
+  <div class="analogy-card cyan animate-on-scroll">
+    <div class="analogy-icon">🤖</div>
+    <div class="analogy-text">
+      <strong>Think of it as:</strong> A robot guard standing at the door. Every time Copilot edits a file, the robot runs a linter. Every time Copilot wants to run a command, the robot shows a safety warning. It doesn't think. It doesn't suggest. It doesn't ask. <strong>It just runs. 100% of the time. No AI involved.</strong>
+    </div>
+  </div>
+
+  <div class="load-info animate-on-scroll">
+    <span class="load-badge lifecycle">🔄 Runs automatically on lifecycle events</span>
+    <span class="load-badge lifecycle">🚫 You CANNOT skip it</span>
+    <span class="load-badge lifecycle">⚙️ Deterministic — not AI, just code</span>
+  </div>
+
+  <div class="card-grid two animate-on-scroll">
+    <div class="card" style="border-color: rgba(121,192,255,0.3);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(121,192,255,0.12);">📝</div>
+        <div class="card-title" style="color: var(--accent-cyan);">PostToolUse — After an action</div>
+      </div>
+      <ul>
+        <li>Fires AFTER Copilot edits a file or creates a file</li>
+        <li>Example: Auto-run <code>ruff check --fix</code> after every edit</li>
+        <li>Guarantees code is formatted — every single time</li>
+        <li>No AI decision — it's a shell command, it just runs</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color: rgba(121,192,255,0.3);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(121,192,255,0.12);">🛡️</div>
+        <div class="card-title" style="color: var(--accent-cyan);">PreToolUse — Before an action</div>
+      </div>
+      <ul>
+        <li>Fires BEFORE Copilot runs a terminal command</li>
+        <li>Can block dangerous operations</li>
+        <li>Example: Safety warning before any execute action</li>
+        <li>Can enforce security policies, require approval</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Key distinction -->
+  <div class="example-block open animate-on-scroll">
+    <div class="example-header" onclick="toggleExample(this)">
+      <span class="example-badge cyan">Critical Distinction</span>
+      <span class="example-title">Instructions vs Hooks — The most important concept to understand</span>
+      <span class="example-toggle">▼</span>
+    </div>
+    <div class="example-body">
+      <div class="example-content">
+        <div class="card-grid two">
+          <div class="card" style="background: rgba(88,166,255,0.04); border-color: rgba(88,166,255,0.2);">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(88,166,255,0.12);">📋</div>
+              <div class="card-title" style="color: var(--accent-blue);">Instruction says:</div>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">"Always format code with ruff"</p>
+            <p style="color: var(--accent-orange); font-weight: 600;">→ Copilot MIGHT format. It's guidance. ~90% of the time.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Because instructions are processed by the AI model — probabilistic, not guaranteed.</p>
+          </div>
+          <div class="card" style="background: rgba(63,185,80,0.04); border-color: rgba(63,185,80,0.2);">
+            <div class="card-header">
+              <div class="card-icon" style="background: rgba(63,185,80,0.12);">🤖</div>
+              <div class="card-title" style="color: var(--accent-green);">Hook does:</div>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><code>ruff check --fix</code> after every edit</p>
+            <p style="color: var(--accent-green); font-weight: 600;">→ ruff WILL run. It's code. 100% of the time. No AI involved.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Because hooks are shell commands — deterministic, guaranteed, every time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://code.visualstudio.com/docs/copilot/customization/hooks" target="_blank" class="ref-link">📎 Official Documentation →</a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 7 — Complete Flow
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="flow-section" id="flow">
+  <div class="flow-container">
+    <div class="section-header animate-on-scroll" style="margin-bottom: 3rem;">
+      <div class="section-number blue">The Full Picture</div>
+      <h2>What Happens When You Type in Chat</h2>
+      <p class="section-subtitle">Every step, in order — from your message to the final output</p>
+    </div>
+
+    <div class="flow-step animate-on-scroll">
+      <div class="flow-line">
+        <div class="flow-dot blue">💬</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-content">
+        <h3 style="color: var(--accent-blue);">You type something in chat</h3>
+        <p>Your message enters the pipeline. Before ANY processing, Copilot gathers context from your project.</p>
+      </div>
+    </div>
+
+    <div class="flow-step animate-on-scroll">
+      <div class="flow-line">
+        <div class="flow-dot blue">📋</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-content">
+        <h3 style="color: var(--accent-blue);">copilot-instructions.md loads</h3>
+        <p><strong>ALWAYS.</strong> You did nothing. It just loads. Every time. No exceptions.</p>
+      </div>
+    </div>
+
+    <div class="flow-step animate-on-scroll">
+      <div class="flow-line">
+        <div class="flow-dot green">📚</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-content">
+        <h3 style="color: var(--accent-green);">Matching *.instructions.md files load</h3>
+        <p>If you have a <code>.py</code> file open → <code>python.instructions.md</code> loads. If it's a test file → <code>testing.instructions.md</code> also loads. You did nothing — auto.</p>
+      </div>
+    </div>
+
+    <div class="flow-step animate-on-scroll">
+      <div class="flow-line">
+        <div class="flow-dot purple">👨‍⚕️</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-content">
+        <h3 style="color: var(--accent-purple);">Was an agent selected?</h3>
+        <p><strong>YES</strong> → That agent's .md loads with its tool restrictions and persona.<br><strong>NO</strong> → Default agent (all tools, no specialization).</p>
+      </div>
+    </div>
+
+    <div class="flow-step animate-on-scroll">
+      <div class="flow-line">
+        <div class="flow-dot orange">🍳</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-content">
+        <h3 style="color: var(--accent-orange);">Did you type /something?</h3>
+        <p><strong>YES</strong> → That skill or prompt loads.<br><strong>NO</strong> → Copilot checks descriptions of all skills/prompts and may auto-load one if keywords match.</p>
+      </div>
+    </div>
+
+    <div class="flow-step animate-on-scroll">
+      <div class="flow-line">
+        <div class="flow-dot" style="border-color: var(--text-primary); color: var(--text-primary);">🧠</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-content">
+        <h3>LLM generates response</h3>
+        <p>All loaded context + your message → sent to the AI model → generates code or answer.</p>
+      </div>
+    </div>
+
+    <div class="flow-step animate-on-scroll">
+      <div class="flow-line">
+        <div class="flow-dot cyan">🤖</div>
+        <div class="flow-connector" style="background: transparent;"></div>
+      </div>
+      <div class="flow-content">
+        <h3 style="color: var(--accent-cyan);">Hooks fire automatically</h3>
+        <p>Did Copilot <strong>edit a file</strong>? → <code>post-edit-lint.json</code> fires (auto-format).<br>Did Copilot <strong>run a command</strong>? → <code>pre-execute-warning.json</code> fired before it ran.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 8 — Comparison Table
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="comparison">
+  <div class="section-header animate-on-scroll">
+    <div class="section-number blue">Quick Reference</div>
+    <h2>Complete Comparison Table</h2>
+    <p class="section-subtitle">Everything you need to know, side by side</p>
+  </div>
+
+  <div class="animate-on-scroll" style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>You Call It?</th>
+          <th>How?</th>
+          <th>Auto-Loads?</th>
+          <th>Remember As</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="type-name" style="color: var(--accent-blue);">copilot-instructions.md</span></td>
+          <td><span class="tag no">Never</span></td>
+          <td>Always loaded silently</td>
+          <td><span class="tag yes">Always</span></td>
+          <td>📋 Sticky note on Copilot's forehead</td>
+        </tr>
+        <tr>
+          <td><span class="type-name" style="color: var(--accent-green);">*.instructions.md</span></td>
+          <td><span class="tag no">Never</span></td>
+          <td>File pattern match or keyword detection</td>
+          <td><span class="tag yes">Yes (applyTo)</span></td>
+          <td>📚 Librarian pulls the right book</td>
+        </tr>
+        <tr>
+          <td><span class="type-name" style="color: var(--accent-purple);">*.agent.md</span></td>
+          <td><span class="tag yes">Yes</span></td>
+          <td>Agent picker / @name / auto-delegation</td>
+          <td><span class="tag sometimes">Sometimes</span></td>
+          <td>👨‍⚕️ Hiring a specialist by name</td>
+        </tr>
+        <tr>
+          <td><span class="type-name" style="color: var(--accent-orange);">SKILL.md</span></td>
+          <td><span class="tag yes">Usually</span></td>
+          <td>/skill-name or auto-detected</td>
+          <td><span class="tag sometimes">Sometimes</span></td>
+          <td>🍳 Recipe card with ingredients in the box</td>
+        </tr>
+        <tr>
+          <td><span class="type-name" style="color: var(--accent-pink);">*.prompt.md</span></td>
+          <td><span class="tag yes">Usually</span></td>
+          <td>/prompt-name or auto-detected</td>
+          <td><span class="tag sometimes">Sometimes</span></td>
+          <td>⚡ Speed-dial for repeated tasks</td>
+        </tr>
+        <tr>
+          <td><span class="type-name" style="color: var(--accent-cyan);">hooks/*.json</span></td>
+          <td><span class="tag no">Never</span></td>
+          <td>Lifecycle events (PostToolUse, PreToolUse)</td>
+          <td><span class="tag yes">Always</span></td>
+          <td>🤖 Robot guard — no questions asked</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="animate-on-scroll" style="margin-top: 2rem; text-align: center;">
+    <p style="color: var(--text-muted); font-size: 0.9rem;">All official documentation at: <a href="https://code.visualstudio.com/docs/copilot/copilot-customization" target="_blank" style="color: var(--accent-blue); text-decoration: none;">code.visualstudio.com/docs/copilot/copilot-customization</a></p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Footer -->
+<footer style="padding: 3rem 2rem; text-align: center; color: var(--text-muted);">
+  <p>GitHub Copilot Customization Guide — Facts verified against official documentation (April 2026)</p>
+  <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+    <a href="https://code.visualstudio.com/docs/copilot/copilot-customization" target="_blank" style="color: var(--accent-blue); text-decoration: none;">VS Code Docs</a> &nbsp;·&nbsp;
+    <a href="https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot" target="_blank" style="color: var(--accent-blue); text-decoration: none;">GitHub Docs</a> &nbsp;·&nbsp;
+    <a href="https://code.visualstudio.com/docs/copilot/workspace-context" target="_blank" style="color: var(--accent-blue); text-decoration: none;">Workspace Context</a>
+  </p>
+</footer>
+
+<!-- Back to top -->
+<a href="#hero" class="back-to-top" id="backToTop" title="Back to top">↑</a>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════════════════════ -->
+<script>
+// Toggle examples
+function toggleExample(header) {
+  const block = header.closest('.example-block');
+  block.classList.toggle('open');
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.animate-on-scroll, .flow-step').forEach(el => observer.observe(el));
+
+// Active nav link
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 120;
+  
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const height = section.offsetHeight;
+    const id = section.getAttribute('id');
+    
+    if (scrollY >= top && scrollY < top + height) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+  
+  // Back to top button
+  const btn = document.getElementById('backToTop');
+  if (window.scrollY > 500) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
