@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Power Hour - April 27, 2026</title>
+    <style>
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .page-break { page-break-before: always; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 40px 30px; background: #fff; }
+        .header { text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header .date { font-size: 1.3em; opacity: 0.9; }
+        .agenda { background: #f8f9fa; padding: 25px; border-radius: 10px; margin-bottom: 40px; border-left: 5px solid #667eea; }
+        .agenda h2 { color: #667eea; margin-bottom: 15px; }
+        .agenda ul { list-style: none; padding-left: 0; }
+        .agenda li { padding: 8px 0; font-size: 1.1em; }
+        .section { margin-bottom: 50px; }
+        .section-header { display: flex; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #667eea; }
+        .section-icon { font-size: 2em; margin-right: 15px; }
+        .section-title { font-size: 1.8em; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; }
+        th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 12px; text-align: left; font-weight: 600; }
+        td { padding: 12px; border-bottom: 1px solid #e0e0e0; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e8f4f8; }
+        .highlight-row { background-color: #fff3cd !important; font-weight: 600; }
+        .quick-take { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 20px 25px; border-radius: 10px; margin: 25px 0; font-style: italic; border-left: 5px solid #ff6b6b; }
+        .quick-take strong { display: block; margin-bottom: 10px; font-style: normal; color: #c0392b; }
+        .tool-card { background: #fff; border: 2px solid #667eea; border-radius: 15px; padding: 25px; margin: 20px 0; }
+        .tool-card h3 { color: #667eea; font-size: 1.5em; margin-bottom: 10px; }
+        .tool-card .subtitle { color: #666; margin-bottom: 15px; }
+        .tool-features { background: #f0f4ff; padding: 15px 20px; border-radius: 8px; margin: 15px 0; }
+        .tool-features h4 { color: #667eea; margin-bottom: 10px; }
+        .tool-features ul { margin-left: 20px; }
+        .tool-features li { padding: 5px 0; }
+        .demo-ideas { background: #e8f5e9; padding: 15px 20px; border-radius: 8px; margin: 15px 0; }
+        .demo-ideas h4 { color: #2e7d32; margin-bottom: 10px; }
+        .link-box { background: #e3f2fd; padding: 12px 20px; border-radius: 8px; margin: 10px 0; display: flex; align-items: center; }
+        .link-box strong { margin-right: 10px; color: #1565c0; }
+        .link-box a { color: #1565c0; text-decoration: none; }
+        .link-box a:hover { text-decoration: underline; }
+        .discussion-card { background: #fff3e0; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        .discussion-card h4 { color: #e65100; margin-bottom: 15px; }
+        .discussion-card ol { margin-left: 25px; }
+        .discussion-card li { padding: 8px 0; }
+        .resources-section { background: #f3e5f5; padding: 25px; border-radius: 10px; margin-top: 30px; }
+        .resources-section h3 { color: #7b1fa2; margin-bottom: 20px; }
+        .alert-box { background: #ffcdd2; border: 2px solid #f44336; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .alert-box h4 { color: #c62828; margin-bottom: 10px; display: flex; align-items: center; }
+        .market-impact { background: #fff8e1; padding: 15px 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #ffc107; }
+        .footer { text-align: center; margin-top: 50px; padding: 30px; background: #f5f5f5; border-radius: 10px; color: #666; }
+        .footer p { margin: 5px 0; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 0.8em; font-weight: 600; margin-right: 5px; }
+        .tag-hot { background: #ffcdd2; color: #c62828; }
+        .tag-new { background: #c8e6c9; color: #2e7d32; }
+        .tag-trending { background: #bbdefb; color: #1565c0; }
+        .tag-alert { background: #fff3cd; color: #856404; }
+        .section-banner { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+        .section-banner-sm { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .hero-highlights { margin-bottom: 40px; }
+        .hero-highlights h2 { text-align: center; font-size: 1.6em; color: #333; margin-bottom: 8px; }
+        .hero-highlights .hero-subtitle { text-align: center; color: #888; font-size: 1em; margin-bottom: 25px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .hero-card { border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.12); transition: transform 0.2s, box-shadow 0.2s; position: relative; cursor: default; }
+        .hero-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.18); }
+        .hero-card-img { width: 100%; height: 170px; object-fit: cover; display: block; }
+        .hero-card-body { padding: 16px 18px 18px; }
+        .hero-card-body h4 { font-size: 1.05em; margin-bottom: 6px; line-height: 1.3; }
+        .hero-card-body p { font-size: 0.88em; color: #555; line-height: 1.45; }
+        .hero-card.card-red { background: linear-gradient(180deg, #fff 60%, #ffebee 100%); }
+        .hero-card.card-blue { background: linear-gradient(180deg, #fff 60%, #e3f2fd 100%); }
+        .hero-card.card-green { background: linear-gradient(180deg, #fff 60%, #e8f5e9 100%); }
+        .hero-card.card-orange { background: linear-gradient(180deg, #fff 60%, #fff3e0 100%); }
+        .hero-card.card-purple { background: linear-gradient(180deg, #fff 60%, #f3e5f5 100%); }
+        .hero-card.card-amber { background: linear-gradient(180deg, #fff 60%, #fff8e1 100%); }
+        .badge { position: absolute; top: 12px; left: 12px; padding: 4px 12px; border-radius: 20px; font-size: 0.7em; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; z-index: 2; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .badge-must-read { background: #c62828; color: #fff; }
+        .badge-dont-miss { background: #ff6f00; color: #fff; }
+        .badge-security { background: #d32f2f; color: #fff; }
+        .badge-trending { background: #1565c0; color: #fff; }
+        .badge-big-money { background: #2e7d32; color: #fff; }
+        .badge-new { background: #6a1b9a; color: #fff; }
+        .nav-widget { position: fixed; bottom: 20px; right: 20px; width: 320px; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08); z-index: 9999; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; transition: all 0.3s ease; }
+        .nav-widget.collapsed { width: auto; border-radius: 50px; }
+        .nav-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+        .nav-header h4 { font-size: 0.8em; font-weight: 700; letter-spacing: 0.5px; margin: 0; }
+        .nav-toggle-btn { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .nav-toggle-btn:hover { background: rgba(255,255,255,0.35); }
+        .nav-current { padding: 10px 14px; background: linear-gradient(90deg, #ede7f6, #f3e5f5); font-size: 0.82em; font-weight: 600; color: #4a148c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e0e0e0; }
+        .nav-current.hidden { display: none; }
+        .nav-controls { display: flex; border-top: 1px solid #eee; background: #fafafa; }
+        .nav-controls.hidden { display: none; }
+        .nav-btn { flex: 1; padding: 11px 8px; border: none; background: transparent; cursor: pointer; font-size: 0.88em; font-weight: 700; color: #667eea; transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .nav-btn:hover { background: #f0f4ff; }
+        .nav-btn:disabled { color: #ccc; cursor: default; }
+        .nav-btn:disabled:hover { background: transparent; }
+        .nav-divider { width: 1px; background: #e0e0e0; }
+        .nav-counter { font-size: 0.72em; color: #999; text-align: center; padding: 3px 0 2px; background: #fafafa; }
+        .nav-counter.hidden { display: none; }
+        a.ref { font-size: 0.72em; opacity: 0.4; text-decoration: none; color: #764ba2; transition: all 0.25s; vertical-align: super; margin-left: 3px; }
+        a.ref:hover { opacity: 1; color: #667eea; text-decoration: underline; }
+        tr a.ref { vertical-align: baseline; font-size: 0.82em; }
+        .imp-spotlight { outline: 3px solid #764ba2 !important; outline-offset: 4px; box-shadow: 0 0 0 8px rgba(118,75,162,0.12), 0 4px 20px rgba(118,75,162,0.18) !important; border-radius: 8px; position: relative; z-index: 10; transition: outline 0.3s, box-shadow 0.3s; }
+        .imp-spotlight-enter { animation: spotlightIn 0.5s ease; }
+        @keyframes spotlightIn { 0% { outline-color: transparent; box-shadow: 0 0 0 0 rgba(118,75,162,0); } 50% { outline-color: #764ba2; box-shadow: 0 0 0 14px rgba(118,75,162,0.18), 0 4px 20px rgba(118,75,162,0.22); } 100% { outline-color: #764ba2; box-shadow: 0 0 0 8px rgba(118,75,162,0.12), 0 4px 20px rgba(118,75,162,0.18); } }
+        .imp-label-float { position: absolute; top: -32px; left: 8px; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 0.72em; font-weight: 700; padding: 4px 14px; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); white-space: nowrap; z-index: 11; pointer-events: none; animation: labelSlideIn 0.4s ease; }
+        @keyframes labelSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 700px) { .hero-grid { grid-template-columns: 1fr; } .nav-widget { right: 10px !important; left: 10px !important; width: auto !important; } }
+        @media print { .hero-card:hover { transform: none; box-shadow: 0 4px 15px rgba(0,0,0,0.12); } .hero-grid { grid-template-columns: 1fr 1fr; } }
+        .hm-table { width:100%; border-collapse:separate; border-spacing:3px; }
+        .hm-table th { padding:10px 12px; font-size:0.78em; font-weight:700; text-align:center; color:#fff; border-radius:8px; }
+        .hm-table th.rh { text-align:left; color:#1f2328; background:#f6f8fa; min-width:135px; border:1px solid #e1e4e8; font-size:0.82em; }
+        .hm-table th.rh small { color:#888; font-weight:400; }
+        .hm-table td { position:relative; padding:0; text-align:center; border-radius:8px; min-width:90px; height:44px; }
+        .hm-cell { display:flex; align-items:center; justify-content:center; width:100%; height:100%; border-radius:8px; font-size:0.75em; font-weight:600; text-decoration:none; color:inherit; cursor:pointer; transition:transform 0.15s, box-shadow 0.15s; padding:6px 4px; }
+        .hm-cell:hover { transform:scale(1.06); z-index:100; box-shadow:0 6px 20px rgba(0,0,0,0.15); }
+        .hm-cell.no-link { cursor:default; }
+        .hm-cell.no-link:hover { transform:none; box-shadow:none; }
+        .hm-cell.t5 { background:#0b6623; color:#fff; }
+        .hm-cell.t4 { background:#1a73e8; color:#fff; }
+        .hm-cell.t3 { background:#0e7c86; color:#fff; }
+        .hm-cell.t2 { background:#c65102; color:#fff; }
+        .hm-cell.t0 { background:#f0f0f0; color:#bbb; }
+        .hm-cell.dead { background:#b71c1c; color:#fff; text-decoration:line-through; }
+        #hm-tooltip { display:none; position:fixed; width:300px; background:#1f2328; color:#e6edf3; border-radius:12px; padding:16px 18px; font-size:0.84em; font-weight:400; text-align:left; line-height:1.6; z-index:9999; pointer-events:none; box-shadow:0 12px 40px rgba(0,0,0,0.35); border:1px solid #30363d; font-family:'Segoe UI',system-ui,sans-serif; }
+        #hm-tooltip .tip-name { font-weight:700; font-size:1.1em; color:#fff; margin-bottom:3px; display:block; }
+        #hm-tooltip .tip-by { font-size:0.88em; color:#8b949e; margin-bottom:8px; display:block; }
+        #hm-tooltip .tip-detail { font-size:0.92em; color:#c9d1d9; margin-bottom:8px; display:block; }
+        #hm-tooltip .tip-metric { display:inline-block; background:rgba(11,102,35,0.25); color:#3fb950; padding:3px 10px; border-radius:6px; font-size:0.85em; font-weight:600; margin-bottom:6px; }
+        #hm-tooltip .tip-cta { font-size:0.82em; color:#58a6ff; display:block; margin-top:6px; }
+        #hm-tooltip .tip-dead { color:#f85149; }
+        .hm-legend { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:18px; font-size:0.8em; color:#555; }
+        .hm-legend span { display:inline-flex; align-items:center; gap:5px; }
+        .hm-legend-dot { display:inline-block; width:16px; height:16px; border-radius:4px; vertical-align:middle; }
+
+        /* === TABBED QUICK-VIEW PANEL === */
+        .quick-panel { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); margin-bottom: 40px; overflow: hidden; border: 1px solid #e8e8e8; }
+        .tab-bar { display: flex; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-bottom: 2px solid #e0e0e0; }
+        .tab-btn { flex: 1; padding: 16px 20px; border: none; background: transparent; cursor: pointer; font-size: 1em; font-weight: 600; color: #666; transition: all 0.25s; position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .tab-btn:hover { background: rgba(102,126,234,0.08); color: #667eea; }
+        .tab-btn.active { color: #667eea; background: #fff; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 3px 3px 0 0; }
+        .tab-content { display: none; padding: 28px 30px; animation: tabFadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        @keyframes tabFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .quick-card { background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 12px; padding: 18px 22px; margin-bottom: 14px; border-left: 4px solid #667eea; transition: transform 0.2s, box-shadow 0.2s; }
+        .quick-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(102,126,234,0.12); }
+        .quick-card h4 { font-size: 1em; color: #333; margin-bottom: 6px; }
+        .quick-card .qc-tldr { font-size: 0.88em; color: #555; line-height: 1.5; }
+        .quick-card .qc-detail { font-size: 0.82em; color: #777; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e0e0e0; line-height: 1.5; display: none; }
+        .quick-card .qc-toggle { font-size: 0.78em; color: #667eea; cursor: pointer; margin-top: 6px; font-weight: 600; display: inline-block; }
+        .quick-card .qc-toggle:hover { text-decoration: underline; }
+        .quick-card.expanded .qc-detail { display: block; }
+        .quick-card.expanded .qc-toggle { color: #764ba2; }
+        .quick-card .qc-category { display: inline-block; font-size: 0.7em; padding: 2px 8px; border-radius: 10px; font-weight: 700; margin-right: 8px; vertical-align: middle; }
+        .qc-money { background: #e8f5e9; color: #2e7d32; }
+        .qc-product { background: #e3f2fd; color: #1565c0; }
+        .qc-safety { background: #ffebee; color: #c62828; }
+        .qc-jobs { background: #fff3e0; color: #e65100; }
+        .qc-policy { background: #f3e5f5; color: #7b1fa2; }
+        .new-model-card { background: #fff; border: 2px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 16px; position: relative; overflow: hidden; transition: border-color 0.2s; }
+        .new-model-card:hover { border-color: #667eea; }
+        .new-model-card::before { content: 'NEW'; position: absolute; top: 12px; right: -28px; background: #c62828; color: #fff; font-size: 0.65em; font-weight: 800; padding: 3px 30px; transform: rotate(45deg); letter-spacing: 1px; }
+        .new-model-card h4 { font-size: 1.05em; color: #1f2328; margin-bottom: 4px; }
+        .new-model-card .nmc-provider { font-size: 0.82em; color: #888; margin-bottom: 10px; }
+        .new-model-card .nmc-sig { font-size: 0.88em; color: #555; line-height: 1.5; }
+        .new-model-card .nmc-badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.75em; font-weight: 700; margin-top: 10px; }
+        .nmc-leader { background: #0b6623; color: #fff; }
+        .nmc-strong { background: #1a73e8; color: #fff; }
+        .nmc-challenger { background: #c65102; color: #fff; }
+        .reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2, #f093fb); z-index: 99999; transition: width 0.1s; }
+
+        /* === COLLAPSIBLE SECTIONS === */
+        .section-header { cursor: pointer; user-select: none; position: relative; }
+        .section-header::after { content: '▼'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 0.7em; color: #999; transition: transform 0.3s; }
+        .section.collapsed .section-header::after { transform: translateY(-50%) rotate(-90deg); }
+        .section.collapsed > *:not(.section-header) { display: none; }
+        .section-header:hover::after { color: #667eea; }
+        .quick-panel-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; cursor: pointer; user-select: none; }
+        .quick-panel-header h3 { font-size: 1.1em; color: #333; margin: 0; }
+        .quick-panel-header .collapse-icon { font-size: 0.8em; color: #999; transition: transform 0.3s; }
+        .quick-panel.panel-collapsed .tab-bar, .quick-panel.panel-collapsed .tab-content { display: none !important; }
+        .quick-panel.panel-collapsed .collapse-icon { transform: rotate(-90deg); }
+    </style>
+</head>
+<body>
+    <div class="header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 35px 30px 30px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -30px; right: -30px; width: 200px; height: 200px; background: rgba(255,255,255,0.08); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -40px; left: -20px; width: 150px; height: 150px; background: rgba(255,255,255,0.06); border-radius: 50%;"></div>
+        <h1 style="font-size: 2.6em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">🎯 AI Power Hour</h1>
+        <div class="date" style="font-size: 1.2em; margin-top: 5px;">April 27, 2026 &nbsp;|&nbsp; Covering Apr 13 – Apr 27</div>
+        <p style="margin-top: 10px; opacity: 0.85; font-size: 0.95em;">Your biweekly briefing on the stories shaping the AI landscape</p>
+    </div>
+
+    <!-- ====== KEY HIGHLIGHTS — DON'T MISS ====== -->
+    <div class="hero-highlights">
+        <h2>⚡ Key Highlights — You Should Not Miss</h2>
+        <p class="hero-subtitle">The 6 stories that define the last two weeks</p>
+        <div class="hero-grid">
+
+            <!-- Card 1: Google $40B Anthropic -->
+            <a href="https://www.bloomberg.com/news/articles/2026-04-24/google-plans-to-invest-up-to-40-billion-in-anthropic" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-green">
+                <span class="badge badge-big-money">💰 Record Deal</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop" alt="Financial dashboard">
+                <div class="hero-card-body">
+                    <h4>Google Invests Up to $40 Billion in Anthropic — Largest AI Investment Ever</h4>
+                    <p>Google commits $10B upfront with up to $40B total. Amazon adds $5B more. Anthropic becomes the most heavily-funded AI company in history at $65B+ committed capital.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 2: OpenAI GPT-5.5 -->
+            <a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-blue">
+                <span class="badge badge-must-read">⚡ Must Read</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=340&fit=crop" alt="Neural network visualization">
+                <div class="hero-card-body">
+                    <h4>OpenAI Launches GPT-5.5 — Reclaims the Throne from Anthropic</h4>
+                    <p>GPT-5.5 narrowly beats Claude Mythos on Terminal-Bench 2.0, achieves SOTA across 14 benchmarks. More efficient, better at coding, and rolls into the "super app" vision.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 3: SpaceX/Cursor $60B -->
+            <a href="https://www.theverge.com/science/916427/spacex-cursor-potential-deal-acquisition" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-orange">
+                <span class="badge badge-dont-miss">🔥 DON'T MISS</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=600&h=340&fit=crop" alt="Rocket launch">
+                <div class="hero-card-body">
+                    <h4>SpaceX Cuts $60 Billion Deal to Buy Cursor — Musk's AI Coding Play</h4>
+                    <p>SpaceX signs an option to acquire AI coding startup Cursor for $60B. Musk consolidates AI tools as SpaceX also reveals in-house GPU plans in its IPO filing.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 4: Anthropic Mythos Breach -->
+            <a href="https://www.theverge.com/ai-artificial-intelligence/916501/anthropic-mythos-unauthorized-users-access-security" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-red">
+                <span class="badge badge-security">🛡️ Security</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=340&fit=crop" alt="Matrix code">
+                <div class="hero-card-body">
+                    <h4>Anthropic's "Most Dangerous" Mythos Model Falls Into the Wrong Hands</h4>
+                    <p>Unauthorized group gains access to Mythos — the cybersecurity AI that found 271 bugs in Firefox. CISA left out of rollout. Discord sleuths trace the breach.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 5: Meta 10% Layoffs -->
+            <a href="https://www.theverge.com/tech/917690/meta-is-laying-off-10-percent-of-its-staff" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-purple">
+                <span class="badge badge-trending">📊 Trending</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=340&fit=crop" alt="Stock market">
+                <div class="hero-card-body">
+                    <h4>Meta Lays Off 10% of Staff — 8,000 Jobs Cut as AI Takes Over</h4>
+                    <p>Meta restructures around AI: tracking employees to train agents, signing Amazon CPU deal, while cutting 8,000 humans. Microsoft offers "soft landing" buyouts too.</p>
+                </div>
+            </div>
+            </a>
+
+            <!-- Card 6: DeepSeek V4 -->
+            <a href="https://venturebeat.com/technology/deepseek-v4-arrives-with-near-state-of-the-art-intelligence-at-1-6th-the-cost-of-opus-4-7-gpt-5-5" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="hero-card card-amber">
+                <span class="badge badge-new">💣 Bombshell</span>
+                <img class="hero-card-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=340&fit=crop" alt="Data center">
+                <div class="hero-card-body">
+                    <h4>DeepSeek V4 Arrives — Near SOTA at 1/6th the Cost of GPT-5.5</h4>
+                    <p>China's DeepSeek previews V4: matches frontier models at a fraction of the cost. Forbes calls it proof that "the next AI race is about efficiency, not brute force."</p>
+                </div>
+            </div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="reading-progress"></div>
+
+    <!-- ====== QUICK-VIEW TABBED PANEL ====== -->
+    <div class="quick-panel" id="quick-panel">
+        <div class="quick-panel-header" id="qp-header">
+            <h3>⚡ Quick Read Panel — Highlights & New Models</h3>
+            <span class="collapse-icon">▼</span>
+        </div>
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="highlights">⚡ Don't Miss — Quick Insights</button>
+            <button class="tab-btn" data-tab="models">🧠 New Models This Week</button>
+        </div>
+
+        <!-- TAB 1: Don't Miss Highlights -->
+        <div class="tab-content active" id="tab-highlights">
+            <p style="font-size:0.85em; color:#888; margin-bottom:18px;">Click any card to expand detailed insights. These are the stories you MUST know.</p>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-money">💰 DEAL</span> Google Invests $40B in Anthropic</h4>
+                <div class="qc-tldr"><strong>The largest single AI investment in history.</strong> Google diversifies beyond Gemini by backing its own rival. Combined with Amazon's $13B, Anthropic now has <strong>$65B+ in committed capital</strong> — more than most countries' entire tech budgets.</div>
+                <div class="qc-detail"><strong>Why this changes everything:</strong> Two hyperscalers now own Anthropic's future. The "independent AI lab" narrative is dead. Google admits Gemini alone may not win. For your team: evaluate which cloud provider's AI you're betting on — they're all betting on Anthropic.<br><br><strong>Key numbers:</strong> $10B upfront → up to $40B performance-gated. Amazon added $5B more (total $13B, up to $33B possible).<br><br><strong>💡 Think of it like this:</strong> Imagine Pepsi investing $40B in Coca-Cola's recipe lab — because they're not sure their own formula will win. That's what Google just did. They're hedging against their own product (Gemini) by funding a competitor. When the company that built the internet's search AI isn't confident in their own model, the AI race is far from settled.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">🚀 LAUNCH</span> GPT-5.5 Reclaims the Crown</h4>
+                <div class="qc-tldr">OpenAI's newest model <strong>beats Claude Mythos on Terminal-Bench 2.0</strong> and achieves <strong>#1 across 14 benchmarks</strong>. Comes with <strong>Workspace Agents</strong> — custom AI bots that plug into Slack, Salesforce, and your company tools to do work autonomously.</div>
+                <div class="qc-detail"><strong>What's different about 5.5:</strong> Not just smarter — more efficient. The "super app" vision is real: Workspace Agents act autonomously across enterprise tools. ChatGPT Images 2.0 reclaims image generation from Midjourney. The moat is now ecosystem, not just intelligence.<br><br><strong>💡 Real-life example:</strong> Imagine telling your assistant "Schedule a meeting with the sales team, pull last quarter's numbers from Salesforce, and draft an agenda based on what we discussed in Slack last week." GPT-5.5 Workspace Agents can now do exactly that — across multiple apps, without you switching tabs.<br><br><strong>Try today:</strong> Ask GPT-5.5 a complex multi-step question. Compare against Claude Opus 4.7 on the same prompt. Notice the difference in approach.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-safety">🛡️ BREACH</span> Mythos — "Too Dangerous" AI Gets Stolen</h4>
+                <div class="qc-tldr"><strong>An AI that found 271 Firefox bugs in days</strong> (what would take human teams months) was <strong>accessed by an unauthorized group</strong>. Anthropic restricted it because it's "too capable" at hacking — but containment failed anyway. <strong>CISA (US cybersecurity agency) wasn't even told about the rollout.</strong></div>
+                <div class="qc-detail"><strong>Why this is dangerous — a real analogy:</strong> Imagine someone built a master key that opens every lock in every house on your street. They decided it was "too dangerous" and locked it in a safe. But someone stole the safe. Now that master key is out there. That's Mythos — except instead of house locks, it opens software vulnerabilities in browsers, operating systems, and infrastructure used by billions.<br><br><strong>What Mythos can do:</strong> It doesn't just find bugs — it finds <em>exploitable</em> bugs. Mozilla said it's "every bit as capable as elite human researchers." In the wrong hands, it could discover zero-day attacks in banking apps, hospital systems, or power grids faster than any human team could patch them.<br><br><strong>For your security team:</strong> Review what AI tools have access to your systems. If frontier models get compromised, what's your exposure? This is the AI version of "supply chain attack" — except the payload is an AI that actively searches for weaknesses.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-money">💰 DEAL</span> SpaceX Buys Cursor for $60B</h4>
+                <div class="qc-tldr">Musk consolidates his AI empire. SpaceX signed an option to acquire <strong>Cursor — the most popular AI code editor — for $60 billion</strong>. That's more than Ford, Delta Airlines, or Spotify are worth. <strong>A code editor is now worth more than most Fortune 500 companies.</strong></div>
+                <div class="qc-detail"><strong>The strategy:</strong> Musk now owns xAI (models) + Cursor (IDE) + SpaceX (compute demand) + Tesla (embodied AI). The vertical integration play mirrors Apple's hardware-software fusion. Code editors may become the new OS for developers.<br><br><strong>💡 Think of it like this:</strong> Imagine buying Microsoft Word — not the company, just the Word app — for $60B. That's essentially what Musk did, except this "Word" writes code for you. Developers spend 8+ hours a day in their code editor. Whoever owns that workspace controls the future of software creation.<br><br><strong>Watch for:</strong> Will Cursor maintain model-agnostic support (works with any AI)? Or will it become xAI-only, locking developers into Musk's ecosystem?</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-jobs">📉 LAYOFFS</span> Meta Cuts 8,000 — Trains Replacements</h4>
+                <div class="qc-tldr"><strong>Meta lays off 10% of staff (8,000 people)</strong> while simultaneously <strong>tracking remaining employees to train AI agents that replace them</strong>. Microsoft offers "soft landing" buyouts for 7% of US workers. Sonos cuts 12%. <strong>AI displacement is no longer a prediction — it's happening now.</strong></div>
+                <div class="qc-detail"><strong>The pattern everyone should understand:</strong> 1) Track what employees do all day. 2) Feed that data to AI to replicate it. 3) Cut the employees. Meta is doing all 3 steps <em>at the same time</em>. Google restructures around 75% AI-generated code.<br><br><strong>💡 Real-life parallel:</strong> Remember how ATMs didn't eliminate bank tellers overnight — it took 20 years? AI is doing the same thing to knowledge workers, except <strong>in 20 months, not 20 years</strong>. The pace is unprecedented.<br><br><strong>Your action:</strong> Document your unique value-add that AI can't replicate. Focus on judgment, relationships, and creative direction — not production tasks. If your job is mostly "take input → produce output" with few decisions, start diversifying your skills now.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">🚀 LAUNCH</span> Microsoft "Vibe Working" in Office</h4>
+                <div class="qc-tldr"><strong>Agent Mode comes to Word, Excel, PowerPoint.</strong> AI doesn't just suggest edits — it <strong>executes multi-step tasks autonomously</strong>. Tell it what you want done, and it does it. "Vibe coding" now meets the everyday productivity suite.</div>
+                <div class="qc-detail"><strong>What changes:</strong> Previously, Copilot suggested edits you had to approve one by one. Now it takes full actions: formats entire reports, builds charts from raw data, restructures presentations end-to-end — autonomously.<br><br><strong>💡 Real-life example:</strong> Before: "Copilot, help me write a formula." Now: "Take this raw CSV, clean the data, build a pivot table, create 3 charts, format them professionally, and put the summary in a Word doc for my boss." It does ALL of that. No more tab-switching, manual formatting, or formula debugging.<br><br><strong>Timeline:</strong> Rolling out to Microsoft 365 Enterprise customers. Check your license tier. Start with Excel — the agent mode there is the most mature.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-policy">⚖️ LEGAL</span> Sullivan & Cromwell AI Hallucination</h4>
+                <div class="qc-tldr"><strong>A $2,000/hour law firm (Trump's own lawyers)</strong> filed court papers with <strong>AI-hallucinated case citations — 3 full pages of legal cases that don't exist</strong>. The firm had to publicly apologize. If the best lawyers in the world can't catch AI making things up, who can?</div>
+                <div class="qc-detail"><strong>What actually happened:</strong> Sullivan & Cromwell used AI to research legal precedents. The AI invented case names, court dates, and rulings that sound completely real but never happened. They submitted these fake cases to a federal court.<br><br><strong>💡 Real-life example everyone can relate to:</strong> Imagine you're writing a school report and ask AI "give me 5 sources that support my argument." The AI gives you 5 perfect-sounding book titles, authors, and page numbers — except <em>none of the books exist</em>. You turn in your report, your teacher Googles the sources, finds nothing, and you fail. That's exactly what happened to one of America's most prestigious law firms, except the consequences are federal sanctions, not a failing grade.<br><br><strong>This isn't rare — it's the #1 AI risk today.</strong> AI models "hallucinate" (confidently state false information) in 3-15% of outputs depending on the task. The more specific the claim (dates, names, citations), the higher the risk.<br><br><strong>Action item:</strong> Never trust AI-generated facts without verification. Treat AI like a brilliant intern who sometimes makes things up with total confidence.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-money">💰 EFFICIENCY</span> DeepSeek V4 — Best-in-Class at 1/6th Cost</h4>
+                <div class="qc-tldr">China's DeepSeek V4 <strong>matches GPT-5.5 quality at 1/6th the price</strong>. Open weights (anyone can use it). Proves you don't need $100B to compete. <strong>The next AI race is about efficiency, not brute force.</strong></div>
+                <div class="qc-detail"><strong>For your budget:</strong> If DeepSeek V4 delivers 90% of GPT-5.5 quality at 1/6th the cost, the ROI math changes entirely for most enterprise use cases. Not everything needs the "best" model — most tasks need "good enough at scale."<br><br><strong>💡 Think of it like this:</strong> You don't hire a brain surgeon to put on a Band-Aid. Similarly, you don't need a $100B model to summarize emails or draft meeting notes. DeepSeek V4 is the "Honda Civic" of AI — reliable, efficient, gets you where you need to go at a fraction of the luxury price. Save the "Ferrari" (GPT-5.5) for tasks that actually need it.<br><br><strong>Evaluate:</strong> Which of your current AI workloads could switch to a cheaper model without meaningful quality loss? Most teams overpay by 5x for routine tasks.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">🍎 LEADERSHIP</span> Tim Cook Steps Down — John Ternus Takes Over</h4>
+                <div class="qc-tldr"><strong>Apple CEO Tim Cook stepping down.</strong> Hardware chief <strong>John Ternus</strong> (built Apple Silicon, Vision Pro, AirPods) takes over. Forbes calls it a <strong>"$4 trillion agentic AI power move."</strong> Apple is betting that the AI race will be won with custom chips, not software alone.</div>
+                <div class="qc-detail"><strong>What it signals:</strong> A hardware-first CEO for the AI era. Ternus built the chips that make iPhones fast. Apple's bet: AI needs custom hardware to win, not just software partnerships. Google currently powers Siri — Apple needs its own AI silicon edge.<br><br><strong>💡 Why hardware matters:</strong> Think of AI models like a race car engine — you need a custom-built track (chips) to get maximum speed. Apple is saying "we'll build both the engine AND the track" rather than renting someone else's road. That's a $4 trillion bet on vertical integration.<br><br><strong>Watch for:</strong> Apple's AI chip roadmap under Ternus. Will they build their own LLM or stay a platform for others?</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">📊 MILESTONE</span> Google: 75% of All New Code is AI-Generated</h4>
+                <div class="qc-tldr"><strong>75% of all new code at Google is now written by AI</strong> (up from 50% just last fall). Anthropic writes <strong>70-90% of its own code</strong> using Claude Code. The companies building AI are already using AI to build themselves. <strong>The "AI writes the code" era isn't coming — it's here.</strong></div>
+                <div class="qc-detail"><strong>What this means for developers:</strong> The role of "developer" is shifting from "writer of code" to "reviewer and director of AI-generated code." If the biggest tech companies already write 75%+ with AI, every dev team will follow within 12 months.<br><br><strong>💡 Analogy everyone understands:</strong> Architects don't lay bricks — they design buildings and review construction. Developers are becoming "code architects" — directing AI on what to build, reviewing the output, and making judgment calls. The actual typing of code is becoming as automated as spell-check.<br><br><strong>Your action:</strong> Start measuring what percentage of your team's code is AI-assisted. If it's below 50%, you're already behind the industry curve.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-policy">⚖️ TRIAL</span> Musk v. Altman — The AI Trial of the Decade</h4>
+                <div class="qc-tldr"><strong>Elon Musk's lawsuit against Sam Altman goes to trial April 28 in Oakland.</strong> The core question: did Altman betray OpenAI's nonprofit mission to get rich? <strong>Whoever wins shapes the future of how AI companies are governed.</strong></div>
+                <div class="qc-detail"><strong>The stakes:</strong> Musk argues Altman betrayed the nonprofit mission ("we started this to benefit humanity, not your bank account"). Altman says Musk wanted control and walked away when he didn't get it. The outcome could force OpenAI's restructuring or validate its pivot to for-profit.<br><br><strong>💡 Why you should care:</strong> This trial decides whether a company can promise "we're doing this for humanity" to attract donations and talent, then pivot to a $300B for-profit once the tech works. If Altman wins, every nonprofit can do the same bait-and-switch. If Musk wins, AI governance gets real accountability.<br><br><strong>Watch for:</strong> Internal emails and testimony. The discovery phase already revealed damaging communications on both sides. This is the tech industry's biggest courtroom drama since Apple v. Samsung.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+        </div>
+
+        <!-- TAB 2: New Models This Week -->
+        <div class="tab-content" id="tab-models">
+            <p style="font-size:0.85em; color:#888; margin-bottom:18px;">Models released or significantly updated April 13–27, 2026. Impact ratings show where they move the needle.</p>
+
+            <div class="new-model-card">
+                <h4>🏆 GPT-5.5</h4>
+                <div class="nmc-provider">OpenAI • Released Apr 21, 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> <strong>#1 across 14 benchmarks</strong> (best available AI on every test). Beats Claude Mythos on Terminal-Bench 2.0. <strong>Significantly more efficient</strong> than GPT-5.4. Powers new <strong>Workspace Agents</strong> — AI bots that work inside your Slack, Salesforce, and company tools autonomously.<br>
+                    <strong>Significance:</strong> Reclaims the #1 position from Anthropic. Not just a chat model anymore — it's an <strong>autonomous agent platform</strong>. Think: you tell it "prepare my quarterly report" and it pulls data from 3 apps, formats it, and delivers it to your inbox.<br>
+                    <strong>💡 Example:</strong> A sales manager can say "Find all deals closing this month, check which ones haven't had contact in 7 days, and draft follow-up emails for each." GPT-5.5 does this across Salesforce + Gmail + Calendar without you touching any of them.
+                </div>
+                <span class="nmc-badge nmc-leader">★ Category Leader: Chat, Code, Reasoning, Agents</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>🏆 Claude Opus 4.7</h4>
+                <div class="nmc-provider">Anthropic • Released Apr 17, 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> Greater thoroughness and consistency. <strong>Writes 70-90% of Anthropic's own code</strong> (the company uses its own AI to build itself). Enhanced vision, multi-step tasks, and <strong>Extended Thinking mode</strong> for complex problems.<br>
+                    <strong>Significance:</strong> May lose to GPT-5.5 on speed benchmarks, but <strong>wins on real-world complex tasks</strong> requiring sustained reasoning. The "depth over breadth" strategy — fewer flashy features, better at hard problems.<br>
+                    <strong>💡 When to choose this over GPT-5.5:</strong> Need to analyze a 200-page legal contract? Debug a complex codebase? Write a detailed research paper? Opus 4.7 will often produce a more thorough, well-reasoned output. Think of it as the "careful professor" vs GPT-5.5's "fast executive."
+                </div>
+                <span class="nmc-badge nmc-leader">★ Category Leader: Code, Reasoning, Agents</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>⚡ DeepSeek V4</h4>
+                <div class="nmc-provider">DeepSeek (China) • Previewed Apr 22, 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> <strong>Near-identical quality to GPT-5.5 at 1/6th the cost.</strong> Open weights (anyone can download and run it). Strong coding and reasoning. No subscription needed.<br>
+                    <strong>Significance:</strong> Proves you <strong>don't need $100B to build great AI</strong>. Disrupts pricing for the entire industry. If your company pays $20/user/month for AI, this could do the same job for $3.<br>
+                    <strong>💡 Real-life comparison:</strong> It's like a $15 Casio watch that keeps time just as well as a $10,000 Rolex. For 90% of daily tasks (email drafting, code review, data analysis), DeepSeek V4 performs nearly identically to models costing 6x more. <strong>Save the expensive model for the 10% of tasks that truly need it.</strong>
+                </div>
+                <span class="nmc-badge nmc-challenger">🔥 Disruptor: Price/Performance Leader</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>🎨 ChatGPT Images 2.0</h4>
+                <div class="nmc-provider">OpenAI • Released Apr 21, 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> <strong>Visual reasoning + generation combined.</strong> Doesn't just create images — it <em>understands</em> images and solves real-world visual problems. Part of GPT-5.5 ecosystem.<br>
+                    <strong>Significance:</strong> Reclaims the image generation crown from Midjourney. <strong>The key difference:</strong> it reasons about images, not just generates them. Design, analysis, and creation in one model.<br>
+                    <strong>💡 Example:</strong> Upload a photo of your living room and say "redesign this in mid-century modern style with my existing furniture." It understands the space, keeps your couch, and generates a redesigned room. Or: upload a chart and say "what's wrong with this data visualization?" — it critiques and fixes it.
+                </div>
+                <span class="nmc-badge nmc-leader">★ Category Leader: Image (tied w/ MJ V7)</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>🛡️ Claude Mythos (Restricted)</h4>
+                <div class="nmc-provider">Anthropic • Project Glasswing Partners Only</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> Elite cybersecurity AI. <strong>Found 271 bugs in Firefox 150</strong> that human teams missed. Mozilla says it's "every bit as capable as elite human researchers." <strong>Restricted access</strong> — deemed too dangerous for public release.<br>
+                    <strong>Significance:</strong> First AI model <strong>officially deemed "too dangerous for general release"</strong> that actually delivered on its capabilities. Then it got stolen anyway — proving containment doesn't work.<br>
+                    <strong>⚠️ Why this is terrifying:</strong> Imagine a locksmith AI that can pick any lock in the world in seconds. Now imagine that AI gets stolen. Mythos is exactly that, but for software. It finds security holes in any software — holes that hackers could use to steal data, crash systems, or spy on people. <strong>In the wrong hands, this is a cyber-weapon.</strong> The breach means it's already in the wrong hands.
+                </div>
+                <span class="nmc-badge nmc-leader">★ Category Leader: Security Research</span>
+            </div>
+
+            <div class="new-model-card" style="border-color: #e0e0e0;">
+                <h4>🎵 ElevenLabs Expressive Mode</h4>
+                <div class="nmc-provider">ElevenLabs • Updated Apr 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> ElevenAgents with Expressive Mode — <strong>most human-sounding AI voice ever created</strong>. 70+ languages. Ultra-low latency for real-time conversations. You genuinely cannot tell it's not a human.<br>
+                    <strong>Significance:</strong> Voice AI <strong>crosses the uncanny valley</strong>. Customer service, audiobooks, accessibility, and content creation now indistinguishable from real human voice.<br>
+                    <strong>💡 Example:</strong> Call your bank's support line — that friendly voice that helps you reset your password, sounds empathetic when you're frustrated, even laughs at your joke? It might already be ElevenLabs. You'd never know. Now multiply that across every call center, podcast intro, and audiobook in the world.
+                </div>
+                <span class="nmc-badge nmc-leader">★ Category Leader: Voice/Audio</span>
+            </div>
+
+            <!-- Top Model per Category Summary -->
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #333;">📊 Top Model per Category (Updated Apr 27)</h3>
+            <table style="font-size: 0.9em;">
+                <thead><tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><th>Category</th><th>Leader</th><th>Challenger</th></tr></thead>
+                <tbody>
+                    <tr><td>💬 Chat</td><td><strong>GPT-5.5</strong> (OpenAI)</td><td>Claude Opus 4.7 · DeepSeek V4 (cost)</td></tr>
+                    <tr><td>💻 Code</td><td><strong>GPT-5.5 / Claude Opus 4.7</strong> (tied)</td><td>Cursor IDE · DeepSeek V4</td></tr>
+                    <tr><td>🎨 Image</td><td><strong>MJ V7 / ChatGPT Images 2.0</strong> (tied)</td><td>Gemini Imagen 3 · ComfyUI ($500M)</td></tr>
+                    <tr><td>🎬 Video</td><td><strong>Veo 2</strong> (Google DeepMind)</td><td>Market fragmented (Sora dead)</td></tr>
+                    <tr><td>🎵 Audio</td><td><strong>ElevenLabs</strong> (voice) · <strong>Suno v5.5</strong> (music)</td><td>GPT-5.5 Voice Mode</td></tr>
+                    <tr><td>🧠 Reasoning</td><td><strong>GPT-5.5</strong> (#1 on benchmarks)</td><td>Claude Opus 4.7 · DeepSeek V4 (1/6th cost)</td></tr>
+                    <tr><td>📐 Embeddings</td><td><strong>OpenAI text-embedding-3</strong></td><td>Google Vertex AI · Cohere/Aleph Alpha</td></tr>
+                    <tr><td>🤖 Agents</td><td><strong>OpenAI Workspace / Claude Agents</strong></td><td>Google Chrome Auto-Browse · BAND</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ====== AGENDA ====== -->
+    <div class="agenda">
+        <h2>📋 Today's Briefing</h2>
+        <ul>
+            <li>⚡ <strong>Quick Panel:</strong> Don't Miss Highlights + New Models This Week <em>(tabbed, above)</em></li>
+            <li>🔥 <strong>Section 1:</strong> AI Hot Take — Master table of all headlines (45+ stories)</li>
+            <li>💰 <strong>Section 2:</strong> Mega Funding & Market Moves</li>
+            <li>🔬 <strong>Section 3:</strong> Deep Dive — Google's $40B Anthropic Bet</li>
+            <li>🛠️ <strong>Section 4:</strong> Product Launches & Tool Spotlight</li>
+            <li>📉 <strong>Section 5:</strong> SaaSpocalypse & AI Layoffs</li>
+            <li>🛡️ <strong>Section 6:</strong> Safety & Governance</li>
+            <li>💬 <strong>Section 7:</strong> Discussion & Action Items</li>
+            <li>🧠 <strong>Section 8:</strong> LLM Model Landscape — Interactive Heatmap</li>
+        </ul>
+    </div>
+
+    <!-- ====== SECTION 1: AI HOT TAKE ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🔥</span>
+            <span class="section-title">AI Hot Take — Every Headline That Matters</span>
+        </div>
+        <img class="section-banner-sm" src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=900&h=300&fit=crop&q=80" alt="News dashboard">
+        <table>
+            <thead><tr><th style="width:55%;">News</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr id="imp-1" data-imp-label="💰 Google $40B Anthropic"><td><span class="tag tag-hot">HOT</span> <strong>Google to invest up to $40B in Anthropic</strong> — $10B initial, performance-gated up to $40B total <a class="ref" href="https://www.bloomberg.com/news/articles/2026-04-24/google-plans-to-invest-up-to-40-billion-in-anthropic" target="_blank">↗</a></td><td>Largest single AI investment ever. Anthropic becomes the most funded AI company in history. Google diversifies beyond Gemini.</td></tr>
+                <tr id="imp-2" data-imp-label="💰 Amazon $5B+ Anthropic"><td><span class="tag tag-hot">HOT</span> <strong>Amazon invests $5B more in Anthropic</strong> — total commitment now $13B, up to $33B possible <a class="ref" href="https://www.anthropic.com/news/anthropic-amazon-compute" target="_blank">↗</a></td><td>Amazon and Google now both betting huge on Anthropic. Dual cloud backing gives Anthropic unmatched compute access.</td></tr>
+                <tr id="imp-3" data-imp-label="🧠 GPT-5.5 Launch"><td><span class="tag tag-hot">HOT</span> <strong>OpenAI launches GPT-5.5</strong> — "smartest and most intuitive" model, beats Claude Mythos on Terminal-Bench 2.0 <a class="ref" href="https://openai.com/index/introducing-gpt-5-5/" target="_blank">↗</a></td><td>OpenAI reclaims SOTA crown across 14 benchmarks. More efficient, better at coding. The "super app" vision crystallizes.</td></tr>
+                <tr id="imp-4" data-imp-label="🚀 SpaceX Buys Cursor $60B"><td><span class="tag tag-hot">HOT</span> <strong>SpaceX signs option to buy Cursor for $60B</strong> — Musk's AI coding consolidation <a class="ref" href="https://www.theverge.com/science/916427/spacex-cursor-potential-deal-acquisition" target="_blank">↗</a></td><td>Musk unites xAI, SpaceX, and now the most popular AI code editor. A vertically integrated AI empire takes shape.</td></tr>
+                <tr id="imp-5" data-imp-label="🛡️ Mythos Breach"><td><span class="tag tag-alert">ALERT</span> <strong>Anthropic's Mythos model falls into unauthorized hands</strong> — Discord sleuths trace the breach <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/916501/anthropic-mythos-unauthorized-users-access-security" target="_blank">↗</a></td><td>The AI that found 271 Firefox bugs is now in wrong hands. Shows that "too dangerous to release" doesn't mean "impossible to steal."</td></tr>
+                <tr id="imp-6" data-imp-label="📉 Meta 10% Layoff"><td><span class="tag tag-hot">HOT</span> <strong>Meta lays off 10% of staff — 8,000 jobs cut</strong> <a class="ref" href="https://www.theverge.com/tech/917690/meta-is-laying-off-10-percent-of-its-staff" target="_blank">↗</a></td><td>Another round of AI-driven cuts. Meta simultaneously tracks employees to train agents and signs deal for Amazon AI CPUs.</td></tr>
+                <tr id="imp-7" data-imp-label="🇨🇳 DeepSeek V4"><td><span class="tag tag-new">NEW</span> <strong>DeepSeek previews V4</strong> — near frontier quality at 1/6th the cost of Opus 4.7/GPT-5.5 <a class="ref" href="https://venturebeat.com/technology/deepseek-v4-arrives-with-near-state-of-the-art-intelligence-at-1-6th-the-cost-of-opus-4-7-gpt-5-5" target="_blank">↗</a></td><td>China continues to close the gap. Efficiency is the new battleground — not just raw intelligence. Enterprise adoption implications are massive.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Claude Opus 4.7 launches</strong> — stronger coding, agents, vision, multi-step tasks <a class="ref" href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank">↗</a></td><td>Anthropic's latest flagship. Greater thoroughness and consistency on complex work. Arms race continues.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Claude Design by Anthropic Labs</strong> — visual design tool <a class="ref" href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">↗</a></td><td>Anthropic enters the design stack. Creates polished visual work: prototypes, slides, one-pagers.</td></tr>
+                <tr id="imp-8" data-imp-label="🍎 Tim Cook Steps Down"><td><span class="tag tag-trending">TRENDING</span> <strong>Tim Cook stepping down as Apple CEO</strong> — John Ternus takes over <a class="ref" href="https://techcrunch.com/2026/04/20/tim-cook-stepping-down-as-apple-ceo-john-ternus-taking-over/" target="_blank">↗</a></td><td>End of an era. Forbes calls it a "$4 trillion agentic AI power move." Hardware-first CEO signals Apple's AI pivot strategy.</td></tr>
+                <tr id="imp-9" data-imp-label="⚖️ Musk v. Altman Trial"><td><span class="tag tag-trending">TRENDING</span> <strong>Musk v. Altman trial begins in Oakland</strong> — credibility battle over OpenAI's nonprofit vow <a class="ref" href="https://www.cnbc.com/2026/04/24/musk-v-altman-trial-openai-lawsuit-xai.html" target="_blank">↗</a></td><td>The court of public opinion meets actual court. Altman accused of reneging on nonprofit promise. Winner shapes AI governance narrative.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>ChatGPT Images 2.0 launches</strong> — visual reasoning for real-world tasks <a class="ref" href="https://openai.com/index/introducing-chatgpt-images-2-0/" target="_blank">↗</a></td><td>OpenAI reclaims the image crown from Midjourney. Visual reasoning plus generation in one model.</td></tr>
+                <tr id="imp-10" data-imp-label="💼 OpenAI Workspace Agents"><td><span class="tag tag-new">NEW</span> <strong>OpenAI unveils Workspace Agents</strong> — custom bots that plug into Slack, Salesforce, more <a class="ref" href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/" target="_blank">↗</a></td><td>Successor to custom GPTs. Agents can now act autonomously across enterprise tools. The "super app" move is real.</td></tr>
+                <tr id="imp-11" data-imp-label="💻 Microsoft Vibe Working"><td><span class="tag tag-new">NEW</span> <strong>Microsoft launches "Vibe Working" in Word, Excel, PowerPoint</strong> — agent mode for Office <a class="ref" href="https://www.theverge.com/news/917328/microsoft-agent-mode-vibe-working-office-word-excel-powerpoint" target="_blank">↗</a></td><td>AI agents inside Office apps. "Vibe coding" meets productivity suite. Every knowledge worker affected.</td></tr>
+                <tr id="imp-12" data-imp-label="📊 Google 75% AI Code"><td><span class="tag tag-trending">TRENDING</span> <strong>Google: 75% of all new code is now AI-generated</strong> — up from 50% last fall <a class="ref" href="https://www.theverge.com/tech/917163/google-says-75-percent-of-all-its-new-code-is-ai-generated" target="_blank">↗</a></td><td>Staggering acceleration. Anthropic writes 70-90% with Claude Code. The "AI writes the code" era is not coming — it's HERE.</td></tr>
+                <tr><td><span class="tag tag-alert">ALERT</span> <strong>Sullivan &amp; Cromwell apologizes for AI-hallucinated case citations</strong> — 3 pages of errors <a class="ref" href="https://www.nytimes.com/2026/04/21/nyregion/sullivan-cromwell-ai-hallucination.html" target="_blank">↗</a></td><td>Trump's own law firm caught using AI-generated fake cases. "Language is not intelligence" hits the courtroom again.</td></tr>
+                <tr id="imp-13" data-imp-label="⚠️ Elizabeth Warren Warning"><td><span class="tag tag-alert">ALERT</span> <strong>Elizabeth Warren: "AI failure could trigger the next financial crisis"</strong> <a class="ref" href="https://www.theverge.com/policy/917026/ai-economy-bubble-elizabeth-warren" target="_blank">↗</a></td><td>Senator sounds the alarm on systemic risk. AI as infrastructure means AI failure is systemic failure.</td></tr>
+                <tr><td><span class="tag tag-alert">ALERT</span> <strong>DOJ joins xAI lawsuit against Colorado AI discrimination law</strong> — feds vs. state AI regulation <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/918492/the-feds-join-elon-musks-attempt-to-stop-new-ai-regulations-in-colorado" target="_blank">↗</a></td><td>Trump DOJ argues "reasonable care" requirement violates Equal Protection. Sets precedent for all state AI laws.</td></tr>
+                <tr><td><span class="tag tag-alert">ALERT</span> <strong>RFK Jr: "AI could make the FDA irrelevant"</strong> — congressional hearing remarks <a class="ref" href="https://www.theverge.com/news/917094/rfk-jr-says-ai-could-make-the-fda-irrelevant" target="_blank">↗</a></td><td>Personalized medicine pitch or deregulation excuse? Either way, AI governance vacuum grows.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>AI threatens to widen inequality gap</strong> — Nobel laureate: "setting us up for a shitshow" <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/917288/ai-threatens-to-widen-the-inequality-gap" target="_blank">↗</a></td><td>MIT's Daron Acemoglu warns AI requires education and skills most don't have. Capital wins, labor loses.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>AI monetization era begins</strong> — ads, rate limits, price hikes, the "free ride" is over <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/917380/ai-monetization-anthropic-openai-token-economics-revenue" target="_blank">↗</a></td><td>Anthropic and OpenAI both tightening. Token economics force everyone to pay. Plan your budgets now.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>OpenAI Privacy Filter</strong> — new research product <a class="ref" href="https://openai.com/index/introducing-openai-privacy-filter/" target="_blank">↗</a></td><td>OpenAI ships privacy tooling. Enterprise compliance gets easier as regulators circle.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>OpenAI: ChatGPT free for clinicians</strong> <a class="ref" href="https://openai.com/index/making-chatgpt-better-for-clinicians/" target="_blank">↗</a></td><td>Healthcare push accelerates. Free access for doctors signals market growth strategy via professional verticals.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Spotify launches voluntary AI labels</strong> — DistroKid first partner <a class="ref" href="https://www.theverge.com/entertainment/917109/spotify-starts-rolling-out-its-voluntary-ai-labels" target="_blank">↗</a></td><td>AI music uploads threaten to overtake humans on streaming. Labels are voluntary — won't be enough.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Altman apologizes to Tumbler Ridge community</strong> — ChatGPT used by school shooter <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/918680/openai-ceo-sam-altman-apologized-to-the-town-of-tumbler-ridge" target="_blank">↗</a></td><td>Suspect described violence to ChatGPT; OpenAI banned account but didn't alert law enforcement. Safety gap exposed.</td></tr>
+                <tr id="imp-14" data-imp-label="🤝 Cohere + Aleph Alpha"><td><span class="tag tag-new">NEW</span> <strong>Cohere merging with Aleph Alpha</strong> — European AI consolidation <a class="ref" href="https://techcrunch.com/2026/04/25/why-cohere-is-merging-with-aleph-alpha/" target="_blank">↗</a></td><td>Enterprise AI consolidation wave. European sovereignty play meets practical scale requirements.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Anthropic creates agent-on-agent marketplace (Project Deal)</strong> — Claude agents buy/sell real goods <a class="ref" href="https://techcrunch.com/2026/04/25/anthropic-created-a-test-marketplace-for-agent-on-agent-commerce/" target="_blank">↗</a></td><td>AI agents negotiating with each other on behalf of humans. Commerce layer for the agent era emerging.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Claude connects to personal apps</strong> — Spotify, Uber Eats, TurboTax <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/917871/anthropic-claude-personal-app-connectors" target="_blank">↗</a></td><td>Anthropic's assistant becomes an actual assistant. Connectors let Claude act on your behalf across services.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Nothing launches Essential Voice</strong> — AI dictation in 100+ languages <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/917320/nothing-speaks" target="_blank">↗</a></td><td>Voice-first interfaces proliferating. Nothing positions voice as the next OS-level input mode.</td></tr>
+                <tr id="imp-15" data-imp-label="🏬 Andon AI Store"><td><span class="tag tag-new">NEW</span> <strong>First AI-agent-run retail store opens</strong> — Andon Market uses Claude Sonnet 4.6 <a class="ref" href="https://www.nytimes.com/2026/04/21/us/san-francisco-store-managed-ai-agent.html" target="_blank">↗</a></td><td>SF boutique fully managed by AI agent. Ordered too many candles. The "human-free business" concept gets real.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>SpaceX making its own GPUs</strong> — revealed in IPO S-1 filing <a class="ref" href="https://www.reuters.com/business/autos-transportation/spacex-targets-in-house-gpus-it-warns-investors-chip-supply-costs-2026-04-23/" target="_blank">↗</a></td><td>Musk's Terafab chip plant + Intel partnership. Every major AI player now designs custom silicon.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Google doesn't pay the Nvidia tax — new TPUs explain why</strong> <a class="ref" href="https://venturebeat.com/orchestration/google-doesnt-pay-the-nvidia-tax-its-new-tpus-explain-why" target="_blank">↗</a></td><td>8th-gen TPUs separate frontier training from agentic inference. Silicon architecture drives competitive advantage.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>ASML ramping EUV machines 36% for AI chip demand</strong> — at least 60 this year <a class="ref" href="https://www.wsj.com/business/the-race-to-make-the-worlds-most-in-demand-machine-092e8cea" target="_blank">↗</a></td><td>The bottleneck machine. If ASML can't build fast enough, the whole AI industry slows down.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Google controls ~25% of global AI compute</strong> — 3.8M TPUs + 1.3M GPUs <a class="ref" href="https://www.ft.com/content/2429f0f0-b685-4747-b425-bf8001a2e94c" target="_blank">↗</a></td><td>Epoch AI data reveals Google's compute dominance. The real AI moat is hardware, not just models.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Meta signs deal for millions of Amazon AI CPUs</strong> <a class="ref" href="https://techcrunch.com/2026/04/24/in-another-wild-turn-for-ai-chips-meta-signs-deal-for-millions-of-amazon-ai-cpus/" target="_blank">↗</a></td><td>Custom silicon arms race intensifies. Meta diversifying away from pure Nvidia dependency.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Meta tracks employee computers to train AI agents</strong> <a class="ref" href="https://www.theverge.com/tech/916681/meta-ai-agents-employee-tracking" target="_blank">↗</a></td><td>Your workflow is training data. Meta turns its workforce into an AI training moat.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Salesforce Agentforce Vibes 2.0</strong> — fixes context overload in AI agents <a class="ref" href="https://venturebeat.com/orchestration/salesforces-agentforce-vibes-2-0-targets-a-hidden-failure-context-overload-in-ai-agents" target="_blank">↗</a></td><td>Agents failing silently from context overload. Salesforce's fix introduces Skills + Abilities abstraction.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>BAND debuts "universal orchestrator" for agent-to-agent communication</strong> <a class="ref" href="https://venturebeat.com/orchestration/talking-to-ai-agents-is-one-thing-what-about-when-they-talk-to-each-other-new-startup-band-debuts-universal-orchestrator" target="_blank">↗</a></td><td>Multi-model agent orchestration. Enterprises already mixing agents from different providers need coordination.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Stanford research: single agents often beat complex swarms</strong> <a class="ref" href="https://venturebeat.com/orchestration/are-you-paying-an-ai-swarm-tax-why-single-agents-often-beat-complex-systems" target="_blank">↗</a></td><td>More agents ≠ better results. Compute-budget fix changes the calculus. Don't over-engineer your agent architecture.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>ComfyUI hits $500M valuation</strong> — creators seek AI media control <a class="ref" href="https://techcrunch.com/2026/04/24/comfyui-hits-500m-valuation-as-creators-seek-more-control-over-ai-generated-media/" target="_blank">↗</a></td><td>Open-source AI workflow tool achieves unicorn-adjacent status. Creator economy wants control, not just generation.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Genki Robotics (Andy Rubin) raises at $1B valuation</strong> — humanoid robots, Tokyo <a class="ref" href="https://www.axios.com/pro/all-deals/2026/04/21/android-andy-rubin-genki-robotics-1-billion" target="_blank">↗</a></td><td>Android creator's next act: humanoid robots. The physical AI wave accelerates from multiple angles.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>OpenAI's super PAC funding "news" site with AI reporters</strong> <a class="ref" href="https://www.theverge.com/ai-artificial-intelligence/918787/openais-super-pac-might-be-funding-a-news-site-staffed-by-ai-reporters" target="_blank">↗</a></td><td>Acutus Wire uses AI bot "reporters." Financial trail leads to OpenAI. AI propaganda infrastructure emerging.</td></tr>
+                <tr><td><span class="tag tag-alert">ALERT</span> <strong>Anthropic reveals Claude degradation cause</strong> — harness/prompt changes + caching bug <a class="ref" href="https://venturebeat.com/technology/mystery-solved-anthropic-reveals-changes-to-claudes-harnesses-and-operating-instructions-likely-caused-degradation" target="_blank">↗</a></td><td>Mystery solved: reasoning effort change + verbosity prompt caused quality drop. Fixed in v2.1.116.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Google Meet takes AI notes for in-person meetings</strong> <a class="ref" href="https://www.theverge.com/tech/916779/google-meet-ai-notetaker-in-person-meetings" target="_blank">↗</a></td><td>AI note-taking escapes video calls. Now works in physical rooms. Meeting culture permanently changed.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Chrome Enterprise detects unauthorized AI agent activity</strong> <a class="ref" href="https://www.theverge.com/tech/916709/chrome-enterprise-is-keeping-watch-for-unauthorized-ai-use" target="_blank">↗</a></td><td>Shadow AI agents inside enterprise extensions. Google ships detection for compromised AI in the browser.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Mythos found 271 bugs in Firefox 150</strong> — Mozilla calls it "every bit as capable" as elite researchers <a class="ref" href="https://blog.mozilla.org/en/firefox/ai-security-zero-day-vulnerabilities/" target="_blank">↗</a></td><td>AI security research delivers. But "no bugs that couldn't have been found by an elite human" — augmentation, not replacement.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Palantir employees debate "descent into fascism"</strong> — Slack logs leaked <a class="ref" href="https://arstechnica.com/tech-policy/2026/04/palantir-employees-are-talking-about-companys-descent-into-fascism/" target="_blank">↗</a></td><td>Internal crisis at defense AI firm. ICE and DOD contracts spark existential questions about AI's role in state power.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Vatican shaping AI rules faster than most institutions</strong> — bans AI for writing homilies <a class="ref" href="https://www.axios.com/2026/04/24/catholics-pope-vatican-artificial-intelligence" target="_blank">↗</a></td><td>2,000-year-old institution moves faster on AI governance than most tech companies. Framework + specific bans.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Maine governor vetoes data center moratorium</strong> <a class="ref" href="https://techcrunch.com/2026/04/25/maines-governor-vetoes-data-center-moratorium/" target="_blank">↗</a></td><td>AI infrastructure wins over local opposition. Data center buildout continues despite environmental concerns.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Oracle $16B data center financing</strong> — for OpenAI/Stargate campus <a class="ref" href="https://www.bloomberg.com/news/articles/2026-04-25/oracle-data-center-16-billion-financing-gets-over-the-line" target="_blank">↗</a></td><td>BofA selling $14B in bonds. Stargate's Michigan campus moves from concept to concrete (literally).</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Microsoft offers buyout for up to 7% of US employees</strong> <a class="ref" href="https://techcrunch.com/2026/04/23/microsoft-offers-buyout-for-up-to-7-of-u-s-employees/" target="_blank">↗</a></td><td>Forbes calls it a "soft landing." But the message is clear: AI changes what Microsoft needs from humans.</td></tr>
+                <tr><td><span class="tag tag-trending">TRENDING</span> <strong>Samsung mobile division may post first-ever annual loss</strong> — RAM crisis from AI demand <a class="ref" href="https://9to5google.com/2026/04/22/samsung-is-increasingly-worried-about-first-ever-mobile-division-loss-in-ram-crisis-report/" target="_blank">↗</a></td><td>AI's appetite for memory starving consumer devices. Mac minis flood eBay at markups. Hardware economics breaking.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Tesla increases capex to $25B</strong> — AI and autonomy investment <a class="ref" href="https://techcrunch.com/2026/04/22/tesla-just-increased-its-capex-to-25b-heres-where-the-money-is-going/" target="_blank">↗</a></td><td>Billions flowing into compute, training, robotics. Every company is now an AI infrastructure company.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Sierra buys YC-backed Fragment</strong> — Bret Taylor's AI customer service play grows <a class="ref" href="https://techcrunch.com/2026/04/23/bret-taylors-sierra-buys-yc-backed-ai-startup-fragment/" target="_blank">↗</a></td><td>AI agent consolidation through M&A. The customer service agent market is being bought up.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Era raises $11M for AI gadgets software platform</strong> <a class="ref" href="https://techcrunch.com/2026/04/23/era-computer-raises-11m-to-build-a-software-platform-for-ai-gadgets/" target="_blank">↗</a></td><td>AI hardware ecosystem needs its own OS layer. Post-smartphone devices getting software infrastructure.</td></tr>
+                <tr><td><span class="tag tag-new">NEW</span> <strong>Sony ping-pong robot beats top-ranked players</strong> <a class="ref" href="https://www.theverge.com/tech/916800/sony-ai-ace-ping-pong-table-tennis-robot-cameras" target="_blank">↗</a></td><td>Physical AI advances: from language to embodied intelligence. Real-world dexterity improving rapidly.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ====== SECTION 2: MEGA FUNDING & MARKET MOVES ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">💰</span>
+            <span class="section-title">Mega Funding & Market Moves</span>
+        </div>
+        <img class="section-banner-sm" src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=900&h=300&fit=crop&q=80" alt="Wall Street">
+
+        <div class="quick-take">
+            <strong>💡 Quick Take</strong>
+            This two-week period saw more capital committed to AI than most entire years. Google's $40B Anthropic bet, SpaceX's $60B Cursor option, Oracle's $16B Stargate financing, and Tesla's $25B capex — we're talking $140B+ in new AI commitments in 14 days. The message: the AI infrastructure buildout is not slowing down, it's <em>accelerating</em>.
+        </div>
+
+        <table>
+            <thead><tr><th>Deal</th><th>Amount</th><th>Significance</th></tr></thead>
+            <tbody>
+                <tr id="imp-16" data-imp-label="💰 Google → Anthropic $40B" class="highlight-row"><td><strong>Google → Anthropic</strong></td><td>$10B initial, up to $40B total</td><td>Largest single AI investment. Performance-gated tranches. Google diversifies beyond Gemini.</td></tr>
+                <tr class="highlight-row"><td><strong>Amazon → Anthropic</strong></td><td>$5B new + up to $20B more</td><td>Total Amazon commitment: $13B+ with $33B ceiling. Dual cloud backing gives Anthropic compute supremacy.</td></tr>
+                <tr class="highlight-row"><td><strong>SpaceX → Cursor (option)</strong></td><td>$60B acquisition option</td><td>Would be largest AI startup acquisition. Musk builds vertically integrated AI coding empire.</td></tr>
+                <tr><td><strong>Oracle Stargate Michigan</strong></td><td>$16B financing</td><td>BofA leads $14B bond sale. Physical infrastructure for OpenAI's next-gen data center campus.</td></tr>
+                <tr><td><strong>Tesla capex increase</strong></td><td>$25B total 2026 spend</td><td>AI training, autonomy compute, robotics. Every automaker is now an AI company.</td></tr>
+                <tr><td><strong>ComfyUI valuation</strong></td><td>$500M</td><td>Open-source AI workflow tool. Creator economy demands control over generation.</td></tr>
+                <tr><td><strong>Genki Robotics (Andy Rubin)</strong></td><td>$1B valuation, Series A</td><td>Android creator pivots to humanoid robots. Tokyo-based. Physical AI gets serious funding.</td></tr>
+                <tr><td><strong>Cyera acquires Ryft</strong></td><td>$100M-$130M</td><td>Data governance for enterprise AI deployment. Security acquisitions accelerating.</td></tr>
+                <tr><td><strong>Collov Labs Series A</strong></td><td>$23M</td><td>Visual AI for real-world actions. Camera input → AI reasoning → execution.</td></tr>
+                <tr><td><strong>Era (AI gadgets)</strong></td><td>$11M</td><td>Software platform for AI hardware devices. Post-smartphone infrastructure.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="market-impact">
+            <strong>📈 Market Signal:</strong> Google and Amazon are now <em>both</em> backing Anthropic with potential $60B+ combined. This isn't just investment — it's a compute arms race. Anthropic gets guaranteed access to both AWS and Google Cloud infrastructure. Every other AI company now faces a two-front compute disadvantage.
+        </div>
+    </div>
+
+    <!-- ====== SECTION 3: DEEP DIVE ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🔬</span>
+            <span class="section-title">Deep Dive — Google's $40B Bet on Anthropic</span>
+        </div>
+        <img class="section-banner-sm" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&h=300&fit=crop&q=80" alt="Corporate skyscrapers">
+
+        <p style="font-size:1.05em; margin-bottom:20px;">In the biggest single AI investment in history, Google is committing up to <strong>$40 billion</strong> in Anthropic — while Amazon simultaneously increased its own commitment. Together, these two cloud giants have now pledged over <strong>$65 billion</strong> in total capital to one company. Here's the timeline and what it means.</p>
+
+        <table>
+            <thead><tr><th>Date</th><th>Event</th></tr></thead>
+            <tbody>
+                <tr><td>Apr 6</td><td>Anthropic announces expanded partnership with Google + Broadcom for "multiple gigawatts" of next-gen compute</td></tr>
+                <tr><td>Apr 7</td><td>Project Glasswing launches — Anthropic, Apple, Google, Microsoft, Nvidia, others unite for critical software security</td></tr>
+                <tr><td>Apr 14</td><td>Anthropic appoints Vas Narasimhan (former Novartis CEO) to Board of Directors</td></tr>
+                <tr><td>Apr 16</td><td>Claude Opus 4.7 launches — strongest coding, agents, vision performance</td></tr>
+                <tr><td>Apr 17</td><td>Claude Design by Anthropic Labs launches — enters visual creation market</td></tr>
+                <tr><td>Apr 20</td><td>Amazon announces $5B new investment + 5GW compute expansion for Anthropic</td></tr>
+                <tr><td>Apr 22</td><td>Mythos security breach — unauthorized access to restricted cybersecurity model</td></tr>
+                <tr><td>Apr 24</td><td><strong>Bloomberg: Google to invest $10B initially, up to $40B pending performance targets</strong></td></tr>
+                <tr><td>Apr 24</td><td>Anthropic reveals Claude degradation root cause (harness changes), fixes deployed</td></tr>
+                <tr><td>Apr 25</td><td>Project Deal revealed — agent-on-agent commerce marketplace where Claude agents trade real goods</td></tr>
+                <tr><td>Apr 26</td><td>Bay Area home listing requires Anthropic equity as payment — signal of perceived value</td></tr>
+            </tbody>
+        </table>
+
+        <div class="alert-box">
+            <h4>⚠️ Expert Analysis: What This Means</h4>
+            <p><strong>The Dual-Cloud Strategy:</strong> Anthropic is the only frontier AI company backed by <em>both</em> major cloud providers. This gives them guaranteed compute access across AWS and Google Cloud — an advantage no competitor can match. OpenAI is tied to Microsoft/Azure. Meta is self-sufficient. But Anthropic can leverage two hyperscaler ecosystems simultaneously.</p>
+            <p style="margin-top:12px;"><strong>The Valuation Signal:</strong> At $40B from Google alone, Anthropic's implied valuation exceeds $100B. A Bay Area home listing literally requires Anthropic equity. This is either prescient or peak bubble — possibly both.</p>
+            <p style="margin-top:12px;"><strong>The Product Velocity:</strong> In the same 2-week window, Anthropic shipped Opus 4.7, Claude Design, personal app connectors, Project Deal, and the NEC Japan partnership. They're not just raising capital — they're deploying it at speed.</p>
+        </div>
+
+        <div class="market-impact">
+            <strong>🎯 What This Means for Your Team:</strong> If you're building on Anthropic APIs, your platform partner just got $65B in backing. Stability assured. If you're building on OpenAI, note that their response (GPT-5.5, Workspace Agents, Images 2.0) came within days. Competition benefits everyone. Either way: budget for premium AI tiers. The free era is ending.
+        </div>
+    </div>
+
+    <!-- ====== SECTION 4: PRODUCT LAUNCHES ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🛠️</span>
+            <span class="section-title">Product Launches & Tool Spotlight</span>
+        </div>
+
+        <!-- Featured Tool 1: GPT-5.5 -->
+        <div class="tool-card" id="imp-17" data-imp-label="🧠 GPT-5.5 Deep Look">
+            <h3>🧠 GPT-5.5 by OpenAI</h3>
+            <p class="subtitle">The "smartest and most intuitive" model — SOTA across 14 benchmarks</p>
+            <div class="tool-features">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Beats Claude Mythos Preview on Terminal-Bench 2.0 (narrowly)</li>
+                    <li>More compute-efficient — better price/performance ratio</li>
+                    <li>Stronger at coding, multi-step reasoning, and creative tasks</li>
+                    <li>Bio Bug Bounty launched alongside for safety testing</li>
+                    <li>System Card published with safety evaluation details</li>
+                </ul>
+            </div>
+            <div class="demo-ideas">
+                <h4>💡 Try This</h4>
+                <ul>
+                    <li>Test GPT-5.5 vs Opus 4.7 on your hardest coding tasks — compare quality and speed</li>
+                    <li>Use Workspace Agents to create a team bot connected to your Slack + Salesforce</li>
+                </ul>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank">openai.com/index/introducing-gpt-5-5</a></div>
+        </div>
+
+        <!-- Featured Tool 2: Claude Design -->
+        <div class="tool-card" id="imp-18" data-imp-label="🎨 Claude Design">
+            <h3>🎨 Claude Design by Anthropic Labs</h3>
+            <p class="subtitle">Visual creation meets AI reasoning — designs, prototypes, slides, one-pagers</p>
+            <div class="tool-features">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Create polished visual work directly in conversation with Claude</li>
+                    <li>Prototypes, presentations, marketing materials, data visualizations</li>
+                    <li>Iterative refinement — describe changes in natural language</li>
+                    <li>Anthropic Labs product (experimental/beta category)</li>
+                </ul>
+            </div>
+            <div class="demo-ideas">
+                <h4>💡 Try This</h4>
+                <ul>
+                    <li>Ask Claude to design a one-pager for your next team initiative</li>
+                    <li>Create a presentation deck by describing each slide in conversation</li>
+                </ul>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">anthropic.com/news/claude-design-anthropic-labs</a></div>
+        </div>
+
+        <!-- Featured Tool 3: Microsoft Vibe Working -->
+        <div class="tool-card" id="imp-19" data-imp-label="📊 Vibe Working">
+            <h3>📊 Microsoft "Vibe Working" — Agent Mode for Office</h3>
+            <p class="subtitle">AI agents inside Word, Excel, and PowerPoint — "vibe coding" meets productivity</p>
+            <div class="tool-features">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Agent mode in Word: draft, research, and iterate documents autonomously</li>
+                    <li>Agent mode in Excel: analyze, transform, and visualize data with natural language</li>
+                    <li>Agent mode in PowerPoint: build presentations from briefs</li>
+                    <li>Part of Google Cloud Next week's competitive response</li>
+                </ul>
+            </div>
+            <div class="demo-ideas">
+                <h4>💡 Try This</h4>
+                <ul>
+                    <li>Open Excel with agent mode and ask it to analyze your last quarter's data</li>
+                    <li>Use Word agent mode to draft an RFC from bullet points</li>
+                </ul>
+            </div>
+            <div class="link-box"><strong>🔗</strong> <a href="https://www.theverge.com/news/917328/microsoft-agent-mode-vibe-working-office-word-excel-powerpoint" target="_blank">theverge.com — Microsoft Vibe Working</a></div>
+        </div>
+
+        <!-- Other Notable Launches -->
+        <h3 style="margin-top:30px; margin-bottom:15px;">Other Notable Launches</h3>
+        <table>
+            <thead><tr><th>Product</th><th>What It Does</th></tr></thead>
+            <tbody>
+                <tr><td><strong>ChatGPT Images 2.0</strong></td><td>Visual reasoning + generation. Solves real-world tasks with images. OpenAI reclaims image generation crown.</td></tr>
+                <tr><td><strong>OpenAI Privacy Filter</strong></td><td>Research product for privacy-preserving AI. Enterprise compliance gets easier.</td></tr>
+                <tr><td><strong>OpenAI Workspace Agents</strong></td><td>Custom bots for teams — plug into Slack, Salesforce, act across channels autonomously.</td></tr>
+                <tr><td><strong>Claude Opus 4.7</strong></td><td>Strongest Anthropic model: coding, agents, vision, multi-step. Greater consistency.</td></tr>
+                <tr><td><strong>Claude App Connectors</strong></td><td>Claude connects to Spotify, Uber Eats, TurboTax. Acts on your behalf across services.</td></tr>
+                <tr><td><strong>DeepSeek V4 (preview)</strong></td><td>Near frontier quality at 1/6th cost. China's efficiency play continues to impress.</td></tr>
+                <tr><td><strong>Salesforce Agentforce Vibes 2.0</strong></td><td>Skills + Abilities framework solves agent context overload. Enterprise agents get smarter.</td></tr>
+                <tr><td><strong>Spotify AI Labels</strong></td><td>Voluntary disclosure when AI is used in songs. DistroKid first partner. Industry standard emerging.</td></tr>
+                <tr><td><strong>Nothing Essential Voice</strong></td><td>AI dictation in 100+ languages. Speech-to-text with translation. Voice-first interfaces grow.</td></tr>
+                <tr><td><strong>Chrome Enterprise AI Security</strong></td><td>Detects unauthorized AI agent activity in browser extensions. Shadow AI defense.</td></tr>
+                <tr><td><strong>Google Meet AI Notes (in-person)</strong></td><td>AI notetaker now works for physical meetings, not just video calls.</td></tr>
+                <tr><td><strong>Noscroll</strong></td><td>AI bot that doomscrolls for you and delivers a summary. Peak AI-as-filter product.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ====== SECTION 5: SAASPOCALYPSE & LAYOFFS ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">📉</span>
+            <span class="section-title">SaaSpocalypse & AI Layoffs</span>
+        </div>
+
+        <div class="quick-take">
+            <strong>💡 Quick Take</strong>
+            Forbes declared "SaaSpocalypse is dead" this week — arguing the future of SaaS <em>is</em> still SaaS, just AI-native SaaS. But the bodies keep piling up: Meta cuts 8,000, Microsoft offers buyouts to 7%, and the AI inequality gap data is brutal. The question isn't whether AI replaces jobs — it's whether new AI-native jobs emerge fast enough to absorb the displaced.
+        </div>
+
+        <h3>AI-Cited Layoffs This Period</h3>
+        <table>
+            <thead><tr><th>Company</th><th>Cuts</th><th>What They Said</th></tr></thead>
+            <tbody>
+                <tr id="imp-20" data-imp-label="📉 Meta 8,000 Cut" class="highlight-row"><td><strong>Meta</strong></td><td>10% / ~8,000</td><td>Restructuring around AI. Simultaneously tracking employees to train agents and buying millions of Amazon CPUs.</td></tr>
+                <tr class="highlight-row"><td><strong>Microsoft</strong></td><td>Buyout for up to 7% of US staff</td><td>"Soft landing" approach. Forbes notes it's voluntary but the message is clear: AI changes headcount needs.</td></tr>
+                <tr><td><strong>Thinking Machines Lab</strong></td><td>Hiring (Meta's loss)</td><td>Mira Murati-adjacent startup gains from Meta layoffs. Talent redistribution to AI-native startups.</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:25px;">AI-Native Companies Thriving</h3>
+        <table>
+            <thead><tr><th>Company</th><th>Signal</th><th>Counter-Narrative</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Anthropic</strong></td><td>$65B+ committed capital</td><td>More funding than most public companies' market cap. Hiring aggressively.</td></tr>
+                <tr><td><strong>Cursor</strong></td><td>$60B acquisition offer</td><td>AI coding tool so valuable SpaceX wants it. From startup to mega-acquisition in 2 years.</td></tr>
+                <tr><td><strong>ComfyUI</strong></td><td>$500M valuation</td><td>Open-source AI tool hits near-unicorn. Creator economy demands control.</td></tr>
+                <tr><td><strong>Genki Robotics</strong></td><td>$1B valuation</td><td>Andy Rubin's new play. Physical AI + robotics capital flooding in.</td></tr>
+                <tr><td><strong>Andon Market</strong></td><td>First AI-run store</td><td>Claude Sonnet 4.6 manages entire retail operation. Proof of concept for autonomous business.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="market-impact">
+            <strong>📊 The Numbers:</strong> MIT Nobel laureate Daron Acemoglu: <em>"AI is going to increase inequality between labour and capital. That is almost for sure."</em> FT survey confirms: AI benefits accrue to those with education, quantitative skills, and computer familiarity. For everyone else? "Setting us up for a shitshow."
+        </div>
+    </div>
+
+    <!-- ====== SECTION 6: SAFETY & GOVERNANCE ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🛡️</span>
+            <span class="section-title">Safety & Governance</span>
+        </div>
+        <img class="section-banner-sm" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=900&h=300&fit=crop&q=80" alt="Lady Justice">
+
+        <table>
+            <thead><tr><th>Issue</th><th>What Happened</th><th>Lesson</th></tr></thead>
+            <tbody>
+                <tr id="imp-21" data-imp-label="🛡️ Mythos Unauthorized Access"><td><strong>Mythos Breach</strong></td><td>Unauthorized group gained access to Anthropic's restricted cybersecurity model. CISA was left out of the rollout. Discord community identified the breach.</td><td>"Too dangerous to release" doesn't mean "impossible to steal." Access controls must match capability levels.</td></tr>
+                <tr id="imp-22" data-imp-label="⚖️ Sullivan & Cromwell AI Fail"><td><strong>Sullivan & Cromwell Hallucinations</strong></td><td>Trump's law firm filed documents with 3 pages of fake AI-generated case citations. Apologized to federal judge.</td><td>Elite firms are not immune to AI failure. Verification processes must be mandatory, not optional.</td></tr>
+                <tr><td><strong>ChatGPT / School Shooting</strong></td><td>Tumbler Ridge shooting suspect described violence to ChatGPT. OpenAI banned account but didn't alert law enforcement. Altman apologized.</td><td>AI companies face impossible dilemma: privacy vs. public safety. No clear framework exists for threat escalation.</td></tr>
+                <tr><td><strong>DOJ vs. Colorado AI Law</strong></td><td>DOJ joined xAI lawsuit claiming Colorado's "reasonable care" AI discrimination law violates Equal Protection Clause.</td><td>Federal government now actively opposing state AI regulation. Regulatory landscape fracturing along political lines.</td></tr>
+                <tr><td><strong>OpenAI Super PAC AI News</strong></td><td>OpenAI-linked super PAC appears to fund "news" site (Acutus Wire) staffed by AI bot reporters. Financial trail exposed.</td><td>AI propaganda infrastructure emerging. Information environment degrading. Trust becomes the ultimate commodity.</td></tr>
+                <tr><td><strong>Elizabeth Warren Financial Warning</strong></td><td>Senator warns AI concentration could trigger systemic financial crisis. AI as infrastructure means AI failure is systemic.</td><td>Concentration risk is real. When one model powers millions of decisions, a single failure cascades everywhere.</td></tr>
+                <tr><td><strong>RFK Jr. / FDA</strong></td><td>Health secretary claims AI could make FDA "irrelevant" at congressional hearing. Suggests personalized AI medicine for all.</td><td>AI being used as deregulation justification. Technology claims should not bypass safety evaluation processes.</td></tr>
+                <tr><td><strong>Palantir Internal Crisis</strong></td><td>Slack logs and staff interviews reveal employee debates over ICE/DOD contracts during Trump's second term.</td><td>AI workers face moral reckoning. Defense AI companies must have clear ethical frameworks or lose talent.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="alert-box">
+            <h4>🔒 Expert Analysis</h4>
+            <p>This period's safety landscape reveals a pattern: <strong>AI models are outpacing our governance structures</strong>. Mythos was "too dangerous to release" — and got stolen anyway. Sullivan & Cromwell had policies — and ignored them. Colorado passed a law — and the DOJ is suing to block it. The Vatican banned AI homilies in weeks while Congress still debates basic frameworks. Speed of AI development vs. speed of governance is a growing chasm.</p>
+        </div>
+
+        <div style="background:#e8f5e9; padding:20px; border-radius:10px; margin-top:20px;">
+            <h4 style="color:#2e7d32; margin-bottom:12px;">✅ Governance Checklist for Your Organization</h4>
+            <ul style="margin-left:20px;">
+                <li>☐ Do you have a policy for AI-generated content review before external submission? (Sullivan & Cromwell lesson)</li>
+                <li>☐ Are your AI model access controls audited regularly? (Mythos breach lesson)</li>
+                <li>☐ Do you have a threat escalation framework for AI-detected harmful content? (Tumbler Ridge lesson)</li>
+                <li>☐ Are you tracking state-by-state AI regulation changes? (Colorado law lesson)</li>
+                <li>☐ Do employees know what data is used to train AI systems? (Meta employee tracking lesson)</li>
+                <li>☐ Is your AI vendor concentration risk assessed? (Warren systemic risk lesson)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ====== SECTION 7: DISCUSSION & ACTION ITEMS ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">💬</span>
+            <span class="section-title">Discussion & Action Items</span>
+        </div>
+
+        <div class="discussion-card">
+            <h4>🗣️ Discussion Prompts</h4>
+            <ol>
+                <li><strong>The $140B Week:</strong> Google, Amazon, SpaceX, Oracle, and Tesla committed $140B+ to AI in 14 days. Are we in a sustainable infrastructure buildout or a capital allocation bubble?<br><em>Follow-up: What happens if DeepSeek V4 proves you can match frontier performance at 1/6th the cost?</em></li>
+                <li><strong>The 75% Question:</strong> Google says 75% of new code is AI-generated. Anthropic says 70-90%. If AI writes most of the code, what does a "software engineer" actually do in 2027?<br><em>Follow-up: Should your team measure AI-assisted productivity, or would that create perverse incentives?</em></li>
+                <li><strong>The Mythos Paradox:</strong> Anthropic built a model "too dangerous to release" — and it got stolen. Meanwhile, it found 271 real Firefox bugs. Should powerful security AI be open or locked down?<br><em>Follow-up: How do we balance "AI for defense" with "AI that can be weaponized"?</em></li>
+                <li><strong>The Agent Economy:</strong> Anthropic's Project Deal has Claude agents buying/selling real goods. OpenAI's Workspace Agents act autonomously in Slack. Who's liable when an AI agent makes a bad deal?<br><em>Follow-up: Would you trust an AI agent to negotiate on your behalf? What guardrails would you need?</em></li>
+            </ol>
+        </div>
+
+        <h3 style="margin-top:25px; margin-bottom:15px;">🎯 Action Items — Do This Week</h3>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+            <div style="background:#e3f2fd; padding:18px; border-radius:10px; border-left:4px solid #1565c0;">
+                <strong style="color:#1565c0;">1. Test GPT-5.5 vs Opus 4.7</strong>
+                <p style="font-size:0.9em; margin-top:8px;">Run your 3 hardest tasks through both. Compare quality, speed, and cost. Document which wins for your specific use cases.</p>
+            </div>
+            <div style="background:#e8f5e9; padding:18px; border-radius:10px; border-left:4px solid #2e7d32;">
+                <strong style="color:#2e7d32;">2. Audit AI Content Review Process</strong>
+                <p style="font-size:0.9em; margin-top:8px;">After Sullivan & Cromwell's 3-page hallucination disaster, verify your team has mandatory human review for all AI-generated external content.</p>
+            </div>
+            <div style="background:#fff3e0; padding:18px; border-radius:10px; border-left:4px solid #e65100;">
+                <strong style="color:#e65100;">3. Evaluate Workspace Agents</strong>
+                <p style="font-size:0.9em; margin-top:8px;">OpenAI's new Workspace Agents and Microsoft's Vibe Working are live. Identify one team workflow that could benefit from always-on AI agents.</p>
+            </div>
+            <div style="background:#f3e5f5; padding:18px; border-radius:10px; border-left:4px solid #7b1fa2;">
+                <strong style="color:#7b1fa2;">4. Budget for Premium AI Tiers</strong>
+                <p style="font-size:0.9em; margin-top:8px;">The AI monetization era is here. Free tiers are shrinking. Assess your team's AI usage and budget for paid plans before rate limits hit.</p>
+            </div>
+            <div style="background:#ffebee; padding:18px; border-radius:10px; border-left:4px solid #c62828;">
+                <strong style="color:#c62828;">5. Review AI Access Controls</strong>
+                <p style="font-size:0.9em; margin-top:8px;">Mythos got stolen. Chrome Enterprise now detects unauthorized AI. Audit what AI tools your team uses and ensure proper access management.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SECTION 8: LLM MODEL LANDSCAPE ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🧠</span>
+            <span class="section-title">LLM Model Landscape — Interactive Heatmap</span>
+        </div>
+        <p style="margin-bottom:20px; color:#555;">Hover over any cell to see details. Click to visit the product. Updated for April 27, 2026.</p>
+
+        <table class="hm-table">
+            <thead>
+                <tr>
+                    <th class="rh">Model</th>
+                    <th style="background:#1a73e8;">💬 Chat</th>
+                    <th style="background:#4f46e5;">💻 Code</th>
+                    <th style="background:#e8356d;">🎨 Image</th>
+                    <th style="background:#d93025;">🎬 Video</th>
+                    <th style="background:#e37400;">🎵 Audio</th>
+                    <th style="background:#0b6623;">🧠 Reason</th>
+                    <th style="background:#6e5494;">📐 Embed</th>
+                    <th style="background:#0969da;">🤖 Agent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="rh">GPT-5.5<br><small>OpenAI</small></th>
+                    <td><a href="https://chatgpt.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="GPT-5.5" data-tip-by="OpenAI · Chat" data-tip-metric="SOTA across 14 benchmarks" data-tip-detail="Smartest and most intuitive model. Beats Claude Mythos on Terminal-Bench 2.0. More efficient than predecessors." data-tip-cta="Try GPT-5.5 in ChatGPT →">★ GPT-5.5</a></td>
+                    <td><a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="GPT-5.5" data-tip-by="OpenAI · Code" data-tip-metric="Top coding benchmark scores" data-tip-detail="Significantly better at coding than GPT-5.4. Powers Workspace Agents for autonomous programming." data-tip-cta="See benchmarks →">★ Code</a></td>
+                    <td><a href="https://openai.com/index/introducing-chatgpt-images-2-0/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="ChatGPT Images 2.0" data-tip-by="OpenAI · Image" data-tip-metric="Visual reasoning + generation" data-tip-detail="Images 2.0 reclaims the crown. Visual reasoning to solve real-world tasks, not just generation." data-tip-cta="Try Images 2.0 →">★ Img 2.0</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="GPT-5.5" data-tip-by="OpenAI · Audio" data-tip-metric="Advanced voice mode" data-tip-detail="Voice capabilities included. Real-time conversation with emotional understanding." data-tip-cta="Try voice mode →">Voice</a></td>
+                    <td><a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="GPT-5.5" data-tip-by="OpenAI · Reasoning" data-tip-metric="SOTA multi-step reasoning" data-tip-detail="Chain-of-thought, math, science. Bio Bug Bounty safety testing. Structured thinking capabilities." data-tip-cta="Explore reasoning →">★ Think</a></td>
+                    <td><a href="https://platform.openai.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="GPT-5.5 Embeddings" data-tip-by="OpenAI · Embeddings" data-tip-metric="Best-in-class RAG" data-tip-detail="text-embedding-3-large remains the standard for enterprise RAG and semantic search." data-tip-cta="API docs →">★ Embed</a></td>
+                    <td><a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Workspace Agents" data-tip-by="OpenAI · Agents" data-tip-metric="Plug into Slack, Salesforce" data-tip-detail="Custom team bots that act autonomously across enterprise tools. Successor to custom GPTs." data-tip-cta="Build an agent →">★ Agents</a></td>
+                </tr>
+                <tr>
+                    <th class="rh">Claude Opus 4.7<br><small>Anthropic</small></th>
+                    <td><a href="https://claude.ai/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Opus 4.7" data-tip-by="Anthropic · Chat" data-tip-metric="Strongest Anthropic model" data-tip-detail="Greater thoroughness and consistency. Best for complex, nuanced conversations requiring depth." data-tip-cta="Try Claude →">★ Opus</a></td>
+                    <td><a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Opus 4.7" data-tip-by="Anthropic · Code" data-tip-metric="70-90% of Anthropic's code" data-tip-detail="Claude Code writes most of Anthropic's own code. Stronger coding in 4.7 with multi-step agent capabilities." data-tip-cta="Claude Code →">★ Code</a></td>
+                    <td><a href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Claude Design" data-tip-by="Anthropic Labs · Image" data-tip-metric="New — visual creation tool" data-tip-detail="Claude Design creates prototypes, slides, one-pagers. Not image generation per se, but visual design." data-tip-cta="Try Claude Design →">Design</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://claude.ai/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Opus 4.7" data-tip-by="Anthropic · Reasoning" data-tip-metric="Extended thinking mode" data-tip-detail="Deep reasoning with chain-of-thought. Competitive with GPT-5.5 on complex analysis tasks." data-tip-cta="Try extended thinking →">★ Think</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://claude.ai/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Agents" data-tip-by="Anthropic · Agents" data-tip-metric="App connectors + Project Deal" data-tip-detail="Connects to Spotify, Uber Eats, TurboTax. Project Deal: agents negotiate and trade real goods autonomously." data-tip-cta="See connectors →">★ Agent</a></td>
+                </tr>
+                <tr>
+                    <th class="rh">Gemini 2.5<br><small>Google DeepMind</small></th>
+                    <td><a href="https://gemini.google.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Gemini 2.5" data-tip-by="Google · Chat" data-tip-metric="Powers upgraded Siri" data-tip-detail="Google Cloud Next revealed Gemini now powers Apple's Siri upgrade. Broad multimodal capabilities." data-tip-cta="Try Gemini →">Gemini</a></td>
+                    <td><a href="https://gemini.google.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Gemini 2.5" data-tip-by="Google · Code" data-tip-metric="75% of Google's code" data-tip-detail="Google says 75% of all new code is AI-generated (up from 50%). Strike team catching up to Anthropic." data-tip-cta="Code with Gemini →">75%!</a></td>
+                    <td><a href="https://gemini.google.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Gemini 2.5" data-tip-by="Google · Image" data-tip-metric="Imagen 3 integration" data-tip-detail="Multimodal generation and understanding. Street View AI tools for spatial imagery." data-tip-cta="Generate images →">Imagen</a></td>
+                    <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Veo 2" data-tip-by="Google DeepMind · Video" data-tip-metric="High-quality video gen" data-tip-detail="Video generation capabilities via Veo 2. Competitive with market but not dominant." data-tip-cta="See Veo →">Veo 2</a></td>
+                    <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Gemini Audio" data-tip-by="Google · Audio" data-tip-metric="Multimodal audio" data-tip-detail="Audio understanding and generation. Part of Gemini's multimodal stack." data-tip-cta="Explore →">Audio</a></td>
+                    <td><a href="https://gemini.google.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Gemini 2.5" data-tip-by="Google · Reasoning" data-tip-metric="25% of global AI compute" data-tip-detail="Backed by 3.8M TPUs + 1.3M GPUs. 8th-gen TPUs separate training from agentic inference." data-tip-cta="TPU details →">Strong</a></td>
+                    <td><a href="https://cloud.google.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Gemini Embeddings" data-tip-by="Google · Embeddings" data-tip-metric="Enterprise-grade" data-tip-detail="Vertex AI embeddings for enterprise search and RAG. Competitive with OpenAI offerings." data-tip-cta="Vertex AI →">Embed</a></td>
+                    <td><a href="https://cloud.google.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Google Agents" data-tip-by="Google · Agents" data-tip-metric="Agent stack split" data-tip-detail="Google and AWS taking different agent approaches. Google focuses on control, AI auto-browse in Chrome." data-tip-cta="Cloud agents →">Agent</a></td>
+                </tr>
+                <tr>
+                    <th class="rh">DeepSeek V4<br><small>DeepSeek</small></th>
+                    <td><a href="https://chat.deepseek.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="DeepSeek V4" data-tip-by="DeepSeek · Chat" data-tip-metric="1/6th cost of GPT-5.5" data-tip-detail="Near SOTA intelligence at a fraction of the price. China's efficiency play shakes up the market." data-tip-cta="Try DeepSeek →">V4</a></td>
+                    <td><a href="https://chat.deepseek.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="DeepSeek V4" data-tip-by="DeepSeek · Code" data-tip-metric="Closes the gap" data-tip-detail="Previewed as closing the gap with frontier code models. Open weights model democratizes access." data-tip-cta="Code with DeepSeek →">Code</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://chat.deepseek.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="DeepSeek V4" data-tip-by="DeepSeek · Reasoning" data-tip-metric="Near frontier reasoning" data-tip-detail="Strong chain-of-thought at 1/6th the cost. The efficiency argument for open models." data-tip-cta="Try reasoning →">Think</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                </tr>
+                <tr>
+                    <th class="rh">Llama 4<br><small>Meta</small></th>
+                    <td><a href="https://ai.meta.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Llama 4" data-tip-by="Meta · Chat" data-tip-metric="Open source leader" data-tip-detail="Meta's open-weights model. But Meta laid off 8,000 and is tracking employees to train agents." data-tip-cta="Meta AI →">Llama 4</a></td>
+                    <td><a href="https://ai.meta.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Llama 4" data-tip-by="Meta · Code" data-tip-metric="Open-weights coding" data-tip-detail="Solid coding capabilities. Community-driven improvements through open weights." data-tip-cta="GitHub →">Code</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://ai.meta.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Llama 4" data-tip-by="Meta · Reasoning" data-tip-metric="Good open-source option" data-tip-detail="Competitive reasoning for open-source. Running on millions of Amazon CPUs (new deal)." data-tip-cta="Try Llama →">Reason</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://ai.meta.com/" target="_blank" rel="noopener" class="hm-cell t2" data-tip-name="Meta Agents" data-tip-by="Meta · Agents" data-tip-metric="Employee-trained agents" data-tip-detail="Meta tracking employee workflows to train AI agents. Workforce as training moat." data-tip-cta="Meta AI →">Rising</a></td>
+                </tr>
+                <tr>
+                    <th class="rh">MJ V7<br><small>Midjourney</small></th>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://www.midjourney.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Midjourney V7" data-tip-by="Midjourney · Image" data-tip-metric="Creative image leader" data-tip-detail="Still the artist's choice for creative image generation. But ChatGPT Images 2.0 closing fast." data-tip-cta="Create with MJ →">★ MJ V7</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                </tr>
+                <tr>
+                    <th class="rh">ElevenLabs<br><small>ElevenLabs</small></th>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://elevenlabs.io/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="ElevenLabs" data-tip-by="ElevenLabs · Audio" data-tip-metric="Expressive Mode + 70 languages" data-tip-detail="ElevenAgents with Expressive Mode — most human-sounding AI voice. Ultra-low latency. Voice cloning." data-tip-cta="Try ElevenLabs →">★ Voice</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                </tr>
+                <tr>
+                    <th class="rh">Suno v5.5<br><small>Suno</small></th>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://suno.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Suno v5.5" data-tip-by="Suno · Music" data-tip-metric="Now on Android Auto" data-tip-detail="AI music generation leader. Now available on Android Auto, CarPlay coming. Stream your AI music while driving." data-tip-cta="Make music →">★ Music</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                </tr>
+                <tr>
+                    <th class="rh">Mythos<br><small>Anthropic</small></th>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://www.anthropic.com/glasswing" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Mythos" data-tip-by="Anthropic · Security Code" data-tip-metric="271 Firefox bugs found" data-tip-detail="Restricted cybersecurity model. Found 271 bugs in Firefox 150. Breached by unauthorized group this period." data-tip-cta="Project Glasswing →">★ CySec</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><a href="https://www.anthropic.com/glasswing" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Mythos" data-tip-by="Anthropic · Reasoning" data-tip-metric="Elite researcher-level" data-tip-detail="Restricted to Project Glasswing partners. Too dangerous for general release. Security-focused reasoning." data-tip-cta="Glasswing info →">★ Sec</a></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                    <td><span class="hm-cell t0 no-link">—</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="hm-legend">
+            <span><span class="hm-legend-dot" style="background:#0b6623;"></span> Leader</span>
+            <span><span class="hm-legend-dot" style="background:#1a73e8;"></span> Strong</span>
+            <span><span class="hm-legend-dot" style="background:#0e7c86;"></span> Good</span>
+            <span><span class="hm-legend-dot" style="background:#c65102;"></span> Rising</span>
+            <span><span class="hm-legend-dot" style="background:#f0f0f0; border:1px solid #ddd;"></span> N/A</span>
+        </div>
+
+        <!-- Category Cards -->
+        <h3 style="margin-top:35px; margin-bottom:20px;">📂 Category Breakdown</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:18px;">
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #1a73e8;">
+                <h4 style="color:#1a73e8; margin-bottom:12px;">💬 Chat & General Assistants</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>GPT-5.5</strong> — OpenAI — SOTA across 14 benchmarks, "smartest and most intuitive"</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Claude Opus 4.7</strong> — Anthropic — Greatest thoroughness and consistency</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>Gemini 2.5</strong> — Google — Powers the new Siri. Broad multimodal</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>DeepSeek V4</strong> — DeepSeek — Near SOTA at 1/6th the cost</p>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #4f46e5;">
+                <h4 style="color:#4f46e5; margin-bottom:12px;">💻 Coding & Development</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>GPT-5.5</strong> — OpenAI — Top coding benchmarks, Workspace Agents</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Claude Opus 4.7</strong> — Anthropic — Writes 70-90% of Anthropic's own code</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Cursor</strong> — (SpaceX $60B option) — Most popular AI code editor</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>DeepSeek V4</strong> — DeepSeek — Closing the gap on frontier coding</p>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #e8356d;">
+                <h4 style="color:#e8356d; margin-bottom:12px;">🎨 Image Generation</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Midjourney V7</strong> — Still the creative artist's choice</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>ChatGPT Images 2.0</strong> — OpenAI — Visual reasoning + generation combined</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>Gemini/Imagen 3</strong> — Google — Integrated multimodal image capabilities</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#c65102; border-radius:50%; margin-right:6px;"></span><strong>ComfyUI</strong> — $500M — Open-source workflow for controlled generation</p>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #d93025;">
+                <h4 style="color:#d93025; margin-bottom:12px;">🎬 Video Generation</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0e7c86; border-radius:50%; margin-right:6px;"></span><strong>Veo 2</strong> — Google DeepMind — High-quality video generation</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0e7c86; border-radius:50%; margin-right:6px;"></span><strong>Kling</strong> — Kuaishou — Chinese video gen leader</p>
+                <p style="font-size:0.88em; color:#888;"><em>Note: OpenAI's Sora remains discontinued since March 2026</em></p>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #e37400;">
+                <h4 style="color:#e37400; margin-bottom:12px;">🎵 Audio & Music</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>ElevenLabs</strong> — Expressive Mode, 70+ languages, ElevenAgents</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Suno v5.5</strong> — AI music gen, now on Android Auto</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>GPT-5.5 Voice</strong> — OpenAI — Advanced voice conversation mode</p>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #0b6623;">
+                <h4 style="color:#0b6623; margin-bottom:12px;">🧠 Reasoning & Research</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>GPT-5.5</strong> — OpenAI — SOTA multi-step reasoning</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Claude Opus 4.7</strong> — Anthropic — Extended thinking, deep analysis</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Mythos</strong> — Anthropic — Restricted. Elite-level security reasoning</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>DeepSeek V4</strong> — Near frontier at 1/6th cost</p>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #6e5494;">
+                <h4 style="color:#6e5494; margin-bottom:12px;">📐 Embeddings & Search</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>OpenAI text-embedding-3</strong> — Industry standard for RAG</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>Google Vertex AI</strong> — Enterprise embedding service</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0e7c86; border-radius:50%; margin-right:6px;"></span><strong>Cohere Embed</strong> — Now merging with Aleph Alpha for European scale</p>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-top:4px solid #0969da;">
+                <h4 style="color:#0969da; margin-bottom:12px;">🤖 Agents & Automation</h4>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>OpenAI Workspace Agents</strong> — Plug into Slack, Salesforce, act autonomously</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#0b6623; border-radius:50%; margin-right:6px;"></span><strong>Claude Agents</strong> — App connectors + Project Deal commerce</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#1a73e8; border-radius:50%; margin-right:6px;"></span><strong>Google Chrome Auto-Browse</strong> — Multi-step browser automation</p>
+                <p style="font-size:0.88em;"><span style="display:inline-block; width:10px; height:10px; background:#c65102; border-radius:50%; margin-right:6px;"></span><strong>BAND Orchestrator</strong> — Universal agent-to-agent coordination</p>
+            </div>
+        </div>
+
+        <!-- At-a-Glance Table -->
+        <h3 style="margin-top:30px; margin-bottom:15px;">📋 At-a-Glance: Top Model per Category</h3>
+        <table>
+            <thead><tr style="background:#0b6623;"><th style="background:#0b6623;">Category</th><th style="background:#0b6623;">Top Model(s)</th><th style="background:#0b6623;">Why</th></tr></thead>
+            <tbody>
+                <tr><td>💬 Chat</td><td>GPT-5.5 / Claude Opus 4.7</td><td>Both SOTA — GPT-5.5 wins benchmarks, Opus 4.7 wins depth and consistency</td></tr>
+                <tr><td>💻 Code</td><td>GPT-5.5 / Claude Opus 4.7</td><td>Neck and neck. 75% of Google's code is AI. Cursor valued at $60B.</td></tr>
+                <tr><td>🎨 Image</td><td>MJ V7 / ChatGPT Images 2.0</td><td>MJ for creativity, GPT for reasoning + generation combined</td></tr>
+                <tr><td>🎬 Video</td><td>Veo 2 (Google)</td><td>Sora dead. Veo 2 leads by default. Market still fragmented.</td></tr>
+                <tr><td>🎵 Audio</td><td>ElevenLabs / Suno v5.5</td><td>ElevenLabs for voice (Expressive Mode), Suno for music (Android Auto)</td></tr>
+                <tr><td>🧠 Reasoning</td><td>GPT-5.5</td><td>SOTA on benchmarks. DeepSeek V4 offers 1/6th cost alternative.</td></tr>
+                <tr><td>📐 Embeddings</td><td>OpenAI text-embedding-3</td><td>Industry standard. Google Vertex competitive for GCP shops.</td></tr>
+                <tr><td>🤖 Agents</td><td>OpenAI Workspace / Claude</td><td>Both shipping real enterprise agent products. Stanford says single > swarm.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ====== QUICK REFERENCE LINKS ====== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🔗</span>
+            <span class="section-title">Quick Reference Links</span>
+        </div>
+        <table>
+            <thead><tr><th>Story</th><th>Source</th></tr></thead>
+            <tbody>
+                <tr><td>Google invests up to $40B in Anthropic</td><td><a href="https://www.bloomberg.com/news/articles/2026-04-24/google-plans-to-invest-up-to-40-billion-in-anthropic" target="_blank">Bloomberg</a></td></tr>
+                <tr><td>OpenAI GPT-5.5 launch</td><td><a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank">OpenAI Blog</a></td></tr>
+                <tr><td>SpaceX/Cursor $60B deal</td><td><a href="https://www.theverge.com/science/916427/spacex-cursor-potential-deal-acquisition" target="_blank">The Verge</a></td></tr>
+                <tr><td>Anthropic Mythos breach</td><td><a href="https://www.theverge.com/ai-artificial-intelligence/916501/anthropic-mythos-unauthorized-users-access-security" target="_blank">The Verge</a></td></tr>
+                <tr><td>Meta 10% layoffs</td><td><a href="https://www.theverge.com/tech/917690/meta-is-laying-off-10-percent-of-its-staff" target="_blank">The Verge</a></td></tr>
+                <tr><td>DeepSeek V4</td><td><a href="https://venturebeat.com/technology/deepseek-v4-arrives-with-near-state-of-the-art-intelligence-at-1-6th-the-cost-of-opus-4-7-gpt-5-5" target="_blank">VentureBeat</a></td></tr>
+                <tr><td>Claude Opus 4.7</td><td><a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank">Anthropic</a></td></tr>
+                <tr><td>Claude Design</td><td><a href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">Anthropic</a></td></tr>
+                <tr><td>Microsoft Vibe Working</td><td><a href="https://www.theverge.com/news/917328/microsoft-agent-mode-vibe-working-office-word-excel-powerpoint" target="_blank">The Verge</a></td></tr>
+                <tr><td>Google 75% AI code</td><td><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/" target="_blank">Google Blog</a></td></tr>
+                <tr><td>Sullivan & Cromwell AI hallucination</td><td><a href="https://www.nytimes.com/2026/04/21/nyregion/sullivan-cromwell-ai-hallucination.html" target="_blank">New York Times</a></td></tr>
+                <tr><td>Musk v. Altman trial</td><td><a href="https://www.cnbc.com/2026/04/24/musk-v-altman-trial-openai-lawsuit-xai.html" target="_blank">CNBC</a></td></tr>
+                <tr><td>DOJ vs Colorado AI law</td><td><a href="https://www.theverge.com/ai-artificial-intelligence/918492/the-feds-join-elon-musks-attempt-to-stop-new-ai-regulations-in-colorado" target="_blank">The Verge</a></td></tr>
+                <tr><td>Elizabeth Warren AI warning</td><td><a href="https://www.theverge.com/policy/917026/ai-economy-bubble-elizabeth-warren" target="_blank">The Verge</a></td></tr>
+                <tr><td>Altman apologizes to Tumbler Ridge</td><td><a href="https://www.theverge.com/ai-artificial-intelligence/918680/openai-ceo-sam-altman-apologized-to-the-town-of-tumbler-ridge" target="_blank">The Verge</a></td></tr>
+                <tr><td>Cohere + Aleph Alpha merger</td><td><a href="https://techcrunch.com/2026/04/25/why-cohere-is-merging-with-aleph-alpha/" target="_blank">TechCrunch</a></td></tr>
+                <tr><td>Anthropic Project Deal</td><td><a href="https://techcrunch.com/2026/04/25/anthropic-created-a-test-marketplace-for-agent-on-agent-commerce/" target="_blank">TechCrunch</a></td></tr>
+                <tr><td>Tim Cook steps down</td><td><a href="https://techcrunch.com/2026/04/20/tim-cook-stepping-down-as-apple-ceo-john-ternus-taking-over/" target="_blank">TechCrunch</a></td></tr>
+                <tr><td>Mythos finds 271 Firefox bugs</td><td><a href="https://blog.mozilla.org/en/firefox/ai-security-zero-day-vulnerabilities/" target="_blank">Mozilla Blog</a></td></tr>
+                <tr><td>Andon Market AI store</td><td><a href="https://www.nytimes.com/2026/04/21/us/san-francisco-store-managed-ai-agent.html" target="_blank">New York Times</a></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <div class="footer">
+        <p><strong>Sources consulted:</strong> TechCrunch, The Verge, VentureBeat, Techmeme, Forbes AI, The Rundown AI, OpenAI Blog, Anthropic Blog, Microsoft AI Blog, Bloomberg, Reuters, CNBC, New York Times, Wall Street Journal, Axios, Ars Technica, Mozilla Blog, Google Blog, 9to5Google</p>
+        <p style="margin-top:15px;"><strong>🔑 Key Takeaway:</strong> The AI industry just committed $140B+ in two weeks. Google and Amazon are both all-in on Anthropic. OpenAI responds with GPT-5.5 and agents. DeepSeek proves efficiency can beat brute-force spending. Meanwhile, AI's societal impact accelerates — from law firm hallucinations to 8,000 Meta layoffs to a model "too dangerous to release" getting stolen. The question isn't whether AI transforms everything. It's whether our institutions can keep up.</p>
+        <p style="margin-top:10px; font-size:0.9em;">AI Power Hour — Apr 13 to Apr 27, 2026 — Prepared for team discussion</p>
+    </div>
+
+    <!-- ====== NAVIGATOR WIDGET ====== -->
+    <div class="nav-widget" id="nav-widget">
+        <div class="nav-header" id="nav-header">
+            <h4>🎯 SPOTLIGHT NAVIGATOR</h4>
+            <button class="nav-toggle-btn" id="nav-toggle">−</button>
+        </div>
+        <div class="nav-current" id="nav-current">Click Next to begin</div>
+        <div class="nav-counter" id="nav-counter"></div>
+        <div class="nav-controls" id="nav-controls">
+            <button class="nav-btn" id="nav-prev">◀ Previous</button>
+            <div class="nav-divider"></div>
+            <button class="nav-btn" id="nav-next">Next ▶</button>
+        </div>
+    </div>
+
+    <!-- Tooltip element for heatmap -->
+    <div id="hm-tooltip">
+        <span class="tip-name"></span>
+        <span class="tip-by"></span>
+        <span class="tip-metric"></span>
+        <span class="tip-detail"></span>
+        <span class="tip-cta"></span>
+        <span class="tip-dead" style="display:none;"></span>
+    </div>
+
+    <script>
+    // === READING PROGRESS BAR ===
+    (function(){
+        const bar = document.getElementById('reading-progress');
+        if(bar){
+            window.addEventListener('scroll', function(){
+                const h = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+            });
+        }
+    })();
+
+    // === TAB SWITCHING ===
+    (function(){
+        const btns = document.querySelectorAll('.tab-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', function(){
+                btns.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+            });
+        });
+    })();
+
+    // === QUICK CARD TOGGLE TEXT ===
+    (function(){
+        document.querySelectorAll('.quick-card').forEach(card => {
+            const toggle = card.querySelector('.qc-toggle');
+            if(!toggle) return;
+            card.addEventListener('click', function(){
+                const isExpanded = card.classList.toggle('expanded');
+                toggle.textContent = isExpanded ? '▲ Hide details' : '▼ Show detailed insights';
+            });
+        });
+    })();
+
+    // === QUICK PANEL COLLAPSE ===
+    (function(){
+        const panel = document.getElementById('quick-panel');
+        const header = document.getElementById('qp-header');
+        if(panel && header){
+            header.addEventListener('click', function(){
+                panel.classList.toggle('panel-collapsed');
+            });
+        }
+    })();
+
+    // === COLLAPSIBLE SECTIONS ===
+    (function(){
+        document.querySelectorAll('.section .section-header').forEach(header => {
+            header.addEventListener('click', function(){
+                this.closest('.section').classList.toggle('collapsed');
+            });
+        });
+    })();
+
+    // === HEATMAP TOOLTIP ===
+    (function(){
+        const tip = document.getElementById('hm-tooltip');
+        document.querySelectorAll('.hm-cell[data-tip-name]').forEach(cell => {
+            cell.addEventListener('mouseenter', function(){
+                tip.querySelector('.tip-name').textContent = this.dataset.tipName || '';
+                tip.querySelector('.tip-by').textContent = this.dataset.tipBy || '';
+                tip.querySelector('.tip-metric').textContent = this.dataset.tipMetric || '';
+                tip.querySelector('.tip-detail').textContent = this.dataset.tipDetail || '';
+                tip.querySelector('.tip-cta').textContent = this.dataset.tipCta || '';
+                const deadEl = tip.querySelector('.tip-dead');
+                if(this.dataset.tipDead){ deadEl.textContent = '⚠️ DISCONTINUED'; deadEl.style.display='block'; }
+                else { deadEl.style.display='none'; }
+                tip.style.display = 'block';
+            });
+            cell.addEventListener('mousemove', function(e){ positionTip(e); });
+            cell.addEventListener('mouseleave', function(){ tip.style.display = 'none'; });
+        });
+        function positionTip(e){
+            let x = e.clientX + 15, y = e.clientY + 15;
+            if(x + 320 > window.innerWidth) x = e.clientX - 320;
+            if(y + 200 > window.innerHeight) y = e.clientY - 200;
+            tip.style.left = x + 'px'; tip.style.top = y + 'px';
+        }
+    })();
+
+    // === NAVIGATOR WIDGET ===
+    (function(){
+        const items = [];
+        for(let i = 1; ; i++){
+            const el = document.getElementById('imp-' + i);
+            if(!el) break;
+            items.push({ el: el, label: el.dataset.impLabel || 'Highlight ' + i });
+        }
+        let idx = -1, collapsed = false;
+        const widget = document.getElementById('nav-widget');
+        const currentEl = document.getElementById('nav-current');
+        const counterEl = document.getElementById('nav-counter');
+        const prevBtn = document.getElementById('nav-prev');
+        const nextBtn = document.getElementById('nav-next');
+        const toggleBtn = document.getElementById('nav-toggle');
+        const header = document.getElementById('nav-header');
+        const controls = document.getElementById('nav-controls');
+
+        counterEl.textContent = items.length + ' highlights found';
+
+        function clearSpotlight(){
+            document.querySelectorAll('.imp-spotlight').forEach(el => el.classList.remove('imp-spotlight','imp-spotlight-enter'));
+            document.querySelectorAll('.imp-label-float').forEach(el => el.remove());
+        }
+        function applySpotlight(i){
+            clearSpotlight();
+            const el = items[i].el;
+            el.classList.add('imp-spotlight','imp-spotlight-enter');
+            el.scrollIntoView({ behavior:'smooth', block:'center' });
+            const label = document.createElement('span');
+            label.className = 'imp-label-float';
+            label.textContent = items[i].label;
+            if(el.tagName === 'TR'){
+                const lastTd = el.querySelector('td:last-child');
+                if(lastTd){ lastTd.style.position='relative'; lastTd.appendChild(label); }
+            } else { el.style.position='relative'; el.appendChild(label); }
+            currentEl.textContent = items[i].label;
+            counterEl.textContent = (i+1) + ' / ' + items.length;
+            prevBtn.disabled = (i === 0);
+            nextBtn.disabled = (i === items.length - 1);
+        }
+        nextBtn.addEventListener('click', function(){ if(idx < items.length -1){ idx++; applySpotlight(idx); } });
+        prevBtn.addEventListener('click', function(){ if(idx > 0){ idx--; applySpotlight(idx); } });
+        header.addEventListener('click', function(e){
+            if(e.target === toggleBtn || e.target === header){
+                collapsed = !collapsed;
+                widget.classList.toggle('collapsed', collapsed);
+                currentEl.classList.toggle('hidden', collapsed);
+                controls.classList.toggle('hidden', collapsed);
+                counterEl.classList.toggle('hidden', collapsed);
+                toggleBtn.textContent = collapsed ? '+' : '−';
+                if(collapsed) clearSpotlight();
+            }
+        });
+        document.addEventListener('keydown', function(e){
+            if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){ e.preventDefault(); if(idx < items.length-1){ idx++; applySpotlight(idx); } }
+            if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){ e.preventDefault(); if(idx > 0){ idx--; applySpotlight(idx); } }
+        });
+    })();
+    </script>
+</body>
+</html>
