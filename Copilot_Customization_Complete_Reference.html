@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Copilot — Complete Interactive Reference</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#1c222c;--bg4:#21262d;
+  --border:#30363d;--text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+  --blue:#58a6ff;--green:#3fb950;--purple:#bc8cff;--orange:#f0883e;
+  --pink:#f78c6c;--cyan:#79c0ff;--red:#f85e5e;--yellow:#e3b341;
+}
+html.light{
+  --bg:#f6f8fa;--bg2:#ffffff;--bg3:#f0f3f6;--bg4:#e8ecf0;
+  --border:#d1d9e0;--text:#1f2328;--text2:#59636e;--text3:#8b949e;
+  --blue:#0969da;--green:#1a7f37;--purple:#8250df;--orange:#bc4c00;
+  --pink:#c4432b;--cyan:#0550ae;--red:#cf222e;--yellow:#9a6700;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+
+/* ═══ TOP NAV ═══ */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,17,23,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 1.5rem;gap:1rem}
+html.light .topbar{background:rgba(246,248,250,.92)}
+.topbar-logo{font-weight:800;font-size:1rem;color:var(--text);display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.topbar-logo svg{flex-shrink:0}
+
+/* ═══ TABS ═══ */
+.tab-bar{display:flex;gap:0;margin-left:2rem;height:100%}
+.tab-btn{padding:0 1.2rem;height:100%;display:flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;color:var(--text2);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:var(--text);background:var(--bg4)}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-btn .tab-icon{font-size:1rem}
+
+/* ═══ MAIN ═══ */
+main{margin-top:56px;min-height:calc(100vh - 56px)}
+.tab-panel{display:none;animation:fadeIn .3s ease}
+.tab-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ HERO ═══ */
+.hero{padding:3rem 2rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(88,166,255,.07) 0%,transparent 50%),radial-gradient(ellipse at 70% 50%,rgba(188,140,255,.05) 0%,transparent 50%);animation:heroGlow 15s ease-in-out infinite alternate}
+@keyframes heroGlow{0%{transform:translate(0,0)}100%{transform:translate(-2%,1%)}}
+.hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;position:relative;z-index:1}
+.hero h1 .grad{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--text2);font-size:1.05rem;margin-top:.5rem;position:relative;z-index:1;max-width:700px;margin-left:auto;margin-right:auto}
+
+/* ═══ SECTION ═══ */
+.section{max-width:1300px;margin:0 auto;padding:2rem 1.5rem}
+.section-title{font-size:1.5rem;font-weight:800;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.section-sub{color:var(--text2);margin-bottom:1.5rem}
+
+/* ═══ FILE TREE ═══ */
+.tree-container{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:900px){.tree-container{grid-template-columns:1fr}}
+.tree-panel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.tree-panel-header{padding:.8rem 1.2rem;background:var(--bg3);border-bottom:1px solid var(--border);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.5rem}
+.tree{padding:1rem 1.2rem;font-family:'Cascadia Code','SF Mono','Fira Code',monospace;font-size:.82rem;line-height:1.8;overflow-x:auto}
+.tree-node{cursor:pointer;padding:2px 6px;border-radius:4px;transition:background .15s;display:flex;align-items:center;gap:.3rem;position:relative}
+.tree-node:hover{background:var(--bg4)}
+.tree-node.active{background:rgba(88,166,255,.12);color:var(--blue)}
+.tree-node .icon{width:16px;text-align:center;flex-shrink:0}
+.tree-node .badge{margin-left:auto;font-size:.65rem;padding:.1rem .5rem;border-radius:10px;font-weight:700;font-family:-apple-system,sans-serif;letter-spacing:.5px}
+.badge-always{background:rgba(63,185,80,.15);color:var(--green)}
+.badge-auto{background:rgba(88,166,255,.15);color:var(--blue)}
+.badge-demand{background:rgba(188,140,255,.15);color:var(--purple)}
+.badge-slash{background:rgba(240,136,62,.15);color:var(--orange)}
+.badge-prompt{background:rgba(247,140,108,.15);color:var(--pink)}
+.badge-hook{background:rgba(121,192,255,.15);color:var(--cyan)}
+.badge-src{background:rgba(227,179,65,.15);color:var(--yellow)}
+.tree-indent{padding-left:1.2rem}
+.tree-line{color:var(--text3)}
+
+/* ═══ COLLAPSIBLE TREE GROUPS ═══ */
+.tree-group{margin:0}
+.tree-group-header{cursor:pointer;padding:2px 6px;border-radius:4px;display:flex;align-items:center;gap:.3rem;font-weight:700;transition:background .15s;user-select:none}
+.tree-group-header:hover{background:var(--bg4)}
+.tree-toggle{width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--text3);border:1px solid var(--border);border-radius:3px;flex-shrink:0;transition:all .2s;background:var(--bg4);font-family:monospace}
+.tree-toggle:hover{color:var(--text);border-color:var(--blue)}
+.tree-group-body{overflow:hidden;transition:max-height .3s ease;max-height:2000px;padding-left:1.2rem}
+.tree-group.collapsed .tree-group-body{max-height:0}
+.tree-group.collapsed .tree-toggle{color:var(--blue)}
+
+/* ═══ DETAIL PANEL ═══ */
+.detail-panel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;position:sticky;top:72px;max-height:calc(100vh - 88px);overflow-y:auto}
+.detail-header{padding:1rem 1.5rem;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+.detail-header .file-icon{font-size:1.3rem}
+.detail-header h3{font-size:1rem;font-weight:700}
+.detail-header .file-badge{margin-left:auto}
+.detail-body{padding:1.5rem}
+.detail-body h4{font-size:.9rem;font-weight:700;color:var(--blue);margin-bottom:.5rem;margin-top:1rem}
+.detail-body h4:first-child{margin-top:0}
+.detail-body p{color:var(--text2);font-size:.9rem;margin-bottom:.5rem}
+.detail-body ul{list-style:none;margin-bottom:.8rem}
+.detail-body li{color:var(--text2);font-size:.88rem;padding:.2rem 0 .2rem 1rem;position:relative}
+.detail-body li::before{content:'▸';position:absolute;left:0;color:var(--text3)}
+.code-block{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;font-family:'Cascadia Code',monospace;font-size:.8rem;color:var(--text2);margin:.5rem 0;overflow-x:auto;white-space:pre;line-height:1.6}
+.example-tag{display:inline-block;font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;margin-bottom:.4rem;letter-spacing:.5px}
+.example-tag.you{background:rgba(88,166,255,.15);color:var(--blue)}
+.example-tag.copilot{background:rgba(63,185,80,.15);color:var(--green)}
+.example-tag.result{background:rgba(240,136,62,.15);color:var(--orange)}
+
+/* ═══ FLOW ═══ */
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1rem}
+.flow-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:all .25s;cursor:default;position:relative;overflow:hidden}
+.flow-card:hover{border-color:rgba(88,166,255,.3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.flow-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.flow-card.always::before{background:var(--green)}.flow-card.auto::before{background:var(--blue)}.flow-card.demand::before{background:var(--purple)}.flow-card.slash::before{background:var(--orange)}.flow-card.hook::before{background:var(--cyan)}
+.flow-card h3{font-size:.95rem;font-weight:700;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
+.flow-card h3 .fc-icon{font-size:1.1rem}
+.flow-card p{color:var(--text2);font-size:.85rem}
+.flow-card ul{list-style:none;margin-top:.5rem}
+.flow-card li{color:var(--text2);font-size:.82rem;padding:.15rem 0;padding-left:.8rem;position:relative}
+.flow-card li::before{content:'›';position:absolute;left:0;color:var(--text3)}
+.flow-card code{background:var(--bg4);padding:.1rem .4rem;border-radius:3px;font-size:.78rem}
+
+/* ═══ SEARCH ═══ */
+.search-box{position:relative;max-width:600px;margin:0 auto 1.5rem}
+.search-box input{width:100%;padding:.75rem 1rem .75rem 2.8rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.95rem;outline:none;transition:border .2s}
+.search-box input:focus{border-color:var(--blue)}
+.search-box input::placeholder{color:var(--text3)}
+.search-box .search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text3)}
+.search-count{text-align:center;color:var(--text3);font-size:.8rem;margin-bottom:1rem}
+
+/* ═══ BEST PRACTICES CARDS ═══ */
+.bp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:1rem}
+.bp-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:all .2s}
+.bp-card:hover{border-color:rgba(88,166,255,.2)}
+.bp-card.hidden{display:none}
+.bp-card h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+.bp-card p{color:var(--text2);font-size:.88rem;margin-bottom:.4rem}
+.bp-card .bp-cmd{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.5rem .8rem;font-family:monospace;font-size:.82rem;color:var(--cyan);margin-top:.4rem;cursor:pointer;transition:background .15s;display:flex;align-items:center;gap:.4rem}
+.bp-card .bp-cmd:hover{background:var(--bg4)}
+.bp-card .bp-cmd .copy-icon{margin-left:auto;color:var(--text3);font-size:.7rem}
+.bp-tag{display:inline-block;font-size:.65rem;font-weight:700;padding:.1rem .4rem;border-radius:4px;margin-right:.3rem;margin-bottom:.3rem}
+.bp-tag.chat{background:rgba(88,166,255,.12);color:var(--blue)}
+.bp-tag.edit{background:rgba(63,185,80,.12);color:var(--green)}
+.bp-tag.debug{background:rgba(240,136,62,.12);color:var(--orange)}
+.bp-tag.review{background:rgba(188,140,255,.12);color:var(--purple)}
+.bp-tag.nav{background:rgba(121,192,255,.12);color:var(--cyan)}
+.bp-tag.perf{background:rgba(247,140,108,.12);color:var(--pink)}
+
+/* ═══ ESSENTIALS (Tab 4) ═══ */
+.ess-grid{columns:3 320px;column-gap:1rem}
+.ess-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .25s;break-inside:avoid;margin-bottom:1rem}
+.ess-card:hover{border-color:rgba(88,166,255,.2)}
+.ess-card-header{padding:1rem 1.2rem;background:var(--bg3);cursor:pointer;display:flex;align-items:center;gap:.6rem;user-select:none}
+.ess-card-header h3{font-size:.95rem;font-weight:700;flex:1}
+.ess-card-header .ess-icon{font-size:1.2rem}
+.ess-card-header .ess-toggle{color:var(--text);transition:transform .3s;font-size:.9rem;font-weight:700;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;background:var(--bg4);border:1px solid var(--border);flex-shrink:0}
+.ess-card.open .ess-toggle{transform:rotate(180deg)}
+.ess-card-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.ess-card.open .ess-card-body{max-height:2000px}
+.ess-card.open .ess-card-header{border-bottom:1px solid var(--border)}
+.ess-card-content{padding:1.2rem}
+.ess-card-content p{color:var(--text2);font-size:.9rem;margin-bottom:.5rem}
+.ess-card-content .tip{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.15);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.88rem;color:var(--text2)}
+.ess-card-content .tip strong{color:var(--blue)}
+.ess-card-content .warn{background:rgba(240,136,62,.06);border:1px solid rgba(240,136,62,.15);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.88rem;color:var(--text2)}
+.ess-card-content .warn strong{color:var(--orange)}
+.ess-card-content .shortcut{display:inline-flex;align-items:center;gap:.3rem;background:var(--bg4);border:1px solid var(--border);border-radius:5px;padding:.15rem .5rem;font-family:monospace;font-size:.82rem;color:var(--text)}
+
+/* ═══ FOOTER ═══ */
+footer{padding:2rem;text-align:center;color:var(--text3);font-size:.8rem;border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--blue);text-decoration:none}
+
+/* ═══ THEME TOGGLE ═══ */
+.theme-toggle{margin-left:auto;display:flex;align-items:center;gap:.5rem;background:var(--bg4);border:1px solid var(--border);border-radius:24px;padding:.3rem .35rem;cursor:pointer;transition:all .3s;flex-shrink:0}
+.theme-toggle .toggle-track{position:relative;width:44px;height:24px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);transition:all .3s}
+.theme-toggle .toggle-thumb{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--blue);transition:all .3s;display:flex;align-items:center;justify-content:center;font-size:.7rem;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+html.light .theme-toggle .toggle-thumb{left:22px;background:var(--orange)}
+.theme-toggle .toggle-label{font-size:.75rem;font-weight:600;color:var(--text2);user-select:none}
+html.light .theme-toggle .toggle-track{background:var(--bg4);border-color:var(--border)}
+
+/* ═══ LIGHT MODE REFINEMENTS ═══ */
+html.light .hero::before{background:radial-gradient(ellipse at 30% 50%,rgba(9,105,218,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 50%,rgba(130,80,223,.04) 0%,transparent 50%)}
+html.light .flow-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
+html.light .flow-card code{background:var(--bg3)}
+html.light .tree-node:hover{background:var(--bg4)}
+html.light .tree-node.active{background:rgba(9,105,218,.08);color:var(--blue)}
+html.light .badge-always{background:rgba(26,127,55,.1);color:var(--green)}
+html.light .badge-auto{background:rgba(9,105,218,.1);color:var(--blue)}
+html.light .badge-demand{background:rgba(130,80,223,.1);color:var(--purple)}
+html.light .badge-slash{background:rgba(188,76,0,.1);color:var(--orange)}
+html.light .badge-prompt{background:rgba(196,67,43,.1);color:var(--pink)}
+html.light .badge-hook{background:rgba(5,80,174,.1);color:var(--cyan)}
+html.light .badge-src{background:rgba(154,103,0,.1);color:var(--yellow)}
+html.light .bp-card .bp-cmd{color:var(--cyan)}
+html.light .bp-tag.chat{background:rgba(9,105,218,.08);color:var(--blue)}
+html.light .bp-tag.edit{background:rgba(26,127,55,.08);color:var(--green)}
+html.light .bp-tag.debug{background:rgba(188,76,0,.08);color:var(--orange)}
+html.light .bp-tag.review{background:rgba(130,80,223,.08);color:var(--purple)}
+html.light .bp-tag.nav{background:rgba(5,80,174,.08);color:var(--cyan)}
+html.light .bp-tag.perf{background:rgba(196,67,43,.08);color:var(--pink)}
+html.light .ess-card-content .tip{background:rgba(9,105,218,.04);border-color:rgba(9,105,218,.2)}
+html.light .ess-card-content .tip strong{color:var(--blue)}
+html.light .ess-card-content .warn{background:rgba(188,76,0,.04);border-color:rgba(188,76,0,.2)}
+html.light .ess-card-content .warn strong{color:var(--orange)}
+html.light .ess-card-content .shortcut{background:var(--bg3);border-color:var(--border)}
+html.light .code-block{background:var(--bg3);border-color:var(--border);color:var(--text2)}
+html.light .detail-body h4{color:var(--blue)}
+html.light .example-tag.you{background:rgba(9,105,218,.1);color:var(--blue)}
+html.light .example-tag.copilot{background:rgba(26,127,55,.1);color:var(--green)}
+html.light .example-tag.result{background:rgba(188,76,0,.1);color:var(--orange)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){.tab-bar{overflow-x:auto;scrollbar-width:none}.tab-bar::-webkit-scrollbar{display:none}.tab-btn{font-size:.78rem;padding:0 .8rem}.tree-container{grid-template-columns:1fr}.detail-panel{position:static;max-height:none}.bp-grid{grid-template-columns:1fr}.ess-grid{columns:1}.theme-toggle .toggle-label{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    Copilot Reference
+  </div>
+  <div class="tab-bar" id="tabBar">
+    <button class="tab-btn active" data-tab="structure"><span class="tab-icon">📁</span> Project Structure</button>
+    <button class="tab-btn" data-tab="flow"><span class="tab-icon">⚡</span> Invocation Flow</button>
+    <button class="tab-btn" data-tab="practices"><span class="tab-icon">🎯</span> Best Practices</button>
+    <button class="tab-btn" data-tab="essentials"><span class="tab-icon">🧠</span> Every User Should Know</button>
+  </div>
+  <div class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
+    <span class="toggle-label" id="themeLabel">🌙 Dark</span>
+    <div class="toggle-track"><div class="toggle-thumb" id="themeThumb">🌙</div></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB 1 — PROJECT STRUCTURE (Interactive File Tree)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="panel-structure">
+  <div class="hero">
+    <h1>Interactive <span class="grad">Project Structure</span></h1>
+    <p>Click any file in the tree to see a detailed explanation, real examples, and what Copilot actually receives behind the scenes.</p>
+  </div>
+
+  <div class="section">
+    <div class="tree-container">
+      <!-- LEFT: File Tree -->
+      <div class="tree-panel">
+        <div class="tree-panel-header">📁 Project / .github (click to expand, click file for details)</div>
+        <div class="tree" id="fileTree">
+
+          <!-- .github/ top level -->
+          <div class="tree-node" data-file="github-folder" style="font-weight:700"><span class="icon">📂</span>.github/<span class="badge badge-always">COPILOT HUB</span></div>
+          <div class="tree-indent">
+            <div class="tree-node" data-file="copilot-instructions"><span class="icon">📋</span>copilot-instructions.md<span class="badge badge-always">ALWAYS ON</span></div>
+
+            <!-- ── instructions/ ── -->
+            <div class="tree-group">
+              <div class="tree-group-header" onclick="toggleTreeGroup(this)"><span class="tree-toggle">−</span><span class="icon">📂</span>instructions/<span class="badge badge-auto">AUTO</span></div>
+              <div class="tree-group-body">
+                <div class="tree-node" data-file="python-instructions"><span class="icon">🐍</span>python.instructions.md</div>
+                <div class="tree-node" data-file="java-instructions"><span class="icon">☕</span>java.instructions.md</div>
+                <div class="tree-node" data-file="cpp-instructions"><span class="icon">⚙️</span>cpp.instructions.md</div>
+                <div class="tree-node" data-file="csharp-instructions"><span class="icon">🔷</span>csharp.instructions.md</div>
+                <div class="tree-node" data-file="typescript-instructions"><span class="icon">🟦</span>typescript.instructions.md</div>
+                <div class="tree-node" data-file="javascript-instructions"><span class="icon">🟨</span>javascript.instructions.md</div>
+                <div class="tree-node" data-file="go-instructions"><span class="icon">🐹</span>go.instructions.md</div>
+                <div class="tree-node" data-file="rust-instructions"><span class="icon">🦀</span>rust.instructions.md</div>
+                <div class="tree-node" data-file="react-instructions"><span class="icon">⚛️</span>react.instructions.md</div>
+                <div class="tree-node" data-file="angular-instructions"><span class="icon">🅰️</span>angular.instructions.md</div>
+                <div class="tree-node" data-file="vue-instructions"><span class="icon">💚</span>vue.instructions.md</div>
+                <div class="tree-node" data-file="api-instructions"><span class="icon">🌐</span>api-routes.instructions.md</div>
+                <div class="tree-node" data-file="testing-instructions"><span class="icon">🧪</span>testing.instructions.md</div>
+                <div class="tree-node" data-file="migrations-instructions"><span class="icon">🗄️</span>migrations.instructions.md</div>
+                <div class="tree-node" data-file="schemas-instructions"><span class="icon">📐</span>schemas.instructions.md</div>
+                <div class="tree-node" data-file="css-instructions"><span class="icon">🎨</span>css-styling.instructions.md</div>
+                <div class="tree-node" data-file="docker-instructions"><span class="icon">🐳</span>docker.instructions.md</div>
+                <div class="tree-node" data-file="sql-instructions"><span class="icon">🗃️</span>sql.instructions.md</div>
+                <div class="tree-node" data-file="cicd-instructions"><span class="icon">🔄</span>ci-cd.instructions.md</div>
+              </div>
+            </div>
+
+            <!-- ── agents/ ── -->
+            <div class="tree-group">
+              <div class="tree-group-header" onclick="toggleTreeGroup(this)"><span class="tree-toggle">−</span><span class="icon">📂</span>agents/<span class="badge badge-demand">ON-DEMAND</span></div>
+              <div class="tree-group-body">
+                <div class="tree-node" data-file="security-agent"><span class="icon">🛡️</span>security-reviewer.agent.md</div>
+                <div class="tree-node" data-file="db-agent"><span class="icon">🗃️</span>db-admin.agent.md</div>
+                <div class="tree-node" data-file="test-agent"><span class="icon">🧪</span>test-engineer.agent.md</div>
+                <div class="tree-node" data-file="api-agent"><span class="icon">🎨</span>api-designer.agent.md</div>
+                <div class="tree-node" data-file="explorer-agent"><span class="icon">🔍</span>code-explorer.agent.md</div>
+                <div class="tree-node" data-file="perf-agent"><span class="icon">⚡</span>performance-auditor.agent.md</div>
+                <div class="tree-node" data-file="docs-agent"><span class="icon">📝</span>docs-writer.agent.md</div>
+                <div class="tree-node" data-file="a11y-agent"><span class="icon">♿</span>accessibility-reviewer.agent.md</div>
+                <div class="tree-node" data-file="devops-agent"><span class="icon">🔧</span>devops-engineer.agent.md</div>
+                <div class="tree-node" data-file="refactor-agent"><span class="icon">♻️</span>refactoring-advisor.agent.md</div>
+                <div class="tree-node" data-file="onboarding-agent"><span class="icon">🎓</span>onboarding-guide.agent.md</div>
+                <div class="tree-node" data-file="planner-agent"><span class="icon">📋</span>planner.agent.md</div>
+                <div class="tree-node" data-file="migration-agent"><span class="icon">🔀</span>migration-planner.agent.md</div>
+                <div class="tree-node" data-file="compliance-agent"><span class="icon">✅</span>compliance-checker.agent.md</div>
+              </div>
+            </div>
+
+            <!-- ── skills/ ── -->
+            <div class="tree-group">
+              <div class="tree-group-header" onclick="toggleTreeGroup(this)"><span class="tree-toggle">−</span><span class="icon">📂</span>skills/<span class="badge badge-slash">/COMMAND</span></div>
+              <div class="tree-group-body">
+                <div class="tree-node" data-file="deploy-skill"><span class="icon">🚀</span>deploy-staging/SKILL.md</div>
+                <div class="tree-node" data-file="endpoint-skill"><span class="icon">➕</span>add-new-endpoint/SKILL.md</div>
+                <div class="tree-node" data-file="migration-skill"><span class="icon">📦</span>create-migration/SKILL.md</div>
+                <div class="tree-node" data-file="setup-env-skill"><span class="icon">🛠️</span>setup-dev-env/SKILL.md</div>
+                <div class="tree-node" data-file="release-skill"><span class="icon">🏷️</span>cut-release/SKILL.md</div>
+                <div class="tree-node" data-file="perf-bench-skill"><span class="icon">📊</span>run-perf-benchmark/SKILL.md</div>
+                <div class="tree-node" data-file="webapp-test-skill"><span class="icon">🌐</span>webapp-testing/SKILL.md</div>
+                <div class="tree-node" data-file="gh-actions-skill"><span class="icon">⚙️</span>github-actions-debug/SKILL.md</div>
+                <div class="tree-node" data-file="security-scan-skill"><span class="icon">🔒</span>security-scan/SKILL.md</div>
+                <div class="tree-node" data-file="api-spec-skill"><span class="icon">📄</span>openapi-spec-gen/SKILL.md</div>
+              </div>
+            </div>
+
+            <!-- ── prompts/ ── -->
+            <div class="tree-group">
+              <div class="tree-group-header" onclick="toggleTreeGroup(this)"><span class="tree-toggle">−</span><span class="icon">📂</span>prompts/<span class="badge badge-prompt">PROMPT</span></div>
+              <div class="tree-group-body">
+                <div class="tree-node" data-file="gen-tests-prompt"><span class="icon">⚡</span>generate-tests.prompt.md</div>
+                <div class="tree-node" data-file="pr-prompt"><span class="icon">📝</span>create-pr-description.prompt.md</div>
+                <div class="tree-node" data-file="scaffold-prompt"><span class="icon">🏗️</span>scaffold-feature.prompt.md</div>
+                <div class="tree-node" data-file="review-prompt"><span class="icon">👁️</span>code-review.prompt.md</div>
+                <div class="tree-node" data-file="refactor-prompt"><span class="icon">♻️</span>refactor-legacy.prompt.md</div>
+                <div class="tree-node" data-file="docs-prompt"><span class="icon">📖</span>generate-docs.prompt.md</div>
+                <div class="tree-node" data-file="convert-prompt"><span class="icon">🔄</span>convert-language.prompt.md</div>
+                <div class="tree-node" data-file="security-review-prompt"><span class="icon">🛡️</span>security-review.prompt.md</div>
+                <div class="tree-node" data-file="adr-prompt"><span class="icon">📐</span>architecture-decision.prompt.md</div>
+                <div class="tree-node" data-file="incident-prompt"><span class="icon">🚨</span>incident-postmortem.prompt.md</div>
+              </div>
+            </div>
+
+            <!-- ── hooks/ ── -->
+            <div class="tree-group">
+              <div class="tree-group-header" onclick="toggleTreeGroup(this)"><span class="tree-toggle">−</span><span class="icon">📂</span>hooks/<span class="badge badge-hook">LIFECYCLE</span></div>
+              <div class="tree-group-body">
+                <div class="tree-node" data-file="lint-hook"><span class="icon">🤖</span>post-edit-lint.json</div>
+                <div class="tree-node" data-file="format-hook"><span class="icon">✨</span>post-edit-format.json</div>
+                <div class="tree-node" data-file="warn-hook"><span class="icon">⚠️</span>pre-execute-warning.json</div>
+                <div class="tree-node" data-file="block-destructive-hook"><span class="icon">🚫</span>block-destructive.json</div>
+                <div class="tree-node" data-file="audit-hook"><span class="icon">📋</span>audit-log.json</div>
+                <div class="tree-node" data-file="session-context-hook"><span class="icon">🔗</span>session-context.json</div>
+                <div class="tree-node" data-file="auto-test-hook"><span class="icon">🧪</span>post-edit-test.json</div>
+                <div class="tree-node" data-file="stop-verify-hook"><span class="icon">🛑</span>stop-verify.json</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Detail Panel -->
+      <div class="detail-panel" id="detailPanel">
+        <div class="detail-header" id="detailHeader">
+          <span class="file-icon">👈</span>
+          <h3>Click a file to see details</h3>
+        </div>
+        <div class="detail-body" id="detailBody">
+          <p>Select any file from the tree on the left to see:</p>
+          <ul>
+            <li>What it does in plain English</li>
+            <li>When and how Copilot loads it</li>
+            <li>Real examples of what you'd say and what Copilot does</li>
+            <li>The actual content Copilot receives behind the scenes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB 2 — INVOCATION FLOW
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-flow">
+  <div class="hero">
+    <h1>When Does Each File <span class="grad">Activate?</span></h1>
+    <p>Understanding the activation model is the key to using Copilot customization effectively.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title" style="color:var(--green)">🟢 Always Active — Every Interaction</div>
+    <p class="section-sub">These fire on every single chat message, inline suggestion, and agent interaction. You cannot disable them.</p>
+    <div class="flow-grid">
+      <div class="flow-card always">
+        <h3><span class="fc-icon">📋</span> copilot-instructions.md</h3>
+        <p>Project knowledge loaded before every response. Architecture, tech stack, conventions, build commands.</p>
+        <ul><li>Loaded in chat, inline suggestions, agent mode</li><li>Every agent inherits this context</li><li>~500 tokens of always-on project brain</li></ul>
+      </div>
+      <div class="flow-card hook">
+        <h3><span class="fc-icon">🤖</span> hooks/*.json</h3>
+        <p>Deterministic shell commands that fire on lifecycle events. Not AI — pure code execution.</p>
+        <ul><li><code>post-edit-lint.json</code> → runs after every file edit</li><li><code>pre-execute-warning.json</code> → runs before terminal commands</li><li>Cannot be skipped — guaranteed enforcement</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" style="color:var(--blue)">🔵 Auto-Active — File Pattern Match</div>
+    <p class="section-sub">Loaded automatically when you have a matching file open. You don't invoke them — they watch what you're editing.</p>
+    <div class="flow-grid">
+      <div class="flow-card auto"><h3><span class="fc-icon">🐍</span> python.instructions.md</h3><p>Activates when any <code>.py</code> file is in context</p><ul><li><code>applyTo: "**/*.py"</code></li><li>Type hints, docstrings, exception handling rules</li></ul></div>
+      <div class="flow-card auto"><h3><span class="fc-icon">🌐</span> api-routes.instructions.md</h3><p>Activates for API route files</p><ul><li><code>applyTo: "src/api/**/*.py"</code></li><li>REST conventions, status codes, error responses</li></ul></div>
+      <div class="flow-card auto"><h3><span class="fc-icon">🧪</span> testing.instructions.md</h3><p>Activates for test files</p><ul><li><code>applyTo: "tests/**/*.py"</code></li><li>AAA pattern, naming, fixtures, coverage rules</li></ul></div>
+      <div class="flow-card auto"><h3><span class="fc-icon">🗄️</span> migrations.instructions.md</h3><p>Activates for migration files</p><ul><li><code>applyTo: "migrations/**/*.py"</code></li><li>Alembic conventions, rollback safety</li></ul></div>
+      <div class="flow-card auto"><h3><span class="fc-icon">📐</span> schemas.instructions.md</h3><p>Activates for Pydantic schemas</p><ul><li><code>applyTo: "src/schemas/**/*.py"</code></li><li>Validation patterns, field naming conventions</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" style="color:var(--purple)">🟣 On-Demand — Agent Picker / @mention</div>
+    <p class="section-sub">You manually select these from the agent picker or type @name. Each has different tool permissions.</p>
+    <div class="flow-grid">
+      <div class="flow-card demand"><h3><span class="fc-icon">🛡️</span> @security-reviewer</h3><p>Read-only security audit</p><ul><li>Tools: <code>read, search</code> only — cannot edit</li><li>OWASP Top 10, SQL injection, auth checks</li></ul></div>
+      <div class="flow-card demand"><h3><span class="fc-icon">🗃️</span> @db-admin</h3><p>Database schema specialist</p><ul><li>Indexes, relationships, migration advice</li><li>Can read and write files</li></ul></div>
+      <div class="flow-card demand"><h3><span class="fc-icon">🧪</span> @test-engineer</h3><p>Test writing specialist</p><ul><li>Generates comprehensive test suites</li><li>Coverage analysis, edge case detection</li></ul></div>
+      <div class="flow-card demand"><h3><span class="fc-icon">🎨</span> @api-designer</h3><p>API design reviewer</p><ul><li>REST best practices, consistency checks</li><li>Schema validation, versioning advice</li></ul></div>
+      <div class="flow-card demand"><h3><span class="fc-icon">🔍</span> @code-explorer</h3><p>Read-only codebase Q&A</p><ul><li>Tools: <code>read, search</code> only — safe for anyone</li><li>Explains code, traces data flow</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" style="color:var(--orange)">🟠 Slash Commands — Type / in Chat</div>
+    <p class="section-sub">Skills are multi-step workflows with bundled scripts. Prompts are single-shot task templates.</p>
+    <div class="flow-grid">
+      <div class="flow-card slash"><h3><span class="fc-icon">🚀</span> /deploy-staging</h3><p>Full deployment workflow</p><ul><li>Runs tests → builds Docker → runs migrations → deploys</li><li>Executes bundled <code>scripts/deploy.sh</code></li></ul></div>
+      <div class="flow-card slash"><h3><span class="fc-icon">➕</span> /add-new-endpoint</h3><p>Scaffold a new API endpoint</p><ul><li>Creates route + service + repo + schema + test</li><li>Follows project conventions automatically</li></ul></div>
+      <div class="flow-card slash"><h3><span class="fc-icon">📦</span> /create-migration</h3><p>Database migration workflow</p><ul><li>Generates Alembic migration with rollback</li><li>Validates schema changes before applying</li></ul></div>
+      <div class="flow-card slash"><h3><span class="fc-icon">⚡</span> /generate-tests</h3><p>Auto-generate test suite</p><ul><li>Happy path + validation + auth + edge cases</li><li>Runs pytest to verify all pass</li></ul></div>
+      <div class="flow-card slash"><h3><span class="fc-icon">📝</span> /create-pr-description</h3><p>Generate PR description</p><ul><li>Reads diff, summarizes changes</li><li>Adds testing notes and review checklist</li></ul></div>
+      <div class="flow-card slash"><h3><span class="fc-icon">🏗️</span> /scaffold-feature</h3><p>Full feature scaffolding</p><ul><li>Model → schema → repo → service → API → tests</li><li>Complete vertical slice in one command</li></ul></div>
+      <div class="flow-card slash"><h3><span class="fc-icon">👁️</span> /code-review</h3><p>Code review checklist</p><ul><li>Security, performance, conventions, tests</li><li>Structured review output</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB 3 — BEST PRACTICES (Searchable)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-practices">
+  <div class="hero">
+    <h1>Copilot <span class="grad">Best Practices</span></h1>
+    <p>Search for any topic — commands, tips, and workflows to get the most out of GitHub Copilot.</p>
+  </div>
+
+  <div class="section">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="bpSearch" placeholder="Search best practices... (e.g. workspace, debug, test, review)">
+    </div>
+    <div class="search-count" id="bpCount"></div>
+
+    <div class="bp-grid" id="bpGrid">
+
+      <!-- @workspace -->
+      <div class="bp-card" data-tags="workspace search context codebase architecture">
+        <div><span class="bp-tag chat">CHAT</span><span class="bp-tag nav">NAVIGATION</span></div>
+        <h3>🔍 Use @workspace for Codebase Questions</h3>
+        <p>Copilot searches your entire indexed codebase and pulls relevant files into context. No need to manually attach files.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@workspace explain the authentication flow</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@workspace where is the database connection configured?</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@workspace list all API endpoints and their HTTP methods</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- #file -->
+      <div class="bp-card" data-tags="file attach context specific targeted">
+        <div><span class="bp-tag chat">CHAT</span><span class="bp-tag edit">EDIT</span></div>
+        <h3>📎 Use #file: for Targeted Context</h3>
+        <p>Attach specific files when you know exactly which ones are relevant. More precise than @workspace for focused tasks.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>#file:src/services/config_service.py add caching logic</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>#file:src/models/config.py #file:src/schemas/config.py add a new field</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Agent mode -->
+      <div class="bp-card" data-tags="agent mode autonomous edit create files terminal">
+        <div><span class="bp-tag edit">AGENT MODE</span></div>
+        <h3>🤖 Agent Mode for Multi-File Tasks</h3>
+        <p>Agent mode can read, write, create files, and run terminal commands. Use it for tasks that span multiple files.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>Add a new "tags" field to the config model, schema, repo, service, and API layer</span><span class="copy-icon">📋</span></div>
+        <p style="margin-top:.4rem;font-size:.82rem;color:var(--orange)">Tip: Agent mode reads your copilot-instructions.md automatically — so it follows your conventions.</p>
+      </div>
+
+      <!-- Inline suggestions -->
+      <div class="bp-card" data-tags="inline ghost text autocomplete suggestions tab accept">
+        <div><span class="bp-tag edit">INLINE</span></div>
+        <h3>👻 Accept Inline Suggestions Smartly</h3>
+        <p>Copilot shows gray ghost text as you type. These are influenced by your copilot-instructions.md.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>Tab → accept full suggestion</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>Ctrl+→ → accept word by word</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>Alt+] → next suggestion / Alt+[ → previous</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Fix command -->
+      <div class="bp-card" data-tags="fix bug error debug diagnostic problem">
+        <div><span class="bp-tag debug">DEBUG</span></div>
+        <h3>🔧 Use /fix for Quick Bug Fixes</h3>
+        <p>Select broken code, type /fix, and Copilot analyzes the error and suggests a fix in context.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>/fix — with error code selected</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@workspace /fix the TypeError in payment_service.py</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Explain -->
+      <div class="bp-card" data-tags="explain understand code legacy onboarding">
+        <div><span class="bp-tag nav">UNDERSTAND</span></div>
+        <h3>💡 Use /explain for Code Understanding</h3>
+        <p>Select any code block and type /explain. Great for onboarding or understanding legacy code.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>/explain — with complex function selected</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@workspace /explain how the encryption module works</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Tests -->
+      <div class="bp-card" data-tags="test generate tests unit testing coverage">
+        <div><span class="bp-tag edit">TESTING</span></div>
+        <h3>🧪 Use /tests for Test Generation</h3>
+        <p>Select a function or open a file, then type /tests. Copilot generates test cases following your testing.instructions.md.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>/tests — with source file open</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@workspace generate integration tests for the config API</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Doc -->
+      <div class="bp-card" data-tags="documentation doc docstring comment">
+        <div><span class="bp-tag edit">DOCS</span></div>
+        <h3>📝 Use /doc for Documentation</h3>
+        <p>Select a function and type /doc. Generates docstrings matching your configured style (Google, NumPy, etc.).</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>/doc — with function selected</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Terminal -->
+      <div class="bp-card" data-tags="terminal command cli shell bash powershell">
+        <div><span class="bp-tag debug">TERMINAL</span></div>
+        <h3>💻 Copilot in the Terminal</h3>
+        <p>Use Ctrl+I in the terminal to ask Copilot for shell commands. It knows your OS and shell type.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>Ctrl+I → "find all Python files with TODO comments"</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>Ctrl+I → "run pytest with coverage for the config module"</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Commit messages -->
+      <div class="bp-card" data-tags="commit message git source control">
+        <div><span class="bp-tag edit">GIT</span></div>
+        <h3>✨ Auto-Generate Commit Messages</h3>
+        <p>Click the sparkle icon ✨ in the Source Control panel. Copilot reads your diff and writes a conventional commit message.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>✨ icon in Source Control → auto-generates commit message</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Rename symbol -->
+      <div class="bp-card" data-tags="rename refactor symbol variable function">
+        <div><span class="bp-tag edit">REFACTOR</span></div>
+        <h3>✏️ Copilot-Assisted Rename</h3>
+        <p>When you F2 rename a symbol, Copilot suggests smart names based on context and usage patterns.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>F2 on a symbol → Copilot suggests contextual names</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Review -->
+      <div class="bp-card" data-tags="review pull request PR code review security">
+        <div><span class="bp-tag review">REVIEW</span></div>
+        <h3>👁️ Code Review with Copilot</h3>
+        <p>Use a custom agent or prompt to get structured code reviews covering security, performance, and conventions.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@security-reviewer review the payment service</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>/code-review — with changed files open</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Performance -->
+      <div class="bp-card" data-tags="performance optimize slow query database n+1">
+        <div><span class="bp-tag perf">PERFORMANCE</span></div>
+        <h3>⚡ Ask About Performance Issues</h3>
+        <p>Copilot can identify N+1 queries, missing indexes, unnecessary loops, and suggest optimizations.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>@workspace are there any N+1 query problems in the repos?</span><span class="copy-icon">📋</span></div>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>#file:src/repos/config_repo.py optimize the list query</span><span class="copy-icon">📋</span></div>
+      </div>
+
+      <!-- Multi-file context -->
+      <div class="bp-card" data-tags="context multiple files references imports">
+        <div><span class="bp-tag chat">CONTEXT</span></div>
+        <h3>📂 Provide Rich Context</h3>
+        <p>The more relevant context you give, the better the output. Combine @workspace, #file:, and open tabs.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>#file:src/models/config.py #file:src/schemas/config.py add updated_by field to both</span><span class="copy-icon">📋</span></div>
+        <p style="margin-top:.4rem;font-size:.82rem;color:var(--green)">Tip: Copilot also reads all currently open editor tabs as context.</p>
+      </div>
+
+      <!-- Instructions ROI -->
+      <div class="bp-card" data-tags="instructions copilot-instructions setup roi first">
+        <div><span class="bp-tag chat">SETUP</span></div>
+        <h3>🏆 #1 ROI: copilot-instructions.md</h3>
+        <p>This single file gives you 80% of the benefit. Start here. Add your project's architecture, tech stack, and conventions.</p>
+        <div class="bp-cmd" onclick="copyCmd(this)"><span>.github/copilot-instructions.md → project brain, always loaded</span><span class="copy-icon">📋</span></div>
+        <p style="margin-top:.4rem;font-size:.82rem;color:var(--yellow)">If you do nothing else — create this one file. Everything else is a bonus.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TAB 4 — EVERY COPILOT USER SHOULD KNOW
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-essentials">
+  <div class="hero">
+    <h1>Every Copilot User <span class="grad">Should Know This</span></h1>
+    <p>Essential knowledge — from keyboard shortcuts to how the AI actually works behind the scenes.</p>
+  </div>
+
+  <div class="section">
+    <div class="ess-grid">
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">⌨️</span><h3>Essential Keyboard Shortcuts</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p><span class="shortcut">Tab</span> Accept inline suggestion</p>
+          <p><span class="shortcut">Esc</span> Dismiss inline suggestion</p>
+          <p><span class="shortcut">Ctrl+→</span> Accept word by word</p>
+          <p><span class="shortcut">Alt+]</span> Next suggestion · <span class="shortcut">Alt+[</span> Previous</p>
+          <p><span class="shortcut">Ctrl+I</span> Open inline chat (in editor or terminal)</p>
+          <p><span class="shortcut">Ctrl+Shift+I</span> Open Copilot Chat panel</p>
+          <p><span class="shortcut">Ctrl+Enter</span> Send message in chat</p>
+          <p><span class="shortcut">Ctrl+L</span> New chat conversation</p>
+          <p><span class="shortcut">F2</span> Rename with Copilot suggestions</p>
+          <div class="tip"><strong>Pro tip:</strong> Use <span class="shortcut">Ctrl+→</span> to accept suggestions word-by-word when you like the start but want to modify the rest.</div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">🧠</span><h3>How Copilot "Sees" Your Code</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p>Copilot doesn't read your entire repo every time. Here's what it actually sees:</p>
+          <p><strong>1. Active file</strong> — the file you're editing (full content)</p>
+          <p><strong>2. Open tabs</strong> — other files open in the editor (sampled)</p>
+          <p><strong>3. copilot-instructions.md</strong> — always injected into the prompt</p>
+          <p><strong>4. Matching *.instructions.md</strong> — if applyTo pattern matches</p>
+          <p><strong>5. @workspace index</strong> — semantic search over workspace-chunks.db</p>
+          <p><strong>6. #file: attachments</strong> — files you explicitly attach</p>
+          <div class="warn"><strong>Important:</strong> Copilot does NOT read all 10,000 files. It samples strategically. That's why copilot-instructions.md is so powerful — it's the only file guaranteed to always be included.</div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">💬</span><h3>Chat Modes: Ask vs Edit vs Agent</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p><strong>Ask Mode</strong> — Read-only Q&A. Great for understanding code, getting explanations, learning.  Copilot cannot modify files.</p>
+          <p><strong>Edit Mode</strong> — Copilot can edit the files you specify. You review changes before accepting. Controlled, predictable.</p>
+          <p><strong>Agent Mode</strong> — Full autonomy. Copilot can read, write, create, delete files, and run terminal commands. Follows your copilot-instructions.md for conventions.</p>
+          <div class="tip"><strong>When to use which:</strong><br>• Exploring/learning → Ask<br>• Changing 1-2 files → Edit<br>• Multi-file feature work → Agent</div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">🎯</span><h3>Slash Commands Cheat Sheet</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p>Type <strong>/</strong> in chat to see all available commands:</p>
+          <p><span class="shortcut">/explain</span> Explain selected code</p>
+          <p><span class="shortcut">/fix</span> Fix errors in selected code</p>
+          <p><span class="shortcut">/tests</span> Generate tests for selected code</p>
+          <p><span class="shortcut">/doc</span> Generate documentation</p>
+          <p><span class="shortcut">/new</span> Scaffold a new project</p>
+          <p><span class="shortcut">/clear</span> Clear chat history</p>
+          <p>Plus any custom skills and prompts from your <code>.github/</code> folder appear here too!</p>
+          <div class="tip"><strong>Example:</strong> If your team has <code>/deploy-staging</code> as a skill, it appears alongside the built-in commands when you type <strong>/</strong></div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">📎</span><h3>Context Variables You Can Use</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p>In chat, use these prefixes to attach context:</p>
+          <p><span class="shortcut">@workspace</span> Search your entire codebase</p>
+          <p><span class="shortcut">#file:path</span> Attach a specific file</p>
+          <p><span class="shortcut">#selection</span> Currently selected code</p>
+          <p><span class="shortcut">#editor</span> Full visible editor content</p>
+          <p><span class="shortcut">#terminalLastCommand</span> Last terminal output</p>
+          <p><span class="shortcut">#terminalSelection</span> Selected terminal text</p>
+          <p><span class="shortcut">@agent-name</span> Invoke a custom agent</p>
+          <div class="tip"><strong>Power combo:</strong> <code>#file:src/models/user.py @workspace find all usages of the User model</code></div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">⚙️</span><h3>VS Code Settings That Matter</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p>Key settings to configure in VS Code:</p>
+          <p><span class="shortcut">github.copilot.enable</span> — Enable/disable per language</p>
+          <p><span class="shortcut">github.copilot.chat.localeOverride</span> — Response language</p>
+          <p><span class="shortcut">chat.agent.enabled</span> — Enable Agent mode</p>
+          <p><span class="shortcut">github.copilot.chat.codeGeneration.useInstructionFiles</span> — Enable custom instructions</p>
+          <div class="warn"><strong>Must enable:</strong> <code>github.copilot.chat.codeGeneration.useInstructionFiles</code> must be <strong>true</strong> for your .github/ instructions to work. Check this first if customizations aren't loading.</div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">🔒</span><h3>Security & Privacy to Know</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p><strong>What Copilot sends:</strong> Your current file, open tabs context, instructions, and your prompt — sent to GitHub's AI service.</p>
+          <p><strong>Business plan:</strong> Your code is NOT used for training. Prompts are NOT retained by GitHub beyond the session.</p>
+          <p><strong>Telemetry:</strong> Usage metrics are collected (can be disabled in settings). Code snippets are not stored.</p>
+          <div class="warn"><strong>Never put secrets in instructions files.</strong> They are committed to Git. Use environment variables and reference them by name, not value.</div>
+          <div class="tip"><strong>Safe example:</strong> "Database connection uses the <code>DATABASE_URL</code> environment variable" — NOT the actual connection string.</div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">🚫</span><h3>Common Mistakes to Avoid</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p><strong>❌ Dumping entire repo as context</strong> — Copilot has a token limit. Give targeted context, not everything.</p>
+          <p><strong>❌ Vague prompts</strong> — "Make this better" → bad. "Add input validation for the email field using Pydantic" → good.</p>
+          <p><strong>❌ Not reviewing output</strong> — Copilot is probabilistic. Always review generated code before accepting.</p>
+          <p><strong>❌ Expecting 100% compliance</strong> — Instructions are guidance (~90-95%). Use hooks for guaranteed enforcement.</p>
+          <p><strong>❌ Putting secrets in .md files</strong> — These are committed to Git. Never put API keys, passwords, or tokens.</p>
+          <p><strong>❌ Ignoring open tabs</strong> — Copilot reads open tabs as context. Close irrelevant files to reduce noise.</p>
+          <div class="tip"><strong>Golden rule:</strong> Treat Copilot like a very fast junior developer who knows everything but needs clear, specific instructions.</div>
+        </div></div>
+      </div>
+
+      <div class="ess-card">
+        <div class="ess-card-header" onclick="toggleEss(this)"><span class="ess-icon">📊</span><h3>Instructions vs Hooks — The Key Difference</h3><span class="ess-toggle">▼</span></div>
+        <div class="ess-card-body"><div class="ess-card-content">
+          <p><strong>Instructions</strong> = guidance for the AI model. Probabilistic. Copilot follows them ~90-95% of the time.</p>
+          <p><strong>Hooks</strong> = shell commands that execute automatically. Deterministic. They run 100% of the time. No AI involved.</p>
+          <p>Example: "Always format with ruff" in instructions → Copilot MIGHT format. <code>ruff check --fix</code> in a hook → ruff WILL run, every time.</p>
+          <div class="tip"><strong>Strategy:</strong> Use instructions for patterns and conventions. Use hooks for enforcement and compliance. Together they cover ~100% of your needs.</div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  GitHub Copilot Interactive Reference — April 2026 &nbsp;·&nbsp;
+  <a href="https://code.visualstudio.com/docs/copilot/copilot-customization" target="_blank">VS Code Docs</a> &nbsp;·&nbsp;
+  <a href="https://docs.github.com/en/copilot" target="_blank">GitHub Docs</a>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FILE DETAIL DATA
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+const FILE_DATA = {
+  "github-folder": {
+    icon: "📂", name: ".github/", badge: "COPILOT HUB", badgeClass: "badge-always",
+    html: `<h4>What is this folder?</h4>
+<p>The <strong>.github/</strong> folder is the central hub for all Copilot customization. Every file in this folder tells Copilot how to behave in your project.</p>
+<h4>Why does it matter?</h4>
+<p>Without this folder, Copilot treats your project as a generic codebase. With it, Copilot becomes a team member who knows your architecture, conventions, and workflows.</p>
+<h4>Key concept</h4>
+<p>This folder is <strong>committed to your Git repo</strong>. Every team member gets the same Copilot behavior. The Architect owns these files.</p>`
+  },
+  "copilot-instructions": {
+    icon: "📋", name: "copilot-instructions.md", badge: "ALWAYS ON", badgeClass: "badge-always",
+    html: `<h4>What does it do?</h4>
+<p>This is your project's brain — loaded on <strong>every single Copilot interaction</strong>. Chat, inline suggestions, agent mode, every agent — they all read this first.</p>
+<h4>When does it load?</h4>
+<p><strong>Always.</strong> You never call it. You never reference it. It's just always there, like a sticky note on Copilot's forehead.</p>
+<h4>Example — You ask:</h4>
+<span class="example-tag you">YOU TYPE</span>
+<div class="code-block">"Add a function to process payments"</div>
+<span class="example-tag copilot">COPILOT RECEIVES</span>
+<div class="code-block">[SYSTEM] This project uses Python 3.12, FastAPI.
+Always use async def for I/O functions.
+Never use raw SQL, use SQLAlchemy ORM.
+Project uses repository pattern...
+
+[USER] "Add a function to process payments"</div>
+<span class="example-tag result">RESULT</span>
+<p>Copilot writes an <strong>async FastAPI function with SQLAlchemy ORM</strong> — because instructions told it your stack. Without this file, it might guess Flask, Django, or even Node.js.</p>
+<h4>What to put in it</h4>
+<ul><li>Project summary (tech stack, architecture)</li><li>Build and run commands</li><li>Coding conventions (naming, patterns)</li><li>DO NOT put secrets or credentials</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/copilot-instructions.md for my project. Include: project name, tech stack (language, framework, database, cache), architecture pattern (e.g. MVC, hexagonal, repository), build commands, test commands, coding conventions (naming, error handling, logging), and key folder structure. Do NOT include any secrets.</div>`
+  },
+  "python-instructions": {
+    icon: "🐍", name: "python.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Python-specific coding standards that <strong>auto-load whenever you have a .py file in context</strong>.</p>
+<h4>When does it load?</h4>
+<p>Automatically — when you open or reference any <code>.py</code> file. Uses <code>applyTo: "**/*.py"</code> in the YAML frontmatter.</p>
+<h4>Example — You're editing payment.py:</h4>
+<span class="example-tag copilot">COPILOT RECEIVES</span>
+<div class="code-block">[SYSTEM] copilot-instructions.md ← always
+[SYSTEM] python.instructions.md ← auto (*.py matches)
+  "Use type hints on all function parameters"
+  "Use Google-style docstrings"
+  "Catch specific exceptions, never bare except:"
+  "Use pathlib instead of os.path"
+
+[USER] "Add error handling here"</div>
+<span class="example-tag result">RESULT</span>
+<p>Copilot adds <strong>typed, specific exception handling with Google docstrings</strong> — matching your Python conventions automatically.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/python.instructions.md with applyTo: "**/*.py". Include rules: type hints on all params and returns, Google-style docstrings, catch specific exceptions (never bare except), use pathlib not os.path, f-strings over .format(), dataclasses for simple DTOs, async def for I/O.</div>`
+  },
+  "api-instructions": {
+    icon: "🌐", name: "api-routes.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>API route conventions — REST patterns, status codes, error response format. Auto-loads for files in <code>src/api/</code>.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "src/api/**/*.py"</code> — only when you're working on API route files.</p>
+<h4>What it enforces</h4>
+<ul><li>Always return proper HTTP status codes (201 for create, 204 for delete)</li><li>Use standardized error response schema</li><li>Include pagination on list endpoints</li><li>Validate request body with Pydantic schemas</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/api-routes.instructions.md with applyTo: "src/api/**/*.py". Include rules: proper HTTP status codes, standardized error responses, pagination on lists, Pydantic validation, OpenAPI descriptions on all endpoints, rate limiting headers.</div>`
+  },
+  "testing-instructions": {
+    icon: "🧪", name: "testing.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Test writing standards — AAA pattern, naming conventions, fixture usage. Auto-loads for test files.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "tests/**/*.py"</code> — activates when you're in the tests directory.</p>
+<h4>Example — Multiple instructions combine:</h4>
+<p>When you open <code>tests/test_payment.py</code>, <strong>THREE</strong> instruction files load simultaneously:</p>
+<div class="code-block">1. copilot-instructions.md     ← always
+2. python.instructions.md      ← matches *.py
+3. testing.instructions.md     ← matches tests/**</div>
+<p>Result: Tests get <strong>type hints + Google docstrings + AAA pattern + proper naming</strong> — all combined automatically.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/testing.instructions.md with applyTo: "tests/**". Include rules: AAA pattern (Arrange-Act-Assert), test_should_X_when_Y naming, use fixtures, mock external services, assert one thing per test, 80%+ coverage target.</div>`
+  },
+  "migrations-instructions": {
+    icon: "🗄️", name: "migrations.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Database migration rules — Alembic conventions, rollback safety, naming patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "migrations/**/*.py"</code> — only when working on migration files.</p>
+<h4>What it enforces</h4>
+<ul><li>Always include both upgrade() and downgrade()</li><li>Use descriptive revision messages</li><li>Never drop columns without data migration</li><li>Test migrations on a copy first</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/migrations.instructions.md with applyTo: "migrations/**/*.py". Include rules: always include upgrade() and downgrade(), descriptive messages, never drop columns without data migration, test on copy first, use batch operations for large tables.</div>`
+  },
+  "schemas-instructions": {
+    icon: "📐", name: "schemas.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Pydantic schema patterns — field naming, validation rules, inheritance patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "src/schemas/**/*.py"</code> — when editing schema files.</p>
+<h4>What it enforces</h4>
+<ul><li>Separate Create/Update/Response schemas</li><li>Use model_config for JSON serialization</li><li>Add Field() with description for all fields</li><li>Use Annotated types for complex validation</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/schemas.instructions.md with applyTo: "src/schemas/**/*.py". Include rules: separate Create/Update/Response schemas, use model_config, add Field() descriptions, use Annotated types for complex validation, snake_case field names.</div>`
+  },
+  "java-instructions": {
+    icon: "☕", name: "java.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Java-specific coding standards — auto-loads whenever you have a <code>.java</code> file in context.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.java"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Follow Google Java Style Guide or your team's standard</li><li>Use Optional instead of null for optional return values</li><li>Prefer streams over imperative loops where readable</li><li>Use records for DTOs (Java 16+)</li><li>Always use @Override annotation</li><li>Use var for local type inference (Java 10+)</li><li>Prefer sealed interfaces for type hierarchies</li><li>Guard against NullPointerException with Objects.requireNonNull()</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/java.instructions.md with applyTo: "**/*.java". Include rules: Google Java Style, use Optional not null, prefer streams, records for DTOs, @Override always, var for locals, sealed interfaces, Objects.requireNonNull(), Javadoc on public APIs, SLF4J logging.</div>`
+  },
+  "cpp-instructions": {
+    icon: "⚙️", name: "cpp.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>C/C++ coding standards — memory safety, modern C++ idioms. Auto-loads for <code>.cpp</code>, <code>.h</code>, <code>.hpp</code> files.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.{cpp,h,hpp,cc,cxx}"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use smart pointers (unique_ptr, shared_ptr) — never raw new/delete</li><li>Prefer std::string_view over const char*</li><li>Use RAII for all resource management</li><li>Prefer constexpr and consteval where possible</li><li>Use std::optional instead of sentinel values</li><li>Follow C++ Core Guidelines (Bjarne/Herb)</li><li>Use std::span for array views (C++20)</li><li>Avoid C-style casts — use static_cast, dynamic_cast</li><li>Enable -Wall -Wextra -Werror in builds</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/cpp.instructions.md with applyTo: "**/*.{cpp,h,hpp,cc,cxx}". Include rules: smart pointers only (no raw new/delete), RAII, string_view, constexpr, std::optional, C++ Core Guidelines, std::span, no C-style casts, enable all warnings.</div>`
+  },
+  "csharp-instructions": {
+    icon: "🔷", name: "csharp.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>C# coding standards — .NET conventions, async patterns, LINQ usage. Auto-loads for <code>.cs</code> files.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.cs"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use async/await — never .Result or .Wait()</li><li>Prefer records for immutable DTOs</li><li>Use ILogger&lt;T&gt; for logging</li><li>Follow Microsoft naming conventions (PascalCase for public)</li><li>Use nullable reference types (enable &lt;Nullable&gt;)</li><li>Prefer LINQ over manual loops</li><li>Use dependency injection everywhere</li><li>Use pattern matching with switch expressions</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/csharp.instructions.md with applyTo: "**/*.cs". Include rules: async/await (never .Result), records for DTOs, ILogger, PascalCase, nullable reference types, LINQ preferred, DI everywhere, pattern matching, file-scoped namespaces.</div>`
+  },
+  "typescript-instructions": {
+    icon: "🟦", name: "typescript.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>TypeScript-specific rules — type safety, strict mode, preferred patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.{ts,tsx}"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Enable strict mode in tsconfig</li><li>Prefer interfaces over type aliases for object shapes</li><li>Use discriminated unions for state management</li><li>Avoid <code>any</code> — use <code>unknown</code> and narrow</li><li>Use Zod or io-ts for runtime validation</li><li>Prefer const assertions for immutable data</li><li>Use <code>satisfies</code> operator for type checking (TS 4.9+)</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/typescript.instructions.md with applyTo: "**/*.{ts,tsx}". Include rules: strict mode, interfaces for objects, discriminated unions, no any (use unknown), Zod for validation, const assertions, satisfies operator, explicit return types on public functions.</div>`
+  },
+  "javascript-instructions": {
+    icon: "🟨", name: "javascript.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>JavaScript standards — ESM modules, error handling, modern syntax.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.{js,mjs,jsx}"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use ESM (import/export) over CommonJS (require)</li><li>Use const by default, let when needed, never var</li><li>Prefer optional chaining (?.) and nullish coalescing (??)</li><li>Use async/await over .then() chains</li><li>Use JSDoc for type documentation</li><li>Prefer Array methods (map, filter, reduce) over for loops</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/javascript.instructions.md with applyTo: "**/*.{js,mjs,jsx}". Include rules: ESM imports, const default, optional chaining, nullish coalescing, async/await, JSDoc types, Array methods, no var, destructuring preferred.</div>`
+  },
+  "go-instructions": {
+    icon: "🐹", name: "go.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Go coding standards — idiomatic Go, error handling, concurrency patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.go"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Always handle errors — no <code>_ = err</code></li><li>Use table-driven tests</li><li>Accept interfaces, return structs</li><li>Pass context.Context as first parameter</li><li>Use goroutines with proper synchronization</li><li>Follow Effective Go naming conventions</li><li>Prefer errors.Is/errors.As for error checking</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/go.instructions.md with applyTo: "**/*.go". Include rules: always handle errors, table-driven tests, accept interfaces return structs, context.Context first param, proper goroutine sync, Effective Go naming, errors.Is/errors.As, gofmt format.</div>`
+  },
+  "rust-instructions": {
+    icon: "🦀", name: "rust.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Rust coding standards — ownership, error handling, idiomatic patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.rs"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use Result&lt;T, E&gt; and the ? operator for error propagation</li><li>Prefer &amp;str over String in function parameters</li><li>Use clippy lints — no warnings allowed</li><li>Derive common traits (Debug, Clone, PartialEq) on structs</li><li>Use thiserror for library errors, anyhow for apps</li><li>Prefer iterators over manual loops</li><li>Document public API with /// doc comments</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/rust.instructions.md with applyTo: "**/*.rs". Include rules: Result with ? operator, &str in params, clippy clean, derive Debug/Clone/PartialEq, thiserror for libs, anyhow for apps, iterators preferred, /// doc comments on public API.</div>`
+  },
+  "react-instructions": {
+    icon: "⚛️", name: "react.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>React component conventions — hooks, state management, JSX patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.{tsx,jsx}"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Functional components only — no class components</li><li>Use hooks (useState, useEffect, useMemo, useCallback)</li><li>Extract custom hooks for reusable logic</li><li>Prefer named exports over default exports</li><li>Use React.memo() for expensive renders</li><li>Colocate component, styles, and tests</li><li>Use Error Boundaries for crash isolation</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/react.instructions.md with applyTo: "**/*.{tsx,jsx}". Include rules: functional components, hooks, custom hooks for reuse, named exports, React.memo for perf, colocate files, Error Boundaries, props destructuring, key prop on lists.</div>`
+  },
+  "angular-instructions": {
+    icon: "🅰️", name: "angular.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Angular component and service conventions — standalone components, signals, RxJS patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "src/app/**/*.ts"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use standalone components (Angular 15+)</li><li>Prefer signals over BehaviorSubject (Angular 16+)</li><li>Use OnPush change detection</li><li>Follow Angular style guide naming (kebab-case files, PascalCase classes)</li><li>Use inject() function over constructor injection</li><li>Lazy load feature modules</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/angular.instructions.md with applyTo: "src/app/**/*.ts". Include rules: standalone components, signals, OnPush detection, inject() function, lazy loading, Angular style guide naming, typed reactive forms, interceptors for HTTP.</div>`
+  },
+  "vue-instructions": {
+    icon: "💚", name: "vue.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Vue 3 component conventions — Composition API, reactivity, SFC patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.vue"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use Composition API with &lt;script setup&gt;</li><li>Prefer ref() and reactive() for state</li><li>Use defineProps() and defineEmits() macros</li><li>Follow Vue style guide (multi-word component names)</li><li>Use Pinia for state management</li><li>Use VueUse for common composables</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/vue.instructions.md with applyTo: "**/*.vue". Include rules: Composition API, script setup, ref/reactive, defineProps/defineEmits, Pinia for state, VueUse composables, multi-word component names, scoped styles.</div>`
+  },
+  "css-instructions": {
+    icon: "🎨", name: "css-styling.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>CSS/SCSS styling conventions — naming, architecture, responsive patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.{css,scss,less}"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use CSS custom properties (variables) for theming</li><li>BEM naming convention (.block__element--modifier)</li><li>Mobile-first responsive with min-width breakpoints</li><li>Use logical properties (margin-inline, padding-block)</li><li>Prefer grid/flexbox over floats/positioning</li><li>No !important unless overriding third-party</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/css-styling.instructions.md with applyTo: "**/*.{css,scss,less}". Include rules: CSS custom properties, BEM naming, mobile-first responsive, logical properties, grid/flexbox, no !important, use clamp() for fluid sizing.</div>`
+  },
+  "docker-instructions": {
+    icon: "🐳", name: "docker.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>Dockerfile and compose best practices — multi-stage, security, optimization.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/Dockerfile*,**/docker-compose*.yml"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Multi-stage builds to minimize image size</li><li>Run as non-root user</li><li>Use .dockerignore for build context</li><li>Pin base image versions (no :latest)</li><li>COPY before RUN for better layer caching</li><li>Use HEALTHCHECK instruction</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/docker.instructions.md with applyTo: "**/Dockerfile*,**/docker-compose*.yml". Include rules: multi-stage builds, non-root user, .dockerignore, pin versions, COPY before RUN, HEALTHCHECK, minimize layers.</div>`
+  },
+  "sql-instructions": {
+    icon: "🗃️", name: "sql.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>SQL conventions — naming, query patterns, migration safety.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: "**/*.sql"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Use snake_case for table and column names</li><li>Always include IF EXISTS on DROP statements</li><li>Add indexes for foreign keys and common queries</li><li>Use parameterized queries — never string concat</li><li>Include both UP and DOWN migrations</li><li>Use explicit JOIN syntax (never implicit comma joins)</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/sql.instructions.md with applyTo: "**/*.sql". Include rules: snake_case names, IF EXISTS on DROP, index foreign keys, parameterized queries, UP/DOWN migrations, explicit JOINs, LIMIT on dev queries.</div>`
+  },
+  "cicd-instructions": {
+    icon: "🔄", name: "ci-cd.instructions.md", badge: "AUTO", badgeClass: "badge-auto",
+    html: `<h4>What does it do?</h4>
+<p>CI/CD pipeline conventions — GitHub Actions, build scripts, deployment patterns.</p>
+<h4>When does it load?</h4>
+<p><code>applyTo: ".github/workflows/**/*.yml"</code></p>
+<h4>What it enforces</h4>
+<ul><li>Pin action versions with full SHA (not @v1)</li><li>Use matrix strategy for multi-version testing</li><li>Cache dependencies (actions/cache)</li><li>Run security scanning (CodeQL, Dependabot)</li><li>Separate build, test, and deploy stages</li><li>Use environment secrets — never hardcode</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/instructions/ci-cd.instructions.md with applyTo: ".github/workflows/**/*.yml". Include rules: pin actions by SHA, matrix testing, cache deps, CodeQL scanning, separate stages, environment secrets, artifact uploads.</div>`
+  },
+  "security-agent": {
+    icon: "🛡️", name: "security-reviewer.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>A security specialist agent that reviews code for vulnerabilities. <strong>Read-only</strong> — it literally cannot edit your files.</p>
+<h4>How to invoke</h4>
+<p>Select from agent picker at the top of chat, or type <code>@security-reviewer</code>.</p>
+<h4>Example:</h4>
+<span class="example-tag you">YOU TYPE</span>
+<div class="code-block">@security-reviewer review the payment service</div>
+<span class="example-tag result">RESULT</span>
+<p>Gets a focused security audit: OWASP Top 10, SQL injection, auth bypass, input validation — and <strong>cannot accidentally modify your code</strong> because its tools are restricted to <code>[read, search]</code>.</p>
+<h4>Why read-only matters</h4>
+<p>Tool restrictions are enforced by VS Code, not by the AI. Even if the AI "wants" to edit a file, the tool simply doesn't exist for this agent. Safe by design.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/security-reviewer.agent.md. Description: "Read-only security auditor." Tools: [read, search] only. Instructions: check OWASP Top 10, SQL injection, auth bypass, input validation, secrets in code, insecure dependencies. Output findings with severity levels.</div>`
+  },
+  "db-agent": {
+    icon: "🗃️", name: "db-admin.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Database specialist — schema design, query optimization, migration advice. Can read and write files.</p>
+<h4>How to invoke</h4>
+<p>Agent picker or <code>@db-admin</code></p>
+<h4>Good for</h4>
+<ul><li>"Design the schema for a new orders table"</li><li>"Optimize this query — it's running slow"</li><li>"Add proper indexes for the config table"</li><li>"Create a migration to add the new column"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/db-admin.agent.md. Description: "Database schema and query specialist." Tools: [read, search, edit]. Instructions: design normalized schemas, optimize queries, recommend indexes, generate migrations with rollback, avoid N+1 patterns, use transactions.</div>`
+  },
+  "test-agent": {
+    icon: "🧪", name: "test-engineer.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Test writing specialist — generates comprehensive test suites, identifies missing coverage, creates fixtures.</p>
+<h4>Example:</h4>
+<div class="code-block">@test-engineer generate a complete test suite for config_service.py</div>
+<p>Result: Unit tests + integration tests + edge cases + proper mocking — all following your testing.instructions.md conventions.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/test-engineer.agent.md. Description: "Test writing specialist." Tools: [read, search, edit, terminal]. Instructions: generate unit + integration + edge case tests, use AAA pattern, mock externals, run tests to verify they pass, target 80%+ coverage.</div>`
+  },
+  "api-agent": {
+    icon: "🎨", name: "api-designer.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>API design reviewer — checks REST conventions, endpoint consistency, schema validation, versioning.</p>
+<h4>Example:</h4>
+<div class="code-block">@api-designer review our v1 API for consistency issues</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/api-designer.agent.md. Description: "REST API design reviewer." Tools: [read, search]. Instructions: check REST conventions, URL naming, HTTP methods, status codes, pagination, versioning, error response consistency, OpenAPI spec completeness.</div>`
+  },
+  "explorer-agent": {
+    icon: "🔍", name: "code-explorer.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Read-only codebase guide — answers questions about code flow, architecture, dependencies. <strong>Cannot modify anything.</strong></p>
+<h4>Perfect for</h4>
+<ul><li>New team members exploring the codebase</li><li>"How does the auth flow work?"</li><li>"What calls config_service.py?"</li><li>"Trace the data flow from API to database"</li></ul>
+<p style="color:var(--green)">Safe to give to anyone — read + search only. Cannot edit, create, or delete.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/code-explorer.agent.md. Description: "Read-only codebase guide for understanding architecture and data flow." Tools: [read, search] only. Instructions: explain code clearly, trace data flow, reference file paths, never suggest edits.</div>`
+  },
+  "perf-agent": {
+    icon: "⚡", name: "performance-auditor.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Performance specialist — identifies bottlenecks, N+1 queries, memory leaks, unnecessary re-renders, slow algorithms.</p>
+<h4>How to invoke</h4>
+<p>Agent picker or <code>@performance-auditor</code></p>
+<h4>Good for</h4>
+<ul><li>"Find N+1 queries in our repositories"</li><li>"Profile this React component for unnecessary re-renders"</li><li>"Is this algorithm O(n²)? Suggest O(n log n) alternative"</li><li>"Check for memory leaks in our event listeners"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/performance-auditor.agent.md. Description: "Performance specialist for identifying bottlenecks." Tools: [read, search, edit]. Instructions: identify N+1 queries, memory leaks, O(n²) algorithms, unnecessary renders, suggest caching strategies, recommend indexes.</div>`
+  },
+  "docs-agent": {
+    icon: "📝", name: "docs-writer.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Documentation specialist — generates API docs, README, architecture diagrams, onboarding guides.</p>
+<h4>Good for</h4>
+<ul><li>"Document all public API endpoints"</li><li>"Create an architecture overview README"</li><li>"Generate JSDoc/Javadoc for this module"</li><li>"Write a getting-started guide for new developers"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/docs-writer.agent.md. Description: "Documentation specialist for generating READMEs, API docs, and guides." Tools: [read, search, edit]. Instructions: use clear language, include code examples, follow team doc templates, generate Markdown, cover setup/usage/API/troubleshooting.</div>`
+  },
+  "a11y-agent": {
+    icon: "♿", name: "accessibility-reviewer.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Accessibility (a11y) reviewer — checks WCAG compliance, ARIA usage, keyboard navigation, screen reader support.</p>
+<h4>Good for</h4>
+<ul><li>"Review this form for accessibility issues"</li><li>"Add proper ARIA labels to navigation"</li><li>"Check color contrast ratios"</li><li>"Ensure keyboard navigation works on modal"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/accessibility-reviewer.agent.md. Description: "WCAG accessibility reviewer for UI components." Tools: [read, search]. Instructions: check ARIA labels, keyboard navigation, color contrast (WCAG AA), screen reader text, focus management, semantic HTML.</div>`
+  },
+  "devops-agent": {
+    icon: "🔧", name: "devops-engineer.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>DevOps specialist — CI/CD pipelines, Docker, Kubernetes, infrastructure as code, monitoring.</p>
+<h4>Good for</h4>
+<ul><li>"Write a GitHub Actions workflow for this project"</li><li>"Optimize our Dockerfile for smaller image size"</li><li>"Set up Kubernetes deployment manifests"</li><li>"Add monitoring and health checks"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/devops-engineer.agent.md. Description: "DevOps specialist for CI/CD, Docker, K8s, and infrastructure." Tools: [read, search, edit, terminal]. Instructions: write GitHub Actions, optimize Dockerfiles, K8s manifests, Terraform/Pulumi, monitoring setup, secret management.</div>`
+  },
+  "refactor-agent": {
+    icon: "♻️", name: "refactoring-advisor.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Refactoring specialist — identifies code smells, suggests design patterns, plans safe refactoring steps.</p>
+<h4>Good for</h4>
+<ul><li>"This 500-line function needs to be broken up"</li><li>"Suggest a design pattern for this switch statement"</li><li>"Plan a safe refactoring of the payment module"</li><li>"Identify dead code in this module"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/refactoring-advisor.agent.md. Description: "Identifies code smells and plans safe refactoring." Tools: [read, search, edit]. Instructions: identify long methods, god classes, duplication, suggest SOLID patterns, plan incremental refactoring, preserve behavior, recommend tests before refactoring.</div>`
+  },
+  "onboarding-agent": {
+    icon: "🎓", name: "onboarding-guide.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>New developer onboarding — explains project structure, walks through setup, answers "why" questions. <strong>Read-only, safe for anyone.</strong></p>
+<h4>Good for</h4>
+<ul><li>"Walk me through this project's architecture"</li><li>"What does each folder do?"</li><li>"How do I set up my local dev environment?"</li><li>"What's the typical PR workflow here?"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/onboarding-guide.agent.md. Description: "Read-only onboarding guide for new team members." Tools: [read, search] only. Instructions: explain project structure, setup steps, PR workflow, architecture decisions, key files to know, team conventions.</div>`
+  },
+  "planner-agent": {
+    icon: "📋", name: "planner.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Planning-only agent — <strong>read-only tools</strong>, generates implementation plans, then hands off to implementation. From official VS Code docs.</p>
+<h4>Agent file with handoff</h4>
+<div class="code-block">---
+description: Generate an implementation plan
+tools: ['search', 'readFile', 'web']
+handoffs:
+  - label: Start Implementation
+    agent: agent
+    prompt: Implement the plan above.
+    send: false
+---</div>
+<p>After generating a plan, a <strong>"Start Implementation"</strong> button appears. Click it to hand off to the default agent with full editing tools.</p>
+<h4>Why this matters</h4>
+<p>Read-only tools = <strong>zero risk of accidental edits</strong>. Plan first, then decide whether to proceed. Perfect for complex features.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/planner.agent.md. Description: "Generate implementation plans with read-only analysis." Tools: [search, readFile, web] only — no editing tools. Add handoff: label "Start Implementation", agent: agent, prompt: "Implement the plan outlined above.", send: false. Instructions: analyze codebase, identify affected files, list implementation steps, estimate complexity, flag risks.</div>`
+  },
+  "migration-agent": {
+    icon: "🔀", name: "migration-planner.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Plans and executes language/framework migrations — Python 2→3, Angular→React, REST→GraphQL, monolith→microservices.</p>
+<h4>Agent file</h4>
+<div class="code-block">---
+description: Plan and execute codebase migrations
+tools: ['search', 'readFile', 'editFile', 'terminal']
+model: Claude Sonnet 4.5 (copilot)
+---</div>
+<h4>Good for</h4>
+<ul><li>"Migrate this Express app to Fastify"</li><li>"Convert class components to React hooks"</li><li>"Plan a Python 2 to 3 migration"</li><li>"Move from REST to GraphQL"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/migration-planner.agent.md. Description: "Plans and executes codebase migrations." Tools: [search, readFile, editFile, terminal]. Instructions: analyze current stack, identify migration targets, create dependency graph, plan incremental steps, preserve tests, document breaking changes, create rollback plan.</div>`
+  },
+  "compliance-agent": {
+    icon: "✅", name: "compliance-checker.agent.md", badge: "ON-DEMAND", badgeClass: "badge-demand",
+    html: `<h4>What does it do?</h4>
+<p>Checks code compliance — license headers, GDPR/HIPAA patterns, coding standards, audit requirements. Uses <strong>scoped hooks</strong> (from official docs).</p>
+<h4>Agent file with scoped hooks</h4>
+<div class="code-block">---
+description: Verify compliance with standards
+tools: ['search', 'readFile']
+hooks:
+  PostToolUse:
+    - type: command
+      command: ./scripts/compliance-check.sh
+---</div>
+<p>Hooks defined in the agent file <strong>only run when this agent is active</strong>. The compliance check runs after every tool use.</p>
+<h4>Good for</h4>
+<ul><li>"Check all files for license headers"</li><li>"Verify GDPR data handling patterns"</li><li>"Audit logging compliance"</li><li>"Check naming convention compliance"</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/agents/compliance-checker.agent.md. Description: "Verify code compliance with standards." Tools: [search, readFile] only. Add agent-scoped hook: PostToolUse runs scripts/compliance-check.sh. Instructions: check license headers, GDPR data patterns, naming conventions, logging standards. Output compliance report with pass/fail per category.</div>`
+  },
+  "deploy-skill": {
+    icon: "🚀", name: "deploy-staging/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>A multi-step deployment workflow with a bundled deploy script. Type <code>/deploy-staging</code> and Copilot walks through every step.</p>
+<h4>How to invoke</h4>
+<p>Type <code>/</code> in chat → select <code>deploy-staging</code></p>
+<h4>What happens step by step</h4>
+<div class="code-block">1. Run pytest — never deploy without passing tests
+2. Build Docker image with version tag
+3. Run Alembic migrations against staging DB
+4. Execute ./scripts/deploy.sh staging
+5. Verify health check at /health endpoint</div>
+<h4>Key difference from a prompt</h4>
+<p>Skills have <strong>bundled files</strong> (scripts/deploy.sh). Prompts are just text. Skills can execute multi-step procedures with real scripts.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/deploy-staging/SKILL.md. Steps: 1) run pytest, 2) build Docker image with version tag, 3) run DB migrations, 4) execute deploy script, 5) verify health check. Include bundled script: scripts/deploy.sh.</div>`
+  },
+  "endpoint-skill": {
+    icon: "➕", name: "add-new-endpoint/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Scaffolds a complete new API endpoint — following your project's patterns exactly.</p>
+<h4>What it creates</h4>
+<div class="code-block">1. Route handler in src/api/v1/
+2. Service method in src/services/
+3. Repository method in src/repos/
+4. Pydantic schemas in src/schemas/
+5. Test file in tests/</div>
+<p>All wired together, following your conventions. One command, complete vertical slice.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/add-new-endpoint/SKILL.md. Steps: 1) create route handler, 2) add service method, 3) add repo method, 4) create Pydantic schemas, 5) generate test file. All following project conventions.</div>`
+  },
+  "migration-skill": {
+    icon: "📦", name: "create-migration/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Guides you through creating a safe database migration with Alembic.</p>
+<h4>Steps</h4>
+<ul><li>Validates the model change first</li><li>Generates Alembic revision with upgrade + downgrade</li><li>Tests migration on a local DB copy</li><li>Creates a rollback plan</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/create-migration/SKILL.md. Steps: 1) validate model change, 2) generate Alembic revision with upgrade+downgrade, 3) test on local DB copy, 4) create rollback plan. Include bundled script: scripts/test-migration.sh.</div>`
+  },
+  "setup-env-skill": {
+    icon: "🛠️", name: "setup-dev-env/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Automates full local development setup — install dependencies, configure environment, start services, verify everything works.</p>
+<h4>Steps</h4>
+<ul><li>Check prerequisites (Node/Python/Docker version)</li><li>Install dependencies</li><li>Copy .env.example → .env</li><li>Start Docker services (DB, cache)</li><li>Run migrations</li><li>Seed test data</li><li>Verify with health check</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/setup-dev-env/SKILL.md. Steps: 1) check prerequisites, 2) install deps, 3) copy .env.example to .env, 4) start Docker services, 5) run migrations, 6) seed data, 7) verify health check. Include bundled script: scripts/setup-dev.sh.</div>`
+  },
+  "release-skill": {
+    icon: "🏷️", name: "cut-release/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Automates release process — version bump, changelog, tag, and publish.</p>
+<h4>Steps</h4>
+<ul><li>Determine version bump (major/minor/patch)</li><li>Update version in config files</li><li>Generate CHANGELOG from commits</li><li>Create git tag</li><li>Push tag → triggers CI/CD deploy</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/cut-release/SKILL.md. Steps: 1) determine version bump, 2) update version files, 3) generate CHANGELOG, 4) create git tag, 5) push to trigger CI deploy. Include bundled script: scripts/release.sh.</div>`
+  },
+  "perf-bench-skill": {
+    icon: "📊", name: "run-perf-benchmark/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Runs performance benchmarks and generates a report comparing against baseline.</p>
+<h4>Steps</h4>
+<ul><li>Start services in benchmark mode</li><li>Run load test suite (wrk/k6/locust)</li><li>Collect metrics (p50, p95, p99, throughput)</li><li>Compare against baseline</li><li>Generate markdown report</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/run-perf-benchmark/SKILL.md. Steps: 1) start benchmark mode, 2) run load tests, 3) collect p50/p95/p99 latency, 4) compare vs baseline, 5) generate markdown report. Include bundled script: scripts/benchmark.sh.</div>`
+  },
+  "webapp-test-skill": {
+    icon: "🌐", name: "webapp-testing/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Complete web application testing skill — from official VS Code docs. Includes test templates, Playwright/Cypress examples, and accessibility checks.</p>
+<h4>Skill directory structure</h4>
+<div class="code-block">webapp-testing/
+  SKILL.md          ← Instructions + procedures
+  test-template.js  ← Reusable test template
+  examples/         ← Example test scenarios
+    login.spec.ts
+    api-crud.spec.ts</div>
+<h4>SKILL.md header</h4>
+<div class="code-block">---
+name: webapp-testing
+description: Test web applications including UI, API, and accessibility
+argument-hint: "[test target] [options]"
+---</div>
+<p>Type <code>/webapp-testing for the login page</code> and Copilot loads the skill, reads the template, and generates comprehensive tests.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/webapp-testing/SKILL.md with description "Test web applications including UI, API, and accessibility". Steps: 1) identify test target, 2) select framework (Playwright/Vitest/Jest), 3) generate tests using bundled template, 4) include accessibility checks with axe-core, 5) run and report results. Also create test-template.js as a bundled template file.</div>`
+  },
+  "gh-actions-skill": {
+    icon: "⚙️", name: "github-actions-debug/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Debug failing GitHub Actions workflows — from the awesome-copilot community. Analyzes logs, suggests fixes, tests locally.</p>
+<h4>SKILL.md header</h4>
+<div class="code-block">---
+name: github-actions-debug
+description: Debug and fix failing GitHub Actions workflows
+argument-hint: "[workflow or PR number]"
+---</div>
+<h4>What it does step by step</h4>
+<div class="code-block">1. Fetch workflow run logs via gh CLI
+2. Parse error messages and identify root cause
+3. Check .github/workflows/ YAML for syntax issues
+4. Suggest fix with explanation
+5. Test fix locally with act (if available)</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/github-actions-debug/SKILL.md with description "Debug and fix failing GitHub Actions workflows". Steps: 1) fetch run logs via gh CLI, 2) parse errors, 3) check YAML syntax, 4) suggest fix, 5) test locally with act. Include scripts/fetch-workflow-logs.sh.</div>`
+  },
+  "security-scan-skill": {
+    icon: "🔒", name: "security-scan/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Runs a comprehensive security scan — OWASP Top 10, dependency audit, secret detection, and generates a report.</p>
+<h4>SKILL.md header</h4>
+<div class="code-block">---
+name: security-scan
+description: Run security scans for OWASP Top 10, dependency vulnerabilities, and secrets
+---</div>
+<h4>Steps</h4>
+<div class="code-block">1. Run npm audit / pip audit / cargo audit
+2. Scan for hardcoded secrets (regex patterns)
+3. Check for OWASP Top 10 (SQL injection, XSS, etc.)
+4. Verify authentication/authorization patterns
+5. Generate severity-ranked report</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/security-scan/SKILL.md with description "Run security scans for OWASP Top 10, dependency vulnerabilities, and secrets". Steps: 1) audit dependencies, 2) scan for hardcoded secrets, 3) check OWASP Top 10, 4) verify auth patterns, 5) generate report. Include scripts/secret-scan.sh regex patterns file.</div>`
+  },
+  "api-spec-skill": {
+    icon: "📄", name: "openapi-spec-gen/SKILL.md", badge: "/COMMAND", badgeClass: "badge-slash",
+    html: `<h4>What does it do?</h4>
+<p>Generates or updates an OpenAPI 3.1 specification from your codebase — routes, schemas, auth, examples.</p>
+<h4>SKILL.md header</h4>
+<div class="code-block">---
+name: openapi-spec-gen
+description: Generate or update OpenAPI 3.1 spec from codebase
+argument-hint: "[output path]"
+---</div>
+<h4>Steps</h4>
+<ul><li>Scan route handlers for endpoints</li><li>Extract Pydantic/Zod/DTO schemas</li><li>Map auth middleware to security schemes</li><li>Generate request/response examples</li><li>Output openapi.yaml with full spec</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/skills/openapi-spec-gen/SKILL.md with description "Generate or update OpenAPI 3.1 spec from codebase". Steps: 1) scan route handlers, 2) extract request/response schemas, 3) map auth to security schemes, 4) generate examples, 5) output openapi.yaml. Include examples/openapi-template.yaml.</div>`
+  },
+  "gen-tests-prompt": {
+    icon: "⚡", name: "generate-tests.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>A pre-written task template for test generation. Type <code>/generate-tests</code> and provide the target — get comprehensive tests every time.</p>
+<h4>Why use this instead of just asking?</h4>
+<p>Without the prompt, you'd type: "Write tests" → get 2-3 generic tests.<br>With the prompt, it pre-loads your requirements: happy path + validation + auth + edge cases + error scenarios + proper naming.</p>
+<h4>Example:</h4>
+<span class="example-tag you">YOU TYPE</span>
+<div class="code-block">/generate-tests for the config service</div>
+<span class="example-tag result">RESULT</span>
+<p>Gets 15+ tests covering every scenario — <strong>same quality every time, without re-typing requirements</strong>.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/generate-tests.prompt.md. Template: generate comprehensive tests for {target}. Include: happy path, validation errors, auth failures, edge cases, error scenarios. Use AAA pattern, descriptive names, proper fixtures.</div>`
+  },
+  "pr-prompt": {
+    icon: "📝", name: "create-pr-description.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Reads your git diff and generates a structured PR description with summary, changes list, testing notes, and review checklist.</p>
+<div class="code-block">/create-pr-description</div>
+<p>Outputs a ready-to-paste PR description following your team's template.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/create-pr-description.prompt.md. Template: read git diff, generate PR description with: summary, list of changes, testing notes, review checklist, breaking changes flag, related issues.</div>`
+  },
+  "scaffold-prompt": {
+    icon: "🏗️", name: "scaffold-feature.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Full feature scaffolding — generates model, schema, repo, service, API route, and tests for a new feature.</p>
+<div class="code-block">/scaffold-feature "user notifications"</div>
+<p>Creates the entire vertical slice in one shot, following project conventions.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/scaffold-feature.prompt.md. Template: scaffold complete feature for {feature_name}. Generate: model, schema (create/update/response), repository, service, API route, and test file. Follow project patterns and naming conventions.</div>`
+  },
+  "review-prompt": {
+    icon: "👁️", name: "code-review.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Structured code review — checks security, performance, conventions, test coverage, and generates actionable feedback.</p>
+<div class="code-block">/code-review — with changed files open</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/code-review.prompt.md. Template: review for security (OWASP), performance (N+1, caching), conventions (naming, patterns), test coverage, error handling. Output structured markdown with severity levels.</div>`
+  },
+  "refactor-prompt": {
+    icon: "♻️", name: "refactor-legacy.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Guides refactoring of legacy code — identifies patterns, suggests modernization, plans incremental steps.</p>
+<div class="code-block">/refactor-legacy — select the legacy module</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/refactor-legacy.prompt.md. Template: analyze legacy code, identify code smells, suggest design patterns, plan incremental refactoring steps, recommend tests to add before refactoring, preserve existing behavior.</div>`
+  },
+  "docs-prompt": {
+    icon: "📖", name: "generate-docs.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Generates comprehensive documentation — README, API docs, architecture overview, setup guide.</p>
+<div class="code-block">/generate-docs for the project</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/generate-docs.prompt.md. Template: generate README with project overview, setup instructions, architecture diagram (mermaid), API reference, environment variables, deployment guide, contributing guidelines.</div>`
+  },
+  "convert-prompt": {
+    icon: "🔄", name: "convert-language.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Convert code between languages — Python→Java, JavaScript→TypeScript, C++→Rust, etc. Preserves logic and adapts idioms.</p>
+<div class="code-block">/convert-language Python to TypeScript</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/convert-language.prompt.md. Template: convert source code from {source_lang} to {target_lang}. Preserve logic, adapt to target language idioms, use target language best practices, add type annotations, include equivalent error handling, generate matching tests.</div>`
+  },
+  "security-review-prompt": {
+    icon: "🛡️", name: "security-review.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Focused security review of a REST API — OWASP Top 10, auth flaws, injection risks, data exposure. Based on the official VS Code prompt file example.</p>
+<h4>Prompt file header</h4>
+<div class="code-block">---
+description: "Security review of REST API endpoints"
+agent: agent
+tools: ['search', 'readFile']
+---</div>
+<h4>How to use</h4>
+<div class="code-block">/security-review — with API files open</div>
+<p>Generates a structured report with severity levels (Critical/High/Medium/Low) and remediation steps.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/security-review.prompt.md with agent: agent and tools: ['search', 'readFile']. Template: review REST API for OWASP Top 10 (injection, broken auth, data exposure, XSS, CSRF, SSRF). Output structured report with severity levels and specific remediation code.</div>`
+  },
+  "adr-prompt": {
+    icon: "📐", name: "architecture-decision.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Generates an Architecture Decision Record (ADR) — documenting the context, options considered, decision, and consequences.</p>
+<h4>How to use</h4>
+<div class="code-block">/architecture-decision "migrate from REST to GraphQL"</div>
+<h4>Output format</h4>
+<div class="code-block"># ADR-NNN: Title
+## Status: Proposed
+## Context: Why this decision is needed
+## Options Considered: Option A, B, C with pros/cons
+## Decision: What we chose and why
+## Consequences: What changes, risks, follow-ups</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/architecture-decision.prompt.md. Template: generate ADR for {decision}. Sections: Status, Context, Options Considered (with pros/cons table), Decision, Consequences, Follow-up Actions. Use Michael Nygard ADR format. Save to docs/adr/ directory.</div>`
+  },
+  "incident-prompt": {
+    icon: "🚨", name: "incident-postmortem.prompt.md", badge: "PROMPT", badgeClass: "badge-prompt",
+    html: `<h4>What does it do?</h4>
+<p>Generates a blameless post-incident report — timeline, root cause analysis, impact assessment, and action items.</p>
+<h4>How to use</h4>
+<div class="code-block">/incident-postmortem "database connection pool exhaustion on 2026-03-15"</div>
+<h4>Output includes</h4>
+<ul><li><strong>Timeline:</strong> Detection → Response → Mitigation → Resolution</li><li><strong>Root cause:</strong> 5 Whys analysis</li><li><strong>Impact:</strong> Users affected, duration, SLA impact</li><li><strong>Action items:</strong> Fix, prevent, detect (with owners + due dates)</li></ul>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/prompts/incident-postmortem.prompt.md. Template: generate blameless postmortem for {incident}. Sections: Summary, Timeline (detection/response/mitigation/resolution), Root Cause (5 Whys), Impact Assessment, Action Items (fix/prevent/detect with owners), Lessons Learned.</div>`
+  },
+  "lint-hook": {
+    icon: "🤖", name: "post-edit-lint.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Runs <code>ruff check --fix</code> automatically after <strong>every file edit</strong> that Copilot makes. Not AI — it's a shell command that just executes.</p>
+<h4>Event: PostToolUse</h4>
+<h4>Real JSON example</h4>
+<div class="code-block">{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "ruff check --fix \\"$TOOL_INPUT_FILE_PATH\\""
+      }
+    ]
+  }
+}</div>
+<h4>Why this matters</h4>
+<div class="code-block">Instruction says: "Always format code with ruff"
+→ Copilot MIGHT format. ~90% of the time. It's guidance.
+
+Hook does: ruff check --fix (after every edit)
+→ ruff WILL run. 100%. Every time. No AI involved.</div>
+<p style="color:var(--cyan);font-weight:700">Instructions = guidance. Hooks = enforcement. That's the key difference.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/post-edit-lint.json with a PostToolUse hook that runs "ruff check --fix" on the edited file path. Use the $TOOL_INPUT_FILE_PATH env var. Add a comment explaining the difference between instructions (guidance) and hooks (enforcement).</div>`
+  },
+  "warn-hook": {
+    icon: "⚠️", name: "pre-execute-warning.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Fires <strong>before</strong> Copilot executes any terminal command. Can <strong>block, allow, or ask for confirmation</strong>.</p>
+<h4>Event: PreToolUse</h4>
+<p>PreToolUse is the most powerful hook — it can modify tool input, deny operations, or auto-approve safe ones.</p>
+<h4>Real JSON example</h4>
+<div class="code-block">{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/validate-command.sh",
+        "timeout": 10
+      }
+    ]
+  }
+}</div>
+<h4>The script can return</h4>
+<div class="code-block">{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "rm -rf blocked by policy"
+  }
+}</div>
+<p>Permission decisions: <strong>allow</strong> (auto&dash;approve), <strong>deny</strong> (block), <strong>ask</strong> (prompt user).</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/pre-execute-warning.json with a PreToolUse hook. The hook should run a validation script that checks the tool_name and tool_input from stdin JSON. If the command contains "rm -rf", "DROP TABLE", "git push --force", or "DELETE FROM", return permissionDecision: "deny". Otherwise return permissionDecision: "allow". Also create the validation script.</div>`
+  },
+  "format-hook": {
+    icon: "✨", name: "post-edit-format.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Runs Prettier (or your formatter) automatically after <strong>every file edit</strong> by Copilot.</p>
+<h4>Event: PostToolUse</h4>
+<h4>Real JSON example (from official VS Code docs)</h4>
+<div class="code-block">{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "npx prettier --write \\"$TOOL_INPUT_FILE_PATH\\""
+      }
+    ]
+  }
+}</div>
+<p>The <code>$TOOL_INPUT_FILE_PATH</code> env var is automatically set by VS Code to the edited file path.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/post-edit-format.json with a PostToolUse hook that runs "npx prettier --write" on the edited file after every file edit. Add timeout: 15 seconds. Include a comment explaining which env vars are available.</div>`
+  },
+  "block-destructive-hook": {
+    icon: "🚫", name: "block-destructive.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Blocks dangerous terminal commands — <code>rm -rf</code>, <code>DROP TABLE</code>, <code>git push --force</code>, <code>docker system prune</code>. <strong>Zero tolerance, no AI involved.</strong></p>
+<h4>Event: PreToolUse</h4>
+<h4>Real JSON example</h4>
+<div class="code-block">{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/block-destructive.sh",
+        "windows": "powershell -File scripts\\\\block-destructive.ps1"
+      }
+    ]
+  }
+}</div>
+<h4>What the script does</h4>
+<div class="code-block">#!/bin/bash
+INPUT=$(cat)
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+if echo "$COMMAND" | grep -qiE 'rm -rf|drop table|--force|system prune'; then
+  echo '{"hookSpecificOutput":{"permissionDecision":"deny",
+    "permissionDecisionReason":"Blocked: destructive command"}}'
+  exit 0
+fi
+echo '{"hookSpecificOutput":{"permissionDecision":"allow"}}'</div>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/block-destructive.json with a PreToolUse hook that runs scripts/block-destructive.sh (and a Windows PowerShell variant). Create both scripts. They read JSON from stdin, extract tool_input.command, and block "rm -rf", "DROP TABLE", "git push --force", "docker system prune", "DELETE FROM" by returning permissionDecision: "deny". Safe commands get permissionDecision: "allow".</div>`
+  },
+  "audit-hook": {
+    icon: "📋", name: "audit-log.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Logs every tool invocation to a file — who used what tool, when, with what input. <strong>Compliance and audit trail.</strong></p>
+<h4>Events: PreToolUse + PostToolUse</h4>
+<h4>Real JSON example</h4>
+<div class="code-block">{
+  "hooks": {
+    "PreToolUse": [
+      { "type": "command", "command": "./scripts/audit-log.sh pre" }
+    ],
+    "PostToolUse": [
+      { "type": "command", "command": "./scripts/audit-log.sh post" }
+    ]
+  }
+}</div>
+<p>The script appends each invocation to <code>.copilot-audit.log</code> with timestamp, tool name, input, and result.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/audit-log.json with both PreToolUse and PostToolUse hooks that call scripts/audit-log.sh. Create the script that reads stdin JSON, extracts timestamp, tool_name, tool_input, and appends a log line to .copilot-audit.log. Format: [timestamp] [event] [tool_name] [input_summary].</div>`
+  },
+  "session-context-hook": {
+    icon: "🔗", name: "session-context.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Injects project context (branch, version, environment) at the <strong>start of every Copilot session</strong>. The agent sees this info automatically.</p>
+<h4>Event: SessionStart</h4>
+<h4>Real JSON example</h4>
+<div class="code-block">{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "./scripts/inject-context.sh"
+      }
+    ]
+  }
+}</div>
+<h4>Script returns additionalContext</h4>
+<div class="code-block">{
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "Project: my-app v2.1.0 | Branch: feature/auth | Node: v20.11 | ENV: dev"
+  }
+}</div>
+<p>This context gets added to the agent conversation — it knows your branch, version, and environment automatically.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/session-context.json with a SessionStart hook that runs scripts/inject-context.sh. Create the script that extracts: git branch name, package.json version, Node/Python version, and current environment. Return it as additionalContext in hookSpecificOutput with hookEventName "SessionStart".</div>`
+  },
+  "auto-test-hook": {
+    icon: "🧪", name: "post-edit-test.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Automatically runs related tests after every file edit. If tests fail, <strong>injects the failure into the conversation</strong> so the agent can fix it.</p>
+<h4>Event: PostToolUse</h4>
+<h4>Real JSON example</h4>
+<div class="code-block">{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/run-related-tests.sh",
+        "timeout": 60
+      }
+    ]
+  }
+}</div>
+<h4>Script returns failure context</h4>
+<div class="code-block">{
+  "hookSpecificOutput": {
+    "hookEventName": "PostToolUse",
+    "additionalContext": "FAIL: test_config_service.py::test_create - AssertionError"
+  }
+}</div>
+<p>The agent sees the test failure and automatically tries to fix it — <strong>self-correcting feedback loop</strong>.</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/post-edit-test.json with a PostToolUse hook that runs scripts/run-related-tests.sh with timeout 60. Create the script: determine which test file corresponds to the edited file, run pytest (or npm test) on it. If tests fail, return additionalContext with the failure message. If tests pass, return empty JSON.</div>`
+  },
+  "stop-verify-hook": {
+    icon: "🛑", name: "stop-verify.json", badge: "LIFECYCLE", badgeClass: "badge-hook",
+    html: `<h4>What does it do?</h4>
+<p>Prevents the agent from stopping until tests pass. If the agent tries to finish with failing tests, <strong>forces it to continue</strong>.</p>
+<h4>Event: Stop</h4>
+<h4>Real JSON example</h4>
+<div class="code-block">{
+  "hooks": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "./scripts/verify-before-stop.sh",
+        "timeout": 120
+      }
+    ]
+  }
+}</div>
+<h4>Script blocks the stop</h4>
+<div class="code-block">{
+  "hookSpecificOutput": {
+    "hookEventName": "Stop",
+    "decision": "block",
+    "reason": "Tests are failing. Fix them before finishing."
+  }
+}</div>
+<p style="color:var(--orange);font-weight:700">⚠️ Always check <code>stop_hook_active</code> from stdin — if true, let the agent stop (prevents infinite loops).</p>
+<h4>📋 Paste into Copilot to generate</h4>
+<div class="code-block" style="cursor:pointer" onclick="copyBlock(this)">Create .github/hooks/stop-verify.json with a Stop hook that runs scripts/verify-before-stop.sh with timeout 120. Create the script: check stop_hook_active from stdin — if true, exit 0. Otherwise run the test suite. If tests fail, return decision: "block" with reason explaining which tests failed. If tests pass, exit 0.</div>`
+  },
+  "src-folder": {
+    icon: "📂", name: "src/", badge: "APP CODE", badgeClass: "badge-src",
+    html: `<h4>Application Source Code</h4>
+<p>Standard FastAPI project following the <strong>repository pattern</strong>:</p>
+<div class="code-block">API Route → Service → Repository → Database
+    ↑          ↑          ↑
+  schemas    business    SQLAlchemy
+  validate   logic       queries</div>
+<p>Each layer has a clear responsibility. Copilot knows this because copilot-instructions.md describes the architecture.</p>`
+  },
+  "main-py": { icon: "🚀", name: "main.py", badge: "", badgeClass: "", html: `<h4>FastAPI Entry Point</h4><p>Creates the FastAPI app, includes CORS, registers routers, sets up lifespan events (DB init, cleanup).</p>` },
+  "core-folder": { icon: "⚙️", name: "core/", badge: "", badgeClass: "", html: `<h4>App Infrastructure</h4><ul><li><strong>config.py</strong> — Pydantic Settings from env vars</li><li><strong>database.py</strong> — Async SQLAlchemy engine + session</li><li><strong>security.py</strong> — JWT auth, role-based access</li><li><strong>logging.py</strong> — Structured JSON logging</li></ul>` },
+  "models-folder": { icon: "🗂️", name: "models/", badge: "", badgeClass: "", html: `<h4>SQLAlchemy ORM Models</h4><ul><li><strong>base.py</strong> — Declarative base with common columns (id, timestamps)</li><li><strong>config.py</strong> — Config table (key, value, environment, encrypted flag)</li><li><strong>audit.py</strong> — Audit log (who changed what, when)</li></ul>` },
+  "schemas-folder": { icon: "📐", name: "schemas/", badge: "", badgeClass: "", html: `<h4>Pydantic Schemas</h4><p>Request/response validation. Separate Create, Update, and Response schemas for each entity.</p>` },
+  "repos-folder": { icon: "💾", name: "repos/", badge: "", badgeClass: "", html: `<h4>Repository Layer</h4><p>Database access — all SQL queries live here. Services never touch the DB directly.</p>` },
+  "services-folder": { icon: "🧠", name: "services/", badge: "", badgeClass: "", html: `<h4>Business Logic</h4><p>Orchestrates repos, handles encryption, enforces business rules. The "brain" of the app.</p>` },
+  "api-folder": { icon: "🌐", name: "api/v1/", badge: "", badgeClass: "", html: `<h4>API Route Handlers</h4><p>FastAPI routers — thin layer that validates input, calls service, returns response. No business logic here.</p>` },
+  "utils-folder": { icon: "🔐", name: "utils/", badge: "", badgeClass: "", html: `<h4>Utilities</h4><p><strong>encryption.py</strong> — AES-256-GCM encrypt/decrypt for sensitive config values. Uses Fernet symmetric encryption.</p>` },
+  "tests-folder": { icon: "📂", name: "tests/", badge: "TESTS", badgeClass: "badge-src", html: `<h4>Test Suite</h4><p>Pytest-based tests: unit (isolated logic), integration (API endpoints), e2e (placeholder).</p>` },
+  "conftest": { icon: "🔧", name: "conftest.py", badge: "", badgeClass: "", html: `<h4>Shared Test Fixtures</h4><p>Test database, async client, auth headers, sample data — shared across all test files via pytest fixtures.</p>` },
+  "unit-tests": { icon: "🧪", name: "unit/", badge: "", badgeClass: "", html: `<h4>Unit Tests</h4><ul><li><strong>test_config_service.py</strong> — Service logic with mocked repos</li><li><strong>test_encryption.py</strong> — Encryption roundtrip verification</li></ul>` },
+  "integration-tests": { icon: "🔗", name: "integration/", badge: "", badgeClass: "", html: `<h4>Integration Tests</h4><p><strong>test_config_api.py</strong> — Full API request/response tests with real DB and HTTP client.</p>` },
+  "dockerfile": { icon: "🐳", name: "Dockerfile", badge: "", badgeClass: "", html: `<h4>Docker Build</h4><p>Multi-stage build: build deps → copy app → run with uvicorn. Production-ready container.</p>` },
+  "docker-compose": { icon: "🐳", name: "docker-compose.yml", badge: "", badgeClass: "", html: `<h4>Local Dev Environment</h4><p>Spins up app + PostgreSQL + Redis. One command: <code>docker compose up</code></p>` },
+  "pyproject": { icon: "📄", name: "pyproject.toml", badge: "", badgeClass: "", html: `<h4>Project Configuration</h4><p>Python project metadata, tool settings (ruff, pytest, mypy), dependencies.</p>` },
+  "readme": { icon: "📖", name: "README.md", badge: "", badgeClass: "", html: `<h4>Project Documentation</h4><p>Setup instructions, architecture overview, API docs, contribution guide.</p>` }
+};
+
+// ═══ Theme toggle ═══
+(function(){
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const label = document.getElementById('themeLabel');
+  const thumb = document.getElementById('themeThumb');
+  const saved = localStorage.getItem('copilot-ref-theme');
+  if (saved === 'light') { html.classList.add('light'); updateUI(true); }
+  toggle.addEventListener('click', () => {
+    const isLight = html.classList.toggle('light');
+    localStorage.setItem('copilot-ref-theme', isLight ? 'light' : 'dark');
+    updateUI(isLight);
+  });
+  function updateUI(isLight){
+    label.textContent = isLight ? '☀️ Light' : '🌙 Dark';
+    thumb.textContent = isLight ? '☀️' : '🌙';
+  }
+})();
+
+// ═══ Tree group collapse/expand ═══
+function toggleTreeGroup(header) {
+  const group = header.closest('.tree-group');
+  group.classList.toggle('collapsed');
+  const btn = header.querySelector('.tree-toggle');
+  btn.textContent = group.classList.contains('collapsed') ? '+' : '−';
+}
+
+// ═══ Tab switching ═══
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ═══ File tree click ═══
+document.querySelectorAll('.tree-node[data-file]').forEach(node => {
+  node.addEventListener('click', () => {
+    document.querySelectorAll('.tree-node').forEach(n => n.classList.remove('active'));
+    node.classList.add('active');
+    const data = FILE_DATA[node.dataset.file];
+    if (data) {
+      document.getElementById('detailHeader').innerHTML =
+        `<span class="file-icon">${data.icon}</span><h3>${data.name}</h3>` +
+        (data.badge ? `<span class="badge file-badge ${data.badgeClass}">${data.badge}</span>` : '');
+      document.getElementById('detailBody').innerHTML = data.html;
+    }
+  });
+});
+
+// ═══ Best Practices Search ═══
+const bpSearch = document.getElementById('bpSearch');
+const bpGrid = document.getElementById('bpGrid');
+const bpCount = document.getElementById('bpCount');
+
+function filterBP() {
+  const q = bpSearch.value.toLowerCase().trim();
+  const cards = bpGrid.querySelectorAll('.bp-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const text = (card.textContent + ' ' + (card.dataset.tags || '')).toLowerCase();
+    const match = !q || q.split(/\s+/).every(word => text.includes(word));
+    card.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+  bpCount.textContent = q ? `Showing ${visible} of ${cards.length} practices` : '';
+}
+bpSearch.addEventListener('input', filterBP);
+
+// ═══ Essentials expand/collapse ═══
+function toggleEss(header) {
+  header.closest('.ess-card').classList.toggle('open');
+}
+
+// ═══ Copy code block ═══
+function copyBlock(el) {
+  const text = el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = el.style.borderColor;
+    el.style.borderColor = 'var(--green)';
+    setTimeout(() => el.style.borderColor = orig, 1500);
+  });
+}
+
+// ═══ Copy command ═══
+function copyCmd(el) {
+  const text = el.querySelector('span').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const icon = el.querySelector('.copy-icon');
+    icon.textContent = '✓';
+    setTimeout(() => icon.textContent = '📋', 1500);
+  });
+}
+</script>
+</body>
+</html>
