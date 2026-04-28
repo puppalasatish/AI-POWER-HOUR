@@ -937,9 +937,9 @@ body {
   </div>
 
   <div class="load-info animate-on-scroll">
-    <span class="load-badge always">⚡ Always loaded — every interaction</span>
-    <span class="load-badge always">📝 Inline suggestions too</span>
+    <span class="load-badge always">⚡ Always loaded — every chat interaction</span>
     <span class="load-badge always">🤖 Every agent gets it</span>
+    <span class="load-badge always">💬 Chat + Agent mode + Code review</span>
   </div>
 
   <!-- Example 1 -->
@@ -1021,14 +1021,14 @@ body {
   <div class="example-block animate-on-scroll">
     <div class="example-header" onclick="toggleExample(this)">
       <span class="example-badge blue">Example 3</span>
-      <span class="example-title">Even inline ghost-text suggestions are influenced by it</span>
+      <span class="example-title">Important: What it does NOT affect</span>
       <span class="example-toggle">▼</span>
     </div>
     <div class="example-body">
       <div class="example-content">
-        <p style="color: var(--text-secondary);">You're typing code in the editor. Copilot's <strong>gray ghost text</strong> appears as you type. That suggestion was ALSO influenced by <code style="color: var(--accent-blue);">copilot-instructions.md</code>.</p>
-        <p style="color: var(--text-secondary); margin-top: 0.8rem;">You didn't open chat. You didn't ask for anything. <strong>It just knows your project rules</strong> and applies them to every single suggestion.</p>
-        <p style="color: var(--accent-blue); margin-top: 1rem; font-weight: 600;">This is why it's the most important file — it influences EVERYTHING Copilot does.</p>
+        <p style="color: var(--text-secondary);"><strong>Inline ghost-text suggestions</strong> (the gray text that appears as you type) are <strong>NOT</strong> influenced by <code style="color: var(--accent-blue);">copilot-instructions.md</code>.</p>
+        <p style="color: var(--text-secondary); margin-top: 0.8rem;">Ghost text uses only your current file, open tabs, and code comments as context. Custom instructions only apply to <strong>chat, agent mode, and code review</strong>.</p>
+        <p style="color: var(--accent-blue); margin-top: 1rem; font-weight: 600;">This is still the most important file — it influences every chat and agent interaction consistently.</p>
       </div>
     </div>
   </div>
@@ -1450,7 +1450,6 @@ body {
     <span class="load-badge slash">⌨️ Type / in chat → pick /prompt-name</span>
     <span class="load-badge manual">🎮 Command Palette: "Chat: Run Prompt..."</span>
     <span class="load-badge manual">▶️ Open file → click play button</span>
-    <span class="load-badge auto">🧠 Can auto-detect from description</span>
   </div>
 
   <!-- Example 1 -->
@@ -1699,7 +1698,7 @@ body {
       </div>
       <div class="flow-content">
         <h3 style="color: var(--accent-orange);">Did you type /something?</h3>
-        <p><strong>YES</strong> → That skill or prompt loads.<br><strong>NO</strong> → Copilot checks descriptions of all skills/prompts and may auto-load one if keywords match.</p>
+        <p><strong>YES</strong> → That skill or prompt loads.<br><strong>NO</strong> → Copilot checks descriptions of all skills and may auto-load one if keywords match. Prompts are never auto-loaded — they require manual invocation.</p>
       </div>
     </div>
 

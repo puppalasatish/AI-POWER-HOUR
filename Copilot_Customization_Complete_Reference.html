@@ -382,13 +382,13 @@ html.light .example-tag.result{background:rgba(188,76,0,.1);color:var(--orange)}
   </div>
 
   <div class="section">
-    <div class="section-title" style="color:var(--green)">🟢 Always Active — Every Interaction</div>
-    <p class="section-sub">These fire on every single chat message, inline suggestion, and agent interaction. You cannot disable them.</p>
+    <div class="section-title" style="color:var(--green)">🟢 Always Active — Every Chat Interaction</div>
+    <p class="section-sub">These fire on every single chat message and agent interaction. You cannot disable them.</p>
     <div class="flow-grid">
       <div class="flow-card always">
         <h3><span class="fc-icon">📋</span> copilot-instructions.md</h3>
         <p>Project knowledge loaded before every response. Architecture, tech stack, conventions, build commands.</p>
-        <ul><li>Loaded in chat, inline suggestions, agent mode</li><li>Every agent inherits this context</li><li>~500 tokens of always-on project brain</li></ul>
+        <ul><li>Loaded in chat, agent mode, code review</li><li>Every agent inherits this context</li><li>NOT used for inline ghost-text suggestions</li></ul>
       </div>
       <div class="flow-card hook">
         <h3><span class="fc-icon">🤖</span> hooks/*.json</h3>
@@ -487,7 +487,7 @@ html.light .example-tag.result{background:rgba(188,76,0,.1);color:var(--orange)}
       <div class="bp-card" data-tags="inline ghost text autocomplete suggestions tab accept">
         <div><span class="bp-tag edit">INLINE</span></div>
         <h3>👻 Accept Inline Suggestions Smartly</h3>
-        <p>Copilot shows gray ghost text as you type. These are influenced by your copilot-instructions.md.</p>
+        <p>Copilot shows gray ghost text as you type. These use your current file and open tabs as context (NOT copilot-instructions.md).</p>
         <div class="bp-cmd" onclick="copyCmd(this)"><span>Tab → accept full suggestion</span><span class="copy-icon">📋</span></div>
         <div class="bp-cmd" onclick="copyCmd(this)"><span>Ctrl+→ → accept word by word</span><span class="copy-icon">📋</span></div>
         <div class="bp-cmd" onclick="copyCmd(this)"><span>Alt+] → next suggestion / Alt+[ → previous</span><span class="copy-icon">📋</span></div>
@@ -682,8 +682,8 @@ html.light .example-tag.result{background:rgba(188,76,0,.1);color:var(--orange)}
           <p><span class="shortcut">github.copilot.enable</span> — Enable/disable per language</p>
           <p><span class="shortcut">github.copilot.chat.localeOverride</span> — Response language</p>
           <p><span class="shortcut">chat.agent.enabled</span> — Enable Agent mode</p>
-          <p><span class="shortcut">github.copilot.chat.codeGeneration.useInstructionFiles</span> — Enable custom instructions</p>
-          <div class="warn"><strong>Must enable:</strong> <code>github.copilot.chat.codeGeneration.useInstructionFiles</code> must be <strong>true</strong> for your .github/ instructions to work. Check this first if customizations aren't loading.</div>
+          <p><span class="shortcut">chat.includeApplyingInstructions</span> — Enable pattern-based custom instructions</p>
+          <div class="warn"><strong>Must enable:</strong> <code>chat.includeApplyingInstructions</code> must be <strong>true</strong> for your .github/instructions files to auto-apply. Check this first if customizations aren't loading.</div>
         </div></div>
       </div>
 
@@ -750,7 +750,7 @@ const FILE_DATA = {
   "copilot-instructions": {
     icon: "📋", name: "copilot-instructions.md", badge: "ALWAYS ON", badgeClass: "badge-always",
     html: `<h4>What does it do?</h4>
-<p>This is your project's brain — loaded on <strong>every single Copilot interaction</strong>. Chat, inline suggestions, agent mode, every agent — they all read this first.</p>
+<p>This is your project's brain — loaded on <strong>every single Copilot chat and agent interaction</strong>. Chat, agent mode, code review — they all read this first. Note: does NOT affect inline ghost-text suggestions.</p>
 <h4>When does it load?</h4>
 <p><strong>Always.</strong> You never call it. You never reference it. It's just always there, like a sticky note on Copilot's forehead.</p>
 <h4>Example — You ask:</h4>
