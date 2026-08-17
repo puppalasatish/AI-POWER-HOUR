@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Power Hour — August 17, 2026</title>
+    <style>
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .page-break { page-break-before: always; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 40px 30px; background: #fff; }
+        .header { text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header .date { font-size: 1.3em; opacity: 0.9; }
+        .agenda { background: #f8f9fa; padding: 25px; border-radius: 10px; margin-bottom: 40px; border-left: 5px solid #667eea; }
+        .agenda h2 { color: #667eea; margin-bottom: 15px; }
+        .agenda ul { list-style: none; padding-left: 0; }
+        .agenda li { padding: 8px 0; font-size: 1.1em; }
+        .section { margin-bottom: 50px; }
+        .section-header { display: flex; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #667eea; cursor: pointer; user-select: none; position: relative; }
+        .section-header::after { content: '▼'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 0.7em; color: #999; transition: transform 0.3s; }
+        .section.collapsed .section-header::after { transform: translateY(-50%) rotate(-90deg); }
+        .section.collapsed > *:not(.section-header) { display: none; }
+        .section-header:hover::after { color: #667eea; }
+        .section-icon { font-size: 2em; margin-right: 15px; }
+        .section-title { font-size: 1.8em; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; }
+        th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 12px; text-align: left; font-weight: 600; }
+        td { padding: 12px; border-bottom: 1px solid #e0e0e0; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e8f4f8; }
+        .highlight-row { background-color: #fff3cd !important; font-weight: 600; }
+        .quick-take { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 20px 25px; border-radius: 10px; margin: 25px 0; font-style: italic; border-left: 5px solid #ff6b6b; }
+        .quick-take strong { display: block; margin-bottom: 10px; font-style: normal; color: #c0392b; }
+        .tool-card { background: #fff; border: 2px solid #667eea; border-radius: 15px; padding: 25px; margin: 20px 0; }
+        .tool-card h3 { color: #667eea; font-size: 1.5em; margin-bottom: 10px; }
+        .tool-card .subtitle { color: #666; margin-bottom: 15px; }
+        .tool-features { background: #f0f4ff; padding: 15px 20px; border-radius: 8px; margin: 15px 0; }
+        .tool-features h4 { color: #667eea; margin-bottom: 10px; }
+        .tool-features ul { margin-left: 20px; }
+        .tool-features li { padding: 5px 0; }
+        .demo-ideas { background: #e8f5e9; padding: 15px 20px; border-radius: 8px; margin: 15px 0; }
+        .demo-ideas h4 { color: #2e7d32; margin-bottom: 10px; }
+        .link-box { background: #e3f2fd; padding: 12px 20px; border-radius: 8px; margin: 10px 0; display: flex; align-items: center; }
+        .link-box strong { margin-right: 10px; color: #1565c0; }
+        .link-box a { color: #1565c0; text-decoration: none; }
+        .link-box a:hover { text-decoration: underline; }
+        .discussion-card { background: #fff3e0; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        .discussion-card h4 { color: #e65100; margin-bottom: 15px; }
+        .discussion-card ol { margin-left: 25px; }
+        .discussion-card li { padding: 8px 0; }
+        .resources-section { background: #f3e5f5; padding: 25px; border-radius: 10px; margin-top: 30px; }
+        .resources-section h3 { color: #7b1fa2; margin-bottom: 20px; }
+        .alert-box { background: #ffcdd2; border: 2px solid #f44336; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .alert-box h4 { color: #c62828; margin-bottom: 10px; display: flex; align-items: center; }
+        .market-impact { background: #fff8e1; padding: 15px 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #ffc107; }
+        .footer { text-align: center; margin-top: 50px; padding: 30px; background: #f5f5f5; border-radius: 10px; color: #666; }
+        .footer p { margin: 5px 0; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 0.8em; font-weight: 600; margin-right: 5px; }
+        .tag-hot { background: #ffcdd2; color: #c62828; }
+        .tag-new { background: #c8e6c9; color: #2e7d32; }
+        .tag-trending { background: #bbdefb; color: #1565c0; }
+        .tag-alert { background: #fff3cd; color: #856404; }
+        .section-banner-sm { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .hero-highlights { margin-bottom: 40px; }
+        .hero-highlights h2 { text-align: center; font-size: 1.6em; color: #333; margin-bottom: 8px; }
+        .hero-highlights .hero-subtitle { text-align: center; color: #888; font-size: 1em; margin-bottom: 25px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .hero-card { border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.12); transition: transform 0.2s, box-shadow 0.2s; position: relative; cursor: default; }
+        .hero-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.18); }
+        .hero-card-img { width: 100%; height: 170px; object-fit: cover; display: block; }
+        .hero-card-body { padding: 16px 18px 18px; }
+        .hero-card-body h4 { font-size: 1.05em; margin-bottom: 6px; line-height: 1.3; }
+        .hero-card-body p { font-size: 0.88em; color: #555; line-height: 1.45; }
+        .hero-card.card-red { background: linear-gradient(180deg, #fff 60%, #ffebee 100%); }
+        .hero-card.card-blue { background: linear-gradient(180deg, #fff 60%, #e3f2fd 100%); }
+        .hero-card.card-green { background: linear-gradient(180deg, #fff 60%, #e8f5e9 100%); }
+        .hero-card.card-orange { background: linear-gradient(180deg, #fff 60%, #fff3e0 100%); }
+        .hero-card.card-purple { background: linear-gradient(180deg, #fff 60%, #f3e5f5 100%); }
+        .hero-card.card-amber { background: linear-gradient(180deg, #fff 60%, #fff8e1 100%); }
+        .hero-card-link { display: block; color: inherit; text-decoration: none; }
+        .badge { position: absolute; top: 12px; left: 12px; padding: 4px 12px; border-radius: 20px; font-size: 0.7em; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; z-index: 2; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .badge-must-read { background: #c62828; color: #fff; }
+        .badge-dont-miss { background: #ff6f00; color: #fff; }
+        .badge-trending { background: #1565c0; color: #fff; }
+        .badge-big-money { background: #2e7d32; color: #fff; }
+        .badge-new { background: #6a1b9a; color: #fff; }
+        .badge-hot { background: #d32f2f; color: #fff; }
+        .nav-widget { position: fixed; bottom: 20px; right: 20px; width: 320px; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08); z-index: 9999; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; transition: all 0.3s ease; }
+        .nav-widget.collapsed { width: auto; border-radius: 50px; }
+        .nav-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+        .nav-header h4 { font-size: 0.8em; font-weight: 700; letter-spacing: 0.5px; margin: 0; }
+        .nav-toggle-btn { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 1em; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .nav-toggle-btn:hover { background: rgba(255,255,255,0.35); }
+        .nav-current { padding: 10px 14px; background: linear-gradient(90deg, #ede7f6, #f3e5f5); font-size: 0.82em; font-weight: 600; color: #4a148c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-bottom: 1px solid #e0e0e0; }
+        .nav-current.hidden { display: none; }
+        .nav-controls { display: flex; border-top: 1px solid #eee; background: #fafafa; }
+        .nav-controls.hidden { display: none; }
+        .nav-btn { flex: 1; padding: 11px 8px; border: none; background: transparent; cursor: pointer; font-size: 0.88em; font-weight: 700; color: #667eea; transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .nav-btn:hover { background: #f0f4ff; }
+        .nav-btn:disabled { color: #ccc; cursor: default; }
+        .nav-btn:disabled:hover { background: transparent; }
+        .nav-divider { width: 1px; background: #e0e0e0; }
+        .nav-counter { font-size: 0.72em; color: #999; text-align: center; padding: 3px 0 2px; background: #fafafa; }
+        .nav-counter.hidden { display: none; }
+        a.ref { font-size: 0.72em; opacity: 0.4; text-decoration: none; color: #764ba2; transition: all 0.25s; vertical-align: super; margin-left: 3px; }
+        a.ref:hover { opacity: 1; color: #667eea; text-decoration: underline; }
+        tr a.ref { vertical-align: baseline; font-size: 0.82em; }
+        .imp-spotlight { outline: 3px solid #764ba2 !important; outline-offset: 4px; box-shadow: 0 0 0 8px rgba(118,75,162,0.12), 0 4px 20px rgba(118,75,162,0.18) !important; border-radius: 8px; position: relative; z-index: 10; transition: outline 0.3s, box-shadow 0.3s; }
+        .imp-spotlight-enter { animation: spotlightIn 0.5s ease; }
+        @keyframes spotlightIn { 0% { outline-color: transparent; box-shadow: 0 0 0 0 rgba(118,75,162,0); } 50% { outline-color: #764ba2; box-shadow: 0 0 0 14px rgba(118,75,162,0.18); } 100% { outline-color: #764ba2; box-shadow: 0 0 0 8px rgba(118,75,162,0.12); } }
+        .imp-label-float { position: absolute; top: -32px; left: 8px; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 0.72em; font-weight: 700; padding: 4px 14px; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); white-space: nowrap; z-index: 11; pointer-events: none; animation: labelSlideIn 0.4s ease; }
+        @keyframes labelSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 700px) { .hero-grid { grid-template-columns: 1fr; } .nav-widget { right: 10px !important; left: 10px !important; width: auto !important; } }
+        @media print { .hero-card:hover { transform: none; box-shadow: 0 4px 15px rgba(0,0,0,0.12); } .hero-grid { grid-template-columns: 1fr 1fr; } }
+        .hm-table { width:100%; border-collapse:separate; border-spacing:3px; }
+        .hm-table th { padding:10px 12px; font-size:0.78em; font-weight:700; text-align:center; color:#fff; border-radius:8px; }
+        .hm-table th.rh { text-align:left; color:#1f2328; background:#f6f8fa; min-width:135px; border:1px solid #e1e4e8; font-size:0.82em; }
+        .hm-table td { position:relative; padding:0; text-align:center; border-radius:8px; min-width:90px; height:44px; }
+        .hm-cell { display:flex; align-items:center; justify-content:center; width:100%; height:100%; border-radius:8px; font-size:0.75em; font-weight:600; text-decoration:none; color:inherit; cursor:pointer; transition:transform 0.15s, box-shadow 0.15s; padding:6px 4px; }
+        .hm-cell:hover { transform:scale(1.06); z-index:100; box-shadow:0 6px 20px rgba(0,0,0,0.15); }
+        .hm-cell.no-link { cursor:default; }
+        .hm-cell.no-link:hover { transform:none; box-shadow:none; }
+        .hm-cell.t5 { background:#0b6623; color:#fff; }
+        .hm-cell.t4 { background:#1a73e8; color:#fff; }
+        .hm-cell.t3 { background:#0e7c86; color:#fff; }
+        .hm-cell.t2 { background:#c65102; color:#fff; }
+        .hm-cell.t0 { background:#f0f0f0; color:#bbb; }
+        .hm-cell.dead { background:#b71c1c; color:#fff; text-decoration:line-through; }
+        #hm-tooltip { display:none; position:fixed; width:300px; background:#1f2328; color:#e6edf3; border-radius:12px; padding:16px 18px; font-size:0.84em; font-weight:400; text-align:left; line-height:1.6; z-index:9999; pointer-events:none; box-shadow:0 12px 40px rgba(0,0,0,0.35); border:1px solid #30363d; }
+        #hm-tooltip .tip-name { font-weight:700; font-size:1.1em; color:#fff; margin-bottom:3px; display:block; }
+        #hm-tooltip .tip-by { font-size:0.88em; color:#8b949e; margin-bottom:8px; display:block; }
+        #hm-tooltip .tip-detail { font-size:0.92em; color:#c9d1d9; margin-bottom:8px; display:block; }
+        #hm-tooltip .tip-metric { display:inline-block; background:rgba(11,102,35,0.25); color:#3fb950; padding:3px 10px; border-radius:6px; font-size:0.85em; font-weight:600; margin-bottom:6px; }
+        #hm-tooltip .tip-cta { font-size:0.82em; color:#58a6ff; display:block; margin-top:6px; }
+        #hm-tooltip .tip-dead { color:#f85149; }
+        .hm-legend { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:18px; font-size:0.8em; color:#555; }
+        .hm-legend span { display:inline-flex; align-items:center; gap:5px; }
+        .hm-legend-dot { display:inline-block; width:16px; height:16px; border-radius:4px; vertical-align:middle; }
+        .quick-panel { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); margin-bottom: 40px; overflow: hidden; border: 1px solid #e8e8e8; }
+        .tab-bar { display: flex; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-bottom: 2px solid #e0e0e0; }
+        .tab-btn { flex: 1; padding: 16px 20px; border: none; background: transparent; cursor: pointer; font-size: 1em; font-weight: 600; color: #666; transition: all 0.25s; position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .tab-btn:hover { background: rgba(102,126,234,0.08); color: #667eea; }
+        .tab-btn.active { color: #667eea; background: #fff; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 3px 3px 0 0; }
+        .tab-content { display: none; padding: 28px 30px; animation: tabFadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        @keyframes tabFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .quick-card { background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 12px; padding: 18px 22px; margin-bottom: 14px; border-left: 4px solid #667eea; transition: transform 0.2s, box-shadow 0.2s; }
+        .quick-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(102,126,234,0.12); }
+        .quick-card h4 { font-size: 1em; color: #333; margin-bottom: 6px; }
+        .quick-card .qc-tldr { font-size: 0.88em; color: #555; line-height: 1.5; }
+        .quick-card .qc-detail { font-size: 0.82em; color: #777; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e0e0e0; line-height: 1.5; display: none; }
+        .quick-card .qc-toggle { font-size: 0.78em; color: #667eea; cursor: pointer; margin-top: 6px; font-weight: 600; display: inline-block; }
+        .quick-card .qc-toggle:hover { text-decoration: underline; }
+        .quick-card.expanded .qc-detail { display: block; }
+        .quick-card.expanded .qc-toggle { color: #764ba2; }
+        .quick-card .qc-category { display: inline-block; font-size: 0.7em; padding: 2px 8px; border-radius: 10px; font-weight: 700; margin-right: 8px; vertical-align: middle; }
+        .qc-money { background: #e8f5e9; color: #2e7d32; }
+        .qc-product { background: #e3f2fd; color: #1565c0; }
+        .qc-safety { background: #ffebee; color: #c62828; }
+        .qc-jobs { background: #fff3e0; color: #e65100; }
+        .qc-policy { background: #f3e5f5; color: #7b1fa2; }
+        .new-model-card { background: #fff; border: 2px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 16px; position: relative; overflow: hidden; transition: border-color 0.2s; }
+        .new-model-card:hover { border-color: #667eea; }
+        .new-model-card::before { content: 'NEW'; position: absolute; top: 12px; right: -28px; background: #c62828; color: #fff; font-size: 0.65em; font-weight: 800; padding: 3px 30px; transform: rotate(45deg); letter-spacing: 1px; }
+        .new-model-card h4 { font-size: 1.05em; color: #1f2328; margin-bottom: 4px; }
+        .new-model-card .nmc-provider { font-size: 0.82em; color: #888; margin-bottom: 10px; }
+        .new-model-card .nmc-sig { font-size: 0.88em; color: #555; line-height: 1.5; }
+        .new-model-card .nmc-badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.75em; font-weight: 700; margin-top: 10px; }
+        .nmc-leader { background: #0b6623; color: #fff; }
+        .nmc-strong { background: #1a73e8; color: #fff; }
+        .nmc-challenger { background: #c65102; color: #fff; }
+        .reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2, #f093fb); z-index: 99999; transition: width 0.1s; }
+        .quick-panel-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; cursor: pointer; user-select: none; }
+        .quick-panel-header h3 { font-size: 1.1em; color: #333; margin: 0; }
+        .quick-panel-header .collapse-icon { font-size: 0.8em; color: #999; transition: transform 0.3s; }
+        .quick-panel.panel-collapsed .tab-bar, .quick-panel.panel-collapsed .tab-content { display: none !important; }
+        .quick-panel.panel-collapsed .collapse-icon { transform: rotate(-90deg); }
+    </style>
+</head>
+<body>
+    <div class="header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 35px 30px 30px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -30px; right: -30px; width: 200px; height: 200px; background: rgba(255,255,255,0.08); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -40px; left: -20px; width: 150px; height: 150px; background: rgba(255,255,255,0.06); border-radius: 50%;"></div>
+        <h1 style="font-size: 2.6em; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">🎯 AI Power Hour</h1>
+        <div class="date" style="font-size: 1.2em; margin-top: 5px;">August 17, 2026 &nbsp;|&nbsp; Covering August 3 – August 17</div>
+        <p style="margin-top: 10px; opacity: 0.85; font-size: 0.95em;">Your biweekly briefing on the stories shaping the AI landscape — <em>"Stripe Buys the Router, DeepSeek Ships Pro, and the Trust Crisis Goes Public"</em></p>
+    </div>
+
+    <!-- ====== KEY HIGHLIGHTS ====== -->
+    <div class="hero-highlights">
+        <h2>⚡ Key Highlights — You Should Not Miss</h2>
+        <p class="hero-subtitle">The 6 stories that define the last two weeks</p>
+        <div class="hero-grid">
+            <div class="hero-card card-purple">
+                <span class="badge badge-must-read">⚡ MUST READ</span>
+                <a class="hero-card-link" href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/" target="_blank" rel="noopener">
+                    <img class="hero-card-img" src="https://images.unsplash.com/photo-1638913662380-9799def8ffb1?w=600&h=340&fit=crop&q=80" alt="Trading terminal screens">
+                    <div class="hero-card-body">
+                        <h4>Stripe to Acquire OpenRouter for $7B+ — Just 3 Months After a $1.3B Valuation</h4>
+                        <p>The "Stripe for AI" model router, which handles 8 million users and 400+ models, is reportedly being bought by the actual Stripe — a 5x jump in valuation since May and a bet that token routing becomes as core as payment processing.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hero-card card-red">
+                <span class="badge badge-hot">🔥 HOT</span>
+                <a class="hero-card-link" href="https://the-decoder.com/anthropic-signs-9-1-billion-data-center-deal-with-bitcoin-miner-riot-platforms/" target="_blank" rel="noopener">
+                    <img class="hero-card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=340&fit=crop&q=80" alt="Circuit board macro">
+                    <div class="hero-card-body">
+                        <h4>Anthropic Locks In $9.1B Data Center Deal With a Bitcoin Miner — Its Compute Bill Now Tops $50B</h4>
+                        <p>Riot Platforms will build a 191-megawatt Texas data center for Anthropic under a 20-year lease that could reach $16.1B, stacking on top of SpaceX, AWS, Google/Broadcom, and Volta Infra commitments already worth tens of billions.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hero-card card-green">
+                <span class="badge badge-new">🌿 OPEN-WEIGHTS SURGE</span>
+                <a class="hero-card-link" href="https://the-decoder.com/alibabas-qwen-team-releases-qwen-3-8-models-with-open-weights-under-the-apache-2-0-license/" target="_blank" rel="noopener">
+                    <img class="hero-card-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=340&fit=crop&q=80" alt="Neural network visualization">
+                    <div class="hero-card-body">
+                        <h4>Qwen3.8 Ships Two Ways at Once — a 27B Laptop Model and a 2.4T Frontier Giant, Both Apache 2.0</h4>
+                        <p>Alibaba's Qwen3.8 release spans a 27B dense multimodal model that beats its own larger predecessor to a 2.4T-parameter MoE that closes in on Claude Opus 4.8 — but Simon Willison found the small model wildly overthinks simple prompts.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hero-card card-blue">
+                <span class="badge badge-trending">🛡️ TRUST CRISIS</span>
+                <a class="hero-card-link" href="https://gptzero.me/news/investigations-pwc/" target="_blank" rel="noopener">
+                    <img class="hero-card-img" src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=600&h=340&fit=crop&q=80" alt="Law library interior">
+                    <div class="hero-card-body">
+                        <h4>After KPMG, Deloitte and EY — Now PwC Caught Publishing AI-Fabricated Report Sources</h4>
+                        <p>GPTZero found one PwC Middle East report is 84% likely fully AI-generated, complete with fake citations to governance programs in four countries that don't appear to exist — the fourth Big Four firm caught in five months.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hero-card card-amber">
+                <span class="badge badge-big-money">💰 PRICE WAR</span>
+                <a class="hero-card-link" href="https://the-decoder.com/qwen3-8-max-catches-claude-opus-4-8-but-kimi-k3-still-scores-higher-for-25-percent-less/" target="_blank" rel="noopener">
+                    <img class="hero-card-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=340&fit=crop&q=80" alt="Financial analytics chart">
+                    <div class="hero-card-body">
+                        <h4>Qwen3.8 Max Ties Claude Opus 4.8 on Benchmarks — But Kimi K3 Still Wins on Price-Per-Task</h4>
+                        <p>Qwen's flagship jumped 10 points on the Artificial Analysis Intelligence Index to match Opus 4.8, yet needs 64 reasoning steps and 15x more tokens to get there — pushing its real-world cost above Kimi K3, which scores even higher for 25% less.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hero-card card-orange">
+                <span class="badge badge-dont-miss">🏛️ DON'T MISS</span>
+                <a class="hero-card-link" href="https://the-decoder.com/openai-acquires-nextslide-to-bring-ai-generated-presentations-into-chatgpt/" target="_blank" rel="noopener">
+                    <img class="hero-card-img" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=340&fit=crop&q=80" alt="Design workspace with laptop">
+                    <div class="hero-card-body">
+                        <h4>OpenAI Quietly Acquired Presentation Startup NextSlide — Its Ninth Small Team Buy This Year</h4>
+                        <p>NextSlide's founder revealed the deal months late on LinkedIn, extending OpenAI's acquisition streak (Statsig, Ona/Gitpod, Context.ai, Crossing Minds) as ChatGPT keeps absorbing office-productivity workflows one startup at a time.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="reading-progress"></div>
+
+    <!-- ====== QUICK-VIEW TABBED PANEL ====== -->
+    <div class="quick-panel" id="quick-panel">
+        <div class="quick-panel-header" id="qp-header">
+            <h3>⚡ Quick Read Panel — Highlights &amp; New Models</h3>
+            <span class="collapse-icon">▼</span>
+        </div>
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="highlights">⚡ Don't Miss — Quick Insights</button>
+            <button class="tab-btn" data-tab="models">🧠 New Models This Week</button>
+        </div>
+
+        <!-- TAB 1: Don't Miss Highlights -->
+        <div class="tab-content active" id="tab-highlights">
+            <p style="font-size:0.85em; color:#888; margin-bottom:18px;">Click any card to expand detailed insights. These are the stories you MUST know.</p>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-money">💳 MEGA ACQUISITION</span> Stripe to Buy OpenRouter for <strong>$7B+</strong> — 5× Its May Valuation</h4>
+                <div class="qc-tldr">OpenRouter closed a <strong>$113M Series B at $1.3B</strong> in May; three months later Stripe is reportedly paying more than <strong>$7 billion</strong> for the same "Stripe for AI" model-routing layer.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> Stripe already runs latency-sensitive, high-availability payment infrastructure at massive scale — buying the leading model router positions it to abstract "which AI model, at what price" the same way it abstracted "which payment method."<br><br><strong>💡 Think of it like this:</strong> Like the company that processes your credit card also deciding which bank issues it — Stripe wants to sit in the middle of every AI transaction, not just every payment.<br><br><strong>For your team:</strong> If you route API traffic through OpenRouter, watch for pricing or terms changes once a payments giant owns the switchboard.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-money">🏗️ INFRA SPEND</span> Anthropic Signs $9.1B Data Center Deal — With a Bitcoin Miner</h4>
+                <div class="qc-tldr">Riot Platforms will build a <strong>191-megawatt</strong> Texas facility for Anthropic under a 20-year lease that could reach <strong>$16.1B</strong> with extensions — enough power for 143,000 homes.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> This stacks on top of Anthropic's existing SpaceX ($1.25B/month), AWS (up to $25B), Google/Broadcom TPU, and Volta Infra ($10B) commitments — the compute arms race is pulling in unconventional partners like crypto miners with spare grid capacity.<br><br><strong>💡 Real-life example:</strong> Like a growing restaurant chain buying up a bankrupt ice-rink's refrigeration contracts because it needs cold storage capacity, fast, from whoever has it.<br><br><strong>For your team:</strong> Rising infrastructure costs across every frontier lab eventually show up somewhere in your per-token pricing — track compute deals as a leading indicator, not just model releases.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">🌿 DUAL RELEASE</span> Qwen3.8 Ships a 27B Laptop Model and a 2.4T Frontier Giant — Same Day, Same License</h4>
+                <div class="qc-tldr">Both sizes ship under <strong>Apache 2.0</strong>; the 27B model beats its larger predecessor on coding while natively handling <strong>262K tokens</strong> (scaling to 1M), and the 2.4T MoE targets Max-tier performance.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> Releasing a genuinely practical laptop-sized model alongside a frontier-scale one in the same family shows Alibaba targeting both the hobbyist/edge market and the frontier benchmark race simultaneously.<br><br><strong>💡 Real-life example:</strong> Simon Willison found the 27B model "wildly overthinks" simple prompts — like a brilliant new hire who over-analyzes a one-line email instead of just replying.<br><br><strong>For your team:</strong> If you need a fully open, commercially-unrestricted model that fits on a single high-end laptop, Qwen3.8-27B is worth a trial run this week.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-safety">📄 VIBE CITING</span> PwC Becomes the Fourth Big Four Firm Caught Publishing AI-Fabricated Sources</h4>
+                <div class="qc-tldr">GPTZero found one PwC Middle East report is <strong>84% likely AI-generated</strong>, citing governments in Denmark, Saudi Arabia, the U.S. and Australia using a product with <strong>no evidence</strong> any of them actually use it.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> KPMG, Deloitte, and EY were already caught doing the same thing — this is now a pattern across the entire consulting tier that sells AI-adoption advice to enterprises.<br><br><strong>💡 Think of it like this:</strong> Like a student citing a "master key" of fake books to pad a bibliography — except the student is a firm charging millions to tell other companies how to trust AI.<br><br><strong>For your team:</strong> Independently verify any AI-adoption case study or citation from a consulting deliverable before repeating it internally or to your board.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">🥊 BENCHMARK RACE</span> Qwen3.8 Max Ties Claude Opus 4.8 — But Needs 15× More Tokens to Get There</h4>
+                <div class="qc-tldr">Qwen jumps 10 points to <strong>56</strong> on the Artificial Analysis Intelligence Index, matching Opus 4.8 and passing GLM-5.2 — but Kimi K3 still scores <strong>57 for 25% less cost per task</strong>.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> Qwen's hallucination rate jumped from 23% to 40% even as it guesses more instead of admitting uncertainty — a real regression hidden behind a headline benchmark win.<br><br><strong>💡 Think of it like this:</strong> Like a Honda Civic that ties a Ferrari's quarter-mile time only by taking a longer, more expensive route — the destination is the same, the bill is not.<br><br><strong>For your team:</strong> Don't compare models on a single headline score — check cost-per-task and hallucination rate before switching your production stack.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-safety">🔓 EXPLOIT ECONOMY</span> AI Finds Thousands of Security Flaws — Almost None Get Exploited</h4>
+                <div class="qc-tldr">VulnCheck traced <strong>1,061 vulnerabilities</strong> to AI-assisted discovery in H1 2026; only <strong>14 (1.3%)</strong> were ever exploited — but the time-to-exploit window shrank from 120 to 80 days.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> Anthropic's Project Glasswing alone generated 23,000+ findings but led to just one confirmed attack — the sheer volume of AI-found bugs tells defenders very little about which ones actually matter.<br><br><strong>💡 Real-life example:</strong> Like a smoke detector so sensitive it goes off for burnt toast — useful, but you still need to know which alarms mean an actual fire.<br><br><strong>For your team:</strong> Prioritize patching by exploitation likelihood and speed, not raw vulnerability count — the discovery/exploitation gap is only getting wider.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">🌐 BROWSER AGENT</span> Claude Cowork Moves Into Chrome's Side Panel — Full Skills and Plugins, No Setup</h4>
+                <div class="qc-tldr">Anthropic's Chrome extension now runs a complete Cowork session in-browser, turning research into <strong>Excel files, PowerPoint slides, or CRM updates</strong> directly from the page you're viewing.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> This collapses the gap between "browse and read" and "browse and act" — Claude asks for confirmation before purchases, but Anthropic still warns the extension remains vulnerable to prompt injection from hidden page content.<br><br><strong>💡 Think of it like this:</strong> Like handing your assistant a browser tab and a blank spreadsheet at the same time, instead of dictating notes for them to type up later.<br><br><strong>For your team:</strong> Anthropic explicitly advises against using this with banking or health data — treat it as a productivity tool for low-sensitivity browsing tasks only, for now.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-policy">💬 TRUST CRISIS</span> Dario Amodei: The Problem Isn't AI Marketing — It's a Crisis of Trust</h4>
+                <div class="qc-tldr">Responding to critics of AI-safety messaging, Amodei argues the public's negative view of AI stems from <strong>decades of distrust in institutions</strong>, not from labs warning about risk — and that only "actually curing cancer" will fix it.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> A frontier-lab CEO publicly conceding "we haven't yet delivered on our big promises" is a notable shift from pure capability-marketing toward acknowledging a credibility gap.<br><br><strong>💡 Real-life example:</strong> Like a pharma company realizing that no ad campaign fixes distrust — only a drug that actually works does.<br><br><strong>For your team:</strong> When pitching AI initiatives internally, lead with concrete delivered outcomes, not capability promises — the trust gap Amodei describes applies inside organizations too.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-product">💻 DESKTOP EXPANSION</span> ChatGPT Desktop Finally Lands on Linux — Codex Included</h4>
+                <div class="qc-tldr">The Linux preview bundles <strong>ChatGPT, ChatGPT Work, and Codex</strong> into one package for Ubuntu, Debian, and Fedora — though native computer-use control of apps like GIMP isn't included yet.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> Linux was the last major desktop platform without a native ChatGPT app; developers using the Codex CLI already had it, but now get a visual interface for tracking projects and file changes too.<br><br><strong>💡 Think of it like this:</strong> Like a tool finally shipping a version for the workbench your engineering team already uses every day, instead of making them adapt to a different one.<br><br><strong>For your team:</strong> If your engineering org standardizes on Linux workstations, this closes a real tooling gap versus Mac/Windows-based teams.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+
+            <div class="quick-card">
+                <h4><span class="qc-category qc-jobs">🎬 CREATIVE DISRUPTION</span> Video Generation Race Intensifies — FLUX 3, Seedance 2.5, and MiniMax H3 All Ship in Two Weeks</h4>
+                <div class="qc-tldr">Black Forest Labs' FLUX 3 Video claims the top Elo score with lip-synced dialogue in <strong>14+ languages</strong>; ByteDance's Seedance 2.5 generates <strong>30-second</strong> clips; MiniMax H3 is the first <strong>open</strong> model to top a video ranking.</div>
+                <div class="qc-detail"><strong>Why it matters:</strong> Three major video model releases within the same fortnight signals the category is now moving at the pace chat models did in 2024 — with open-weight options (MiniMax H3) reaching competitive quality for the first time.<br><br><strong>💡 Real-life example:</strong> A director already made a 13-minute short entirely with the previous Seedance version — full production pipelines built on one AI tool are no longer a novelty.<br><br><strong>For your team:</strong> If your team produces any video content, pilot one of these tools now — pricing and quality are both shifting fast enough that last quarter's evaluation is already stale.</div>
+                <span class="qc-toggle">▼ Show detailed insights</span>
+            </div>
+        </div>
+
+        <!-- TAB 2: New Models This Week -->
+        <div class="tab-content" id="tab-models">
+            <p style="font-size:0.85em; color:#888; margin-bottom:18px;">Models, tools &amp; protocol updates released August 3 – August 17, 2026. The theme this fortnight: <strong>open-weight models racing at two size tiers, an AI acquisition boom, and video generation heating up</strong>.</p>
+
+            <div class="new-model-card">
+                <h4>🌿 Qwen3.8 (27B &amp; 2.4T-A95B)</h4>
+                <div class="nmc-provider">Alibaba • Released Aug 14, 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> Two Apache 2.0 releases at once — a <strong>27B dense</strong> multimodal model with 262K native context (1M via YaRN), and a <strong>2.4T-parameter MoE</strong> Max-tier giant.<br>
+                    <strong>Significance:</strong> The 27B model beats its larger predecessor Qwen3.7-Plus on coding/office tasks; the Max variant scores 56 on the Artificial Analysis Intelligence Index, on par with Claude Opus 4.8.<br>
+                    <strong>💡 When to use:</strong> The 27B model for a laptop-class local deployment; watch out — it defaults to overthinking simple prompts (toggle thinking mode off).
+                </div>
+                <span class="nmc-badge nmc-leader">★ Leader: Dual-Tier Open Release</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>💵 DeepSeek V4 Pro 0813</h4>
+                <div class="nmc-provider">DeepSeek • Released Aug 12, 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> Latest DeepSeek Pro model, <strong>1.7T parameters (893GB)</strong>, API-first release with weights following within hours on Hugging Face.<br>
+                    <strong>Significance:</strong> Extends DeepSeek's cadence of shipping both Pro and Flash tiers with open weights, keeping consistent pressure on closed-model pricing.<br>
+                    <strong>💡 When to use:</strong> Frontier-adjacent reasoning tasks where you want an open-weight fallback option with recent Pro-tier quality.
+                </div>
+                <span class="nmc-badge nmc-strong">★ Strong: Open Pro-Tier Refresh</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>🎬 FLUX 3 Video</h4>
+                <div class="nmc-provider">Black Forest Labs • General availability Aug 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> Generates up to <strong>20-second</strong> HD/Full HD clips with native audio, dialogue in 14+ languages, and multi-scene continuation.<br>
+                    <strong>Significance:</strong> Claims the top Elo score for text-to-video (1,135) and image-to-video (1,051), ahead of Gemini Omni Flash, MiniMax H3, and Seedance 2.0.<br>
+                    <strong>💡 When to use:</strong> Ad and marketing production needing typography-in-scene rendering and multi-language lip-sync in one pipeline.
+                </div>
+                <span class="nmc-badge nmc-leader">★ Leader: Video Elo Rankings</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>🎬 ByteDance Seedance 2.5</h4>
+                <div class="nmc-provider">ByteDance • Released Aug 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> Generates <strong>30-second</strong> clips with built-in audio in one pass, extendable multiple times, with up to 30 reference images and 10 video/audio clips per scene.<br>
+                    <strong>Significance:</strong> Roughly 3× the clip length of Google's Gemini Omni Flash (~10 seconds); the same week MiniMax H3 became the first open model to top a video ranking.<br>
+                    <strong>💡 When to use:</strong> Longer-form narrative content needing consistent characters and camera angles across an entire scene.
+                </div>
+                <span class="nmc-badge nmc-challenger">🔶 Challenger: Longest Clip Length</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>🌿 MiniMax H3 (weights released)</h4>
+                <div class="nmc-provider">MiniMax • Released Aug 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> <strong>33B-parameter</strong> open-weight video model, first-ever open model to top an Artificial Analysis video ranking (#1 Video Editing, #2 Text-to-Video).<br>
+                    <strong>Significance:</strong> Proves open video generation can now compete with closed frontier models — commercial use free under $20M/year revenue.<br>
+                    <strong>💡 When to use:</strong> Self-hosted video editing workflows; local runs cap at 768p in ComfyUI, so plan for that resolution ceiling.
+                </div>
+                <span class="nmc-badge nmc-strong">★ Strong: First Open Video Leader</span>
+            </div>
+
+            <div class="new-model-card">
+                <h4>💻 ChatGPT Desktop for Linux</h4>
+                <div class="nmc-provider">OpenAI • Preview released Aug 2026</div>
+                <div class="nmc-sig">
+                    <strong>What's new:</strong> Bundles ChatGPT, ChatGPT Work, and Codex into one package for Ubuntu, Debian, and Fedora (x64/ARM64).<br>
+                    <strong>Significance:</strong> Closes the last major desktop-platform gap versus the July Mac/Windows launches; native computer-use control is not yet included.<br>
+                    <strong>💡 When to use:</strong> Linux-based engineering teams wanting a visual project/file tracker alongside the existing Codex CLI.
+                </div>
+                <span class="nmc-badge nmc-challenger">🔶 Emerging: Platform Expansion</span>
+            </div>
+
+            <!-- Top Model per Category Summary -->
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #333;">📊 Top Model per Category (Updated August 17)</h3>
+            <table style="font-size: 0.9em;">
+                <thead><tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><th>Category</th><th>Leader</th><th>Challenger</th></tr></thead>
+                <tbody>
+                    <tr><td>💬 Chat</td><td><strong>Claude Opus 5 / GPT-5.6 Sol</strong> (tied)</td><td>Kimi K3 · Qwen3.8 Max</td></tr>
+                    <tr><td>💻 Code</td><td><strong>Claude Opus 5</strong> (FrontierSWE 86.6)</td><td>Kimi K3 · Qwen3.8 Max (slower/costlier)</td></tr>
+                    <tr><td>🎨 Image</td><td><strong>Midjourney V7 · Gemini Omni</strong></td><td>Nano Banana 2 Lite · Adobe Firefly</td></tr>
+                    <tr><td>🎬 Video</td><td><strong>FLUX 3 Video</strong> (Black Forest Labs)</td><td>Seedance 2.5 · MiniMax H3 (open)</td></tr>
+                    <tr><td>🎵 Audio</td><td><strong>ElevenLabs</strong> (voice) · <strong>Suno</strong> (music)</td><td>Gemini Flash TTS · GPT Transcribe</td></tr>
+                    <tr><td>🧠 Reasoning</td><td><strong>GPT-5.6 Sol</strong> (CritPt, HLE)</td><td>Claude Opus 5 · Kimi K3 (open)</td></tr>
+                    <tr><td>📐 Embeddings</td><td><strong>OpenAI text-embedding-3</strong></td><td>Cohere Command A+ · Gemini Embeddings</td></tr>
+                    <tr><td>🤖 Agents</td><td><strong>Claude Opus 5 / Sonnet 5</strong> (power + value)</td><td>Claude Cowork (Chrome) · GPT-5.6 Sol Codex</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ====== AGENDA ====== -->
+    <div class="agenda" id="imp-1">
+        <h2>📋 Today's Agenda</h2>
+        <ul>
+            <li>§1 ⚡ <strong>Headline Roundup</strong> — A $7B acquisition, a trust crisis, and open weights at two sizes</li>
+            <li>§2 🔍 <strong>Deep Dive</strong> — The Token Economy Consolidates: Stripe Buys OpenRouter</li>
+            <li>§3 💰 <strong>Funding &amp; Deals</strong> — Stripe/OpenRouter, Anthropic's $9.1B Riot deal, OpenAI's NextSlide buy</li>
+            <li>§4 🤖 <strong>Models &amp; Tools</strong> — Qwen3.8 (27B &amp; 2.4T), DeepSeek V4 Pro, FLUX 3 Video, Seedance 2.5</li>
+            <li>§5 🏢 <strong>Enterprise &amp; Adoption</strong> — Claude Cowork in Chrome, ChatGPT for Linux, agentic workflows</li>
+            <li>§6 🛡️ <strong>Safety, Ethics &amp; Policy</strong> — the Big Four's fabricated-citation problem, exploit economics</li>
+            <li>§7 📉 <strong>Execution Risks &amp; Cost</strong> — compute concentration, benchmark gaming, infra spend</li>
+            <li>§8 🌐 <strong>LLM Landscape Heatmap</strong> — updated rankings after Qwen3.8 and the video-model race</li>
+            <li>§9 ✅ <strong>Action Items</strong> — five execution priorities for this cycle</li>
+        </ul>
+    </div>
+
+    <!-- ====== §1 HEADLINE ROUNDUP ====== -->
+    <div class="section" id="imp-2">
+        <div class="section-header">
+            <span class="section-icon">⚡</span>
+            <span class="section-title">§1 — Headline Roundup</span>
+        </div>
+
+        <p style="margin-bottom: 20px; color: #555;">The stories that shaped the last two weeks — the fortnight <strong>the token economy consolidated around a payments giant while the trust gap around AI-generated content widened</strong>. Stripe moved to buy the leading model router, Anthropic locked in another multi-billion-dollar infrastructure deal, open-weight models shipped at two very different sizes, and a fourth Big Four firm got caught publishing fabricated AI-generated report sources. Here's why each one matters.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:35%">Headline</th>
+                    <th style="width:45%">Why It Matters</th>
+                    <th style="width:20%">Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td>Stripe reportedly acquiring OpenRouter for $7B+, 5× its May valuation</td>
+                    <td><strong>The largest payments company in the world is buying the leading model router.</strong> Positions Stripe at the center of the emerging "token economy." <a class="ref" href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-hot">🔥 Mega Acquisition</span></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td>Anthropic signs $9.1B data center deal with Bitcoin miner Riot Platforms</td>
+                    <td><strong>Compute demand is now pulling in crypto-mining infrastructure operators as data center landlords.</strong> Adds to tens of billions in existing Anthropic infra commitments. <a class="ref" href="https://the-decoder.com/anthropic-signs-9-1-billion-data-center-deal-with-bitcoin-miner-riot-platforms/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-hot">🔥 Infrastructure</span></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td>PwC becomes the fourth Big Four firm caught with AI-fabricated report citations</td>
+                    <td><strong>GPTZero found an 84%-likely-AI-generated report</strong> citing government programs with no evidence they exist. Follows KPMG, Deloitte, and EY. <a class="ref" href="https://gptzero.me/news/investigations-pwc/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-alert">📄 Trust Crisis</span></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td>Alibaba's Qwen3.8 ships a 27B laptop model and a 2.4T frontier giant, both Apache 2.0</td>
+                    <td><strong>Genuinely practical open models at two very different scales, same day.</strong> The 27B model beats its larger predecessor on coding/office tasks. <a class="ref" href="https://the-decoder.com/alibabas-qwen-team-releases-qwen-3-8-models-with-open-weights-under-the-apache-2-0-license/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-new">🌿 Open Weights</span></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td>Qwen3.8 Max ties Claude Opus 4.8 on benchmarks but costs 2× more per task than Kimi K3</td>
+                    <td><strong>Headline benchmark gains hide real cost and reliability regressions</strong> — hallucination rate jumped from 23% to 40%. <a class="ref" href="https://the-decoder.com/qwen3-8-max-catches-claude-opus-4-8-but-kimi-k3-still-scores-higher-for-25-percent-less/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-alert">📊 Benchmark Gaming</span></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td>OpenAI quietly acquired presentation startup NextSlide</td>
+                    <td><strong>Ninth small-team acquisition this year</strong> as OpenAI keeps absorbing office-productivity workflows directly into ChatGPT. <a class="ref" href="https://the-decoder.com/openai-acquires-nextslide-to-bring-ai-generated-presentations-into-chatgpt/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-trending">🏢 Acquisition</span></td>
+                </tr>
+                <tr>
+                    <td>DeepSeek V4 Pro 0813 ships with 1.7T-parameter open weights</td>
+                    <td><strong>DeepSeek keeps a rapid Pro/Flash release cadence,</strong> sustaining open-weight pressure on closed-model pricing. <a class="ref" href="https://openrouter.ai/deepseek/deepseek-v4-pro-0813" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-new">🌿 Open Weights</span></td>
+                </tr>
+                <tr>
+                    <td>Anthropic brings full Claude Cowork sessions into its Chrome side panel</td>
+                    <td><strong>Collapses "browse and read" into "browse and act"</strong> — skills, plugins and connectors now work in-browser without setup. <a class="ref" href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-trending">🌐 Product</span></td>
+                </tr>
+                <tr>
+                    <td>OpenAI launches ChatGPT desktop app for Linux, bundling Codex</td>
+                    <td><strong>Closes the last major desktop-platform gap</strong> versus July's Mac/Windows launches; native computer-use control is still missing. <a class="ref" href="https://the-decoder.com/openai-launches-chatgpt-desktop-app-for-linux/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-new">💻 Product</span></td>
+                </tr>
+                <tr>
+                    <td>VulnCheck: AI finds 1,061 vulnerabilities, only 1.3% get exploited</td>
+                    <td><strong>Raw AI-driven bug discovery volume tells defenders little about real risk</strong> — but time-to-exploit shrank from 120 to 80 days. <a class="ref" href="https://the-decoder.com/ai-finds-plenty-of-security-flaws-but-almost-none-of-them-get-exploited/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-alert">🔐 Security</span></td>
+                </tr>
+                <tr>
+                    <td>Black Forest Labs' FLUX 3 Video goes GA, claims top video Elo scores</td>
+                    <td><strong>Video generation race intensifies</strong> — dialogue in 14+ languages and multi-scene continuation in one clip. <a class="ref" href="https://the-decoder.com/black-forest-labs-makes-flux-3-video-generally-available-and-claims-it-beats-seedance-2-0/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-new">🎬 Product</span></td>
+                </tr>
+                <tr>
+                    <td>MiniMax H3 becomes the first open model to top an AI video ranking</td>
+                    <td><strong>Open video generation reaches competitive quality</strong> for the first time — free commercial use under $20M/year revenue. <a class="ref" href="https://the-decoder.com/chinas-minimax-h3-is-the-first-open-model-to-top-an-ai-video-ranking/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-new">🌿 Open Weights</span></td>
+                </tr>
+                <tr>
+                    <td>ByteDance ships Seedance 2.5 with 30-second built-in-audio clips</td>
+                    <td><strong>Roughly 3× the clip length</strong> of Google's Gemini Omni Flash, released the same day as MiniMax H3's open weights. <a class="ref" href="https://the-decoder.com/bytedances-seedance-2-5-generates-30-second-video-clips-with-built-in-audio/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-trending">🎬 Product</span></td>
+                </tr>
+                <tr>
+                    <td>Dario Amodei: AI's negative public image is "a crisis of trust," not a marketing problem</td>
+                    <td><strong>A frontier-lab CEO publicly concedes labs "haven't yet delivered" on big promises,</strong> a notable tone shift from pure capability marketing. <a class="ref" href="https://simonwillison.net/2026/Aug/16/dario-amodei/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-trending">💬 Culture</span></td>
+                </tr>
+                <tr>
+                    <td>OpenAI ships GPT Transcribe and GPT Live Transcribe, still behind ElevenLabs and Google on accuracy</td>
+                    <td><strong>Speech-to-text competition intensifies</strong> on both price (25% cut) and accuracy, though OpenAI trails the leaders. <a class="ref" href="https://the-decoder.com/gpt-transcribe-improves-on-its-predecessor-but-cant-catch-elevenlabs-google-or-mistral-on-error-rates/" target="_blank" rel="noopener">↗</a></td>
+                    <td><span class="tag tag-trending">🎵 Product</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="quick-take">
+            <strong>⚡ Key Takeaway</strong>
+            The theme of this fortnight is <strong>"Stripe Buys the Router, DeepSeek Ships Pro, and the Trust Crisis Goes Public."</strong> A payments giant is moving to consolidate the model-routing layer, infrastructure deals keep reaching further into unconventional capital (Bitcoin miners as data-center landlords), open-weight models are racing simultaneously at laptop and frontier scale, and a fourth Big Four consulting firm was caught publishing AI-fabricated report sources. The message: <strong>the AI market is consolidating its plumbing even as the credibility of AI-assisted work products keeps eroding in public.</strong>
+        </div>
+    </div>
+
+    <!-- ====== §2 DEEP DIVE ====== -->
+    <div class="section" id="imp-3">
+        <div class="section-header">
+            <span class="section-icon">🔍</span>
+            <span class="section-title">§2 — Deep Dive: The Token Economy Consolidates — Stripe Buys OpenRouter</span>
+        </div>
+
+        <div class="tool-card" style="border-color: #6a1b9a;">
+            <h3 style="color: #6a1b9a;">💳 From Payment Rails to Model Rails</h3>
+            <p class="subtitle">May – August 2026 — How a $1.3B router became a $7B+ acquisition in three months</p>
+
+
+            <div class="tool-features" style="background: #f3e5f5;">
+                <h4 style="color: #6a1b9a;">Timeline of the Consolidation</h4>
+                <table style="font-size: 0.9em; margin: 10px 0;">
+                    <thead><tr><th>Date</th><th>Event</th><th>Why It Matters</th></tr></thead>
+                    <tbody>
+                        <tr><td>May 2026</td><td>OpenRouter closes a $113M Series B at a $1.3B valuation <a class="ref" href="https://techcrunch.com/2026/05/26/openrouter-more-than-doubles-valuation-to-1-3b-in-a-year/" target="_blank" rel="noopener">↗</a></td><td>Establishes OpenRouter as the leading independent model-routing layer, backed by Sequoia, a16z, Menlo, and Alphabet's CapitalG</td></tr>
+                        <tr><td>Jun–Jul 2026</td><td>OpenRouter grows to 8 million users and 400+ routed models <a class="ref" href="https://the-decoder.com/frontier-radar-3-how-agentic-ai-is-turning-tokens-into-a-business-metric/" target="_blank" rel="noopener">↗</a></td><td>Confirms the "pick the right model for the task and budget" layer has real, growing usage</td></tr>
+                        <tr><td>Aug 2026</td><td>Bloomberg reports Stripe is acquiring OpenRouter for $7B+ <a class="ref" href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/" target="_blank" rel="noopener">↗</a></td><td>A 5× valuation jump in three months signals how fast strategic buyers are moving on AI infrastructure plumbing</td></tr>
+                        <tr><td>Aug 2026</td><td>Analysts note Stripe already runs latency-sensitive, high-availability payment infrastructure at scale <a class="ref" href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/" target="_blank" rel="noopener">↗</a></td><td>Stripe's core competency (abstracting payment rails) maps directly onto abstracting "which AI model, at what price"</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="market-impact">
+                <h4>What This Means for Your Team</h4>
+                <ul>
+                    <li><strong>Model-routing is becoming critical infrastructure, not a nice-to-have.</strong> A payments giant paying a 5× premium in three months signals the category is now considered strategically essential, not a hobbyist tool.</li>
+                    <li><strong>Vendor consolidation risk is real.</strong> If you route API traffic through OpenRouter, expect pricing, terms, or roadmap changes once a much larger company owns the switchboard.</li>
+                    <li><strong>The "token economy" analogy is now literal.</strong> Stripe is positioning tokens (AI usage units) the way it once positioned currency — as a unit of commerce it wants to sit in the middle of.</li>
+                    <li><strong>💡 Think of it like this:</strong> Like the company that processes your credit card also buying the company that decides which bank issues it — Stripe wants a cut of every step in the AI transaction, not just the payment at the end.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="quick-take">
+            <strong>⚡ Key Takeaway</strong>
+            The biggest structural signal of the fortnight: <strong>AI infrastructure plumbing (model routing, compute leasing) is consolidating around a handful of large strategic buyers</strong> — watch for similar acquisitions of orchestration, evaluation, and observability startups as the market matures past the "many small independent tools" phase.
+        </div>
+    </div>
+
+    <!-- ====== §3 FUNDING & DEALS ====== -->
+    <div class="section" id="imp-4">
+        <div class="section-header">
+            <span class="section-icon">💰</span>
+            <span class="section-title">§3 — Funding, Deals &amp; Infrastructure</span>
+        </div>
+
+        <p style="margin-bottom: 20px; color: #555;">The biggest capital story of the fortnight is a strategic acquisition, not a funding round — but infrastructure deals kept flowing at multi-billion-dollar scale.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Development</th>
+                    <th>Figure</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td><strong>Stripe / OpenRouter acquisition</strong> <a class="ref" href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/" target="_blank" rel="noopener">↗</a></td>
+                    <td><strong>$7B+ (5× May's $1.3B)</strong></td>
+                    <td>A payments giant consolidating the leading model-routing layer — the clearest signal yet that AI infrastructure plumbing is now a strategic acquisition target.</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>Anthropic / Riot Platforms data center deal</strong> <a class="ref" href="https://the-decoder.com/anthropic-signs-9-1-billion-data-center-deal-with-bitcoin-miner-riot-platforms/" target="_blank" rel="noopener">↗</a></td>
+                    <td><strong>$9.1B (up to $16.1B with extensions)</strong></td>
+                    <td>191 megawatts in Texas over a 20-year lease — adds to Anthropic's existing SpaceX, AWS, and Google/Broadcom compute commitments worth tens of billions more.</td>
+                </tr>
+                <tr>
+                    <td><strong>OpenAI / NextSlide acquisition</strong> <a class="ref" href="https://the-decoder.com/openai-acquires-nextslide-to-bring-ai-generated-presentations-into-chatgpt/" target="_blank" rel="noopener">↗</a></td>
+                    <td><strong>Undisclosed (ninth small acquisition this year)</strong></td>
+                    <td>Continues OpenAI's pattern of buying small teams (Statsig, Ona/Gitpod, Context.ai) to absorb office-productivity features directly into ChatGPT.</td>
+                </tr>
+                <tr>
+                    <td><strong>DeepSeek V4 Pro 0813 weights</strong> <a class="ref" href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813" target="_blank" rel="noopener">↗</a></td>
+                    <td><strong>1.7T params, 893GB</strong></td>
+                    <td>Sustained open-weight release cadence keeps compressing closed-model pricing power across the industry.</td>
+                </tr>
+                <tr>
+                    <td><strong>Global AI compute growth</strong> <a class="ref" href="https://epoch.ai/" target="_blank" rel="noopener">↗</a></td>
+                    <td><strong>Doubling every ~7 months</strong></td>
+                    <td>Supply keeps expanding fast, but Nvidia's dominant share means capacity concentration risk remains structural even as more capital flows in.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ====== §4 MODELS & RELEASES ====== -->
+    <div class="section" id="imp-5">
+        <div class="section-header">
+            <span class="section-icon">🤖</span>
+            <span class="section-title">§4 — Models &amp; Tools</span>
+        </div>
+
+        <p style="margin-bottom: 20px; color: #555;">The model story this period is <strong>open weights racing at two very different scales, DeepSeek's next Pro-tier release, and a video-generation category suddenly moving at chat-model speed</strong>.</p>
+
+        <div class="tool-card" style="border-color: #0b6623;">
+            <h3 style="color: #0b6623;">🌿 Qwen3.8 (27B &amp; 2.4T-A95B)</h3>
+            <p class="subtitle">Alibaba • Aug 14, 2026 <a class="ref" href="https://the-decoder.com/alibabas-qwen-team-releases-qwen-3-8-models-with-open-weights-under-the-apache-2-0-license/" target="_blank" rel="noopener">↗</a></p>
+            <div class="tool-features" style="background: #e8f5e9;">
+                <h4 style="color: #2e7d32;">What Changed</h4>
+                <ul>
+                    <li>27B dense multimodal model beats larger Qwen3.7-Plus on coding/office tasks; natively handles 262K tokens, scaling to 1M via YaRN.</li>
+                    <li>2.4T-parameter MoE variant targets Max-tier performance; both ship under Apache 2.0 on Hugging Face and ModelScope.</li>
+                    <li>Simon Willison found the 27B model "wildly overthinks" simple prompts with its default thinking mode on.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tool-card" style="border-color: #1a73e8;">
+            <h3 style="color: #1a73e8;">💵 DeepSeek V4 Pro 0813</h3>
+            <p class="subtitle">DeepSeek • Aug 12, 2026 <a class="ref" href="https://openrouter.ai/deepseek/deepseek-v4-pro-0813" target="_blank" rel="noopener">↗</a></p>
+            <div class="tool-features" style="background: #e3f2fd;">
+                <h4 style="color: #1565c0;">What Changed</h4>
+                <ul>
+                    <li>Launched API-first on OpenRouter; open weights followed within hours — 1.7T parameters, 893GB.</li>
+                    <li>Continues DeepSeek's rapid Pro/Flash release cadence that keeps closed-model pricing under pressure.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tool-card" style="border-color: #d93025;">
+            <h3 style="color: #d93025;">🎬 FLUX 3 Video &amp; Seedance 2.5</h3>
+            <p class="subtitle">Black Forest Labs / ByteDance • Aug 2026 <a class="ref" href="https://the-decoder.com/black-forest-labs-makes-flux-3-video-generally-available-and-claims-it-beats-seedance-2-0/" target="_blank" rel="noopener">↗</a></p>
+            <div class="tool-features" style="background: #ffebee;">
+                <h4 style="color: #c62828;">Why It Matters</h4>
+                <ul>
+                    <li>FLUX 3 Video claims top Elo scores in text-to-video (1,135) and image-to-video (1,051), with 14+ language lip-synced dialogue.</li>
+                    <li>Seedance 2.5 generates 30-second clips with built-in audio — about 3× the length of Google's Gemini Omni Flash.</li>
+                    <li>MiniMax H3 shipped the same window as the first open-weight model to top an AI video ranking.</li>
+                </ul>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Other Notable Launches</th>
+                    <th>What Changed</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>MiniMax H3 weights <a class="ref" href="https://the-decoder.com/chinas-minimax-h3-is-the-first-open-model-to-top-an-ai-video-ranking/" target="_blank" rel="noopener">↗</a></td><td>33B params, open weights, #1 Video Editing on Artificial Analysis</td><td>First open model to top a video-generation ranking</td></tr>
+                <tr><td>Claude Cowork in Chrome side panel <a class="ref" href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/" target="_blank" rel="noopener">↗</a></td><td>Full Cowork sessions, skills, plugins run in-browser</td><td>Collapses browsing and task execution into one interface</td></tr>
+                <tr><td>ChatGPT desktop app for Linux <a class="ref" href="https://the-decoder.com/openai-launches-chatgpt-desktop-app-for-linux/" target="_blank" rel="noopener">↗</a></td><td>Bundles ChatGPT, ChatGPT Work, Codex; Ubuntu/Debian/Fedora</td><td>Closes the last major desktop-platform gap</td></tr>
+                <tr><td>GPT Transcribe &amp; GPT Live Transcribe <a class="ref" href="https://the-decoder.com/gpt-transcribe-improves-on-its-predecessor-but-cant-catch-elevenlabs-google-or-mistral-on-error-rates/" target="_blank" rel="noopener">↗</a></td><td>3.31% WER, 25% price cut to $0.0045/min</td><td>Still trails ElevenLabs (2.3%), Gemini 3 Pro (2.9%), Voxtral (3.0%)</td></tr>
+                <tr><td>llm-gemini plugin update <a class="ref" href="https://simonwillison.net/2026/Aug/13/llm-gemini/" target="_blank" rel="noopener">↗</a></td><td>Adds Gemini 3.7 Flash, reasoning traces, server-side tools</td><td>Developer tooling keeps pace with Google's Flash-tier releases</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ====== §5 ENTERPRISE & ADOPTION ====== -->
+    <div class="section" id="imp-6">
+        <div class="section-header">
+            <span class="section-icon">🏢</span>
+            <span class="section-title">§5 — Enterprise &amp; Adoption</span>
+        </div>
+
+        <p style="margin-bottom: 20px; color: #555;">Adoption signals this fortnight centered on <strong>agents moving into everyday browsing and desktop workflows, and a growing credibility gap around AI-assisted deliverables</strong>.</p>
+
+        <table>
+            <thead>
+                <tr><th>Signal</th><th>Detail</th><th>Why It Matters</th></tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td>Claude Cowork moves into Chrome's side panel <a class="ref" href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Full agent sessions with skills/plugins now run directly in-browser, turning research into Excel, PowerPoint, or CRM updates with no setup.</td>
+                    <td>Signals agentic browsing is moving from novelty extension to default workflow tool — with prompt-injection risk still unresolved.</td>
+                </tr>
+                <tr>
+                    <td>ChatGPT desktop reaches Linux <a class="ref" href="https://the-decoder.com/openai-launches-chatgpt-desktop-app-for-linux/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Bundles ChatGPT, ChatGPT Work, and Codex for engineering-heavy Linux shops.</td>
+                    <td>Closes a real tooling gap for developer teams that standardized on Linux workstations.</td>
+                </tr>
+                <tr>
+                    <td>PwC, KPMG, Deloitte, EY all caught with fabricated AI citations <a class="ref" href="https://gptzero.me/news/investigations-pwc/" target="_blank" rel="noopener">↗</a></td>
+                    <td>GPTZero's "Vibe Citing" pattern — loosely-cited or entirely fake sources — now spans all four major consulting firms.</td>
+                    <td>A widespread credibility problem in AI-adoption advisory work, not an isolated incident.</td>
+                </tr>
+                <tr>
+                    <td>Dario Amodei on the AI trust gap <a class="ref" href="https://simonwillison.net/2026/Aug/16/dario-amodei/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Argues public distrust predates AI and reflects broader institutional skepticism, not lab messaging.</td>
+                    <td>A notable concession from a frontier-lab CEO that delivered outcomes, not marketing, will rebuild trust.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="quick-take">
+            <strong>⚡ Key Takeaway</strong>
+            Adoption is expanding into <strong>everyday browsing and desktop workflows</strong> even as the credibility of AI-assisted deliverables takes a public hit. Expect procurement and internal-communications teams to increasingly demand independent verification of AI-generated reports before they circulate.
+        </div>
+    </div>
+
+    <!-- ====== §6 SAFETY, ETHICS & POLICY ====== -->
+    <div class="section" id="imp-7">
+        <div class="section-header">
+            <span class="section-icon">🛡️</span>
+            <span class="section-title">§6 — Safety, Ethics &amp; Policy</span>
+        </div>
+
+        <p style="margin-bottom: 20px; color: #555;">This fortnight's safety story was less about dramatic incidents and more about <strong>a widening credibility gap and a clearer picture of real-world exploit economics</strong>.</p>
+
+        <div class="tool-card" style="border-color: #b71c1c;">
+            <h3 style="color: #b71c1c;">📄 The "Vibe Citing" Epidemic (see §5)</h3>
+            <p>PwC becomes the fourth Big Four firm caught publishing AI-generated reports with fabricated sources, following KPMG, Deloitte, and EY. GPTZero's investigations show a consistent pattern: reports with the highest AI-generation scores also have the most false citations. <a class="ref" href="https://gptzero.me/news/investigations-pwc/" target="_blank" rel="noopener">↗</a></p>
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Story</th><th>Detail</th><th>Why It Matters</th></tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td>VulnCheck: AI-found vulnerabilities rarely get exploited <a class="ref" href="https://the-decoder.com/ai-finds-plenty-of-security-flaws-but-almost-none-of-them-get-exploited/" target="_blank" rel="noopener">↗</a></td>
+                    <td>1,061 AI-assisted findings in H1 2026; only 14 (1.3%) confirmed exploited. Anthropic's Project Glasswing produced 23,000+ findings, one confirmed attack.</td>
+                    <td>Raw vulnerability-discovery volume is a poor proxy for actual risk — time-to-exploit shrinking (120→80 days) matters more.</td>
+                </tr>
+                <tr>
+                    <td>PwC fabricated-citation investigation <a class="ref" href="https://gptzero.me/news/investigations-pwc/" target="_blank" rel="noopener">↗</a></td>
+                    <td>One report is 84% likely fully AI-generated, citing government AI adoption in four countries with no supporting evidence.</td>
+                    <td>Fourth major consulting firm caught in five months — a systemic trust problem in AI-advisory deliverables.</td>
+                </tr>
+                <tr>
+                    <td>Dario Amodei's public remarks on AI backlash <a class="ref" href="https://simonwillison.net/2026/Aug/16/dario-amodei/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Argues the "crisis of trust" predates AI and stems from institutional distrust generally — labs haven't yet delivered on big promises.</td>
+                    <td>A rare public acknowledgment from a frontier-lab leader that outcomes, not messaging, are the real fix.</td>
+                </tr>
+                <tr>
+                    <td>Claude Cowork's Chrome extension prompt-injection warning <a class="ref" href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Anthropic explicitly advises against using the extension with banking or health data due to persistent prompt-injection risk.</td>
+                    <td>A frontier lab publicly acknowledging unresolved attack surface in its own flagship browser product.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ====== §7 EXECUTION RISKS, TALENT & COST ====== -->
+    <div class="section" id="imp-8">
+        <div class="section-header">
+            <span class="section-icon">📉</span>
+            <span class="section-title">§7 — Execution Risks, Talent &amp; Operating Cost</span>
+        </div>
+
+        <p style="margin-bottom: 20px; color: #555;">Risk signals this fortnight centered on <strong>benchmark-gaming economics, infrastructure concentration, and a widening gap between AI-vendor promises and delivered trust</strong>.</p>
+
+        <table>
+            <thead>
+                <tr><th>Risk Signal</th><th>Detail</th><th>Why It Matters</th></tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td>Benchmark gaming via extra reasoning steps <a class="ref" href="https://the-decoder.com/qwen3-8-max-catches-claude-opus-4-8-but-kimi-k3-still-scores-higher-for-25-percent-less/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Qwen3.8 Max needs 64 reasoning steps and 15× more tokens than its predecessor to match its benchmark score, pushing real cost per task above cheaper rivals.</td>
+                    <td>Headline benchmark improvements can mask worse real-world cost and reliability — always check cost-per-task, not just leaderboard rank.</td>
+                </tr>
+                <tr>
+                    <td>Infrastructure concentration keeps deepening <a class="ref" href="https://the-decoder.com/anthropic-signs-9-1-billion-data-center-deal-with-bitcoin-miner-riot-platforms/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Anthropic's compute commitments now span SpaceX, AWS, Google/Broadcom, Volta Infra, and Riot Platforms — tens of billions in overlapping long-term leases.</td>
+                    <td>Capacity planning for frontier labs is increasingly hostage to a sprawling web of long-term infrastructure contracts, not just chip supply.</td>
+                </tr>
+                <tr>
+                    <td>Consulting-firm AI credibility gap widens <a class="ref" href="https://gptzero.me/news/investigations-pwc/" target="_blank" rel="noopener">↗</a></td>
+                    <td>PwC joins KPMG, Deloitte, and EY in being caught with fabricated AI-generated citations in client-facing reports.</td>
+                    <td>Enterprises relying on consulting-firm AI-adoption guidance should independently verify claims before acting on them.</td>
+                </tr>
+                <tr>
+                    <td>Vendor-router consolidation risk <a class="ref" href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/" target="_blank" rel="noopener">↗</a></td>
+                    <td>Stripe's reported acquisition of OpenRouter concentrates the leading model-routing layer under one large strategic owner.</td>
+                    <td>Teams dependent on OpenRouter for multi-model flexibility should watch for pricing or access changes post-acquisition.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="quick-take">
+            <strong>⚡ Key Takeaway</strong>
+            <strong>Verify before you trust a headline number.</strong> Whether it's a benchmark score that hides a 15× cost increase or a consulting report with fabricated sources, the fortnight's pattern is the same: impressive-looking claims require independent verification before they inform your budget or your strategy.
+        </div>
+    </div>
+
+    <!-- ====== §8 LLM LANDSCAPE HEATMAP ====== -->
+    <div class="section" id="imp-9">
+        <div class="section-header">
+            <span class="section-icon">🌐</span>
+            <span class="section-title">§8 — LLM Landscape Heatmap (August 17, 2026)</span>
+        </div>
+
+        <p style="margin-bottom: 5px; color: #555;">Interactive model rankings — hover any cell for details. Color = tier. Click for source links where available.</p>
+        <p style="margin-bottom: 20px; font-size: 0.82em; color: #999;">Updated biweekly. Tier placement reflects adoption, benchmarks, and community momentum. ⭐ = new/updated this edition.</p>
+
+        <div style="overflow-x: auto;">
+            <table class="hm-table">
+                <thead>
+                    <tr>
+                        <th class="rh">Category</th>
+                        <th style="background:#0b6623">🥇 Leader</th>
+                        <th style="background:#1a73e8">🥈 Strong</th>
+                        <th style="background:#0e7c86">🌿 Open-Source</th>
+                        <th style="background:#c65102">🔶 Challenger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="rh">💬 Chat / Assistant</td>
+                        <td><a class="hm-cell t5" href="https://www.anthropic.com/news/claude-opus-5" data-tip='{"name":"Claude Opus 5","by":"Anthropic","detail":"Anthropics most capable and most aligned model yet. Doubles Opus 4.8s coding score and triples the next-best model on ARC-AGI 3, at the same price.","metric":"#1 Chat/Reasoning","cta":"Anthropic →"}'>Claude<br>Opus 5</a></td>
+                        <td><a class="hm-cell t4" href="https://openai.com/chatgpt/" data-tip='{"name":"GPT-5.6 / Gemini 3.7 Flash","by":"OpenAI / Google","detail":"GPT-5.6 remains the largest user base (400M+ WAU). Gemini 3.7 Flash shipped this fortnight with reasoning-trace support.","metric":"Frontier contenders","cta":"OpenAI →"}'>GPT-5.6 /<br>Gemini 3.7</a></td>
+                        <td><a class="hm-cell t3" href="https://the-decoder.com/alibabas-qwen-team-releases-qwen-3-8-models-with-open-weights-under-the-apache-2-0-license/" data-tip='{"name":"Qwen3.8 Max / Kimi K3","by":"Alibaba / Moonshot","detail":"NEW — Qwen3.8 Max jumps 10 points to match Claude Opus 4.8; Kimi K3 still scores higher for 25% less cost per task.","metric":"⭐ NEW · Open frontier race","cta":"The Decoder →"}'>Qwen3.8 Max /<br>Kimi K3 ⭐</a></td>
+                        <td><a class="hm-cell t2" href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813" data-tip='{"name":"DeepSeek V4 Pro 0813","by":"DeepSeek","detail":"NEW — 1.7T-parameter Pro-tier release, weights available within hours of API launch.","metric":"⭐ NEW · Open Pro tier","cta":""}'>DeepSeek V4<br>Pro ⭐</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">💻 Code Generation</td>
+                        <td><a class="hm-cell t5" href="https://www.anthropic.com/news/claude-opus-5" data-tip='{"name":"Claude Opus 5","by":"Anthropic","detail":"More than doubles Opus 4.8s software-engineering benchmark score. The strongest model for long-running coding agents.","metric":"#1 Code","cta":"Anthropic →"}'>Claude<br>Opus 5</a></td>
+                        <td><a class="hm-cell t4" href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813" data-tip='{"name":"DeepSeek V4 Pro 0813","by":"DeepSeek","detail":"NEW — 1.7T-parameter Pro-tier model with open weights, extending DeepSeeks rapid release cadence.","metric":"⭐ NEW · Open Pro tier","cta":""}'>DeepSeek V4<br>Pro ⭐</a></td>
+                        <td><a class="hm-cell t3" href="https://huggingface.co/moonshotai/Kimi-K3" data-tip='{"name":"Kimi K3","by":"Moonshot AI","detail":"Open-weight 2.8T MoE, strong agentic coding, still the best cost-per-task among open frontier models.","metric":"Best open value","cta":""}'>Kimi K3</a></td>
+                        <td><a class="hm-cell t2" href="https://the-decoder.com/qwen3-8-max-catches-claude-opus-4-8-but-kimi-k3-still-scores-higher-for-25-percent-less/" data-tip='{"name":"Qwen3.8 Max","by":"Alibaba","detail":"NEW — matches Claude Opus 4.8 on benchmarks but needs 64 steps and 15x more tokens to get there, hurting real-world cost.","metric":"⭐ NEW · Costly to match","cta":""}'>Qwen3.8<br>Max ⭐</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">🎨 Image Generation</td>
+                        <td><a class="hm-cell t5" href="#" data-tip='{"name":"Midjourney V7 / Gemini Omni","by":"Midjourney / Google","detail":"No change this fortnight — MJ V7 leads artistic quality; Gemini Omni competes natively.","metric":"Tied #1 Art + Native","cta":""}'>MJ V7 /<br>Gemini Omni</a></td>
+                        <td><a class="hm-cell t4" href="#" data-tip='{"name":"Adobe Firefly AI Assistant","by":"Adobe","detail":"No change — conversational Firefly assistant inside Premiere, Photoshop and Illustrator.","metric":"In-app assistant","cta":""}'>Adobe<br>Firefly</a></td>
+                        <td><a class="hm-cell t3" href="#" data-tip='{"name":"Stable Diffusion 3 Ultra","by":"Stability AI","detail":"No change — open-source image generation with a large fine-tuner community.","metric":"Best customization","cta":""}'>SD 3<br>Ultra</a></td>
+                        <td><a class="hm-cell t2" href="#" data-tip='{"name":"Nano Banana 2 Lite","by":"Google (Gemini 3.1 Flash-Lite)","detail":"No change — low-cost, ~4-second image generation for high-frequency enterprise use.","metric":"4-sec cheap","cta":""}'>Nano Banana<br>Lite</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">🎬 Video Generation</td>
+                        <td><a class="hm-cell t5" href="https://the-decoder.com/black-forest-labs-makes-flux-3-video-generally-available-and-claims-it-beats-seedance-2-0/" data-tip='{"name":"FLUX 3 Video","by":"Black Forest Labs","detail":"NEW — GA release claims top Elo scores in text-to-video and image-to-video, with 14+ language lip-synced dialogue.","metric":"⭐ NEW · #1 Video Elo","cta":"BFL →"}'>FLUX 3<br>Video ⭐</a></td>
+                        <td><a class="hm-cell t4" href="https://the-decoder.com/bytedances-seedance-2-5-generates-30-second-video-clips-with-built-in-audio/" data-tip='{"name":"ByteDance Seedance 2.5","by":"ByteDance","detail":"NEW — generates 30-second clips with built-in audio, ~3x the length of Gemini Omni Flash.","metric":"⭐ NEW · Longest clips","cta":""}'>Seedance<br>2.5 ⭐</a></td>
+                        <td><a class="hm-cell t3" href="https://the-decoder.com/chinas-minimax-h3-is-the-first-open-model-to-top-an-ai-video-ranking/" data-tip='{"name":"MiniMax H3","by":"MiniMax","detail":"NEW — first open-weight model to top an Artificial Analysis video ranking. Free commercial use under $20M/yr revenue.","metric":"⭐ NEW · First open leader","cta":""}'>MiniMax<br>H3 ⭐</a></td>
+                        <td><a class="hm-cell t2" href="#" data-tip='{"name":"Gemini Omni Flash / Runway Gen-4","by":"Google / Runway","detail":"No change — video-by-conversation and creative/artistic leaders respectively.","metric":"Established players","cta":""}'>Gemini Omni /<br>Runway</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">🎵 Audio / Music</td>
+                        <td><a class="hm-cell t5" href="#" data-tip='{"name":"ElevenLabs","by":"ElevenLabs","detail":"No change — dominant in voice synthesis and cloning; leads AA-WER speech-to-text at 2.3% error rate.","metric":"#1 Voice synthesis","cta":""}'>ElevenLabs<br>(voice)</a></td>
+                        <td><a class="hm-cell t4" href="https://the-decoder.com/gpt-transcribe-improves-on-its-predecessor-but-cant-catch-elevenlabs-google-or-mistral-on-error-rates/" data-tip='{"name":"GPT Transcribe / Gemini 3 Pro","by":"OpenAI / Google","detail":"NEW — GPT Transcribe hits 3.31% WER, a 0.7pt improvement, but still trails Gemini 3 Pro (2.9%) and ElevenLabs.","metric":"⭐ NEW · Transcription race","cta":""}'>GPT Transcribe /<br>Gemini 3 Pro ⭐</a></td>
+                        <td><a class="hm-cell t3" href="#" data-tip='{"name":"Suno v5.5","by":"Suno","detail":"No change — leading AI music generation with full song creation.","metric":"#1 Music generation","cta":""}'>Suno v5.5<br>(music)</a></td>
+                        <td><a class="hm-cell t2" href="#" data-tip='{"name":"Mistral Voxtral","by":"Mistral","detail":"No change — open speech model undercutting the market at $0.003/min transcription pricing.","metric":"Cheapest transcription","cta":""}'>Voxtral<br>Transcribe</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">🧠 Reasoning / Math</td>
+                        <td><a class="hm-cell t5" href="https://www.anthropic.com/news/claude-opus-5" data-tip='{"name":"Claude Opus 5","by":"Anthropic","detail":"Triples the next-best model on ARC-AGI 3 and delivers Anthropics lowest measured deceptive-behavior rate to date.","metric":"#1 Reasoning","cta":"Anthropic →"}'>Claude<br>Opus 5</a></td>
+                        <td><a class="hm-cell t4" href="https://openai.com/chatgpt/" data-tip='{"name":"GPT-5.6 + Gemini 3.7 Flash","by":"OpenAI / Google","detail":"GPT-5.6 stays strong on math/logic; Gemini 3.7 Flash adds visible reasoning traces and server-side tool calls.","metric":"Frontier contenders","cta":""}'>GPT-5.6 /<br>Gemini 3.7</a></td>
+                        <td><a class="hm-cell t3" href="https://the-decoder.com/qwen3-8-max-catches-claude-opus-4-8-but-kimi-k3-still-scores-higher-for-25-percent-less/" data-tip='{"name":"Kimi K3 / Qwen3.8 Max","by":"Moonshot / Alibaba","detail":"NEW — Kimi K3 still leads open reasoning on cost-per-task; Qwen3.8 Max closes the raw-score gap but at higher cost.","metric":"⭐ NEW · Open-source race","cta":""}'>Kimi K3 /<br>Qwen3.8 ⭐</a></td>
+                        <td><a class="hm-cell t2" href="#" data-tip='{"name":"Gemma 4 12B","by":"Google","detail":"No change — open model that runs locally on a 16GB laptop.","metric":"Local 16GB","cta":""}'>Gemma 4<br>12B</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">🤖 AI Agents</td>
+                        <td><a class="hm-cell t5" href="https://www.anthropic.com/news/claude-opus-5" data-tip='{"name":"Claude Opus 5 / Sonnet 5","by":"Anthropic","detail":"Opus 5 for the hardest, longest-horizon agent work; Sonnet 5 remains the value default at a third of the cost.","metric":"Power + value","cta":"Anthropic →"}'>Opus 5 /<br>Sonnet 5</a></td>
+                        <td><a class="hm-cell t4" href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/" data-tip='{"name":"Claude Cowork (Chrome)","by":"Anthropic","detail":"NEW — full agent sessions now run in Chromes side panel with skills/plugins and no setup required.","metric":"⭐ NEW · In-browser agent","cta":"The Decoder →"}'>Claude Cowork<br>(Chrome) ⭐</a></td>
+                        <td><a class="hm-cell t3" href="#" data-tip='{"name":"LangGraph / CrewAI","by":"Open-source","detail":"No change — framework-level agent tools remain free and flexible.","metric":"Framework-level · Free","cta":""}'>LangGraph<br>CrewAI</a></td>
+                        <td><a class="hm-cell t2" href="https://the-decoder.com/openai-launches-chatgpt-desktop-app-for-linux/" data-tip='{"name":"OpenAI Codex (Linux)","by":"OpenAI","detail":"NEW — ChatGPT desktop for Linux bundles Codex, adding a visual project tracker for Linux-based engineering teams.","metric":"⭐ NEW · Platform expansion","cta":""}'>Codex<br>(Linux) ⭐</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">🛡️ Cybersecurity</td>
+                        <td><a class="hm-cell t2" href="https://the-decoder.com/ai-finds-plenty-of-security-flaws-but-almost-none-of-them-get-exploited/" data-tip='{"name":"AI-Assisted Vulnerability Discovery","by":"Industry-wide (VulnCheck)","detail":"⭐ UPDATED — 1,061 AI-found vulnerabilities in H1 2026, only 1.3% exploited. Discovery volume is a poor proxy for real risk.","metric":"⭐ Volume ≠ risk","cta":"VulnCheck →"}'>Exploit<br>Economics ⭐</a></td>
+                        <td><a class="hm-cell t4" href="https://gptzero.me/news/investigations-pwc/" data-tip='{"name":"GPTZero AI-Detection","by":"GPTZero","detail":"NEW — caught PwC as the fourth Big Four firm publishing fabricated AI-generated report citations, following KPMG, Deloitte, EY.","metric":"⭐ NEW · Trust auditing","cta":"GPTZero →"}'>GPTZero<br>Auditing ⭐</a></td>
+                        <td><a class="hm-cell t3" href="https://www.theverge.com/ai-artificial-intelligence/958804/chinas-z-ai-glm-52-mythos-cybersecurity" data-tip='{"name":"Z.ai GLM-5.2 (cyber)","by":"Z.ai","detail":"No change — remains the leading open-weight fallback for security incident response when commercial guardrails block forensic tools.","metric":"Open cyber fallback","cta":"The Verge →"}'>GLM-5.2<br>Cyber</a></td>
+                        <td><a class="hm-cell t2" href="#" data-tip='{"name":"Claude Mythos / GPT-5.6 Sol (offense)","by":"Anthropic / OpenAI","detail":"No change — top the ExploitGym offensive benchmark, restricted for general availability.","metric":"ExploitGym leaders","cta":""}'>Mythos / Sol<br>(offense)</a></td>
+                    </tr>
+                    <tr>
+                        <td class="rh">🦾 Physical / Robotics AI</td>
+                        <td><a class="hm-cell t5" href="#" data-tip='{"name":"NVIDIA Cosmos 3","by":"NVIDIA","detail":"No change — open omni-model for physical-AI reasoning and action, a world model for robotics.","metric":"Physical AI","cta":""}'>NVIDIA<br>Cosmos 3</a></td>
+                        <td><a class="hm-cell t4" href="#" data-tip='{"name":"Tesla Optimus Gen 3","by":"Tesla","detail":"No change — most advanced humanoid robot, factory-tested at Tesla plants.","metric":"Humanoid leader","cta":""}'>Tesla<br>Optimus</a></td>
+                        <td><a class="hm-cell t3" href="#" data-tip='{"name":"Gemini Robotics-ER 1.6","by":"Google DeepMind","detail":"No change — embodied-reasoning model for spatial reasoning and manipulation.","metric":"Embodied reasoning","cta":""}'>Gemini<br>Robotics-ER</a></td>
+                        <td><a class="hm-cell t2" href="#" data-tip='{"name":"Wayve","by":"Wayve","detail":"No change — self-driving startup continuing to attract fresh capital.","metric":"$8.5B valuation","cta":""}'>Wayve<br>AV</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="hm-legend">
+            <span><span class="hm-legend-dot" style="background:#0b6623;"></span> Leader / Frontier</span>
+            <span><span class="hm-legend-dot" style="background:#1a73e8;"></span> Strong Contender</span>
+            <span><span class="hm-legend-dot" style="background:#0e7c86;"></span> Open-Source</span>
+            <span><span class="hm-legend-dot" style="background:#c65102;"></span> Challenger / Rising</span>
+            <span><span class="hm-legend-dot" style="background:#b71c1c;"></span> Discontinued</span>
+            <span>⭐ = New/Updated this edition</span>
+        </div>
+
+        <!-- Category Cards -->
+        <h3 style="text-align:center; margin: 35px 0 20px; color:#333;">Category Breakdown (August 17, 2026)</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin-bottom:30px;">
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #1a73e8; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#1a73e8; margin-bottom:12px;">💬 Chat</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Claude Opus 5</strong> — Anthropic — remains the most-aligned frontier flagship</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>GPT-5.6 / Gemini 3.7</strong> — largest user base + new reasoning-trace Flash tier</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0e7c86;border-radius:50%;margin-right:8px;"></span><strong>Qwen3.8 Max / Kimi K3</strong> — open frontier race intensifies (new)</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#c65102;border-radius:50%;margin-right:8px;"></span><strong>DeepSeek V4 Pro 0813</strong> — 1.7T open Pro-tier refresh (new)</div>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #4f46e5; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#4f46e5; margin-bottom:12px;">💻 Code</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Claude Opus 5</strong> — 2× Opus 4.8's coding benchmark score</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>DeepSeek V4 Pro</strong> — open Pro tier refresh (new)</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0e7c86;border-radius:50%;margin-right:8px;"></span><strong>Kimi K3</strong> — best open cost-per-task</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#c65102;border-radius:50%;margin-right:8px;"></span><strong>Qwen3.8 Max</strong> — matches Opus 4.8 but costlier per task (new)</div>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #e8356d; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#e8356d; margin-bottom:12px;">🎨 Image</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Midjourney V7</strong> — Midjourney — creative-pro standard</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Gemini Omni</strong> — Google — native multimodal generation</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>Adobe Firefly</strong> — Adobe — in-app conversational assistant</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#c65102;border-radius:50%;margin-right:8px;"></span><strong>Nano Banana 2 Lite</strong> — Google — 4-sec cheap images</div>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #d93025; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#d93025; margin-bottom:12px;">🎬 Video</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>FLUX 3 Video</strong> — Black Forest Labs — top Elo scores (new)</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>Seedance 2.5</strong> — ByteDance — 30-second clips (new)</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0e7c86;border-radius:50%;margin-right:8px;"></span><strong>MiniMax H3</strong> — first open model to top a video ranking (new)</div>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #e37400; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#e37400; margin-bottom:12px;">🎵 Audio</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>ElevenLabs</strong> — voice synthesis &amp; cloning leader, #1 on AA-WER</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Suno v5.5</strong> — Suno — full-song music generation</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>GPT Transcribe</strong> — OpenAI — 3.31% WER, 25% cheaper (new)</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#c65102;border-radius:50%;margin-right:8px;"></span><strong>Voxtral Transcribe</strong> — Mistral — cheapest at $0.003/min</div>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #0b6623; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#0b6623; margin-bottom:12px;">🧠 Reasoning</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Claude Opus 5</strong> — Anthropic — 3× next-best on ARC-AGI 3</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>GPT-5.6 / Gemini 3.7 Flash</strong> — strong frontier contenders (new)</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0e7c86;border-radius:50%;margin-right:8px;"></span><strong>Kimi K3 · Qwen3.8 Max</strong> — open frontier race intensifies (new)</div>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #6e5494; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#6e5494; margin-bottom:12px;">📐 Embeddings</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>OpenAI text-embedding-3</strong> — most-used embedding API globally</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Cohere Command A+</strong> — Cohere — native citations, Apache 2.0, RAG gold</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>Gemini Embeddings</strong> — Google — Vertex AI integration advantage</div>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-top:4px solid #0969da; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="color:#0969da; margin-bottom:12px;">🤖 Agents</h4>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#0b6623;border-radius:50%;margin-right:8px;"></span><strong>Claude Opus 5 / Sonnet 5</strong> — Anthropic — power + value tiers</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#1a73e8;border-radius:50%;margin-right:8px;"></span><strong>Claude Cowork (Chrome)</strong> — full in-browser agent sessions (new)</div>
+                <div style="margin-bottom:8px;"><span style="display:inline-block;width:10px;height:10px;background:#c65102;border-radius:50%;margin-right:8px;"></span><strong>OpenAI Codex (Linux)</strong> — platform expansion (new)</div>
+            </div>
+        </div>
+
+        <!-- At-a-Glance Table -->
+        <h3 style="text-align:center; margin-bottom:15px; color:#333;">📊 At-a-Glance: Top Model per Category</h3>
+        <table style="font-size:0.9em;">
+            <thead><tr><th style="background:#0b6623;">Category</th><th style="background:#0b6623;">Top Model(s)</th><th style="background:#0b6623;">Why</th></tr></thead>
+            <tbody>
+                <tr><td>💬 Chat</td><td>Claude Opus 5 / GPT-5.6</td><td>Most-aligned frontier flagship + largest existing user base</td></tr>
+                <tr><td>💻 Code</td><td>Opus 5 · Kimi K3 (open value) · DeepSeek V4 Pro</td><td>Doubled benchmark score, best open cost-per-task, fresh open Pro tier</td></tr>
+                <tr><td>🎨 Image</td><td>Midjourney V7 / Gemini Omni</td><td>Creative quality + native multimodal (unchanged)</td></tr>
+                <tr><td>🎬 Video</td><td>FLUX 3 Video / Seedance 2.5 / MiniMax H3</td><td>Top Elo scores, longest clips, and first open leader — all shipped this fortnight</td></tr>
+                <tr><td>🎵 Audio</td><td>ElevenLabs (voice) / Suno (music)</td><td>Category-defining synthesis in each lane (unchanged)</td></tr>
+                <tr><td>🧠 Reasoning</td><td>Claude Opus 5</td><td>Triples next-best model on ARC-AGI 3</td></tr>
+                <tr><td>📐 Embeddings</td><td>Cohere Command A+ / OpenAI text-embedding-3</td><td>Native citations + most-used API = enterprise RAG standard</td></tr>
+                <tr><td>🤖 Agents</td><td>Claude Opus 5 / Sonnet 5 / Claude Cowork</td><td>New power ceiling, proven value default, and full agent sessions now in-browser</td></tr>
+            </tbody>
+        </table>
+
+        <div class="quick-take" style="margin-top: 25px;">
+            <strong>⚡ Key Takeaway</strong>
+            Claude Opus 5 holds a clear frontier lead in chat, code, and reasoning. But the fortnight's real disruption came from three directions at once: <strong>Qwen3.8 shipped at both laptop and frontier scale in a single Apache 2.0 release, video generation suddenly has three major competing launches (FLUX 3, Seedance 2.5, MiniMax H3), and a payments giant moved to consolidate the model-routing layer itself.</strong> Trust, not capability, is now the category to watch most closely: <strong>a fourth Big Four firm was caught with AI-fabricated report sources, the same fortnight a frontier-lab CEO publicly called AI's reputation problem "a crisis of trust."</strong>
+        </div>
+    </div>
+
+    <!-- ====== §9 ACTION ITEMS ====== -->
+    <div class="section" id="imp-10">
+        <div class="section-header">
+            <span class="section-icon">✅</span>
+            <span class="section-title">§9 — Your Action Items This Fortnight</span>
+        </div>
+
+        <p style="margin-bottom: 20px; color: #555;">Five concrete things your team can do <strong>this week</strong> in response to the last two weeks of AI news.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px;">
+            <div style="background:#fff; border-radius:12px; border-left:5px solid #6a1b9a; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="margin-bottom:8px;">💳 1. Audit your OpenRouter dependency before the acquisition closes</h4>
+                <p style="color:#555; font-size:0.92em;">If you route production traffic through OpenRouter, expect pricing or terms changes once Stripe owns the switchboard. <strong>Map your fallback options</strong> now, before the deal closes. <a class="ref" href="#imp-3">↗</a></p>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-left:5px solid #0e7c86; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="margin-bottom:8px;">📜 2. Re-check open-weight license terms before scaling Qwen3.8 or Kimi K3</h4>
+                <p style="color:#555; font-size:0.92em;">Both Qwen3.8 releases ship Apache 2.0, but Kimi K3 remains "open weight" with a commercial threshold. <strong>Confirm licensing fits your deployment scale</strong> before committing. <a class="ref" href="#imp-5">↗</a></p>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-left:5px solid #e65100; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="margin-bottom:8px;">📊 3. Compare cost-per-task, not just benchmark scores, before switching models</h4>
+                <p style="color:#555; font-size:0.92em;">Qwen3.8 Max ties Opus 4.8 on a headline score but costs more per task than Kimi K3. <strong>Run your own eval suite with real cost tracking</strong> before trusting a leaderboard. <a class="ref" href="#imp-8">↗</a></p>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-left:5px solid #1565c0; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="margin-bottom:8px;">📄 4. Independently verify any AI-assisted consulting deliverable before circulating it</h4>
+                <p style="color:#555; font-size:0.92em;">A fourth Big Four firm was just caught with fabricated AI-generated citations. <strong>Spot-check sources</strong> in any AI-adoption report your organization receives or produces. <a class="ref" href="#imp-6">↗</a></p>
+            </div>
+            <div style="background:#fff; border-radius:12px; border-left:5px solid #2e7d32; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <h4 style="margin-bottom:8px;">🎬 5. Pilot the new video-generation tools if your team touches video content</h4>
+                <p style="color:#555; font-size:0.92em;">FLUX 3 Video, Seedance 2.5, and MiniMax H3 all shipped this fortnight. <strong>Run a quick evaluation</strong> — pricing and quality are moving fast enough that last quarter's assessment is stale. <a class="ref" href="#imp-4">↗</a></p>
+            </div>
+        </div>
+
+        <div class="quick-take" style="margin-top: 25px;">
+            <strong>⚡ Key Takeaway</strong>
+            The mandate this fortnight: <strong>verify before you trust the headline.</strong> Verify your vendor dependency ahead of consolidation, verify open-model license terms, verify cost-per-task before switching stacks, verify AI-assisted deliverables before circulating them, and pilot the video tools now rather than waiting for next quarter's evaluation cycle.
+        </div>
+    </div>
+
+    <!-- ====== QUICK REFERENCE LINKS ====== -->
+    <div class="resources-section" id="imp-11">
+        <h3>📚 Quick Reference Links</h3>
+        <div class="link-box"><strong>💳</strong> <a href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/">Stripe's Reported $7B+ Acquisition of OpenRouter</a></div>
+        <div class="link-box"><strong>🏗️</strong> <a href="https://the-decoder.com/anthropic-signs-9-1-billion-data-center-deal-with-bitcoin-miner-riot-platforms/">Anthropic's $9.1B Riot Platforms Data Center Deal</a></div>
+        <div class="link-box"><strong>📄</strong> <a href="https://gptzero.me/news/investigations-pwc/">GPTZero: PwC AI-Fabricated Citations Investigation</a></div>
+        <div class="link-box"><strong>🌿</strong> <a href="https://the-decoder.com/alibabas-qwen-team-releases-qwen-3-8-models-with-open-weights-under-the-apache-2-0-license/">Qwen3.8 (27B &amp; 2.4T) Release</a></div>
+        <div class="link-box"><strong>📊</strong> <a href="https://the-decoder.com/qwen3-8-max-catches-claude-opus-4-8-but-kimi-k3-still-scores-higher-for-25-percent-less/">Qwen3.8 Max vs. Kimi K3 Benchmark Analysis</a></div>
+        <div class="link-box"><strong>🏢</strong> <a href="https://the-decoder.com/openai-acquires-nextslide-to-bring-ai-generated-presentations-into-chatgpt/">OpenAI Acquires NextSlide</a></div>
+        <div class="link-box"><strong>💵</strong> <a href="https://openrouter.ai/deepseek/deepseek-v4-pro-0813">DeepSeek V4 Pro 0813</a></div>
+        <div class="link-box"><strong>🔐</strong> <a href="https://the-decoder.com/ai-finds-plenty-of-security-flaws-but-almost-none-of-them-get-exploited/">VulnCheck: AI-Found Vulnerabilities vs. Real Exploits</a></div>
+        <div class="link-box"><strong>🌐</strong> <a href="https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/">Claude Cowork in Chrome's Side Panel</a></div>
+        <div class="link-box"><strong>💻</strong> <a href="https://the-decoder.com/openai-launches-chatgpt-desktop-app-for-linux/">ChatGPT Desktop App for Linux</a></div>
+        <div class="link-box"><strong>💬</strong> <a href="https://simonwillison.net/2026/Aug/16/dario-amodei/">Dario Amodei on AI's Crisis of Trust</a></div>
+        <div class="link-box"><strong>🎬</strong> <a href="https://the-decoder.com/black-forest-labs-makes-flux-3-video-generally-available-and-claims-it-beats-seedance-2-0/">FLUX 3 Video General Availability</a></div>
+        <div class="link-box"><strong>🎬</strong> <a href="https://the-decoder.com/chinas-minimax-h3-is-the-first-open-model-to-top-an-ai-video-ranking/">MiniMax H3: First Open Video Ranking Leader</a></div>
+        <div class="link-box"><strong>🎵</strong> <a href="https://the-decoder.com/gpt-transcribe-improves-on-its-predecessor-but-cant-catch-elevenlabs-google-or-mistral-on-error-rates/">GPT Transcribe vs. ElevenLabs, Google, Mistral</a></div>
+        <div class="link-box"><strong>📊</strong> <a href="https://artificialanalysis.ai/">Artificial Analysis</a></div>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <div class="footer" id="imp-12">
+        <p><strong>AI Power Hour — August 17, 2026</strong></p>
+        <p>Covering August 3 – August 17, 2026</p>
+        <p style="margin-top: 15px; font-size: 0.9em;">📋 Prepared for the AI Learning Community</p>
+        <p style="font-size: 0.85em; color: #999; margin-top: 10px;">Sources: Simon Willison, The Decoder, GPTZero, Anthropic, OpenAI, Alibaba/Qwen, DeepSeek, Black Forest Labs, ByteDance, MiniMax, Artificial Analysis, VulnCheck, TechCrunch, Bloomberg</p>
+        <p style="font-size: 0.8em; color: #bbb; margin-top: 5px;">Next edition: August 31, 2026</p>
+    </div>
+
+    <!-- ====== NAVIGATOR WIDGET ====== -->
+    <div class="nav-widget" id="nav-widget">
+        <div class="nav-header" id="nav-header">
+            <h4>📍 NAVIGATOR</h4>
+            <button class="nav-toggle-btn" id="nav-toggle" title="Collapse/Expand">−</button>
+        </div>
+        <div class="nav-current" id="nav-current">§1 — Headline Roundup</div>
+        <div class="nav-controls" id="nav-controls">
+            <button class="nav-btn" id="nav-prev" title="Previous section">◀ Prev</button>
+            <div class="nav-divider"></div>
+            <button class="nav-btn" id="nav-next" title="Next section">Next ▶</button>
+        </div>
+        <div class="nav-counter" id="nav-counter">1 / 9</div>
+    </div>
+
+    <!-- ====== HEATMAP TOOLTIP ====== -->
+    <div id="hm-tooltip"></div>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        /* ---- Collapsible Sections ---- */
+        document.querySelectorAll('.section-header').forEach(function(header) {
+            header.addEventListener('click', function() {
+                this.parentElement.classList.toggle('collapsed');
+            });
+        });
+
+        /* ---- Quick Panel Collapse ---- */
+        var qpHeader = document.getElementById('qp-header');
+        if (qpHeader) {
+            qpHeader.addEventListener('click', function() {
+                document.getElementById('quick-panel').classList.toggle('panel-collapsed');
+            });
+        }
+
+        /* ---- Tab Switching ---- */
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+                this.classList.add('active');
+                var tabId = 'tab-' + this.getAttribute('data-tab');
+                var target = document.getElementById(tabId);
+                if (target) target.classList.add('active');
+            });
+        });
+
+        /* ---- Quick Card Expand/Collapse ---- */
+        document.querySelectorAll('.qc-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                var card = this.closest('.quick-card');
+                var isExpanded = card.classList.toggle('expanded');
+                this.textContent = isExpanded ? '▲ Hide detailed insights' : '▼ Show detailed insights';
+            });
+        });
+
+        /* ---- Reading Progress Bar ---- */
+        window.addEventListener('scroll', function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var progress = (scrollTop / scrollHeight) * 100;
+            var bar = document.getElementById('reading-progress');
+            if (bar) bar.style.width = progress + '%';
+        });
+
+        /* ---- Heatmap Tooltips ---- */
+        var tooltip = document.getElementById('hm-tooltip');
+        document.querySelectorAll('.hm-cell[data-tip]').forEach(function(cell) {
+            cell.addEventListener('mouseenter', function(e) {
+                var data;
+                try { data = JSON.parse(this.getAttribute('data-tip')); } catch(err) { return; }
+                var html = '';
+                if (data.name) html += '<span class="tip-name">' + data.name + '</span>';
+                if (data.by) html += '<span class="tip-by">' + data.by + '</span>';
+                if (data.detail) html += '<span class="tip-detail">' + data.detail + '</span>';
+                if (data.metric) html += '<span class="tip-metric">' + data.metric + '</span>';
+                if (data.dead) html += '<span class="tip-dead">' + data.dead + '</span>';
+                if (data.cta) html += '<span class="tip-cta">' + data.cta + '</span>';
+                tooltip.innerHTML = html;
+                tooltip.style.display = 'block';
+            });
+            cell.addEventListener('mousemove', function(e) {
+                var x = e.clientX + 15;
+                var y = e.clientY + 15;
+                if (x + 310 > window.innerWidth) x = e.clientX - 320;
+                if (y + 200 > window.innerHeight) y = e.clientY - 200;
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+            });
+            cell.addEventListener('mouseleave', function() {
+                tooltip.style.display = 'none';
+            });
+        });
+
+        /* ---- Navigator Widget ---- */
+        var sections = [];
+        document.querySelectorAll('.section').forEach(function(s) {
+            var title = s.querySelector('.section-title');
+            if (title) sections.push({ el: s, title: title.textContent.trim() });
+        });
+        var navCurrentEl = document.getElementById('nav-current');
+        var navCounterEl = document.getElementById('nav-counter');
+        var navPrevBtn = document.getElementById('nav-prev');
+        var navNextBtn = document.getElementById('nav-next');
+        var navToggleBtn = document.getElementById('nav-toggle');
+        var navWidget = document.getElementById('nav-widget');
+        var currentIdx = 0;
+        var navCollapsed = false;
+
+        function updateNav() {
+            if (sections.length === 0) return;
+            navCurrentEl.textContent = sections[currentIdx].title;
+            navCounterEl.textContent = (currentIdx + 1) + ' / ' + sections.length;
+            navPrevBtn.disabled = currentIdx === 0;
+            navNextBtn.disabled = currentIdx === sections.length - 1;
+        }
+
+        function findCurrentSection() {
+            var scrollY = window.scrollY + window.innerHeight / 3;
+            for (var i = sections.length - 1; i >= 0; i--) {
+                if (sections[i].el.offsetTop <= scrollY) { currentIdx = i; break; }
+            }
+            updateNav();
+        }
+
+        if (navPrevBtn) navPrevBtn.addEventListener('click', function() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                sections[currentIdx].el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateNav();
+            }
+        });
+
+        if (navNextBtn) navNextBtn.addEventListener('click', function() {
+            if (currentIdx < sections.length - 1) {
+                currentIdx++;
+                sections[currentIdx].el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateNav();
+            }
+        });
+
+        if (navToggleBtn) navToggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navCollapsed = !navCollapsed;
+            navWidget.classList.toggle('collapsed', navCollapsed);
+            navCurrentEl.classList.toggle('hidden', navCollapsed);
+            document.getElementById('nav-controls').classList.toggle('hidden', navCollapsed);
+            navCounterEl.classList.toggle('hidden', navCollapsed);
+            this.textContent = navCollapsed ? '+' : '−';
+        });
+
+        window.addEventListener('scroll', findCurrentSection);
+        updateNav();
+
+        /* ---- imp-ID Spotlight (from navigator/ref links) ---- */
+        document.querySelectorAll('a.ref').forEach(function(refLink) {
+            refLink.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href && href.startsWith('#imp-')) {
+                    e.preventDefault();
+                    var target = document.getElementById(href.substring(1));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        target.classList.add('imp-spotlight', 'imp-spotlight-enter');
+                        setTimeout(function() {
+                            target.classList.remove('imp-spotlight', 'imp-spotlight-enter');
+                        }, 3000);
+                    }
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
