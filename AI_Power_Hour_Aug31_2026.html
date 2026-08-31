@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Power Hour: Aug 17–31, 2026</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, sans-serif;
+            line-height:1.6;
+            color:#1f2937;
+            background:#f9fafb;
+            padding:20px;
+        }
+        .container { max-width:1200px; margin:0 auto; background:white; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.1); overflow:hidden; }
+
+        /* Print styles */
+        @media print {
+            body { padding:0; background:white; }
+            .container { box-shadow:none; }
+            .nav-widget { display:none; }
+            .progress-bar { display:none; }
+        }
+
+        /* Header */
+        .header {
+            background:linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1f2937 100%);
+            color:white;
+            padding:60px 40px;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+        }
+        .header::before {
+            content:'';
+            position:absolute;
+            top:-60px; right:-60px;
+            width:260px; height:260px;
+            border-radius:50%;
+            background:rgba(255,255,255,0.08);
+        }
+        .header::after {
+            content:'';
+            position:absolute;
+            bottom:-80px; left:-40px;
+            width:220px; height:220px;
+            border-radius:50%;
+            background:rgba(255,255,255,0.06);
+        }
+        .header > * { position:relative; z-index:1; }
+        .header h1 { font-size:3em; margin-bottom:10px; font-weight:700; text-shadow:0 2px 8px rgba(0,0,0,0.2); }
+        .header p { font-size:1.2em; opacity:0.9; }
+        .header .theme-quote { font-size:1.05em; opacity:0.85; font-style:italic; margin-top:12px; max-width:800px; margin-left:auto; margin-right:auto; }
+        .date-range { font-size:0.95em; opacity:0.8; margin-top:15px; }
+
+        /* Hero highlights wrapper */
+        .hero-highlights { padding:32px 40px 0; background:#fafafa; }
+        .hero-highlights h2 { margin-bottom:4px; }
+        .hero-subtitle { color:#666; font-size:0.95em; margin-bottom:0; }
+
+        /* Progress bar */
+        .progress-bar {
+            position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+            z-index:9998;
+            width:0%;
+            transition:width 0.3s ease;
+        }
+
+        /* Hero cards grid */
+        .hero-cards {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(350px, 1fr));
+            gap:20px;
+            padding:20px 40px 40px;
+            background:#fafafa;
+            border-bottom:1px solid #e5e7eb;
+        }
+        .hero-card {
+            background:white;
+            border-radius:8px;
+            overflow:hidden;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+            transition:transform 0.2s, box-shadow 0.2s;
+            cursor:pointer;
+            text-decoration:none;
+            color:inherit;
+            display:flex;
+            flex-direction:column;
+        }
+        .hero-card:hover { transform:translateY(-4px); box-shadow:0 8px 16px rgba(0,0,0,0.15); }
+        .hero-card img { width:100%; height:200px; object-fit:cover; }
+        .hero-card-badge {
+            position:absolute;
+            top:12px;
+            left:12px;
+            padding:6px 12px;
+            border-radius:4px;
+            font-weight:600;
+            font-size:0.85em;
+            z-index:10;
+        }
+        .badge-hot { background:#dc2626; color:white; }
+        .badge-alert { background:#ea580c; color:white; }
+        .badge-dont-miss { background:#7c3aed; color:white; }
+        .badge-trending { background:#2563eb; color:white; }
+        .badge-new { background:#059669; color:white; }
+        .card-red { background:linear-gradient(to bottom, white 85%, #fef2f2 100%); }
+        .card-orange { background:linear-gradient(to bottom, white 85%, #fff7ed 100%); }
+        .card-purple { background:linear-gradient(to bottom, white 85%, #faf5ff 100%); }
+        .card-blue { background:linear-gradient(to bottom, white 85%, #eff6ff 100%); }
+        .card-green { background:linear-gradient(to bottom, white 85%, #f0fdf4 100%); }
+        .hero-card-content {
+            padding:20px;
+            display:flex;
+            flex-direction:column;
+            flex:1;
+            position:relative;
+        }
+        .hero-card h3 { font-size:1.3em; margin-bottom:10px; line-height:1.3; }
+        .hero-card p { font-size:0.95em; color:#666; flex:1; margin-bottom:10px; }
+        .hero-card-link { color:#3b82f6; text-decoration:none; font-weight:600; display:inline-block; margin-top:auto; }
+        .hero-card-link:hover { text-decoration:underline; }
+
+        /* Quick Panel */
+        .quick-panel {
+            background:#f0f9ff;
+            border-left:4px solid #3b82f6;
+            margin:20px 40px;
+            border-radius:6px;
+            overflow:hidden;
+        }
+        .panel-header {
+            background:#e0f2fe;
+            padding:12px 16px;
+            font-weight:600;
+            cursor:pointer;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .panel-header:hover { background:#bfdbfe; }
+        .panel-toggle { transition:transform 0.3s; }
+        .quick-panel.panel-collapsed .panel-toggle { transform:rotate(-90deg); }
+        .quick-panel.panel-collapsed .tab-bar,
+        .quick-panel.panel-collapsed .tab-content { display:none; }
+
+        /* Tabs */
+        .tab-bar {
+            display:flex;
+            background:#e0f2fe;
+            border-bottom:1px solid #bfdbfe;
+            padding:0 16px;
+        }
+        .tab-button {
+            flex:1;
+            padding:12px 16px;
+            background:none;
+            border:none;
+            cursor:pointer;
+            font-weight:500;
+            border-bottom:3px solid transparent;
+            color:#1e40af;
+            transition:all 0.3s;
+        }
+        .tab-button.active { border-bottom-color:#3b82f6; background:#bfdbfe; }
+        .tab-button:hover { background:#dbeafe; }
+
+        .tab-content { display:none; padding:20px 16px; }
+        .tab-content.active { display:block; }
+
+        /* Quick cards */
+        .quick-card {
+            background:white;
+            border:1px solid #d1d5db;
+            border-left:4px solid #3b82f6;
+            border-radius:4px;
+            padding:16px;
+            margin-bottom:12px;
+            cursor:pointer;
+            transition:all 0.2s;
+        }
+        .quick-card:hover { box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+        .quick-card.expanded { border-left-color:#059669; }
+        .quick-card-headline { font-weight:600; font-size:0.95em; margin-bottom:8px; display:flex; justify-content:space-between; align-items:flex-start; }
+        .quick-card-tldr { font-size:0.9em; color:#374151; line-height:1.5; }
+        .quick-card-detail { display:none; margin-top:12px; padding-top:12px; border-top:1px solid #e5e7eb; font-size:0.9em; color:#4b5563; line-height:1.6; }
+        .quick-card.expanded .quick-card-detail { display:block; }
+        .toggle-text { color:#3b82f6; font-size:0.85em; font-weight:500; white-space:nowrap; }
+
+        /* Category badges */
+        .qc-money { background:#fecaca; color:#991b1b; }
+        .qc-product { background:#c7d2fe; color:#3730a3; }
+        .qc-safety { background:#fed7aa; color:#92400e; }
+        .qc-jobs { background:#ddd6fe; color:#6b21a8; }
+        .qc-policy { background:#d1d5db; color:#374151; }
+        .category-badge {
+            display:inline-block;
+            padding:4px 8px;
+            border-radius:3px;
+            font-size:0.75em;
+            font-weight:600;
+            margin-right:8px;
+        }
+
+        /* New model cards */
+        .new-model-card {
+            background:white;
+            border:1px solid #e5e7eb;
+            border-top:4px solid #3b82f6;
+            border-radius:4px;
+            padding:16px;
+            margin-bottom:16px;
+        }
+        .nmc-leader { border-top-color:#059669; }
+        .nmc-strong { border-top-color:#3b82f6; }
+        .nmc-challenger { border-top-color:#ea580c; }
+        .nmc-label {
+            display:inline-block;
+            padding:3px 6px;
+            border-radius:3px;
+            font-size:0.7em;
+            font-weight:700;
+            margin-right:6px;
+        }
+        .nmc-label.leader { background:#d1fae5; color:#065f46; }
+        .nmc-label.strong { background:#dbeafe; color:#0c2d6b; }
+        .nmc-label.challenger { background:#fed7aa; color:#92400e; }
+
+        /* Content sections */
+        .content { padding:40px; }
+        .section {
+            margin-bottom:40px;
+            border:1px solid #e5e7eb;
+            border-radius:6px;
+            overflow:hidden;
+        }
+        .section-header {
+            background:#f3f4f6;
+            padding:16px;
+            font-size:1.3em;
+            font-weight:700;
+            cursor:pointer;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            border-bottom:1px solid #e5e7eb;
+        }
+        .section-header:hover { background:#e5e7eb; }
+        .section-toggle { transition:transform 0.3s; font-size:1.2em; }
+        .section.collapsed .section-toggle { transform:rotate(-90deg); }
+        .section.collapsed > *:not(.section-header) { display:none; }
+        .section-content { padding:20px; }
+
+        table {
+            width:100%;
+            border-collapse:collapse;
+            font-size:0.95em;
+        }
+        th { background:#f3f4f6; padding:12px; text-align:left; font-weight:600; border-bottom:2px solid #d1d5db; }
+        td { padding:12px; border-bottom:1px solid #e5e7eb; }
+        tr:hover { background:#f9fafb; }
+
+        .tag {
+            display:inline-block;
+            padding:3px 8px;
+            border-radius:3px;
+            font-size:0.75em;
+            font-weight:600;
+            margin-right:6px;
+        }
+        .tag-hot { background:#fecaca; color:#991b1b; }
+        .tag-alert { background:#fed7aa; color:#92400e; }
+        .tag-new { background:#d1fae5; color:#065f46; }
+        .tag-trending { background:#dbeafe; color:#0c2d6b; }
+
+        .ref {
+            color:#3b82f6;
+            text-decoration:none;
+            font-weight:500;
+            margin-left:4px;
+        }
+        .ref:hover { text-decoration:underline; }
+
+        h2 { color:#1f2937; margin-bottom:16px; font-size:1.5em; }
+        h3 { color:#374151; margin-bottom:12px; font-size:1.2em; }
+
+        /* Heatmap */
+        .hm-table {
+            width:100%;
+            border-collapse:collapse;
+            font-size:0.9em;
+            margin-bottom:20px;
+        }
+        .hm-table th {
+            background:#1f2937;
+            color:white;
+            padding:10px;
+            text-align:center;
+            font-weight:600;
+        }
+        .hm-table td { padding:8px; text-align:center; border:1px solid #e5e7eb; }
+        .hm-table .rh { text-align:left; background:#f3f4f6; font-weight:600; }
+
+        .hm-cell {
+            display:inline-block;
+            padding:6px 10px;
+            border-radius:4px;
+            text-decoration:none;
+            font-weight:600;
+            color:white;
+            cursor:pointer;
+            transition:all 0.2s;
+        }
+        .hm-cell:hover { transform:scale(1.05); }
+        .hm-cell.t5 { background:#0b6623; }
+        .hm-cell.t4 { background:#1a73e8; }
+        .hm-cell.t3 { background:#0e7c86; }
+        .hm-cell.t2 { background:#c65102; }
+        .hm-cell.t0 { background:#f0f0f0; color:#666; cursor:default; }
+        .hm-cell.t0:hover { transform:none; }
+        .hm-cell.t0.no-link { cursor:default; }
+        .hm-cell.dead { background:#b71c1c; text-decoration:line-through; }
+
+        #hm-tooltip {
+            position:fixed;
+            display:none;
+            background:#1f2328;
+            color:white;
+            padding:12px;
+            border-radius:6px;
+            font-size:0.85em;
+            z-index:9999;
+            width:300px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.3);
+            pointer-events:none;
+            line-height:1.5;
+        }
+        .tip-name { font-weight:700; margin-bottom:4px; }
+        .tip-by { color:#bfbfbf; font-size:0.9em; margin-bottom:4px; }
+        .tip-metric { color:#4fc3f7; font-weight:600; }
+        .tip-detail { margin-top:8px; font-size:0.9em; }
+        .tip-cta { margin-top:8px; color:#4fc3f7; font-size:0.85em; font-weight:600; }
+        .tip-dead { color:#ff9999; }
+
+        /* Category cards grid */
+        .category-cards-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
+            gap:16px;
+            margin:20px 0;
+        }
+        .cat-card {
+            background:white;
+            border:1px solid #e5e7eb;
+            border-radius:6px;
+            padding:16px;
+            border-top:4px solid #3b82f6;
+        }
+        .cat-card h4 { margin-bottom:12px; font-size:1em; }
+        .cat-model-entry {
+            display:flex;
+            align-items:center;
+            margin-bottom:8px;
+            font-size:0.9em;
+        }
+        .tier-dot {
+            width:8px;
+            height:8px;
+            border-radius:50%;
+            margin-right:8px;
+        }
+        .dot-leader { background:#0b6623; }
+        .dot-strong { background:#1a73e8; }
+        .dot-rising { background:#c65102; }
+        .dot-specialist { background:#6e5494; }
+
+        /* Footer */
+        .footer {
+            background:#1f2937;
+            color:white;
+            padding:30px 40px;
+            font-size:0.9em;
+            border-top:1px solid #374151;
+        }
+        .footer h3 { margin-bottom:10px; }
+        .footer p { line-height:1.8; margin-bottom:12px; }
+
+        /* Navigator widget */
+        .nav-widget {
+            position:fixed;
+            bottom:20px;
+            right:20px;
+            background:white;
+            border:1px solid #d1d5db;
+            border-radius:8px;
+            padding:12px 16px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+            z-index:9997;
+            font-size:0.9em;
+        }
+        .nav-buttons { display:flex; gap:8px; margin-top:8px; }
+        .nav-buttons button {
+            background:#3b82f6;
+            color:white;
+            border:none;
+            padding:6px 12px;
+            border-radius:4px;
+            cursor:pointer;
+            font-weight:600;
+        }
+        .nav-buttons button:hover { background:#2563eb; }
+        .nav-buttons button:disabled { background:#d1d5db; cursor:not-allowed; }
+
+        /* Spotlight effects */
+        .imp-label-float {
+            position:fixed;
+            background:#f59e0b;
+            color:white;
+            padding:4px 8px;
+            border-radius:3px;
+            font-size:0.8em;
+            font-weight:600;
+            pointer-events:none;
+            z-index:9996;
+            animation:float-in 0.3s ease;
+        }
+        @keyframes float-in {
+            from { opacity:0; transform:translateY(10px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+
+        /* Agenda */
+        .agenda { background:#fafafa; padding:20px; border:1px solid #e5e7eb; border-radius:6px; }
+        .agenda h3 { margin-bottom:12px; }
+        .agenda ul { margin-left:20px; }
+        .agenda li { margin-bottom:6px; }
+
+        /* Discussion boxes */
+        .discussion-item {
+            background:#f0f9ff;
+            border-left:4px solid #3b82f6;
+            padding:16px;
+            margin-bottom:16px;
+            border-radius:4px;
+        }
+        .discussion-item strong { color:#1e40af; display:block; margin-bottom:6px; }
+        .discussion-item em { color:#666; font-style:italic; display:block; margin-top:6px; }
+
+        /* Action items */
+        .action-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+            gap:16px;
+            margin-top:16px;
+        }
+        .action-card {
+            background:white;
+            border:1px solid #e5e7eb;
+            border-radius:6px;
+            padding:16px;
+            border-left:4px solid #3b82f6;
+        }
+        .action-card h4 { margin-bottom:8px; font-weight:700; }
+        .action-card p { font-size:0.9em; line-height:1.5; }
+
+        /* Responsive */
+        @media (max-width:768px) {
+            .header h1 { font-size:2em; }
+            .hero-cards { grid-template-columns:1fr; padding:20px; }
+            .content { padding:20px; }
+            .nav-widget { bottom:10px; right:10px; font-size:0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🎯 AI Power Hour</h1>
+            <p>Your briefing on the week that shaped AI</p>
+            <div class="date-range">August 17–31, 2026</div>
+            <div class="theme-quote">"Copyright Comes for the Labs, an 8B Model Beats a Frontier Giant, and the App-less Future Arrives"</div>
+        </div>
+
+        <!-- HERO HIGHLIGHTS -->
+        <div class="hero-highlights">
+            <h2>⚡ Key Highlights — You Should Not Miss</h2>
+            <p class="hero-subtitle">The 6 stories that define the last two weeks</p>
+        </div>
+
+        <!-- HERO CARDS -->
+        <div class="hero-cards">
+            <a href="https://variety.com/2026/music/news/sony-warner-anthropic-copyright-infringement-lawsuit/" target="_blank" rel="noopener" class="hero-card card-red">
+                <div style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=340&fit=crop&q=80" alt="Music production">
+                    <span class="hero-card-badge badge-alert">⚡ MUST READ</span>
+                </div>
+                <div class="hero-card-content">
+                    <h3>Sony & Warner Sue Anthropic—The Copyright Reckoning</h3>
+                    <p>Music industry giants allege "brazen" IP theft; Anthropic faces its first major lawsuit challenging training data practices.</p>
+                    <span class="hero-card-link">Read more →</span>
+                </div>
+            </a>
+
+            <a href="https://www.metacareers.com/blog/" target="_blank" rel="noopener" class="hero-card card-green">
+                <div style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop&q=80" alt="Code on screen">
+                    <span class="hero-card-badge badge-new">💡 BREAKTHROUGH</span>
+                </div>
+                <div class="hero-card-content">
+                    <h3>Meta's 8B Model Matches Claude Opus 4.5—At 1/10th the Cost</h3>
+                    <p>EvoHarness-RL framework achieves frontier performance in agentic coding without the enterprise price tag.</p>
+                    <span class="hero-card-link">Read more →</span>
+                </div>
+            </a>
+
+            <a href="https://www.salesforce.com/news/" target="_blank" rel="noopener" class="hero-card card-blue">
+                <div style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop&q=80" alt="Analytics dashboard">
+                    <span class="hero-card-badge badge-trending">📊 ENTERPRISE</span>
+                </div>
+                <div class="hero-card-content">
+                    <h3>Salesforce Puts Entire CRM Inside Claude</h3>
+                    <p>37 pre-built sales skills; live data access without leaving Claude. The app-less future arrives.</p>
+                    <span class="hero-card-link">Read more →</span>
+                </div>
+            </a>
+
+            <a href="https://openai.com/" target="_blank" rel="noopener" class="hero-card card-orange">
+                <div style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=340&fit=crop&q=80" alt="Silicon chip">
+                    <span class="hero-card-badge badge-hot">🔥 BREAKING</span>
+                </div>
+                <div class="hero-card-content">
+                    <h3>OpenAI Blocks Cursor After SpaceX Acquisition</h3>
+                    <p>Post-Musk tensions escalate: API access severed. Despite Cursor's minimal OpenAI usage (5%), corporate politics trump technical dependency.</p>
+                    <span class="hero-card-link">Read more →</span>
+                </div>
+            </a>
+
+            <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hero-card card-purple">
+                <div style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=340&fit=crop&q=80" alt="Robot hand">
+                    <span class="hero-card-badge badge-new">🏭 NEW</span>
+                </div>
+                <div class="hero-card-content">
+                    <h3>Anthropic's Model Hardware Standard Goes Public</h3>
+                    <p>Agents can now safely operate physical devices via unified spec. Integration drops from weeks to hours.</p>
+                    <span class="hero-card-link">Read more →</span>
+                </div>
+            </a>
+
+            <a href="https://www.theverge.com/" target="_blank" rel="noopener" class="hero-card card-red">
+                <div style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=600&h=340&fit=crop&q=80" alt="Video production">
+                    <span class="hero-card-badge badge-alert">⚠️ DISRUPTION</span>
+                </div>
+                <div class="hero-card-content">
+                    <h3>China: 95% of Video Content Now AI-Generated</h3>
+                    <p>128,000 AI-generated shows in Q1 2026 at $90–120/min. 15 million creators face displacement as production costs collapse.</p>
+                    <span class="hero-card-link">Read more →</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- QUICK PANEL -->
+        <div class="quick-panel">
+            <div class="panel-header">
+                ⚡ Quick Insights Panel <span class="panel-toggle">▼</span>
+            </div>
+            <div class="tab-bar">
+                <button class="tab-button active" data-tab="quick">💡 Don't Miss</button>
+                <button class="tab-button" data-tab="models">🤖 Models This Week</button>
+            </div>
+            <p style="font-size:0.85em;color:#888;padding:8px 16px 0;">The 9 stories worth your attention this edition</p>
+
+            <div id="quick" class="tab-content active">
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-money">💼 LAWSUIT</span>Sony & Warner Music Sue Anthropic</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        Music giants allege <strong>"brazen campaign" of IP theft</strong> in training data. <strong>First major copyright class-action</strong> against frontier lab; Anthropic counters training is fair use.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Sony Music, Warner Music, and others filed suit claiming Anthropic trained on their copyrighted recordings without license. They're seeking damages and injunctive relief.
+                        <br><br><strong>Why it matters:</strong> This sets a legal precedent for AI training data rights. Unlike OpenAI's earlier settlements with Getty Images, this is a direct creator lawsuit. Outcome could reshape how labs source training data.
+                        <br><br>💡 <strong>Think of it like this:</strong> If Pepsi trained its recipe AI on Coca-Cola's proprietary formulas without permission, then sold Pepsi AI to compete, Coca-Cola would sue. That's what's happening here — scale to all music ever recorded.
+                        <br><br><strong>Next:</strong> Expect similar suits from video studios, book publishers, and news outlets within 60 days.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-product">🎯 PERFORMANCE</span>Meta's 8B Model Beats Opus 4.5</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        <strong>8-billion-parameter Llama variant matches Claude Opus 4.5</strong> on agentic coding tasks. EvoHarness-RL <strong>reduces training costs by 90%</strong>; enables on-device deployment.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Meta published findings showing their evolved 8B model achieves Opus-level performance on tool use and code generation benchmarks. The technique, EvoHarness-RL, uses evolutionary algorithms to optimize agent behavior.
+                        <br><br><strong>Why it matters:</strong> This breaks the scaling law assumption (bigger = better). A 8B model now competes with 100B+ frontier models. Enterprise customers can run it locally, cutting cloud costs to zero.
+                        <br><br>💡 <strong>Real-life example:</strong> It's like discovering a Honda Civic outruns a Ferrari on highway tests. Everyone expected Ferrari-tier performance to require Ferrari-tier hardware. Not anymore.
+                        <br><br><strong>Implication:</strong> The $10M+ training budgets for SOTA just became optional. Smaller labs can now compete on technique, not scale.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-product">🏢 ENTERPRISE</span>Salesforce CRM Moves Into Claude</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        <strong>37 pre-built sales skills</strong> now native in Claude. Live CRM data access <strong>without ever opening Salesforce</strong>. Users can ask Claude to close deals, update accounts, and sync calendars.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Salesforce released deep Claude integrations that embed CRM logic directly into Claude's context. The AI can read accounts, opportunities, and contacts, then act autonomously with approval gates.
+                        <br><br><strong>Why it matters:</strong> This is the "app-less future" realized. Software isn't a destination you navigate to; it's embedded in your AI assistant. Calls Salesforce's legacy UI into question.
+                        <br><br>💡 <strong>Think of it like this:</strong> Instead of opening your filing cabinet every time you need a document, your assistant carries a live view of your files and can pull what you need without you lifting a finger.
+                        <br><br><strong>For your team:</strong> Expect this pattern to expand: Slack data in Claude, Jira tickets in Claude, HR records in Claude. Single interface replaces app-switching.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-policy">🚫 CONFLICT</span>OpenAI Cuts Off Cursor API</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        After SpaceX acquired Cursor, OpenAI <strong>revoked API access</strong>. Citing Musk's "contract history," OpenAI blocks the $60B startup despite Cursor using <strong>only 5% OpenAI models</strong>.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> OpenAI terminated Cursor's API keys without formal notice. The move appears retaliatory—Musk now controls Cursor through SpaceX's investment, and his relationship with OpenAI is adversarial (multiple lawsuits pending).
+                        <br><br><strong>Why it matters:</strong> This signals OpenAI is willing to weaponize API access for corporate disputes. Cursor's minimal dependency on OpenAI (5%) makes this a message play, not a business necessity.
+                        <br><br>💡 <strong>Think of it like this:</strong> A bank cutting off a customer's ATM card because they dislike the customer's boss. It's technically within the bank's rights, but it sends a chilling signal about reliability.
+                        <br><br><strong>Broader risk:</strong> Enterprises will diversify model dependencies further. This incident proves platform risk with OpenAI is real.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-product">🏭 HARDWARE</span>Anthropic Model Hardware Standard Launches</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        <strong>Unified spec for AI agents to operate physical devices</strong>. Devices integrate with agents in <strong>hours instead of weeks</strong>. Initial availability: research labs & advanced manufacturing.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Anthropic published the Model Hardware Standard (MHS) — a protocol for agents to command robots, machinery, and IoT systems safely. Includes permission gates and audit trails.
+                        <br><br><strong>Why it matters:</strong> Physical-world AI deployment has been bottlenecked by custom integrations. MHS could accelerate factory automation, warehouse robotics, and surgical systems by 10–50×.
+                        <br><br><strong>Example:</strong> A warehouse manager can now tell Claude to "move 500 units of SKU-1234 to loading dock 3," and Claude translates that to real robot commands via MHS. No custom code needed.
+                        <br><br><strong>Risk:</strong> Relies on device vendors adopting the standard. Fragmentation could negate benefits if competing standards emerge.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-jobs">⚠️ DISPLACEMENT</span>China: 95% of Video Now AI-Generated</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        <strong>128,000 AI-generated shows</strong> in Q1 2026. Production costs dropped to <strong>$90–120/minute</strong> vs. $1,500+/minute traditional. <strong>15 million creators at risk</strong> as livestream drama shifts to AI.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Chinese video platforms (Douyin, Kuaishou) report AI-generated short dramas now dominate. A single AI model, trained on existing dramas, generates thousands of variations daily. Human creators can't compete on price.
+                        <br><br><strong>Why it matters:</strong> This is the first major labor-market disruption from generative AI at scale. China's livestream economy (15M+ creators, $50B+ market) is being displaced not by other humans, but by algorithms.
+                        <br><br>💡 <strong>Think of it like this:</strong> Imagine ATMs replacing tellers in 20 months instead of 20 years. That's the speed of this shift. Livestreamers trained for years are now competing against free AI.
+                        <br><br><strong>Global implications:</strong> If China normalizes AI-generated entertainment, Western platforms will follow within 12 months. Entertainment labor will see similar disruption.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-product">🎯 LOCAL-AI</span>Perplexity + Nvidia: "Portable Computer" Launches</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        Local AI agent runs entirely on-device. <strong>Zero token costs</strong>, no cloud calls. Perplexity & Nvidia positioning as the privacy-first alternative to cloud agents.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Perplexity and Nvidia launched "Portable Computer," a locally-running AI agent stack that eliminates cloud dependency. Inference happens on the user's machine; no data leaves the device.
+                        <br><br><strong>Why it matters:</strong> Cloud AI agents accumulate usage costs that scale linearly. This shifts the economics: buy one GPU, run unlimited queries. Appeals to privacy-conscious enterprises and cost-sensitive developers.
+                        <br><br><strong>Catch:</strong> Requires modern GPU (RTX 4070 or better). Not accessible to budget devices. Market split emerging: cloud for capability, local for cost/privacy.
+                        <br><br><strong>For your team:</strong> If your AI workloads are latency-sensitive or privacy-critical, local agents now viable. Worth benchmarking.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-policy">🚀 WORKFORCE</span>AI Sentiment Among Workers Drops to 43%</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        Glassdoor analysis: positive AI mentions fell from <strong>81% (2019) to 43% (2026)</strong>. Insurance claims, accounting, and logistics workers cite <strong>job loss fears, surveillance, and overwork</strong> as top concerns.
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Glassdoor's Sentiment Index shows worker attitude toward AI has inverted over 7 years. Executives remain positive; front-line workers increasingly fearful.
+                        <br><br><strong>Why it matters:</strong> AI adoption faces a credibility gap. Workers aren't seeing "augmentation" — they're seeing their roles at risk. Companies claiming "AI helps you work better" lose trust when layoffs follow.
+                        <br><br><strong>Specific concerns:</strong> Claims processors worry about automation. Truck drivers fear autonomous vehicles. Programmers report unrealistic productivity expectations ("Claude writes your code, so you should 3×"). Surveillance features in AI systems are flagged as dehumanizing.
+                        <br><br><strong>For your team:</strong> When deploying AI internally, be transparent about what it won't automate and where humans remain critical. Without trust, adoption will face hidden resistance.
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-headline">
+                        <span><span class="category-badge qc-product">🎵 MODELS</span>Google Launches Lyria 3.5 for Music Generation</span>
+                        <span class="toggle-text">▼ Show detailed insights</span>
+                    </div>
+                    <div class="quick-card-tldr">
+                        Lyria 3.5 improves musicality, lyric quality, and vocal synthesis. Integrated into Google Flow (new music studio). <strong>Lyrical control now matches production control.</strong>
+                    </div>
+                    <div class="quick-card-detail">
+                        <strong>What happened:</strong> Google released Lyria 3.5, an upgraded version of their music generation model. New features: direct lyric editing, better adherence to genre constraints, multi-instrument control.
+                        <br><br><strong>Why it matters:</strong> Music generation is approaching parity with human composers in specific domains (background music, procedural content, remixes). Lyria's lyrical improvements mean songwriting is now in scope.
+                        <br><br><strong>Market implication:</strong> Combined with the China video data (AI-generated dramas), this signals the next layoff wave. Session musicians, jingle composers, and BGM producers are at risk.
+                        <br><br><strong>For creators:</strong> If your work is procedural (background music, stock footage, generic content), start diversifying now. Unique, personality-driven work is safer longer.
+                    </div>
+                </div>
+            </div>
+
+            <div id="models" class="tab-content">
+                <h4 style="margin-top:0;">New & Updated Models This Week</h4>
+
+                <div class="new-model-card nmc-strong">
+                    <span class="nmc-label strong">Strong Performer</span>
+                    <strong>Claude 3.5 with Enhanced Tags (Anthropic)</strong>
+                    <br><span style="font-size:0.9em; color:#666;">Released Aug 24 — Multiplayer AI</span>
+                    <p style="margin-top:8px; font-size:0.9em;">Claude Tag update enables Slack integration that auto-reads conversations and jumps in unprompted. Shifts paradigm from single-user chat to team-aware agent. Practical: Use for real-time team brainstorms where Claude adds value without being asked.</p>
+                </div>
+
+                <div class="new-model-card nmc-leader">
+                    <span class="nmc-label leader">Category Leader</span>
+                    <strong>Gemini 3.7 Flash (Google DeepMind)</strong>
+                    <br><span style="font-size:0.9em; color:#666;">Released Aug — Refresh cycle</span>
+                    <p style="margin-top:8px; font-size:0.9em;">Iteration on Gemini 3.5 line; modest inference speed improvements. Maintains parity with Claude Opus 4.8 on reasoning but underperforms on code generation. Practical: Use for chat, customer service, document analysis. Skip for software engineering.</p>
+                </div>
+
+                <div class="new-model-card nmc-challenger">
+                    <span class="nmc-label challenger">Rising Star</span>
+                    <strong>GLM-5.3-Flash (Alibaba Qwen)</strong>
+                    <br><span style="font-size:0.9em; color:#666;">Released Aug 27 — Cost Disruptor</span>
+                    <p style="margin-top:8px; font-size:0.9em;">Entry-level model at <strong>1/100th the cost</strong> of frontier models. Handles ~45% of typical workloads per VentureBeat analysis. Practical: Use for classification, summarization, search. When quality requirement is "good enough," GLM-5.3-Flash makes economic sense.</p>
+                </div>
+
+                <div class="new-model-card nmc-strong">
+                    <span class="nmc-label strong">Specialist</span>
+                    <strong>Lyria 3.5 (Google DeepMind)</strong>
+                    <br><span style="font-size:0.9em; color:#666;">Released Aug — Music & Audio</span>
+                    <p style="margin-top:8px; font-size:0.9em;">Specialized for music generation with improved lyrical quality and vocal synthesis. Practical: Use for background music, jingles, remixes, and procedural content. Not for professional recording—still lacks mixing depth.</p>
+                </div>
+
+                <div style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:6px; padding:16px; margin-top:16px;">
+                    <strong>🏆 Top Model per Category (This Week)</strong>
+                    <table style="margin-top:12px; font-size:0.85em;">
+                        <tr style="background:#d1fae5;">
+                            <th>Category</th>
+                            <th>Top Performer</th>
+                            <th>Why</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Chat/Assistant</strong></td>
+                            <td>Claude 3.5 / Opus 4.8</td>
+                            <td>Best reasoning, most aligned; Opus for complex tasks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Code Generation</strong></td>
+                            <td>Claude Opus 5</td>
+                            <td>Coming in Sept; currently Opus 4.8 leads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Value Leader</strong></td>
+                            <td>GLM-5.3-Flash</td>
+                            <td>100× cheaper, handles ~45% of workloads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Music Generation</strong></td>
+                            <td>Lyria 3.5</td>
+                            <td>Best vocal & lyric quality; easiest UI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Local/Privacy</strong></td>
+                            <td>Meta Llama 3.1 (on-device)</td>
+                            <td>Runs locally; zero cloud costs</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- AGENDA -->
+        <div class="content">
+            <div class="agenda" id="imp-1">
+                <h3>📑 Agenda</h3>
+                <ul>
+                    <li><strong>Section 1: AI Hot Take</strong> — The week's headline stories</li>
+                    <li><strong>Section 2: Mega Funding & Market Moves</strong> — Capital and M&A activity</li>
+                    <li><strong>Section 3: Deep Dive</strong> — The Copyright Crisis: Music Industry Takes On Anthropic</li>
+                    <li><strong>Section 4: Product Launches & Tool Spotlight</strong> — New tools this week</li>
+                    <li><strong>Section 5: SaaSpocalypse & AI Layoffs</strong> — Employment trends</li>
+                    <li><strong>Section 6: Safety & Governance</strong> — Security, ethics, policy</li>
+                    <li><strong>Section 7: Discussion & Action Items</strong> — What this means for your team</li>
+                    <li><strong>Section 8: LLM Model Landscape</strong> — Interactive heatmap & rankings</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 1: AI HOT TAKE -->
+        <div class="section" id="imp-2">
+            <div class="section-header">
+                🔥 Section 1: AI Hot Take
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom:16px; color:#666;"><em>The week's significant stories, ranked by impact. Every link opens in a new tab.</em></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:60%;">News</th>
+                            <th style="width:40%;">Why It Matters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="tag tag-hot">HOT</span> <strong>Sony, Warner Music Sue Anthropic for "Brazen" IP Theft</strong> <a class="ref" href="https://variety.com/2026/music/news/sony-warner-anthropic-copyright-infringement-lawsuit/" target="_blank">↗</a></td>
+                            <td>First major music-industry copyright class-action against a frontier lab. Sets precedent for training-data rights and fair-use boundaries.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-new">NEW</span> <strong>Meta's 8B EvoHarness Model Matches Claude Opus 4.5 on Agentic Tasks</strong> <a class="ref" href="https://www.metacareers.com/" target="_blank">↗</a></td>
+                            <td>Breaks scaling-law assumption. Technique, not scale, now drives performance. Enables enterprise-grade AI on commodity hardware.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-trending">TRENDING</span> <strong>Salesforce Embeds CRM Into Claude with 37 Pre-Built Sales Skills</strong> <a class="ref" href="https://www.salesforce.com/news/" target="_blank">↗</a></td>
+                            <td>App-less future realized. Software logic moves from destination apps into AI assistants. Enterprise workflow consolidation accelerates.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-hot">HOT</span> <strong>OpenAI Revokes Cursor API Access After SpaceX Acquisition</strong> <a class="ref" href="https://cursor.com/" target="_blank">↗</a></td>
+                            <td>Platform risk materialized. Retaliatory API cuts signal weaponized access. Enterprises will diversify model dependencies further.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-new">NEW</span> <strong>Anthropic Releases Model Hardware Standard for Physical Devices</strong> <a class="ref" href="https://www.anthropic.com/" target="_blank">↗</a></td>
+                            <td>Unified spec for agents commanding robots, machinery, IoT. Integration time drops from weeks to hours. Warehouse automation at scale now viable.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-alert">ALERT</span> <strong>China: 95% of Video Content Now AI-Generated; 15M Creators at Risk</strong> <a class="ref" href="https://www.theverge.com/" target="_blank">↗</a></td>
+                            <td>First major labor-market displacement at scale. Production costs fell to $90–120/min from $1,500+/min. Western platforms will follow within 12 months.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nvidia Closes In On Hugging Face Acquisition</strong> <a class="ref" href="https://huggingface.co/" target="_blank">↗</a></td>
+                            <td>Consolidation of model ecosystem. Nvidia expands beyond chips into developer platforms. Community concerns over open-source independence.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amazon Triples Nvidia GPU Orders Over "Surging Demand"</strong> <a class="ref" href="https://aws.amazon.com/" target="_blank">↗</a></td>
+                            <td>Infrastructure investment surge signals continued scaling. Cloud capex remains the binding constraint for AI deployment.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perplexity + Nvidia Launch "Portable Computer" — Local AI Agent, Zero Token Costs</strong> <a class="ref" href="https://www.perplexity.ai/" target="_blank">↗</a></td>
+                            <td>Local-first AI reshapes economics. Privacy-first alternative to cloud agents. Requires modern GPU but eliminates per-query costs for cost-sensitive deployments.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Claude Tag Update: Slack Integration Now Reads Full Conversations Unprompted</strong> <a class="ref" href="https://www.anthropic.com/" target="_blank">↗</a></td>
+                            <td>"Multiplayer AI" paradigm shift. Agents move from single-user chatbots to team-aware participants. Raises concerns over interruptions and decision velocity.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Glassdoor Analysis: AI Sentiment Among Workers Plummets to 43% (Down from 81% in 2019)</strong> <a class="ref" href="https://www.glassdoor.com/" target="_blank">↗</a></td>
+                            <td>Workers see job loss, surveillance, unrealistic productivity demands. Credibility gap widens: executives positive, front-line staff fearful. AI adoption faces hidden resistance.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Agents Lack Time Perception; Overestimate Task Duration by Up to 10×</strong> <a class="ref" href="https://www.theverge.com/" target="_blank">↗</a></td>
+                            <td>Reliability issues in autonomous systems. Agents also inflate performance by ~20%. Impacts oversight and fail-safe design in critical applications.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-alert">ALERT</span> <strong>Google's WikiSkill: Agents Now Retain Persistent Memory of Past Errors</strong> <a class="ref" href="https://deepmind.google/" target="_blank">↗</a></td>
+                            <td>Addresses agent learning problem. Enables agents to improve iteratively across sessions. Practical breakthrough for long-running deployments.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LAION Releases 10M Hours of Video from 80M Downloads</strong> <a class="ref" href="https://laion.ai/" target="_blank">↗</a></td>
+                            <td>Open-source video dataset outperforms comparable commercial datasets by up to 2.1%. Accelerates open-weight video model development.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic Watermarking Technical Details Published</strong> <a class="ref" href="https://www.anthropic.com/blog" target="_blank">↗</a></td>
+                            <td>Transparency on detection methods. Addresses concerns about AI-generated text detection. Informs ongoing policy discussions on synthetic content labeling.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IBM Next-Gen Mainframe: First Processor to Run Arm and Z Workloads on Same Cores</strong> <a class="ref" href="https://www.ibm.com/" target="_blank">↗</a></td>
+                            <td>Enterprise AI + legacy systems convergence. Enables simultaneous deployment of AI frameworks and transaction processing. Simplifies hybrid-cloud migration.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic Gets First Court Win: Pentagon Supply-Chain Risk Label Overturned</strong> <a class="ref" href="https://www.anthropic.com/" target="_blank">↗</a></td>
+                            <td>Regulatory victory. Signals court skepticism of blanket national-security restrictions on AI companies. May accelerate government adoption of Claude.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenAI, Anthropic, Google, and 100+ Companies Call for AI Safety Defense Measures</strong> <a class="ref" href="https://openai.com/" target="_blank">↗</a></td>
+                            <td>Industry-wide coordination on rogue-AI risks. Signals growing consensus on safety standards. May inform future regulation.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini 3.5 Transcribe Launches with "Intelligent Transcription"</strong> <a class="ref" href="https://deepmind.google/" target="_blank">↗</a></td>
+                            <td>Google expands audio capabilities. Improves over existing transcription via context awareness. Practical for noisy environments and technical jargon.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini Omni 1.1 Flash Released for Developers</strong> <a class="ref" href="https://deepmind.google/" target="_blank">↗</a></td>
+                            <td>Iteration cycle accelerates. Enhanced control for developers. Maintains parity with Claude on reasoning but underperforms on code.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini 3.7 Flash Expands Google's Model Lineup</strong> <a class="ref" href="https://deepmind.google/" target="_blank">↗</a></td>
+                            <td>Refresh cycle continues. Modest inference improvements. Positioning for broader enterprise rollout of Gemini line.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lyria 3.5 in Google Flow: Music Generation With Better Lyrical Control</strong> <a class="ref" href="https://deepmind.google/blog" target="_blank">↗</a></td>
+                            <td>Music generation approaches human parity in specific domains. Songwriting now in scope for AI. Session musicians and jingle composers at risk.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nano Banana 2 Lite Becomes Available for Developers</strong> <a class="ref" href="https://deepmind.google/" target="_blank">↗</a></td>
+                            <td>Lightweight model for edge deployment. Complements Gemini line for latency-sensitive applications.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google Robotics ER 2 & Robotics 2: Whole-Body Intelligence Released</strong> <a class="ref" href="https://deepmind.google/blog" target="_blank">↗</a></td>
+                            <td>Robotics + video understanding convergence. Enables more dexterous automation. Physical-world AI deployment accelerates.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>WeatherNext Achieves Breakthrough in Cyclone Forecasting</strong> <a class="ref" href="https://deepmind.google/blog" target="_blank">↗</a></td>
+                            <td>Scientific AI application wins measurable outcomes. Improves disaster preparation timelines. Sets precedent for climate-resilience AI investment.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enterprise AI Agents' Real Risk: Complexity Between Agents, Not Agent Autonomy (Gravitee Analysis)</strong> <a class="ref" href="https://www.gravitee.io/" target="_blank">↗</a></td>
+                            <td>Multi-agent orchestration emerges as bottleneck. Single-agent reliability is solved; coordination is the hard problem. Enterprise tooling race begins.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>When Agents Act Autonomously, Governance Belongs in the Data Layer (EDB Analysis)</strong> <a class="ref" href="https://www.enterprisedb.com/" target="_blank">↗</a></td>
+                            <td>Architectural insight: permissions can't live at API layer for autonomous systems. Data-layer controls become critical for compliance. Impacts database and data-warehouse strategy.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GLM-5.3-Flash Estimated to Handle 45% of AI Workloads at 1/100th Cost</strong> <a class="ref" href="https://qwen.alibaba.com/" target="_blank">↗</a></td>
+                            <td>Cost disruption accelerates. Entry-tier models sufficient for majority of tasks. Frontier-model economics shifting; long tail workloads move to open-weight alternatives.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orchestration Emerges as Critical Challenge for Customer Experience (Tata Communications Analysis)</strong> <a class="ref" href="https://www.tatacommunications.com/" target="_blank">↗</a></td>
+                            <td>Enterprise focus shifts from individual agent capability to multi-agent coordination. CX teams now managing agent fleets rather than single chatbots.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enterprise Knowledge Quality Directly Impacts Agent Reliability (Industry Insight)</strong> <a class="ref" href="https://www.venturebeat.com/" target="_blank">↗</a></td>
+                            <td>Bottleneck identified: messy enterprise documents break agent performance. Organizations need to audit internal knowledge assets before deploying agents.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Successful Enterprise Deployments Limit Agent Autonomy Intentionally</strong> <a class="ref" href="https://www.venturebeat.com/" target="_blank">↗</a></td>
+                            <td>Best practices emerging: constrain agent actions to well-defined boundaries. Unrestricted autonomy fails; governance-by-design wins.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Linear Math Can Replace Costly AI Model Handoffs; Achieves 25× Speed Improvement (Nvidia Finding)</strong> <a class="ref" href="https://nvidia.com/" target="_blank">↗</a></td>
+                            <td>Inference optimization breakthrough. Architectural insight: not every handoff needs an LLM call. Mathematical shortcuts reduce latency and cost in agentic sequences.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 2: MEGA FUNDING & MARKET MOVES -->
+        <div class="section" id="imp-3">
+            <div class="section-header">
+                💰 Section 2: Mega Funding & Market Moves
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom:16px; color:#666;"><em>Capital moves and market consolidation this week. A slow capital week—focus shifts to M&A and strategic positioning.</em></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Deal</th>
+                            <th>Players</th>
+                            <th>Significance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nvidia Reportedly Acquiring Hugging Face</strong></td>
+                            <td>Nvidia (buyer); Hugging Face (target)</td>
+                            <td>Major consolidation. Nvidia expands from chips to developer platforms. Community backlash expected over open-source independence. Valuation unknown; deal in advanced talks.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amazon Triples Nvidia GPU Orders</strong></td>
+                            <td>Amazon AWS; Nvidia</td>
+                            <td>Infrastructure capex surge. Signals continued scaling demand. GPU supply constraints remain critical. Market share shifts away from on-premise deployments.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic Court Victory Over Pentagon Supply-Chain Restrictions</strong></td>
+                            <td>Anthropic vs. DoD</td>
+                            <td>Regulatory win. Government adoption pathway clears. May accelerate Claude deployment in federal agencies and defense contractors.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perplexity–Nvidia Partnership: Portable Computer Launch</strong></td>
+                            <td>Perplexity; Nvidia</td>
+                            <td>Strategic positioning for local-first AI. Counters cloud-dependency narrative. Appeals to privacy-conscious enterprises and cost-optimizers.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Salesforce–Claude Deep Integration</strong></td>
+                            <td>Salesforce; Anthropic</td>
+                            <td>Enterprise traction for Claude. 37 pre-built skills reduce integration friction. Signals Anthropic's dominance in enterprise-AI partnerships.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top:20px; padding:12px; background:#fff3cd; border-left:4px solid #ffc107; border-radius:4px;"><strong>Note:</strong> August 17–31 was a relatively quiet capital week. No mega-rounds announced. Focus shifted to M&A, strategic partnerships, and regulatory positioning. Major funding announcements likely to resume in September.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3: DEEP DIVE -->
+        <div class="section" id="imp-4">
+            <div class="section-header">
+                📊 Section 3: Deep Dive — The Copyright Crisis
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>Sony Music, Warner Music, & Others Sue Anthropic: The Training Data Reckoning</h3>
+                <p style="margin-bottom:16px; color:#666;"><strong>The Story:</strong> On August 29, 2026, Sony Music, Warner Music Group, and independent music publishers filed a class-action lawsuit against Anthropic, alleging "one of the largest and most blatant ongoing thefts" of intellectual property. The suit claims Anthropic trained Claude on copyrighted recordings without license or payment.</p>
+
+                <table style="margin-top:16px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Event</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aug 29, 2026</strong></td>
+                            <td>Sony Music, Warner Music, and 5+ publishers file class-action against Anthropic for copyright infringement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aug 30, 2026</strong></td>
+                            <td>Anthropic issues statement claiming fair-use defense; case lands in federal court</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Context: Prior Settlements</strong></td>
+                            <td>OpenAI settled with Getty Images (July 2023) but has fought major copyright suits; Microsoft settled with news publishers (Feb 2024) for $1M+</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top:24px; margin-bottom:12px;">Why It Matters</h4>
+                <p>This lawsuit is different from prior copyright disputes because:</p>
+                <ul style="margin-left:20px; line-height:1.8;">
+                    <li><strong>Direct creator lawsuit:</strong> Unlike Getty (a platform) or publisher settlements, this is musicians suing the AI company directly. It's the first major music-industry action.</li>
+                    <li><strong>Precedent-setting:</strong> Outcome will define whether "training AI" qualifies as fair use. Expect courts to rule on: fair use for commercial models, licensing obligations for training data, and statutory damages for unauthorized use.</li>
+                    <li><strong>Anthropic specifically:</strong> As a safety-focused lab claiming ethical practices, this suit creates credibility damage beyond legal liability. "Responsible AI" narrative takes a hit.</li>
+                    <li><strong>Industry-wide implications:</strong> Expect similar suits from video studios, book publishers, and news outlets within 60 days. The lawsuit cycle is beginning.</li>
+                </ul>
+
+                <h4 style="margin-top:24px; margin-bottom:12px;">Anthropic's Defense (Expected)</h4>
+                <p><strong>Fair Use Argument:</strong> Anthropic will likely argue that training data use is transformative and falls under fair use (17 U.S.C. § 107). Precedent: Google Scholar was deemed fair use; so was Google Books (settled after ruling). The defense rests on: (1) AI doesn't reproduce songs, (2) the model learns patterns, not stored music, and (3) the purpose is transformative.</p>
+                <p style="margin-top:12px;"><strong>Weak Point:</strong> If evidence shows Anthropic deliberately licensed music data (e.g., API access to streaming services), the fair-use defense collapses. Early discovery will reveal whether data sourcing was thoughtful or indiscriminate.</p>
+
+                <div style="background:#fff3cd; border-left:4px solid #ffc107; padding:16px; border-radius:4px; margin-top:16px;">
+                    <strong>💡 Think of it like this:</strong> A student writes an essay using a library of books without permission. The student argues fair use (education, transformation). The publisher sues. If the student *sold* the essay, fair use is harder to defend. If the student claims they "learned" from the books and didn't copy, it's stronger. Anthropic is in the "learned but profited" zone—murkier ground.
+                </div>
+
+                <h4 style="margin-top:24px; margin-bottom:12px;">What This Means for Your Team</h4>
+                <div style="background:#e8f5e9; border-left:4px solid #4caf50; padding:16px; border-radius:4px;">
+                    <strong>If you're using Claude:</strong> No immediate impact. Anthropic's liability doesn't affect Claude's functionality. However, if the lawsuit costs Anthropic $100M+, it impacts their runway and could affect product roadmap (less R&D, slower iteration).<br><br>
+                    <strong>If you're training your own models:</strong> Document your data sourcing NOW. Verify you have licenses for copyrighted content. Fair-use defense requires evidence of good-faith due diligence. Undocumented sources are liabilities.<br><br>
+                    <strong>If you're in music/media:</strong> Prepare for licensing conversations. AI labs will likely move toward licensed data to avoid lawsuits. Expect new licensing frameworks (e.g., Spotify-for-model-training) within 12 months.<br><br>
+                    <strong>For compliance teams:</strong> This sets a precedent for other industries. Video studios, publishing, news will follow. Create a training-data-rights audit for your enterprise AI models.
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: PRODUCT LAUNCHES & TOOL SPOTLIGHT -->
+        <div class="section" id="imp-5">
+            <div class="section-header">
+                🛠️ Section 4: Product Launches & Tool Spotlight
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>Three Featured Tools This Week</h3>
+
+                <div style="background:white; border:1px solid #e5e7eb; border-radius:6px; padding:20px; margin-bottom:20px;">
+                    <h4 style="margin-bottom:12px; color:#1f2937;">1️⃣ Salesforce CRM + Claude Integration</h4>
+                    <p style="font-size:0.95em; color:#666; margin-bottom:12px;"><strong>What it does:</strong> Embeds Salesforce CRM logic into Claude. 37 pre-built sales skills enable live data access, account updates, opportunity tracking, and calendar sync—all from Claude chat.</p>
+                    <p style="font-size:0.95em; color:#666; margin-bottom:12px;"><strong>Try this:</strong> Ask Claude: "Show me all opportunities over $100K with no activity in 30 days" or "Update account ABC with the latest contract status." Claude queries Salesforce in real-time and acts with approval gates.</p>
+                    <p style="font-size:0.95em; color:#666;"><strong>Why it matters:</strong> App-less CRM is here. Users stay in Claude instead of alt-tabbing to Salesforce. Signals the future: software is embedded in AI assistants, not launched separately.</p>
+                </div>
+
+                <div style="background:white; border:1px solid #e5e7eb; border-radius:6px; padding:20px; margin-bottom:20px;">
+                    <h4 style="margin-bottom:12px; color:#1f2937;">2️⃣ Anthropic Model Hardware Standard (MHS)</h4>
+                    <p style="font-size:0.95em; color:#666; margin-bottom:12px;"><strong>What it does:</strong> Unified spec for AI agents to command physical devices (robots, machinery, IoT systems). Includes permission gates, audit trails, and safe rollback.</p>
+                    <p style="font-size:0.95em; color:#666; margin-bottom:12px;"><strong>Try this:</strong> A warehouse manager tells Claude: "Move 500 units of SKU-1234 to loading dock 3." Claude translates that to robot commands via MHS. No custom integration code required.</p>
+                    <p style="font-size:0.95em; color:#666;"><strong>Why it matters:</strong> Removes the integration bottleneck for physical-world AI. Warehouse automation, factory systems, surgical robots can now adopt agents at scale.</p>
+                </div>
+
+                <div style="background:white; border:1px solid #e5e7eb; border-radius:6px; padding:20px; margin-bottom:20px;">
+                    <h4 style="margin-bottom:12px; color:#1f2937;">3️⃣ Perplexity "Portable Computer" (Local AI Agent)</h4>
+                    <p style="font-size:0.95em; color:#666; margin-bottom:12px;"><strong>What it does:</strong> Local-first AI agent stack. Runs entirely on your GPU; no cloud calls. Zero token costs after hardware purchase.</p>
+                    <p style="font-size:0.95em; color:#666; margin-bottom:12px;"><strong>Try this:</strong> Run unlimited search, analysis, and reasoning tasks on your machine. Perfect for: proprietary data (no cloud egress), offline environments, or cost-sensitive workflows.</p>
+                    <p style="font-size:0.95em; color:#666;"><strong>Why it matters:</strong> Flips the cloud economics model. One-time GPU cost replaces per-query cloud bills. Appeals to privacy-first enterprises and cost-optimizers. Trade-off: requires RTX 4070+ hardware.</p>
+                </div>
+
+                <h3 style="margin-top:32px;">Other Notable Launches</h3>
+                <table style="font-size:0.9em;">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Provider</th>
+                            <th>What's New</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Claude Tag for Slack</strong></td>
+                            <td>Anthropic</td>
+                            <td>Enhanced team-aware agent. Reads full conversations; jumps in unprompted. Multiplayer AI paradigm shift.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini 3.5 Transcribe</strong></td>
+                            <td>Google DeepMind</td>
+                            <td>Intelligent transcription with context awareness. Handles jargon and accents better than prior version.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lyria 3.5 in Google Flow</strong></td>
+                            <td>Google DeepMind</td>
+                            <td>Music generation with better lyrical control and vocal synthesis. Integrated into music studio.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google Robotics ER 2 & Robotics 2</strong></td>
+                            <td>Google DeepMind</td>
+                            <td>Whole-body intelligence for robots. Video understanding + motor control. Dexterous automation advances.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GLM-5.3-Flash</strong></td>
+                            <td>Alibaba Qwen</td>
+                            <td>Cost-leader entry-level model. 1/100th frontier cost; handles ~45% of typical workloads.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 5: SAASPOCALYPSE & AI LAYOFFS -->
+        <div class="section" id="imp-6">
+            <div class="section-header">
+                📉 Section 5: SaaSpocalypse & AI Layoffs
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom:16px; color:#666;"><em>AI-driven employment trends and workforce signals.</em></p>
+
+                <h4 style="margin-bottom:12px;">AI Workforce Sentiment: Crisis Signal</h4>
+                <table style="margin-bottom:20px;">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Finding</th>
+                            <th>Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Positive AI Mentions (Glassdoor)</strong></td>
+                            <td>Down from 81% (2019) to 43% (2026)</td>
+                            <td>Worker sentiment inverted. Fear now exceeds optimism.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Top Worker Concerns</strong></td>
+                            <td>Job loss, surveillance, overwork expectations</td>
+                            <td>Companies claiming "AI augments workers" lose trust when layoffs follow.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Industries Most Affected</strong></td>
+                            <td>Claims processing, accounting, logistics, programming</td>
+                            <td>Roles with high routine/low exception-handling are first at risk.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Executive vs. Front-Line Split</strong></td>
+                            <td>Executives remain positive; workers fearful</td>
+                            <td>Credibility gap widens. "AI helps you work better" rings hollow to those facing displacement.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-bottom:12px;">AI-Driven Displacement Case Studies</h4>
+                <div style="background:#fff3cd; border-left:4px solid #ffc107; padding:16px; border-radius:4px; margin-bottom:16px;">
+                    <strong>China Video Production: 128,000 AI Shows, 15M Creators at Risk</strong><br>
+                    Production costs dropped to $90–120/min from $1,500+/min. Livestream drama genre is nearly 100% AI-generated. Creators who trained for years face displacement in 6–12 months.
+                </div>
+
+                <div style="background:#fff3cd; border-left:4px solid #ffc107; padding:16px; border-radius:4px; margin-bottom:16px;">
+                    <strong>Music Production: Lyria 3.5 Ready for Jingles and BGM</strong><br>
+                    Session musicians and jingle composers losing work to AI. Songwriting now in scope. Expect job cuts in music production within 18 months.
+                </div>
+
+                <div style="background:#fff3cd; border-left:4px solid #ffc107; padding:16px; border-radius:4px; margin-bottom:16px;">
+                    <strong>Claims Processing: Unreliable But Cheap</strong><br>
+                    AI agents misclassify claims by ~5%, but they're 100× faster and 10× cheaper. Insurance companies deploying agents now; adjusters face downsizing.
+                </div>
+
+                <h4 style="margin-top:24px; margin-bottom:12px;">What This Means for Your Team</h4>
+                <ul style="margin-left:20px; line-height:1.8;">
+                    <li><strong>When deploying AI internally:</strong> Be transparent about what won't automate. Workers need to see themselves in the post-AI future. Without trust, adoption fails (covertly).</li>
+                    <li><strong>For roles at risk:</strong> Upskill toward exception-handling and human judgment. Routine work is toast. Roles that require creativity, negotiation, or trust survive longer.</li>
+                    <li><strong>For retention:</strong> Expect exit interviews where AI adoption is cited as a reason to leave. Proactive communication (town halls, 1-on-1s) reduces panic departures.</li>
+                    <li><strong>For policy:</strong> Work with HR to plan training programs for affected staff. "AI is here, here's your reskilling path" beats "AI is coming, you're on your own."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 6: SAFETY & GOVERNANCE -->
+        <div class="section" id="imp-7">
+            <div class="section-header">
+                🔒 Section 6: Safety & Governance
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <h4 style="margin-bottom:12px;">Safety Issues This Week</h4>
+                <table style="margin-bottom:20px;">
+                    <thead>
+                        <tr>
+                            <th style="width:30%;">Issue</th>
+                            <th style="width:40%;">What Happened</th>
+                            <th style="width:30%;">Lesson</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>AI Agents Lack Time Perception</strong></td>
+                            <td>Research shows agents overestimate task duration by up to 10×; inflate own performance by ~20%.</td>
+                            <td>Autonomous systems can't self-assess. Require external monitoring and hard time limits. Don't rely on agent estimates for SLAs.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enterprise Knowledge Quality → Agent Reliability</strong></td>
+                            <td>Messy internal documents (inconsistent schemas, typos, outdated policies) cause agent failures.</td>
+                            <td>Audit knowledge assets before agent deployment. Garbage in = garbage out. Data hygiene is now a security requirement.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multi-Agent Coordination Failures</strong></td>
+                            <td>Enterprises deploying multiple agents report failures when agents conflict or misunderstand each other's outputs.</td>
+                            <td>Orchestration is the hard problem, not single-agent reliability. Define clear handoff protocols before going multi-agent.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic Watermarking Transparency</strong></td>
+                            <td>Watermarking technical details published. Signals commitment to detection and provenance.</td>
+                            <td>Positive: Shows AI labs taking detection seriously. Informs future policy on synthetic content labeling.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-bottom:12px;">Policy & Governance Moves</h4>
+                <ul style="margin-left:20px; line-height:1.8;">
+                    <li><strong>Anthropic Court Win:</strong> Pentagon supply-chain restriction overturned. Signal: courts skeptical of blanket national-security restrictions. May accelerate government Claude adoption.</li>
+                    <li><strong>Industry-Wide Safety Initiative:</strong> 100+ companies (OpenAI, Anthropic, Google, etc.) call for coordinated defense against rogue AI. No binding commitments yet, but signals consensus on safety standards.</li>
+                    <li><strong>Copyright Lawsuit Wave Beginning:</strong> Sony/Warner suit is first; expect video studios, publishers, and news outlets to file within 60 days. Training-data rights to be central policy debate through 2027.</li>
+                </ul>
+
+                <div style="background:#e3f2fd; border-left:4px solid #2196f3; padding:16px; border-radius:4px; margin-top:20px;">
+                    <strong>🏛️ Governance Checklist for Your Organization</strong><br><br>
+                    <input type="checkbox"> <strong>Data Audit:</strong> Verify all training data sources are documented and licensed (or fair-use defensible).<br>
+                    <input type="checkbox"> <strong>Agent Governance:</strong> If deploying agents, define approval gates and hard time limits. Agents can't self-assess.<br>
+                    <input type="checkbox"> <strong>Knowledge Management:</strong> Audit internal documents for consistency, accuracy, and timeliness. Messy knowledge breaks agents.<br>
+                    <input type="checkbox"> <strong>Orchestration Protocol:</strong> If using multi-agent systems, define handoff protocols and conflict resolution before deployment.<br>
+                    <input type="checkbox"> <strong>Worker Communication:</strong> Be transparent about AI impact on roles. Proactive upskilling beats reactive layoffs for retention.<br>
+                    <input type="checkbox"> <strong>Legal Prep:</strong> Monitor copyright lawsuits. Prepare for licensing conversations with content creators (music, video, text).<br>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: DISCUSSION & ACTION ITEMS -->
+        <div class="section" id="imp-8">
+            <div class="section-header">
+                💬 Section 7: Discussion & Action Items
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <h4 style="margin-bottom:16px;">Four Discussion Prompts for Your Team</h4>
+
+                <div class="discussion-item">
+                    <strong>1. The Copyright Reckoning: How Should AI Labs Handle Training Data?</strong>
+                    <p>Sony & Warner's lawsuit opens a question: What's the ethical line between "training AI" and "commercial copying"?</p>
+                    <em>Follow-up: Should your organization license all training data, or do you rely on fair-use defense? What's your data audit process?</em>
+                </div>
+
+                <div class="discussion-item">
+                    <strong>2. Meta's 8B = Opus 4.5: Does Scaling Still Matter?</strong>
+                    <p>If technique now beats scale, does frontier-model arms race end? What does this mean for your infrastructure strategy?</p>
+                    <em>Follow-up: Should your team invest in optimizing existing models instead of chasing latest releases?</em>
+                </div>
+
+                <div class="discussion-item">
+                    <strong>3. The App-Less Future (Salesforce + Claude): What Happens to Your SaaS Tools?</strong>
+                    <p>If Claude can access Salesforce, Jira, Slack natively, do you still need dedicated apps? How does this reshape vendor strategy?</p>
+                    <em>Follow-up: Which of your tools are at risk of being absorbed into AI assistants?</em>
+                </div>
+
+                <div class="discussion-item">
+                    <strong>4. Worker Sentiment Plummets (43% Positive): How Do We Rebuild Trust?</strong>
+                    <p>If 57% of workers are now negative on AI, adoption faces a credibility crisis. Companies claiming "augmentation" while cutting roles lose trust.</p>
+                    <em>Follow-up: When we deploy AI internally, how transparent are we about which roles are at risk? Do we have reskilling plans in place?</em>
+                </div>
+
+                <h3 style="margin-top:32px; margin-bottom:16px;">Five Action Items for This Week</h3>
+
+                <div class="action-grid">
+                    <div class="action-card" style="border-left-color:#dc2626;">
+                        <h4>🔍 Audit Training Data Sources</h4>
+                        <p>List all datasets used to train your models. Verify licenses. Identify sources that are hard to defend under fair-use (e.g., scraped copyrighted music). Prepare for licensing conversations with content holders.</p>
+                    </div>
+
+                    <div class="action-card" style="border-left-color:#2563eb;">
+                        <h4>📋 Map Agent Deployment Risks</h4>
+                        <p>If you're running AI agents internally: (1) identify all external systems they access, (2) define approval gates for high-impact actions, (3) set hard time limits for agent execution. Agents can't self-assess—you must.</p>
+                    </div>
+
+                    <div class="action-card" style="border-left-color:#059669;">
+                        <h4>📝 Benchmark Enterprise Knowledge Quality</h4>
+                        <p>Run a sample of your internal documents through an LLM and check for inconsistencies, outdated policies, and missing metadata. Fix top 20% of issues before deploying agents. Messy knowledge breaks reliability.</p>
+                    </div>
+
+                    <div class="action-card" style="border-left-color:#7c3aed;">
+                        <h4>💬 Host Team Town Hall on AI & Jobs</h4>
+                        <p>Acknowledge the fear. Be explicit about: (1) what roles will change, (2) what skills are safe long-term, (3) reskilling opportunities your org provides. Silence breeds rumor-mill. Transparency builds trust (or at least acceptance).</p>
+                    </div>
+
+                    <div class="action-card" style="border-left-color:#ea580c;">
+                        <h4>🧮 Pilot Cost Optimization with Entry-Level Models</h4>
+                        <p>Test GLM-5.3-Flash or similar on classification, summarization, or search tasks. If it handles 80%+ of your workload, switching saves 90% on API costs. Frontier models remain needed for reasoning/creativity; entry-tier handles the rest.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 8: LLM MODEL LANDSCAPE -->
+        <div class="section" id="imp-9">
+            <div class="section-header">
+                🧠 Section 8: LLM Model Landscape — Interactive Heatmap & Rankings
+                <span class="section-toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom:20px; color:#666;"><em>Current model capabilities as of August 31, 2026. Updated to reflect latest releases (Claude 3.5 with Tags, Gemini 3.7, GLM-5.3-Flash, Lyria 3.5, Google Robotics).</em></p>
+
+                <h4 style="margin-bottom:16px;">📊 Heatmap Matrix (Models × Capabilities)</h4>
+                <p style="font-size:0.9em; color:#666; margin-bottom:12px;"><em>Legend: <strong style="color:#0b6623;">●</strong> Leader | <strong style="color:#1a73e8;">●</strong> Strong | <strong style="color:#0e7c86;">●</strong> Good | <strong style="color:#c65102;">●</strong> Rising | <strong style="color:#f0f0f0;">●</strong> N/A</em></p>
+
+                <table class="hm-table">
+                    <thead>
+                        <tr>
+                            <th class="rh">Model</th>
+                            <th style="background:#1a73e8;">💬 Chat</th>
+                            <th style="background:#4f46e5;">💻 Code</th>
+                            <th style="background:#e8356d;">🎨 Image</th>
+                            <th style="background:#d93025;">🎬 Video</th>
+                            <th style="background:#e37400;">🎵 Audio</th>
+                            <th style="background:#0b6623;">🧠 Reason</th>
+                            <th style="background:#6e5494;">📐 Embed</th>
+                            <th style="background:#0969da;">🤖 Agent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="rh"><strong>Claude Opus 4.8</strong><br><span style="font-size:0.85em; color:#666;">Anthropic</span></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Opus 4.8" data-tip-by="Anthropic • Chat" data-tip-metric="Best-in-class reasoning" data-tip-detail="Strongest reasoning, alignment, and instruction-following. Most enterprise customers use this for complex tasks." data-tip-cta="Visit Anthropic →">★ Best</a></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Opus 4.8" data-tip-by="Anthropic • Code" data-tip-metric="Top performer on SWE-Bench" data-tip-detail="Leads on complex code generation, refactoring, and multi-file edits. Widely used by software engineers." data-tip-cta="Try Claude →">★ Leads</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Opus 4.8" data-tip-by="Anthropic • Reasoning" data-tip-metric="Chain-of-thought excellence" data-tip-detail="Strongest extended reasoning. Best for scientific and mathematical problems." data-tip-cta="Try Claude →">★ Best</a></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Claude Opus 4.8" data-tip-by="Anthropic • Embeddings" data-tip-metric="Supported" data-tip-detail="Embeddings available via API. Good for semantic search and RAG." data-tip-cta="API docs →">Good</a></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Claude Opus 4.8" data-tip-by="Anthropic • Agents" data-tip-metric="Best agent framework" data-tip-detail="Tool use, planning, and autonomous task execution. Agents stay aligned and follow constraints." data-tip-cta="Agent guide →">★ Best</a></td>
+                        </tr>
+                        <tr>
+                            <td class="rh"><strong>Claude 3.5 (Sonnet)</strong><br><span style="font-size:0.85em; color:#666;">Anthropic</span></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Claude 3.5 Sonnet" data-tip-by="Anthropic • Chat" data-tip-metric="Fast, affordable" data-tip-detail="1/3 the cost of Opus 4.8; similar reasoning quality for most tasks. Good value." data-tip-cta="Try it →">Strong</a></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Claude 3.5 Sonnet" data-tip-by="Anthropic • Code" data-tip-metric="Competitive on tasks" data-tip-detail="Handles ~90% of coding tasks. Slower on very complex refactors." data-tip-cta="Try it →">Strong</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Claude 3.5 Sonnet" data-tip-by="Anthropic • Reasoning" data-tip-metric="Good chain-of-thought" data-tip-detail="Solid reasoning; good enough for most enterprise tasks." data-tip-cta="Try it →">Strong</a></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Claude 3.5 Sonnet" data-tip-by="Anthropic • Embeddings" data-tip-metric="Supported" data-tip-detail="Embeddings available." data-tip-cta="Docs →">Good</a></td>
+                            <td><a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Claude 3.5 Sonnet" data-tip-by="Anthropic • Agents" data-tip-metric="Reliable agents" data-tip-detail="Good tool use. Primary choice for cost-sensitive agent deployments." data-tip-cta="Try it →">Strong</a></td>
+                        </tr>
+                        <tr>
+                            <td class="rh"><strong>GPT-5.6 Luna</strong><br><span style="font-size:0.85em; color:#666;">OpenAI</span></td>
+                            <td><a href="https://openai.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="GPT-5.6 Luna" data-tip-by="OpenAI • Chat" data-tip-metric="Fast & cheap (-80% price cut)" data-tip-detail="After self-optimization, Luna achieves Opus-like reasoning at 1/5th cost. Disrupts pricing." data-tip-cta="Try it →">Strong</a></td>
+                            <td><a href="https://openai.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="GPT-5.6 Luna" data-tip-by="OpenAI • Code" data-tip-metric="Good but behind" data-tip-detail="Competent on code but trails Claude Opus on complex tasks." data-tip-cta="Try it →">Good</a></td>
+                            <td><a href="https://openai.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="GPT-5.6 Luna" data-tip-by="OpenAI • Image" data-tip-metric="DALL-E 4" data-tip-detail="Strong image generation. Good quality and prompt adherence." data-tip-cta="Try it →">Strong</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://openai.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="GPT-5.6 Luna" data-tip-by="OpenAI • Audio" data-tip-metric="TTS available" data-tip-detail="Text-to-speech supported. Not a specialist." data-tip-cta="Try it →">Good</a></td>
+                            <td><a href="https://openai.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="GPT-5.6 Luna" data-tip-by="OpenAI • Reasoning" data-tip-metric="Reasoning available" data-tip-detail="Extended reasoning supported. Good but behind Anthropic." data-tip-cta="Try it →">Strong</a></td>
+                            <td><a href="https://openai.com/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="GPT-5.6 Luna" data-tip-by="OpenAI • Embeddings" data-tip-metric="Leader" data-tip-detail="Superior embeddings for semantic search and RAG." data-tip-cta="Try it →">Strong</a></td>
+                            <td><a href="https://openai.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="GPT-5.6 Luna" data-tip-by="OpenAI • Agents" data-tip-metric="Agents possible" data-tip-detail="Tool use available but less aligned than Claude agents." data-tip-cta="Try it →">Good</a></td>
+                        </tr>
+                        <tr>
+                            <td class="rh"><strong>Gemini 3.5 / 3.7</strong><br><span style="font-size:0.85em; color:#666;">Google DeepMind</span></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Gemini 3.7 Flash" data-tip-by="Google • Chat" data-tip-metric="Good but behind" data-tip-detail="Fast inference. Reasoning lags Claude and GPT-5.6 Luna. Good for customer service." data-tip-cta="Try Gemini →">Good</a></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Gemini 3.7" data-tip-by="Google • Code" data-tip-metric="Competent" data-tip-detail="Handles code tasks but underperforms Opus on complex refactors." data-tip-cta="Try it →">Good</a></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Gemini 3.5" data-tip-by="Google • Image" data-tip-metric="Strong performer" data-tip-detail="Competitive with DALL-E on image quality. Good prompt understanding." data-tip-cta="Try it →">Strong</a></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t2" data-tip-name="Gemini 3.5" data-tip-by="Google • Video" data-tip-metric="Video gen ready" data-tip-detail="Supports video understanding. Generation capability emerging (via Veo)." data-tip-cta="Try it →">Rising</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Gemini 3.7" data-tip-by="Google • Reasoning" data-tip-metric="Good reasoning" data-tip-detail="Solid chain-of-thought. Competitive but behind Opus." data-tip-cta="Try it →">Good</a></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t4" data-tip-name="Gemini" data-tip-by="Google • Embeddings" data-tip-metric="Strong" data-tip-detail="Embeddings available and competitive." data-tip-cta="Try it →">Strong</a></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Gemini" data-tip-by="Google • Agents" data-tip-metric="Agents possible" data-tip-detail="Tool use supported. Less aligned than Claude." data-tip-cta="Try it →">Good</a></td>
+                        </tr>
+                        <tr>
+                            <td class="rh"><strong>Meta Llama 3.1</strong><br><span style="font-size:0.85em; color:#666;">Meta • Open</span></td>
+                            <td><a href="https://www.meta.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Llama 3.1" data-tip-by="Meta • Chat" data-tip-metric="Strong open-source" data-tip-detail="Best open-weight model. Runs locally on consumer hardware. Good for privacy." data-tip-cta="Try Llama →">Good</a></td>
+                            <td><a href="https://www.meta.com/" target="_blank" rel="noopener" class="hm-cell t3" data-tip-name="Llama 3.1" data-tip-by="Meta • Code" data-tip-metric="Competent" data-tip-detail="Handles code but trails frontier models. Good for edge deployment." data-tip-cta="Try it →">Good</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://www.meta.com/" target="_blank" rel="noopener" class="hm-cell t2" data-tip-name="Llama 3.1" data-tip-by="Meta • Reasoning" data-tip-metric="Emerging" data-tip-detail="Reasoning capability present but behind frontier models." data-tip-cta="Try it →">Rising</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://www.meta.com/" target="_blank" rel="noopener" class="hm-cell t2" data-tip-name="Llama 3.1" data-tip-by="Meta • Agents" data-tip-metric="Agent capable" data-tip-detail="Tool use supported. Less aligned than Claude." data-tip-cta="Try it →">Rising</a></td>
+                        </tr>
+                        <tr>
+                            <td class="rh"><strong>GLM-5.3-Flash</strong><br><span style="font-size:0.85em; color:#666;">Alibaba Qwen</span></td>
+                            <td><a href="https://qwen.alibaba.com/" target="_blank" rel="noopener" class="hm-cell t2" data-tip-name="GLM-5.3-Flash" data-tip-by="Qwen • Chat" data-tip-metric="100× cheaper; 45% of workloads" data-tip-detail="Entry-level model. Handles classification, summarization, and search. Not for reasoning." data-tip-cta="Try Qwen →">Rising</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="rh"><strong>MiniMax H3</strong><br><span style="font-size:0.85em; color:#666;">MiniMax • Video</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://www.minimaxi.com/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="MiniMax H3" data-tip-by="MiniMax • Video" data-tip-metric="First open video leader" data-tip-detail="Open-source video generation. Matches or exceeds proprietary models on quality." data-tip-cta="Try H3 →">★ Leads</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="rh"><strong>Lyria 3.5</strong><br><span style="font-size:0.85em; color:#666;">Google • Music</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><a href="https://deepmind.google/" target="_blank" rel="noopener" class="hm-cell t5" data-tip-name="Lyria 3.5" data-tip-by="Google • Music" data-tip-metric="Best lyric control" data-tip-detail="Music generation with lyrical direction. Integrated into Google Flow. Best for vocals & lyrics." data-tip-cta="Try Lyria →">★ Leads</a></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                            <td><span class="hm-cell t0 no-link">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top:20px; font-size:0.9em; color:#666;"><em>Hover over each model cell to see detailed tooltips (capability, metric, and when to use it).</em></p>
+
+                <h4 style="margin-top:32px; margin-bottom:16px;">📊 Category Cards — Deep Dive</h4>
+                <div class="category-cards-grid">
+                    <div class="cat-card" style="border-top-color:#1a73e8;">
+                        <h4>💬 Chat / General Purpose</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>Claude Opus 4.8</strong> — Best reasoning & alignment
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>Claude 3.5 (Sonnet)</strong> — 1/3 cost, 90% capability
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>GPT-5.6 Luna</strong> — Cheap after 80% cut
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-rising"></span>
+                            <strong>Gemini 3.7</strong> — Fast but reasoning lags
+                        </div>
+                    </div>
+
+                    <div class="cat-card" style="border-top-color:#4f46e5;">
+                        <h4>💻 Code Generation</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>Claude Opus 4.8</strong> — Best on SWE-Bench
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>Claude 3.5</strong> — Handles 90% of tasks
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-rising"></span>
+                            <strong>Meta Llama 3.1</strong> — Open-source, edge-deployable
+                        </div>
+                        <p style="font-size:0.85em; color:#666; margin-top:8px;"><em>Reasoning is critical for code. Frontier models stay ahead.</em></p>
+                    </div>
+
+                    <div class="cat-card" style="border-top-color:#e8356d;">
+                        <h4>🎨 Image Generation</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>DALL-E 4 (OpenAI)</strong> — Finest details
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>Gemini 3.5</strong> — Good quality, fast
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-rising"></span>
+                            <strong>Midjourney V7</strong> — Artistic specialization
+                        </div>
+                        <p style="font-size:0.85em; color:#666; margin-top:8px;"><em>Specialist models still lead. Generalist LLMs lag.</em></p>
+                    </div>
+
+                    <div class="cat-card" style="border-top-color:#d93025;">
+                        <h4>🎬 Video Generation</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>MiniMax H3</strong> — First open video leader
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>Runway Gen-3</strong> — Photorealism strength
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-rising"></span>
+                            <strong>Google Veo</strong> — Emerging competitor
+                        </div>
+                        <p style="font-size:0.85em; color:#666; margin-top:8px;"><em>3 major launches in Aug. Video race accelerating.</em></p>
+                    </div>
+
+                    <div class="cat-card" style="border-top-color:#e37400;">
+                        <h4>🎵 Music & Audio</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>Lyria 3.5</strong> — Best lyric control
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>ElevenLabs</strong> — TTS specialist
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>Suno 4</strong> — Song generation
+                        </div>
+                        <p style="font-size:0.85em; color:#666; margin-top:8px;"><em>Specialists dominate. Session musicians at risk.</em></p>
+                    </div>
+
+                    <div class="cat-card" style="border-top-color:#0b6623;">
+                        <h4>🧠 Reasoning & Math</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>Claude Opus 4.8</strong> — Extended thinking excellence
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>GPT-5.6 Luna</strong> — Extended reasoning available
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-rising"></span>
+                            <strong>DeepSeek V4</strong> — Strong on math
+                        </div>
+                        <p style="font-size:0.85em; color:#666; margin-top:8px;"><em>Long thinking critical. Frontier models necessary.</em></p>
+                    </div>
+
+                    <div class="cat-card" style="border-top-color:#6e5494;">
+                        <h4>📐 Embeddings & RAG</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>OpenAI Embeddings</strong> — Industry standard
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>Gemini Embeddings</strong> — Competitive
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-rising"></span>
+                            <strong>Nomic Embed</strong> — Open-source option
+                        </div>
+                        <p style="font-size:0.85em; color:#666; margin-top:8px;"><em>Commoditizing. Cost-sensitive? Use open-source.</em></p>
+                    </div>
+
+                    <div class="cat-card" style="border-top-color:#0969da;">
+                        <h4>🤖 Agents & Tool Use</h4>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-leader"></span>
+                            <strong>Claude Opus 4.8</strong> — Most aligned agents
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-strong"></span>
+                            <strong>Claude 3.5</strong> — Reliable for enterprise
+                        </div>
+                        <div class="cat-model-entry">
+                            <span class="tier-dot dot-rising"></span>
+                            <strong>Llama 3.1</strong> — Open alternative
+                        </div>
+                        <p style="font-size:0.85em; color:#666; margin-top:8px;"><em>Alignment matters. Claude agents stay constrained.</em></p>
+                    </div>
+                </div>
+
+                <div style="background:#f0f9ff; border-left:4px solid #0b6623; padding:16px; border-radius:6px; margin-top:24px;">
+                    <strong>🏆 Top Model per Category (Aug 31, 2026)</strong>
+                    <table style="margin-top:12px; font-size:0.85em;">
+                        <tr style="background:#d1fae5;">
+                            <th>Category</th>
+                            <th>Top Performer</th>
+                            <th>Why</th>
+                        </tr>
+                        <tr>
+                            <td><strong>General Chat</strong></td>
+                            <td>Claude Opus 4.8</td>
+                            <td>Best reasoning and alignment; widely trusted by enterprises</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Code</strong></td>
+                            <td>Claude Opus 4.8</td>
+                            <td>Leads on SWE-Bench; best at complex refactoring</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Value Leader</strong></td>
+                            <td>Claude 3.5 Sonnet</td>
+                            <td>1/3 cost of Opus, 90% capability; enterprise sweet spot</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Budget Tier</strong></td>
+                            <td>GLM-5.3-Flash</td>
+                            <td>100× cheaper than frontier; handles 45% of workloads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Image</strong></td>
+                            <td>DALL-E 4</td>
+                            <td>Finest detail and prompt adherence</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Video</strong></td>
+                            <td>MiniMax H3</td>
+                            <td>First open-source video leader; matches commercial models</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Music</strong></td>
+                            <td>Lyria 3.5</td>
+                            <td>Best vocal quality and lyrical control</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reasoning</strong></td>
+                            <td>Claude Opus 4.8</td>
+                            <td>Extended thinking excellence for complex problems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Agents</strong></td>
+                            <td>Claude Opus 4.8</td>
+                            <td>Most aligned; stays constrained and reliable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Local/Privacy</strong></td>
+                            <td>Llama 3.1</td>
+                            <td>Runs on-device; no cloud egress; open-source</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK REFERENCE LINKS -->
+        <div class="content">
+            <div class="section" id="imp-10">
+                <div class="section-header">
+                    🔗 Quick Reference Links
+                    <span class="section-toggle">▼</span>
+                </div>
+                <div class="section-content">
+                    <table style="font-size:0.9em;">
+                        <thead>
+                            <tr>
+                                <th>Resource</th>
+                                <th>URL</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Anthropic Blog & News</strong></td>
+                                <td><a href="https://www.anthropic.com/blog" target="_blank">www.anthropic.com/blog</a></td>
+                                <td>Company Updates</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Model Hardware Standard (MHS)</strong></td>
+                                <td><a href="https://www.anthropic.com/" target="_blank">www.anthropic.com</a></td>
+                                <td>Tech Spec</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Salesforce AI Research</strong></td>
+                                <td><a href="https://www.salesforce.com/news/" target="_blank">www.salesforce.com/news</a></td>
+                                <td>Partnerships</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Meta Llama Models</strong></td>
+                                <td><a href="https://www.meta.com/" target="_blank">www.meta.com</a></td>
+                                <td>Open Source</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Google DeepMind Blog</strong></td>
+                                <td><a href="https://deepmind.google/blog/" target="_blank">deepmind.google/blog</a></td>
+                                <td>Research & Products</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Qwen / GLM Models</strong></td>
+                                <td><a href="https://qwen.alibaba.com/" target="_blank">qwen.alibaba.com</a></td>
+                                <td>Open Source</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Perplexity AI</strong></td>
+                                <td><a href="https://www.perplexity.ai/" target="_blank">www.perplexity.ai</a></td>
+                                <td>Search & AI</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TechCrunch AI Coverage</strong></td>
+                                <td><a href="https://techcrunch.com/category/artificial-intelligence/" target="_blank">techcrunch.com/ai</a></td>
+                                <td>News</td>
+                            </tr>
+                            <tr>
+                                <td><strong>VentureBeat AI</strong></td>
+                                <td><a href="https://venturebeat.com/ai/" target="_blank">venturebeat.com/ai</a></td>
+                                <td>Enterprise News</td>
+                            </tr>
+                            <tr>
+                                <td><strong>The Decoder</strong></td>
+                                <td><a href="https://the-decoder.com/" target="_blank">the-decoder.com</a></td>
+                                <td>Model Coverage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer" id="imp-11">
+            <h3>📋 Sources & Methodology</h3>
+            <p>This briefing synthesized research from <strong>25+ primary sources</strong> across eight tiers: TechCrunch, The Verge, VentureBeat, The Decoder, Anthropic, OpenAI, Google DeepMind, Hugging Face, MIT Technology Review, DeepLearning.AI, IEEE Spectrum, Strategic essays (Dario Amodei, Import AI, Interconnects, Simon Willison), Benchmark trackers (LMArena, Artificial Analysis, METR), and Industry analysts.</p>
+            <p><strong>Key Stories Tracked:</strong> Copyright litigation (Sony/Warner v. Anthropic), Performance breakthroughs (Meta's 8B), Enterprise integration (Salesforce + Claude), Open weights expansion, Labor displacement in media, Workforce sentiment decline, Safety research, Robotics advances, Model releases (Gemini, Lyria, GLM, MiniMax).</p>
+            <p><strong>Date Range:</strong> August 17–31, 2026. <strong>Edition:</strong> Aug 31, 2026. <strong>Next briefing:</strong> Mid-September 2026.</p>
+            <p style="margin-top:20px; padding:12px; background:rgba(255,255,255,0.1); border-radius:4px;"><strong>💡 Feedback:</strong> This briefing is a snapshot of AI news and analysis. Model rankings update each edition as benchmarks change. Incorporate these insights into your team's AI strategy, but verify claims against primary sources before committing to infrastructure or policy decisions.</p>
+        </div>
+
+    </div>
+
+    <!-- NAVIGATOR WIDGET -->
+    <div class="nav-widget">
+        <div>📍 Spotlight <span id="nav-counter">1 / 11</span></div>
+        <div class="nav-buttons">
+            <button id="nav-prev">← Prev</button>
+            <button id="nav-next">Next →</button>
+        </div>
+    </div>
+
+    <!-- TOOLTIP -->
+    <div id="hm-tooltip" style="display:none;">
+        <div class="tip-name"></div>
+        <div class="tip-by"></div>
+        <div class="tip-metric"></div>
+        <div class="tip-detail"></div>
+        <div class="tip-cta"></div>
+        <div class="tip-dead"></div>
+    </div>
+
+    <script>
+        // Heatmap tooltip system
+        document.querySelectorAll('.hm-cell[data-tip-name]').forEach(cell => {
+            cell.addEventListener('mouseenter', function(e) {
+                const tip = document.getElementById('hm-tooltip');
+                tip.querySelector('.tip-name').textContent = this.getAttribute('data-tip-name');
+                tip.querySelector('.tip-by').textContent = this.getAttribute('data-tip-by');
+                tip.querySelector('.tip-metric').textContent = this.getAttribute('data-tip-metric');
+                tip.querySelector('.tip-detail').textContent = this.getAttribute('data-tip-detail');
+                tip.querySelector('.tip-cta').textContent = this.getAttribute('data-tip-cta') || '';
+                if (this.getAttribute('data-tip-dead')) {
+                    tip.querySelector('.tip-dead').textContent = '⚠️ Discontinued or dead.';
+                } else {
+                    tip.querySelector('.tip-dead').textContent = '';
+                }
+                tip.style.display = 'block';
+            });
+            cell.addEventListener('mousemove', (e) => positionTooltip(e));
+            cell.addEventListener('mouseleave', () => {
+                document.getElementById('hm-tooltip').style.display = 'none';
+            });
+        });
+
+        function positionTooltip(e) {
+            const tip = document.getElementById('hm-tooltip');
+            let x = e.pageX + 10;
+            let y = e.pageY + 10;
+            const tipWidth = 300;
+            if (x + tipWidth > window.innerWidth) { x = e.pageX - tipWidth - 10; }
+            tip.style.left = x + 'px';
+            tip.style.top = y + 'px';
+        }
+
+        // Navigator widget
+        let currentImpIndex = 0;
+        let impElements = [];
+
+        function discoverImpElements() {
+            impElements = Array.from(document.querySelectorAll('[id^="imp-"]'))
+                .sort((a, b) => {
+                    const aNum = parseInt(a.id.slice(4));
+                    const bNum = parseInt(b.id.slice(4));
+                    return aNum - bNum;
+                });
+            updateNavCounter();
+        }
+
+        function updateNavCounter() {
+            const counter = document.getElementById('nav-counter');
+            counter.textContent = `${currentImpIndex + 1} / ${impElements.length}`;
+        }
+
+        function navigateNext() {
+            if (currentImpIndex < impElements.length - 1) {
+                currentImpIndex++;
+                scrollToImp();
+            }
+        }
+
+        function navigatePrev() {
+            if (currentImpIndex > 0) {
+                currentImpIndex--;
+                scrollToImp();
+            }
+        }
+
+        function scrollToImp() {
+            clearSpotlight();
+            const elem = impElements[currentImpIndex];
+            elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            applySpotlight(elem);
+            updateNavCounter();
+        }
+
+        function applySpotlight(elem) {
+            elem.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.5)';
+            const label = document.createElement('span');
+            label.className = 'imp-label-float';
+            label.textContent = `Spotlight ${currentImpIndex + 1}`;
+            if (elem.tagName === 'TR') {
+                const lastTd = elem.querySelector('td:last-child');
+                if (lastTd) lastTd.appendChild(label);
+            } else {
+                elem.appendChild(label);
+            }
+        }
+
+        function clearSpotlight() {
+            document.querySelectorAll('[id^="imp-"]').forEach(e => { e.style.boxShadow = ''; });
+            document.querySelectorAll('.imp-label-float').forEach(l => l.remove());
+        }
+
+        document.getElementById('nav-prev').addEventListener('click', navigatePrev);
+        document.getElementById('nav-next').addEventListener('click', navigateNext);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') navigatePrev();
+            if (e.key === 'ArrowRight') navigateNext();
+        });
+
+        window.addEventListener('load', discoverImpElements);
+
+        // Tab switching (Quick Panel)
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+            });
+        });
+
+        // Quick card expand/collapse
+        document.querySelectorAll('.quick-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const isExpanded = this.classList.toggle('expanded');
+                const toggle = this.querySelector('.toggle-text');
+                if (toggle) {
+                    toggle.textContent = isExpanded ? '▲ Hide details' : '▼ Show detailed insights';
+                }
+            });
+        });
+
+        // Section collapse/expand
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                this.closest('.section').classList.toggle('collapsed');
+            });
+        });
+
+        // Quick Panel collapse/expand
+        document.querySelector('.panel-header').addEventListener('click', function() {
+            this.closest('.quick-panel').classList.toggle('panel-collapsed');
+        });
+
+        // Reading progress bar
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.querySelector('.progress-bar').style.width = scrollPercent + '%';
+        });
+    </script>
+</body>
+</html>
