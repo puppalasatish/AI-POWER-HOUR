@@ -21,7 +21,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 8px);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font:400 16.5px/1.6 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16.5px/1.6 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
 ::selection{background:var(--lime);color:#000}
@@ -206,7 +206,7 @@ body.cur-ready .cur,body.cur-ready .cur-dot{opacity:1}
 .pinsec{padding:0}
 .pinsec .pin{min-height:100svh;display:flex;align-items:center;padding:calc(var(--nav) + 20px) 0 30px}
 @media (min-width:900px){
-  html.js .pinsec{height:250vh}
+  html.js .pinsec{height:190vh}
   html.js .pinsec .pin{position:sticky;top:var(--nav);height:calc(100vh - var(--nav));min-height:0;padding:20px 0}
 }
 .rels{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
@@ -336,7 +336,7 @@ body.cur-ready .cur,body.cur-ready .cur-dot{opacity:1}
 
 /* skills */
 .sgroups{display:grid;gap:12px}
-@media (min-width:900px){.sgroups{padding-bottom:max(0px,calc(min(600px,100vh - 124px)/2 - 90px))}}
+@media (min-width:900px){.sgroups{padding-bottom:100px}}
 .sg{padding:18px 20px;transition:border-color .35s,opacity .35s}
 .sg h3{margin:0 0 10px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:17px}
 .sg h3 small{font:500 10.5px var(--mono);color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
@@ -560,6 +560,38 @@ footer a:hover{color:var(--lime)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .js .rv,.js .split .c{opacity:1!important;transform:none!important;filter:none!important}
 }
+
+/* Final ordered learning journey */
+.torch-journey{position:relative;border:1px solid var(--line2);border-radius:24px;background:linear-gradient(145deg,#11131a,#07080b);padding:24px clamp(18px,4vw,46px);overflow:clip}
+.journey-guide{display:flex;align-items:center;gap:9px;font:500 10px var(--mono);letter-spacing:.15em;color:var(--muted);margin-bottom:22px}.journey-guide>span:last-child{margin-left:auto}.journey-dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.journey-list{list-style:none;padding:0;margin:0 0 0 94px;position:relative;z-index:2}.journey-list:before{content:"";position:absolute;left:18px;top:25px;bottom:40px;width:1px;background:linear-gradient(var(--lime),var(--blue));opacity:.25}
+.journey-step{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr) 22px;gap:20px;padding:27px 0;border-bottom:1px solid var(--line);transition:opacity .6s,color .6s;opacity:1}.js .journey-step:not(.lit){opacity:.23}.journey-step:last-child{border:0}.journey-num{display:grid;place-items:center;align-self:start;width:38px;height:38px;border:1px solid var(--line2);border-radius:50%;background:#0d0f14;font:500 12px var(--mono);color:var(--muted);transition:all .5s}.lit .journey-num{border-color:var(--lime);color:var(--lime)}
+.journey-copy h3{font:400 clamp(25px,2.6vw,37px)/1.15 var(--serif);margin:0 0 9px;transition:color .4s,text-shadow .4s}.journey-copy p{margin:0;color:var(--muted);font-size:14.5px;max-width:680px}.journey-tags{display:block;margin-top:12px;font:500 10.5px/1.6 var(--mono);letter-spacing:.08em;color:#a7b6f5}.journey-check{align-self:start;color:var(--lime);opacity:0;transition:opacity .5s}.lit .journey-check{opacity:1}.torch-focus .journey-copy h3{color:#f5ffd1;text-shadow:0 0 22px rgba(212,255,63,.45)}.torch-focus .journey-num{box-shadow:0 0 24px rgba(212,255,63,.35)}
+.journey-lamp{display:none;position:absolute;left:30px;top:120px;width:66px;height:28px;transform:translateY(-50%);z-index:1;pointer-events:none}.js .journey-lamp{display:block}.lamp-body{position:absolute;inset:4px 12px 4px 0;border-radius:8px 2px 2px 8px;border:1px solid #5b6570;background:repeating-linear-gradient(90deg,#262c34 0 4px,#14181f 4px 7px);box-shadow:0 4px 12px #000}.lamp-body i{position:absolute;left:15px;top:6px;width:8px;height:5px;border-radius:3px;background:var(--lime);box-shadow:0 0 8px var(--lime)}.lamp-lens{position:absolute;right:7px;top:0;width:12px;height:28px;border-radius:4px;background:#eaffb4;box-shadow:0 0 16px 4px rgba(212,255,63,.65)}.lamp-cone{position:absolute;left:58px;top:-90px;width:min(800px,75vw);height:208px;background:linear-gradient(90deg,rgba(240,255,191,.38),rgba(212,255,63,.12) 45%,transparent);clip-path:polygon(0 44%,100% 0,100% 100%,0 56%);filter:blur(5px);opacity:.3}.torch-active .lamp-cone{opacity:1}.journey-foot{margin:22px 0 0 94px;color:var(--dim);font-size:12px}
+.tgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.tt{padding:8px 7px;font-size:11.5px;gap:6px}.tt b{width:24px;height:24px;font-size:9px}.slabel{right:16px;font-size:10px;line-height:1.6}
+@media(max-width:620px){.torch-journey{padding:20px 14px}.journey-list{margin-left:38px}.journey-step{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:24px 0}.journey-num{width:28px;height:28px;font-size:10px}.journey-list:before{left:14px}.journey-check{display:none}.journey-copy p{font-size:13px}.journey-tags{font-size:9px}.journey-lamp{left:7px;transform:translateY(-50%) scale(.48);transform-origin:left center}.journey-foot{margin-left:38px}.journey-guide{font-size:8px;letter-spacing:.08em}}
+@media(prefers-reduced-motion:reduce){.js .journey-step:not(.lit){opacity:1}.journey-lamp{display:none!important}}
+html{overflow-x:clip}.chip{max-width:100%;overflow-wrap:anywhere}.sg h3{flex-wrap:wrap}@media(max-width:899px){.chip3d{overflow:clip}.kick{max-width:100%;flex-wrap:wrap}.kick::after{flex-shrink:0}}
+
+/* Sticky regression fix: no scrolling ancestor between panels and viewport. */
+html,body{overflow-x:clip;overflow-y:visible}
+@media(min-width:900px){
+ .svis{align-self:start;top:84px;min-height:0;height:min(480px,calc(100svh - 108px));max-height:none}
+ .svis .vis-panel{min-height:0}
+ .poster{align-self:start;top:84px;transform:none!important;opacity:1!important}
+ .pinsec .pin{top:64px;height:calc(100svh - 64px);min-height:0}
+ .pinsec .pin .wrap{max-height:calc(100svh - 84px)}
+ .pinsec .h3{font-size:clamp(28px,2.8vw,42px)}
+ .pinsec .lead{font-size:15px;line-height:1.45}
+ .pinsec .chip3d{width:min(100%,390px)}
+ #skills{padding-bottom:30px}#experience{padding-top:34px}
+}
+.journey-guide{position:sticky;top:80px;z-index:4;background:rgba(12,14,19,.92);backdrop-filter:blur(12px);padding:14px 12px;border:1px solid var(--line);border-radius:12px}
+.torch-journey:after{content:"";position:absolute;left:0;top:0;width:var(--journey-progress,0%);height:3px;background:linear-gradient(90deg,var(--blue),var(--lime));transition:width .5s;box-shadow:0 0 16px var(--lime)}
+.journey-step:after{content:"";position:absolute;inset:12px -16px;border-radius:16px;background:radial-gradient(ellipse at 15% 35%,rgba(212,255,63,.09),transparent 70%);opacity:0;transition:opacity .5s;z-index:-1}.journey-step.torch-focus:after{opacity:1}
+.journey-num{transition:all .6s}.torch-focus .journey-num{background:var(--lime);color:#090b04;transform:scale(1.12)}
+.lamp-cone{height:180px;top:-76px;background:linear-gradient(90deg,rgba(250,255,214,.5),rgba(212,255,63,.16) 38%,transparent 95%)}
+@media(max-height:740px) and (min-width:900px){.pinsec .facts{margin-top:10px}.pinsec .meter{margin-top:10px}.pinsec .rels{margin-top:10px}.pinsec .fact{padding:6px 10px}.pinsec .bits{font-size:38px}}
 </style>
 </head>
 <body>
@@ -580,7 +612,7 @@ footer a:hover{color:var(--lime)}
       <a href="#highlights">Highlights</a><a href="#summary">Summary</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#patents">Patents</a><a href="#aiwork">AI Work</a><a href="#learning">Learning</a><a href="#education">Education</a><a href="#contact">Contact</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center">
-      <a class="cv" href="Satish_Puppala_Resume_v3.pdf" download>Resume ↓</a>
+      <a class="cv" href="https://puppalasatish.github.io/AI-POWER-HOUR/Satish_Puppala_Resume.pdf" target="_blank" rel="noopener" download="Satish_Puppala_Resume.pdf">Resume ↓</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
@@ -602,7 +634,7 @@ footer a:hover{color:var(--lime)}
     <p class="value rv"><b>17 years</b> in C and C++ product development, <b>4 years</b> leading teams. Leads an <b>11-person team</b> at OpenText that owns the full SDLC for two enterprise viewer products used by <b>4,000+ customers</b>, and stays close to the code.</p>
     <div class="ctas rv">
       <a class="btn solid mag" href="#highlights">View highlights ↓</a>
-      <a class="btn mag" href="Satish_Puppala_Resume_v3.pdf" download>Download resume</a>
+      <a class="btn mag" href="https://puppalasatish.github.io/AI-POWER-HOUR/Satish_Puppala_Resume.pdf" target="_blank" rel="noopener" download="Satish_Puppala_Resume.pdf">Download resume</a>
       <a class="btn mag" href="https://github.com/puppalasatish?tab=repositories" target="_blank" rel="noopener">GitHub ↗</a>
       <a class="btn mag" href="#contact">Contact</a>
     </div>
@@ -641,7 +673,7 @@ footer a:hover{color:var(--lime)}
       <div class="panel num rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg><div class="n"><span data-to="4">0</span><small>yrs</small></div><p>Leading engineering teams</p><i class="bar"></i></div>
       <div class="panel num rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="15" r="2.4"/><circle cx="19" cy="15" r="2.4"/><path d="M12 10v3M10 12.5 6.5 13.5M14 12.5l3.5 1"/></svg><div class="n"><span data-to="11">0</span></div><p>People on my team, 9 direct reports</p><i class="bar"></i></div>
       <div class="panel num rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="8" r="3.2"/><path d="M4 19c.8-3.3 3.2-5 6-5 1.4 0 2.6.4 3.6 1.1M18 14v6M15 17h6"/></svg><div class="n"><span data-to="3">0</span></div><p>Engineers hired</p><i class="bar"></i></div>
-      <div class="panel num rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20V5M6 11l6-6 6 6"/></svg><div class="n"><span data-to="3">0</span></div><p>Engineers promoted</p><i class="bar"></i></div>
+      <div class="panel num rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20V5M6 11l6-6 6 6"/></svg><div class="n"><span data-to="3">0</span></div><p>Promotions supported</p><i class="bar"></i></div>
       <div class="panel num rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 15.5h5"/></svg><div class="n"><i>~</i><span data-to="25">0</span><i>%</i></div><p>Team capacity freed by AI agents</p><i class="bar"></i></div>
       <div class="panel num rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 3H7a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V7.5z"/><path d="M14 3v4.5h4.5"/><circle cx="12" cy="14" r="2.6"/></svg><div class="n"><span data-to="7">0</span></div><p>Patent applications as named inventor</p><i class="bar"></i></div>
     </div>
@@ -702,7 +734,7 @@ footer a:hover{color:var(--lime)}
     <div>
       <span class="kick rv"><b>A4</b>Signature win · Quality and automation</span>
       <h3 class="h3 split">Fewer security findings, <em>more automation.</em></h3>
-      <p class="lead rv">Security findings dropped from about 50 to 30 a year. Language-pack testing went from manual to fully automated, and a new framework replaced a broken VB test suite, with OpenText Aviator drafting the manual cases.</p>
+      <p class="lead rv">Security findings dropped from about 50 to 30 a year. Language-pack testing went from manual to fully automated, and a new framework replaced a nonfunctional Visual Basic test suite, with OpenText Aviator drafting the manual cases.</p>
     </div>
     <div class="vis rv" id="qualVis">
       <div class="panel vis-panel">
@@ -722,7 +754,7 @@ footer a:hover{color:var(--lime)}
     <div>
       <span class="kick rv"><b>A5</b>Signature win · AI adoption</span>
       <h3 class="h3 split">Standards adopted by <em>every team</em> in the group.</h3>
-      <p class="lead rv">Proposed GitHub Copilot customization standards now used across the group: <b>SAP Viewers, Brava and Blazon, Automation, Intelligent Viewer and Enterprise Scan</b>. Runs AI Power Hour for the business unit, and ran a bi-weekly C++ Think Tank for 5 months with about 15 developers from several teams.</p>
+      <p class="lead rv">Proposed GitHub Copilot customization standards now used across the group: <b>SAP Viewers, Brava and Blazon, Automation and Intelligent Viewer</b>. Runs AI Power Hour for the business unit, and ran a bi-weekly C++ Think Tank for 5 months with about 15 developers from several teams.</p>
       <div class="res">
         <a class="panel rlink rv" href="https://puppalasatish.github.io/AI-POWER-HOUR/index.html" target="_blank" rel="noopener"><span class="ri" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4ff3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span><b>AI Power Hour</b><small>AI program I run for the business unit</small></span><span class="ra" aria-hidden="true">↗</span></a>
         <a class="panel rlink rv" href="https://puppalasatish.github.io/AI-POWER-HOUR/Copilot_Customization_Guide.html" target="_blank" rel="noopener"><span class="ri" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4ff3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span><span><b>GitHub Copilot Customization — Complete Visual Guide</b><small>Visual guide I created</small></span><span class="ra" aria-hidden="true">↗</span></a>
@@ -731,8 +763,8 @@ footer a:hover{color:var(--lime)}
     </div>
     <div class="vis rv" id="netVis">
       <div class="panel adopt">
-        <div class="ad-top"><div><span class="kick">Copilot customization standards</span><div class="ad-big"><b id="adN">0</b><i> / 5 teams onboard</i></div></div></div>
-        <svg class="constel" id="constel" viewBox="0 0 540 330" role="img" aria-label="Copilot standards shared with SAP Viewers, Brava and Blazon, Automation, Intelligent Viewer and Enterprise Scan teams">
+        <div class="ad-top"><div><span class="kick">Copilot customization standards</span><div class="ad-big"><b id="adN">0</b><i> / 4 teams onboard</i></div></div></div>
+        <svg class="constel" id="constel" viewBox="0 0 540 330" role="img" aria-label="Copilot standards shared with SAP Viewers, Brava and Blazon, Automation and Intelligent Viewer teams">
           <defs><linearGradient id="beamG" x1="0" x2="1"><stop offset="0" stop-color="#d4ff3f"/><stop offset="1" stop-color="#6e8bff"/></linearGradient></defs>
           <ellipse class="orb" cx="270" cy="165" rx="200" ry="128"/>
           <circle class="rip" cx="270" cy="165" r="48"/><circle class="rip r2" cx="270" cy="165" r="48"/>
@@ -782,7 +814,7 @@ footer a:hover{color:var(--lime)}
     <div>
       <span class="kick rv"><b>B1</b>Summary</span>
       <h2 class="h2 split">The short <em>version.</em></h2>
-      <p class="summary" id="sumText">Technical Engineering Manager with 17 years in C and C++ product development across telecom, retail, gaming and enterprise document management, including 4 years leading teams. Leads an 11-person team at OpenText that owns the full SDLC for two enterprise viewer products used by 4,000+ customers. Stays close to the code: reviews designs, steps into hard debugging, and owns the architecture calls. Over the last two years, moved the team's repetitive work such as security fixes, backporting, code review and test writing onto in-house AI agents, cutting that effort by about 25% and freeing capacity for cross-functional work beyond the team's own roadmap.</p>
+      <p class="summary" id="sumText">Technical Engineering Manager with 17 years in C and C++ product development across telecom, retail, gaming and enterprise document management, including 4 years leading teams. Leads an 11-person team at OpenText that owns the full SDLC for two enterprise viewer products used by 4,000+ customers. Stays close to the code: reviews designs, steps in to resolve complex debugging issues when needed, and owns architectural decisions. Over the last two years, moved the team's repetitive work such as security fixes, backporting, code review and test writing onto in-house AI agents, cutting that effort by about 25% and freeing capacity for cross-functional work beyond the team's own roadmap.</p>
     </div>
     <div class="vis rv" id="donutVis">
       <div class="panel vis-panel" style="align-content:center">
@@ -803,12 +835,12 @@ footer a:hover{color:var(--lime)}
     <div class="sec-head"><span class="kick rv"><b>B2</b>Skills</span><h2 class="h2 split">Six groups, <em>one toolkit.</em></h2></div>
     <div class="zz rev" style="align-items:start">
       <div class="sgroups" id="sgroups">
-        <div class="panel sg" data-v="lead"><h3>Leadership <small>01</small></h3><div class="chips"><span class="chip">Hiring</span><span class="chip">Coaching</span><span class="chip">Performance reviews</span><span class="chip">PIPs</span><span class="chip">Conflict resolution</span><span class="chip">Team development</span><span class="chip">Agile/Scrum</span><span class="chip">Release planning</span><span class="chip">Customer escalations</span><span class="chip">Stakeholder management</span></div></div>
-        <div class="panel sg" data-v="eng"><h3>Engineering <small>02</small></h3><div class="chips"><span class="chip">C and C++</span><span class="chip">Modern C++</span><span class="chip">STL</span><span class="chip">Multithreading</span><span class="chip">Memory and performance optimization</span><span class="chip">Data structures and algorithms</span><span class="chip">System design</span><span class="chip">Design patterns</span><span class="chip">OOP</span><span class="chip">Java</span><span class="chip">Python</span><span class="chip">Win32</span><span class="chip">COM</span><span class="chip">MFC</span><span class="chip">Legacy modernization</span><span class="chip">32-bit to 64-bit migration</span><span class="chip">Debugging and root cause analysis</span></div></div>
+        <div class="panel sg" data-v="lead"><h3>Leadership <small>01</small></h3><div class="chips"><span class="chip">Hiring</span><span class="chip">Coaching and mentoring</span><span class="chip">Performance management</span><span class="chip">Performance improvement coaching</span><span class="chip">Conflict resolution</span><span class="chip">Career development</span><span class="chip">Succession planning</span><span class="chip">Technical strategy and roadmap</span><span class="chip">Delivery and risk management</span><span class="chip">Technical debt management</span><span class="chip">Engineering KPIs</span><span class="chip">Global teams</span><span class="chip">AI adoption</span><span class="chip">Process improvement</span><span class="chip">Capacity planning</span><span class="chip">Agile/Scrum</span><span class="chip">Release planning</span><span class="chip">Customer escalations</span><span class="chip">Stakeholder management</span><span class="chip">Product, QA and support partnership</span></div></div>
+        <div class="panel sg" data-v="eng"><h3>Engineering <small>02</small></h3><div class="chips"><span class="chip">C</span><span class="chip">Modern C++ (C++11/14/17)</span><span class="chip">STL</span><span class="chip">Multithreading and concurrency</span><span class="chip">Memory and performance optimization</span><span class="chip">Data structures and algorithms</span><span class="chip">System design</span><span class="chip">Design patterns</span><span class="chip">OOP</span><span class="chip">TCP/IP</span><span class="chip">Java</span><span class="chip">Python</span><span class="chip">Win32</span><span class="chip">COM</span><span class="chip">MFC</span><span class="chip">Legacy modernization</span><span class="chip">32-bit to 64-bit migration</span><span class="chip">Root cause analysis</span></div></div>
         <div class="panel sg" data-v="ai"><h3>AI <small>03</small></h3><div class="chips"><span class="chip">GitHub Copilot (custom instructions, agents)</span><span class="chip">Claude Code</span><span class="chip">Cursor</span><span class="chip">OpenText Aviator</span><span class="chip">Agentic AI</span><span class="chip">MCP</span><span class="chip">RAG</span><span class="chip">A2A</span><span class="chip">Pydantic AI</span><span class="chip">Prompt engineering</span><span class="chip">Transformer-based LLM training and fine-tuning</span></div></div>
-        <div class="panel sg" data-v="qa"><h3>Quality, Security and Delivery <small>04</small></h3><div class="chips"><span class="chip">Unit testing frameworks</span><span class="chip">Test automation</span><span class="chip">CI/CD pipelines</span><span class="chip">Fortify</span><span class="chip">Black Duck</span><span class="chip">Code review practices</span><span class="chip">SDLC</span></div></div>
+        <div class="panel sg" data-v="qa"><h3>Quality, Security and Delivery <small>04</small></h3><div class="chips"><span class="chip">GoogleTest</span><span class="chip">CppUnit</span><span class="chip">Test automation</span><span class="chip">CI/CD (Jenkins, GitLab CI)</span><span class="chip">Fortify</span><span class="chip">Black Duck</span><span class="chip">Code review practices</span><span class="chip">SDLC</span></div></div>
         <div class="panel sg" data-v="cloud"><h3>Cloud and Platforms <small>Working knowledge</small></h3><div class="chips"><span class="chip">Cloud fundamentals</span><span class="chip">Microservices architecture</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">n8n workflow automation</span></div></div>
-        <div class="panel sg" data-v="tools"><h3>Tools <small>06</small></h3><div class="chips"><span class="chip">Visual Studio</span><span class="chip">Git</span><span class="chip">Perforce</span><span class="chip">Mercurial</span><span class="chip">SVN</span><span class="chip">ClearCase</span><span class="chip">Jira</span><span class="chip">ValueEdge</span><span class="chip">Windows</span><span class="chip">Linux</span></div></div>
+        <div class="panel sg" data-v="tools"><h3>Tools <small>06</small></h3><div class="chips"><span class="chip">Visual Studio</span><span class="chip">WinDbg</span><span class="chip">gdb</span><span class="chip">Valgrind</span><span class="chip">CMake</span><span class="chip">MSBuild</span><span class="chip">Git</span><span class="chip">Perforce</span><span class="chip">Mercurial</span><span class="chip">SVN</span><span class="chip">ClearCase</span><span class="chip">Jira</span><span class="chip">ValueEdge</span><span class="chip">Windows</span><span class="chip">Linux</span></div></div>
       </div>
       <div class="svis vis" id="svis" data-v="lead" aria-hidden="true">
         <div class="panel vis-panel" style="position:relative">
@@ -847,31 +879,31 @@ footer a:hover{color:var(--lime)}
     <div class="xp" id="xp">
       <div class="xp-line"><i id="xpLine"></i></div>
       <article class="xrow now">
-        <aside class="panel poster rv">
+        <aside class="panel poster">
           <div class="yr">2023<em>→Now</em></div>
           <div class="co">OpenText</div>
           <div class="dm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 12.5h7M8.5 16h5"/></svg>Enterprise document management</div>
-          <div class="kpis"><div class="kpi"><b>11 · 9</b><span>team · direct reports</span></div><div class="kpi"><b>3 + 3</b><span>hired + promoted</span></div><div class="kpi"><b>~50</b><span>support cases a year</span></div><div class="kpi"><b>5</b><span>teams on Copilot standards</span></div></div>
+          <div class="kpis"><div class="kpi"><b>11 · 9</b><span>team · direct reports</span></div><div class="kpi"><b>3 + 3</b><span>hired + promotions supported</span></div><div class="kpi"><b>~50</b><span>support cases a year</span></div><div class="kpi"><b>4</b><span>teams on Copilot standards</span></div></div>
           <span class="big" aria-hidden="true">05</span>
         </aside>
         <div class="panel xcard rv">
           <div class="when"><span>JUN 2023 — PRESENT · HYDERABAD</span><span class="badge b-lime">Current</span></div>
           <h3>Manager, Software Engineering</h3><p class="org"><b>OpenText</b></p>
           <ul>
-            <li>Lead 11 engineers and testers (9 direct reports) responsible for Windows Viewer (C++) and Web Viewer (Java). <b>Hired 3 engineers and promoted 3</b> while running hiring, coaching, reviews, PIPs and conflict resolution for the team.</li>
+            <li>Lead 11 engineers and testers (9 direct reports) responsible for Windows Viewer (C++) and Web Viewer (Java), serving as both Engineering Manager and Scrum Master. <b>Hired 3 engineers and supported three promotions</b> while running hiring, coaching, performance reviews, performance improvement coaching and conflict resolution for the team.</li>
             <li>Ran the <b>32-bit to 64-bit migration</b> of a 25-year-old desktop viewer with a large codebase and many internal and third-party dependencies (Datalogics, BlackIce, ODMA). Took it from plan to release in one year with 2 developers and 2 QA engineers. Customers moving to 64-bit SAP had no supported viewer without it.</li>
             <li>Shipped four yearly releases (23.4, 24.4, 25.4, 26.4), the last three as 64-bit, owning the SDLC from planning to release, and handle around 50 customer support cases a year.</li>
             <li>Built, and coached the team to build, <b>six AI agents</b> that run alongside our workflow: security fix (Fortify and Black Duck findings), back-port to older branches, code review, fix verification against acceptance criteria, test automation, and a ValueEdge notifier that posts new issues and support-case updates to Teams.</li>
             <li>Security findings dropped from <b>about 50 to 30 a year</b>. The time saved now funds roughly 25% of team capacity for outside work, including LibreOffice contributions and help for the Intelligent Viewer team.</li>
-            <li>Took language-pack testing from <b>0 to 100% automated</b>. Replaced a broken VB test suite with a new framework that already covers 60% of functional tests, with OpenText Aviator drafting the manual cases.</li>
-            <li>Proposed GitHub Copilot customization standards now used across the group: <b>SAP Viewers, Brava and Blazon, Automation, Intelligent Viewer and Enterprise Scan</b> (<a href="https://puppalasatish.github.io/AI-POWER-HOUR/Copilot_Customization_Guide.html" target="_blank" rel="noopener">guide</a>, <a href="https://puppalasatish.github.io/AI-POWER-HOUR/Copilot_Customization_Complete_Reference.html" target="_blank" rel="noopener">reference</a>). Run <a href="https://puppalasatish.github.io/AI-POWER-HOUR/index.html" target="_blank" rel="noopener">AI Power Hour</a> for the business unit, and ran a bi-weekly C++ Think Tank for 5 months with about 15 developers from several teams.</li>
+            <li>Took language-pack testing from <b>0 to 100% automated</b>. Replaced a nonfunctional Visual Basic test suite with a new framework that already covers 60% of functional tests, with OpenText Aviator drafting the manual cases.</li>
+            <li>Proposed GitHub Copilot customization standards now used across the group: <b>SAP Viewers, Brava and Blazon, Automation and Intelligent Viewer</b> (<a href="https://puppalasatish.github.io/AI-POWER-HOUR/Copilot_Customization_Guide.html" target="_blank" rel="noopener">guide</a>, <a href="https://puppalasatish.github.io/AI-POWER-HOUR/Copilot_Customization_Complete_Reference.html" target="_blank" rel="noopener">reference</a>). Run <a href="https://puppalasatish.github.io/AI-POWER-HOUR/index.html" target="_blank" rel="noopener">AI Power Hour</a> for the business unit, and ran a bi-weekly C++ Think Tank for 5 months with about 15 developers from several teams.</li>
             <li>Set the design for the agent setup: each agent plugs into tools the team already uses (Fortify, Black Duck, ValueEdge, Git, Teams) instead of a new platform, and an engineer approves every change before it merges.</li>
             <li>Named inventor on 7 patent applications in document intelligence and AI-assisted workflows.</li>
           </ul>
         </div>
       </article>
       <article class="xrow rev">
-        <aside class="panel poster rv">
+        <aside class="panel poster">
           <div class="yr">2021<em>→2023</em></div>
           <div class="co">OpenText</div>
           <div class="dm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 12.5h7M8.5 16h5"/></svg>Enterprise document management</div>
@@ -883,14 +915,14 @@ footer a:hover{color:var(--lime)}
           <h3>Lead Software Engineer</h3><p class="org"><b>OpenText</b></p>
           <ul>
             <li>Designed and built modules for OpenText Imaging Windows Viewer, used for document viewing, markup and distribution in large enterprises.</li>
-            <li>Owned customer support tickets and security fixes, led code reviews, and helped the team land committed features; stood in as Scrum Master when needed.</li>
+            <li>Owned customer support tickets and security fixes, led code reviews, and helped the team land committed features; stood in as Scrum Master when needed. Promoted to Manager in June 2023.</li>
             <li>Received the <b>High Five Award (Q3 2022)</b> for the Viewer 22.4 release, language-pack deliveries and security compliance.</li>
           </ul>
           <div class="awards"><span class="badge b-lime">★ High Five Award · Q3 2022</span></div>
         </div>
       </article>
       <article class="xrow">
-        <aside class="panel poster rv">
+        <aside class="panel poster">
           <div class="yr">2017<em>→2021</em></div>
           <div class="co">Rythmos · client Unity Technologies</div>
           <div class="dm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="16" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.6" r=".9" fill="currentColor"/></svg>Gaming</div>
@@ -910,7 +942,7 @@ footer a:hover{color:var(--lime)}
         </div>
       </article>
       <article class="xrow rev">
-        <aside class="panel poster rv">
+        <aside class="panel poster">
           <div class="yr">2014<em>→2017</em></div>
           <div class="co">NCR Corporation</div>
           <div class="dm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 7H6.2"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>Retail · Self-Service Checkout</div>
@@ -928,7 +960,7 @@ footer a:hover{color:var(--lime)}
         </div>
       </article>
       <article class="xrow">
-        <aside class="panel poster rv">
+        <aside class="panel poster">
           <div class="yr">2010<em>→2014</em></div>
           <div class="co">Aricent · client Alcatel-Lucent</div>
           <div class="dm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21v-9M8.5 8.5a5 5 0 0 1 7 0M5.6 5.6a9 9 0 0 1 12.8 0"/><circle cx="12" cy="11" r="1.5" fill="currentColor"/></svg>Telecom · Radio network controllers</div>
@@ -994,21 +1026,11 @@ footer a:hover{color:var(--lime)}
   </div>
 </section>
 
-<section id="learning" data-cp="Learning">
-  <div class="wrap">
-    <div class="sec-head"><span class="kick rv"><b>B6</b>GenAI and LLM practice</span><h2 class="h2 split">From neurons to <em>agents.</em></h2>
-      <p class="lead rv">A self-built, hands-on curriculum: every topic below has working code in my learning repository, from back-propagation and a from-scratch GPT to RAG, MCP and multi-agent systems.</p></div>
-    <div class="lstats">
-      <div class="panel ls rv"><b><span id="lsT">0</span></b><span>Topics practised hands-on</span></div>
-      <div class="panel ls rv"><b><span id="lsC">0</span></b><span>Covered in depth</span></div>
-      <div class="panel ls rv"><b><span id="lsM">0</span></b><span>Modules, foundations to production</span></div>
-      <div class="panel ls rv"><b><span id="lsB">0</span><i>+</i></b><span>End-to-end builds</span></div>
-    </div>
-    <div class="lgrid" id="lgrid"></div>
-    <div class="builds-h"><h3>Hands-on <em>builds.</em></h3><div class="legend2"><span><i></i>Covered in depth</span><span><i class="d"></i>Partially covered</span></div></div>
-    <div class="builds" id="builds"></div>
-  </div>
-</section>
+<section id="learning" data-cp="Learning"><div class="wrap">
+<div class="sec-head"><span class="kick rv"><b>B6</b>GenAI and LLM practice</span><h2 class="h2 split">From neurons to <em>agents.</em></h2><p class="lead rv">The essentials of my hands-on learning, in order: foundations, language models, knowledge retrieval and agentic applications.</p></div>
+<div class="torch-journey" id="torchJourney"><div class="journey-guide"><span class="journey-dot"></span> FOLLOW THE LIGHT <span id="journeyReadout">01 / 08 · FOUNDATIONS</span></div>
+<div class="journey-lamp" id="journeyLamp" aria-hidden="true"><div class="lamp-body"><i></i></div><div class="lamp-lens"></div><div class="lamp-cone"></div></div>
+<ol class="journey-list"><li class="journey-step"><span class="journey-num">01</span><div class="journey-copy"><h3>Neural network foundations</h3><p>Built a basic network and practised forward propagation, backpropagation and optimization.</p><span class="journey-tags">Networks · Gradients · Optimization</span></div><span class="journey-check" aria-hidden="true">✓</span></li><li class="journey-step"><span class="journey-num">02</span><div class="journey-copy"><h3>Transformers and a from-scratch GPT</h3><p>Explored attention, positional encoding and GPT-2; built and trained a small transformer-based language model.</p><span class="journey-tags">Attention · nano-GPT · GPT-2</span></div><span class="journey-check" aria-hidden="true">✓</span></li><li class="journey-step"><span class="journey-num">03</span><div class="journey-copy"><h3>LLM training and adaptation</h3><p>Practised pre-training, fine-tuning and evaluation on small language-model experiments.</p><span class="journey-tags">Training · Fine-tuning · Evaluation</span></div><span class="journey-check" aria-hidden="true">✓</span></li><li class="journey-step"><span class="journey-num">04</span><div class="journey-copy"><h3>Prompt and context engineering</h3><p>Worked with structured outputs, conversation memory, context management and output validation.</p><span class="journey-tags">Context · Memory · Structured outputs</span></div><span class="journey-check" aria-hidden="true">✓</span></li><li class="journey-step"><span class="journey-num">05</span><div class="journey-copy"><h3>Retrieval-augmented generation</h3><p>Built knowledge-base workflows using embeddings, chunking and hybrid search, with retrieval evaluation.</p><span class="journey-tags">Embeddings · Hybrid search · RAG evaluation</span></div><span class="journey-check" aria-hidden="true">✓</span></li><li class="journey-step"><span class="journey-num">06</span><div class="journey-copy"><h3>Tools and model integration</h3><p>Connected tools and external capabilities through Pydantic AI and the Model Context Protocol.</p><span class="journey-tags">Tool calling · Pydantic AI · MCP</span></div><span class="journey-check" aria-hidden="true">✓</span></li><li class="journey-step"><span class="journey-num">07</span><div class="journey-copy"><h3>Multi-agent systems</h3><p>Practised agent orchestration, state management and human approval; explored agent-to-agent integration.</p><span class="journey-tags">Orchestration · A2A · Human-in-the-loop</span></div><span class="journey-check" aria-hidden="true">✓</span></li><li class="journey-step"><span class="journey-num">08</span><div class="journey-copy"><h3>Evaluation and practical applications</h3><p>Built assistants for customer support, documents, SQL and code; practised Pydantic Evals and containerized setups.</p><span class="journey-tags">Pydantic Evals · Practical builds · Docker</span></div><span class="journey-check" aria-hidden="true">✓</span></li></ol><p class="journey-foot">Hands-on learning and independent practice, not a claim of production expertise in every topic.</p></div></div></section>
 
 <section id="education" data-cp="Education">
   <div class="wrap zz">
@@ -1040,11 +1062,11 @@ footer a:hover{color:var(--lime)}
       <p class="lead" style="margin-left:auto;margin-right:auto">Open to Technical Engineering Manager and C/C++ engineering leadership roles.</p>
       <div class="clinks">
         <a class="btn solid mag" href="mailto:satishpuppala87@gmail.com">Email me</a>
-        <a class="btn mag" href="https://linkedin.com/in/satish-puppala-93a1b957" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn mag" href="https://linkedin.com/in/satishpuppala" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a class="btn mag" href="https://github.com/puppalasatish?tab=repositories" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn mag" href="https://puppalasatish.github.io/AI-POWER-HOUR/index.html" target="_blank" rel="noopener">AI Power Hour ↗</a>
-        <a class="btn mag" href="https://puppalasatish.github.io/" target="_blank" rel="noopener">Portfolio ↗</a>
-        <a class="btn mag" href="Satish_Puppala_Resume_v3.pdf" download>Download resume</a>
+        <a class="btn mag" href="https://puppalasatish.github.io/AI-POWER-HOUR/Satish_Puppala_Portfolio.html" target="_blank" rel="noopener">Portfolio ↗</a>
+        <a class="btn mag" href="https://puppalasatish.github.io/AI-POWER-HOUR/Satish_Puppala_Resume.pdf" target="_blank" rel="noopener" download="Satish_Puppala_Resume.pdf">Download resume</a>
       </div>
       <button class="copy" id="copy" type="button">satishpuppala87@gmail.com · copy</button>
     </div>
@@ -1354,7 +1376,7 @@ const boardSvg = $("#boardSvg"), pins = [];
 })();
 let lastLit = -1;
 function setMig(p) {
-  const bits = Math.round(32 + 32 * p);
+  const bits = p >= .82 ? 64 : 32;
   $("#mBits").textContent = bits; $("#chipBits").textContent = bits;
   $("#mRing").setAttribute("stroke-dashoffset", (276.46 * (1 - p)).toFixed(1));
   $("#mLbl").textContent = p >= .999 ? "64-bit · shipping since 24.4" : p > .02 ? "Migrating…" : "Legacy build";
@@ -1365,7 +1387,7 @@ function setMig(p) {
 }
 setMig(0);
 const win1 = $("#win1");
-function migScroll() { if (!desk() || RM) return; const r = win1.getBoundingClientRect(), total = win1.offsetHeight - (innerHeight - 64); setMig(clamp(-r.top / Math.max(1, total * .8))); }
+function migScroll() { if (!desk() || RM) return; const r = win1.getBoundingClientRect(), total = win1.offsetHeight - (innerHeight - 64); setMig(clamp((64 - r.top) / Math.max(1, total * .65))); }
 onView(win1, () => { if (!desk() || RM) tween(2400, setMig); }, { threshold: .3 });
 if (FINE && !RM) win1.addEventListener("mousemove", e => { const b = win1.getBoundingClientRect(); $("#plane").style.setProperty("--rx", ((e.clientX - b.left) / b.width - .5) * 14 + "deg"); $("#plane").style.setProperty("--ry", ((e.clientY - b.top) / b.height - .5) * 10 + "deg"); });
 
@@ -1388,7 +1410,7 @@ $$(".num").forEach(n => onView(n, markIn, { threshold: .4 }));
 /* ---------- adoption constellation ---------- */
 (function () {
   const svg = $("#constel"), B = $("#beams"), T = $("#teams");
-  const teams = [["SAP Viewers", 270, 36], ["Brava and Blazon", 448, 118], ["Automation", 400, 292], ["Intelligent Viewer", 140, 292], ["Enterprise Scan", 92, 118]];
+  const teams = [["SAP Viewers", 150, 54], ["Brava and Blazon", 390, 54], ["Automation", 390, 276], ["Intelligent Viewer", 150, 276]];
   const items = teams.map(([name, x, y], k) => {
     const beam = mk("path", { class: "beam", d: `M270 165 L${x} ${y}` }, B);
     const L = Math.hypot(x - 270, y - 165); beam.style.strokeDasharray = L; beam.style.strokeDashoffset = L;
@@ -1440,10 +1462,10 @@ function sumScroll() {
   [2, 6].forEach((k, j) => person(xs[k], ry + 76, "i", 1000 + j * 120));
   const lab = mk("text", { class: "mt", x: cx, y: ry + 46 }, s); lab.textContent = "9 DIRECT REPORTS";
   const stat = (x, v, k) => { const g = mk("g", { class: "stat" }, s); mk("rect", { x, y: 300, width: 118, height: 66, rx: 14 }, g); const t = mk("text", { class: "v", x: x + 59, y: 334 }, g); t.innerHTML = v; mk("text", { class: "k", x: x + 59, y: 354 }, g).textContent = k; };
-  stat(30, "11", "TEAM SIZE"); stat(161, '3<tspan>↑</tspan>', "HIRED"); stat(292, '3<tspan>★</tspan>', "PROMOTED");
+  stat(30, "11", "TEAM SIZE"); stat(161, '3<tspan>↑</tspan>', "HIRED"); stat(292, '3<tspan>★</tspan>', "PROMOTIONS");
 })();
 (function tools() {
-  const T = [["VS", "Visual Studio", "#b48cff"], ["Git", "Git", "#ff7a59"], ["P4", "Perforce", "#5aa9ff"], ["Hg", "Mercurial", "#cfcfcf"], ["SVN", "SVN", "#8fb0e0"], ["CC", "ClearCase", "#7ad0ff"], ["J", "Jira", "#4c9aff"], ["VE", "ValueEdge", "#3fd4c4"], ["Win", "Windows", "#7fd8ff"], ["Lx", "Linux", "#ffd54f"]];
+  const T = [["VS", "Visual Studio", "#b48cff"], ["WD", "WinDbg", "#7fd8ff"], ["gdb", "gdb", "#ffd54f"], ["VG", "Valgrind", "#ff7a59"], ["CM", "CMake", "#3fd4c4"], ["MB", "MSBuild", "#b48cff"], ["Git", "Git", "#7fd8ff"], ["P4", "Perforce", "#ffd54f"], ["Hg", "Mercurial", "#ff7a59"], ["SVN", "SVN", "#3fd4c4"], ["CC", "ClearCase", "#b48cff"], ["J", "Jira", "#7fd8ff"], ["VE", "ValueEdge", "#ffd54f"], ["Win", "Windows", "#ff7a59"], ["Lx", "Linux", "#3fd4c4"]];
   $("#tgrid").innerHTML = T.map(([m, n, c], k) => `<div class="tt" style="--k:${k}"><b style="background:${c}">${m}</b>${n}</div>`).join("");
 })();
 const svis = $("#svis"), sgs = $$(".sg"), sgWrap = $("#sgroups"), NAMES = { lead: "Leadership", eng: "Engineering", ai: "AI", qa: "Quality, Security and Delivery", cloud: "Cloud and Platforms", tools: "Tools" };
@@ -1452,7 +1474,7 @@ function setSkill(v) { if (v === curSg) return; curSg = v; svis.dataset.v = v; $
 function skillScroll() {
   const sec = $("#skills").getBoundingClientRect(), inSec = sec.top < innerHeight * .6 && sec.bottom > innerHeight * .4;
   sgWrap.classList.toggle("live", inSec && desk());
-  if (hoverSg) return setSkill(hoverSg);
+  if (hoverSg && inSec) { const hg = sgs.find(g => g.dataset.v === hoverSg); const hr = hg.getBoundingClientRect(); if (hr.top < innerHeight && hr.bottom > 64) return setSkill(hoverSg); hoverSg = null; }
   const mid = innerHeight * .5; let best = sgs[0], bd = 1e9;
   sgs.forEach(g => { const r = g.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - mid); if (d < bd) { bd = d; best = g; } });
   setSkill(best.dataset.v);
@@ -1470,23 +1492,28 @@ const renderT = n => { let left = n, h = ""; for (const [c, p, t] of LINES) { if
 renderT(RM ? TOT : 0);
 if (!RM) onView(term, () => { let n = 0; (function t() { n += 2; renderT(Math.min(n, TOT)); if (n < TOT) setTimeout(t, 20); })(); }, { threshold: .3 });
 
-/* ---------- GenAI & LLM learning path (from my curriculum repo; only practised topics) ---------- */
-const LEARN = [["AI & ML Foundations", [["Overview of AI", 1], ["Reality & Limits of AI", 1]]], ["Environment & Tooling", [["Environment Setup", 1], ["Model Access & API Keys", 1], ["GPU vs CPU / Hardware", 1], ["Model Providers Landscape", 1]]], ["Neural Network Foundations", [["NN Overview", 1], ["Building a Basic NN", 1], ["Forward Pass & Backpropagation", 1], ["Optimization & Regularization", 1], ["CNNs & RNNs", 0]]], ["Generative Deep Learning", [["Generative NN Intro", 1], ["VAEs", 1], ["GANs", 1], ["Diffusion Models", 1], ["Scaling Generative Models", 1], ["Evaluating Generative Models", 1]]], ["Transformers & LLM Architecture", [["Transformer Architecture", 1], ["Advanced Transformers", 1], ["Positional Encoding", 1], ["Tokenization", 0], ["nano-GPT (from scratch)", 1], ["GPT-2 Deep Dive", 1]]], ["LLM Training & Adaptation", [["Pre-training", 1], ["Fine-tuning", 0]]], ["Prompt & Context Engineering", [["Structured Outputs", 1], ["Context Engineering", 1], ["Conversation & Memory", 1], ["Prompt Patterns (CoT, ReAct, Few-shot)", 0], ["Guardrails & Output Validation", 0]]], ["LLM Application Development", [["Pydantic Data Modeling", 1], ["Agent Run Modes", 1], ["Async IO", 1], ["Multi-Modal Inputs", 1], ["Document Parsing", 1], ["FastAPI + Next.js Full Stack", 1], ["Streaming Responses", 1], ["Caching with Redis", 1], ["Observability & Tracing", 1], ["Config Management", 1]]], ["Tools, Agents & Orchestration", [["Tool / Function Calling", 1], ["Reusable Capabilities", 1], ["Custom Capabilities", 1], ["Lifecycle Extension Points", 1], ["Complex State Machines", 1], ["Multi-Agent Systems", 1], ["Human-in-the-Loop", 1]]], ["RAG & Knowledge Bases", [["Embeddings", 1], ["Chunking Strategies", 1], ["Hybrid Search", 1], ["Knowledge Base Construction", 1], ["Vector Databases (pgvector)", 0], ["Reranking", 0], ["Advanced RAG (GraphRAG, Agentic)", 0], ["RAG Evaluation", 1]]], ["Databases & Graphs", [["PostgreSQL Setup", 1], ["Relational DB Explorer", 1], ["Graph Databases", 1], ["Codebase Graph", 1]]], ["Protocols & Integration", [["Model Context Protocol, Part 1", 1], ["Model Context Protocol, Part 2", 1]]], ["Evaluation & Quality", [["Pydantic Evals", 1], ["Search & RAG Evals", 1], ["LLM Regression Testing", 0]]], ["Deployment & LLMOps", [["Production Monitoring", 0], ["Cost Optimization & Caching", 0]]], ["Safety & Responsible AI", [["Responsible AI & Ethics", 0]]]];
-const BUILDS = ["Invoice Processor", "Local ChatGPT (v1–v3)", "Google Calendar Assistant", "Customer Support Assistant", "Document Explorer", "Code Base Explorer", "Text Summarizer", "Code Base Summarizer", "Codebase Graph Explorer", "Simple Coding Assistant", "Relational DB Explorer", "Generic Document Parser"];
-(function learning() {
-  const PROJECT_TOPICS = 10; let tot = PROJECT_TOPICS, cov = PROJECT_TOPICS; /* 10 use-case projects in the repo, all covered */
-  $("#lgrid").innerHTML = LEARN.map(([title, tops], k) => {
-    const c = tops.filter(t => t[1]).length; tot += tops.length; cov += c;
-    return `<article class="panel lm rv" style="--w:${Math.round(c / tops.length * 100)}%"><div class="lm-h"><span class="ix">${String(k + 1).padStart(2, "0")}</span><div><h3>${title}</h3><small>${tops.length} topics · ${c} in depth</small></div></div><div class="lbar"><i></i></div><div class="chips">${tops.map(t => `<span class="chip${t[1] ? "" : " pt"}">${esc(t[0])}</span>`).join("")}</div></article>`;
-  }).join("");
-  const ic = { doc: '<path d="M14 3H7a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V7.5z"/><path d="M14 3v4.5h4.5M9 13h6M9 16.5h4"/>', chat: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/>', code: '<path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/>', cal: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9.5h16M9 3v4M15 3v4"/>', graph: '<circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="8" r="2.2"/><circle cx="10" cy="18" r="2.2"/><path d="M8 7l8 1M7 8l2.5 8M16.5 9.8l-5 6.6"/>', db: '<ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6"/>' };
-  const pick = n => /Calendar/.test(n) ? ic.cal : /Graph/.test(n) ? ic.graph : /DB/.test(n) ? ic.db : /ChatGPT|Support/.test(n) ? ic.chat : /Code|Coding/.test(n) ? ic.code : ic.doc;
-  $("#builds").innerHTML = BUILDS.map(n => `<div class="panel bd rv"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${pick(n)}</svg></b><span>${esc(n)}</span></div>`).join("");
-  const counts = { lsT: tot, lsC: cov, lsM: LEARN.length + 1, lsB: BUILDS.length };
-  Object.entries(counts).forEach(([id, v]) => counter($("#" + id), v, false));
-  $$(".lm").forEach(m => onView(m, markIn, { threshold: .3 }));
-})();
-
+/* Ordered learning journey: torch position is driven by scroll, not a timer. */
+const journey = $("#torchJourney"), journeySteps = $$(".journey-step"), journeyLamp = $("#journeyLamp");
+function journeyScroll() {
+  if (!journey) return;
+  if (RM) { journeySteps.forEach(e => e.classList.add("lit")); return; }
+  const box = journey.getBoundingClientRect(), target = innerHeight * .56;
+  const first = journeySteps[0].getBoundingClientRect(), last = journeySteps[journeySteps.length - 1].getBoundingClientRect();
+  const y = clamp(target - box.top, first.top - box.top + 42, last.top - box.top + 42);
+  journeyLamp.style.top = y + "px";
+  journey.classList.toggle("torch-active", box.top < innerHeight * .85 && box.bottom > 100);
+  let active = null, distance = Infinity;
+  journeySteps.forEach(e => {
+    const r = e.getBoundingClientRect(), d = Math.abs(r.top + 42 - target);
+    if (d < distance) { active = e; distance = d; }
+    if (r.top < target) e.classList.add("lit");
+  });
+  journeySteps.forEach(e => e.classList.toggle("torch-focus", e === active && box.top < innerHeight * .85 && box.bottom > 100));
+  const index = journeySteps.indexOf(active);
+  const labels = ["FOUNDATIONS", "TRANSFORMERS", "TRAINING", "CONTEXT", "RETRIEVAL", "INTEGRATION", "ORCHESTRATION", "APPLICATIONS"];
+  $("#journeyReadout").textContent = String(index + 1).padStart(2, "0") + " / 08 · " + labels[index];
+  journey.style.setProperty("--journey-progress", ((index + 1) / 8 * 100) + "%");
+}
 /* ---------- contact ring field ---------- */
 (function rings() {
   const c = $("#rings"), ctx = c.getContext("2d"), sec = $("#contact"); let w, h, mx = -999, my = -999, vis = false, t = 0;
@@ -1591,7 +1618,7 @@ burger.addEventListener("click", () => { const o = mnav.classList.toggle("open")
 $$("#mnav a").forEach(a => a.addEventListener("click", () => { mnav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }));
 
 let ticking = false, booted = false;
-function onScroll() { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; migScroll(); sumScroll(); skillScroll(); xpScroll(); cometScroll(); navScroll(); sweepRv(); countersPassed(); if (booted) fxScroll(); }); }
+function onScroll() { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; migScroll(); sumScroll(); journeyScroll(); skillScroll(); xpScroll(); cometScroll(); navScroll(); sweepRv(); countersPassed(); if (booted) fxScroll(); }); }
 addEventListener("scroll", onScroll, { passive: true });
 
 /* ---------- cursor ---------- */
